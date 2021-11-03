@@ -17,7 +17,7 @@ parts:
   - caption: Week 01
     numbered: False
     chapters:
-    - url: Course_Materials/LearnPython.zip
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip
       title: LearnPython.zip
     - file: Week-01/Week-01_Lecture_ML-Intro-Concepts.ipynb
     - file: Week-01/Week-01_Lab_ML-Intro-Concepts.ipynb
