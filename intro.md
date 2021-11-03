@@ -10,7 +10,7 @@
 	* The Zoom room for instructor office hours is [Office Hours Zoom](https://msu.zoom.us/j/__) (password: bmb961).
 	
 *  [Software Setup Guide](Course_Materials/SoftwareSetupGuide.md). The key software/communication tools for this course are: 
-  	* This [JupyterBook](https://msu-cmse-courses.github.io/__) - hosts all of the content for the lectures and laboratory periods.
+  	* This [JupyterBook](https://adicksonlab.github.io/ml4md-jb) - hosts all of the content for the lectures and laboratory periods.
 	* Google Colab
 	* HPCC
 	* Zoom (to join class asynchronously or for office hours)
