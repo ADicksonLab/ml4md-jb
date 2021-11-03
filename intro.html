@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003 &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 current">
+  <a class="reference internal" href="#">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com//issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-information">
+   Key Information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructor-information">
+   Instructor Information
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lead-instructors">
+     Lead instructors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#affiliate-instructors">
+     Affiliate instructors
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="welcome-to-machine-learning-for-molecular-dynamics-bmb-961-sec-003">
+<h1>Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003<a class="headerlink" href="#welcome-to-machine-learning-for-molecular-dynamics-bmb-961-sec-003" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="key-information">
+<h2>Key Information<a class="headerlink" href="#key-information" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Meeting times
+* Lectures on Tues: 3:00 PM – 3:50 PM (BPS 1420, or <a class="reference external" href="https://msu.zoom.us/j/__">https://msu.zoom.us/j/__</a> ; password: __)</p>
+<ul>
+<li><p>Labs on Thursdays: 2:00 PM – 4:00 PM (BMB 202, or <a class="reference external" href="https://msu.zoom.us/j/__">https://msu.zoom.us/j/__</a> ; password: __)</p></li>
+</ul>
+</li>
+<li><p>Office Hour Links</p>
+<ul>
+<li><p>The Zoom room for instructor office hours is <a class="reference external" href="https://msu.zoom.us/j/__">Office Hours Zoom</a> (password: bmb961).</p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Software Setup Guide</span>. The key software/communication tools for this course are:</p>
+<ul>
+<li><p>This <a class="reference external" href="https://msu-cmse-courses.github.io/__">JupyterBook</a> - hosts all of the content for the lectures and laboratory periods.</p></li>
+<li><p>Google Colab</p></li>
+<li><p>HPCC</p></li>
+<li><p>Zoom (to join class asynchronously or for office hours)</p></li>
+<li><p>Jupyter Notebook</p></li>
+<li><p><a class="reference external" href="https://d2l.msu.edu/">Desire 2 Learn</a> (Course assignments will be submitted via D2L)</p></li>
+<li><p>Microsoft Forms (for surveys, please use your &#64;msu.edu microsoft account when using Microsoft tools)</p></li>
+<li><p>[MediaSpace] (<a class="reference external" href="https://mediaspace.msu.edu/">https://mediaspace.msu.edu/</a>) for sharing recorded lectures</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="instructor-information">
+<h2>Instructor Information<a class="headerlink" href="#instructor-information" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lead-instructors">
+<h3>Lead instructors<a class="headerlink" href="#lead-instructors" title="Permalink to this headline">¶</a></h3>
+<p><strong>Alex Dickson</strong> <br />
+<a class="reference external" href="mailto:alexrd&#37;&#52;&#48;msu&#46;edu">alexrd<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Associate Professor, Dept of Biochemistry &amp; Molecular Biology and Dept of Computational Mathematics, Science &amp; Engineering</p>
+<p><strong>Michael Feig</strong> <br />
+<a class="reference external" href="mailto:feig&#37;&#52;&#48;msu&#46;edu">feig<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Professor, Dept of Biochemistry &amp; Molecular Biology</p>
+</div>
+<div class="section" id="affiliate-instructors">
+<h3>Affiliate instructors<a class="headerlink" href="#affiliate-instructors" title="Permalink to this headline">¶</a></h3>
+<p><strong>Jose Mendoza</strong><br />
+<a class="reference external" href="mailto:jmendoza&#37;&#52;&#48;msu&#46;edu">jmendoza<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Assistant Professor, Dept of Chemical Engineering and Materials Science</p>
+<p><strong>Samik Bose</strong><br />
+<a class="reference external" href="mailto:bosesami&#37;&#52;&#48;msu&#46;edu">bosesami<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
+<p><strong>Nazanin Donyapour</strong><br />
+<a class="reference external" href="mailto:nazanin&#37;&#52;&#48;msu&#46;edu">nazanin<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Ph.D. Candidate, Dept of Computational Mathematics, Science &amp; Engineering</p>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
