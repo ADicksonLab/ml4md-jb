@@ -38,6 +38,15 @@ Follow the instructions below to get the Anaconda distribution of Python install
 
 If everything goes correctly, a browser window should open up with the Jupyter interface running. If things don’t work, let us know and we will help you get started.
 
+### Opening notebooks with Jupyter Notebook
+
+Notebooks can be downloaded from the course website by selecting them from the menu on the left, then hovering over the download button on the top right and selecting ".ipynb" as the download format.  This will save a copy of the notebook to your computer.
+
+After opening Jupyter using the instructions above you can navigate to the folder that contains this notebook and open it.
+
 ## Google colab instructions
 
+**To launch a notebook with Google Colab**, simply open a notebook on the course website, hover over "Launch" (rocket ship icon) and click the Colab link.  This will open a Colab session.
+
+**To save a copy of your notebook with Google Colab**, click on "File", then "Download", and download as an `.ipynb` file.  This file is then saved on your computer and you can then submit this to D2L, if required.
 
