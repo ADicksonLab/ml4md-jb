@@ -3,21 +3,21 @@
 ## Key Information
 
 *  Meeting times
-        * Lectures on Tues: 3:00 PM -- 3:50 PM (BPS 1420, or https://msu.zoom.us/j/__ ; password: __)
-	* Labs on Thursdays: 2:00 PM -- 4:00 PM (BMB 202, or https://msu.zoom.us/j/__ ; password: __)
+        * Lectures on Tues: 3:00 PM -- 3:50 PM (BPS 1420, or https://msu.zoom.us/j/93404881173 ; password: bmb961)
+	* Labs on Thursdays: 2:00 PM -- 4:00 PM (BMB 202, or https://msu.zoom.us/j/99870167524 ; password: bmb961)
 	
-*  Office Hour Links
-	* The Zoom room for instructor office hours is [Office Hours Zoom](https://msu.zoom.us/j/__) (password: bmb961).
+*  Office Hours
+	* Office hours are available by appointment with the instructor(s) (contact info below)
 	
 *  [Software Setup Guide](Course_Materials/SoftwareSetupGuide.md). The key software/communication tools for this course are: 
-  	* This [JupyterBook](https://msu-cmse-courses.github.io/__) - hosts all of the content for the lectures and laboratory periods.
+  	* This [JupyterBook](https://adicksonlab.github.io/ml4md-jb) - hosts all of the content for the lectures and laboratory periods.
 	* Google Colab
 	* HPCC
 	* Zoom (to join class asynchronously or for office hours)
 	* Jupyter Notebook 
 	* [Desire 2 Learn](https://d2l.msu.edu/) (Course assignments will be submitted via D2L)
 	* Microsoft Forms (for surveys, please use your @msu.edu microsoft account when using Microsoft tools)
-	* [MediaSpace] (https://mediaspace.msu.edu/) for sharing recorded lectures
+	* [MediaSpace](https://mediaspace.msu.edu/) for sharing recorded lectures
 	
 ---
 
