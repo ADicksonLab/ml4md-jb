@@ -1,6 +1,6 @@
 # Machine Learning for Molecular Dynamics
 ## BMB 961 Sec 003 - Spring 2022
-This is the course content repository for instructors.  Content on the `main` branch is rendered and distributed to a JupyterBook hosted here: .
+This is the course content repository for instructors.  Content on the `main` branch is rendered and distributed to a JupyterBook hosted here: [https://adicksonlab.github.io/ml4md-jb](https://adicksonlab.github.io/ml4md-jb).
 
 ## List of instructors:
 **Alex Dickson** \
@@ -14,7 +14,7 @@ Professor, Dept of Biochemistry &amp; Molecular Biology
 ## To contribute content:
 
 Clone this git repository to your computer:\
-`git clone https://github.com/___.git`\
+`git clone git@github.com:ADicksonLab/ml4md-jb.git`\
 this will create a directory called `ml4md-jb` with all of the source files.
 
 To be able to build and publish the html yourself then you I recommend creating a conda environment:\
