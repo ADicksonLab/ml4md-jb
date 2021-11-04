@@ -39,6 +39,6 @@ sphinx:
     suppress_warnings:
     - myst.header
   
-#launch_buttons:
+launch_buttons:
   colab_url: "https://colab.research.google.com"  # this would be nice, but it can't be used since the repo isn't public
 #  binderhub_url: ""
