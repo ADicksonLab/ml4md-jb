@@ -7,7 +7,7 @@ parts:
   - caption: Course Materials
     numbered: False
     chapters:
-    - file: Course_Materials/BMB961-003-Syllabus
+    - file: Course_Materials/BMB961-003_Syllabus
       title: Syllabus
     - file: Course_Materials/BMB961-003-Schedule
       title: Course Schedule
