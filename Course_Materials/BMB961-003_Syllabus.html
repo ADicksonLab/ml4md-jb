@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMB 961 Sec 003: Machine Learning for Molecular Dynamics &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Machine Learning for Molecular Dynamics Software Setup Guide" href="SoftwareSetupGuide.html" />
+    <link rel="prev" title="Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003" href="../intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Course_Materials/BMB961-003_Syllabus.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FCourse_Materials/BMB961-003_Syllabus.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-description">
+   Course Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topics-covered">
+   Topics covered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-reading-materials">
+   Required reading materials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-format">
+   Class format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-materials-for-class">
+   Required materials for class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covid-19-policy">
+   COVID-19 policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inclusive-classroom-behavior">
+   Inclusive classroom behavior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accommodations">
+   Accommodations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructor-contact-information">
+   Instructor contact information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grading-information">
+   Grading information
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bmb-961-sec-003-machine-learning-for-molecular-dynamics">
+<h1>BMB 961 Sec 003: Machine Learning for Molecular Dynamics<a class="headerlink" href="#bmb-961-sec-003-machine-learning-for-molecular-dynamics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="course-description">
+<h2>Course Description<a class="headerlink" href="#course-description" title="Permalink to this headline">¶</a></h2>
+<p>For almost 50 years, researchers have used in silico approaches to gain insight into the dynamics of molecular systems.  Advances in computational hardware and algorithms have greatly increased the reach of these simulations both in the size of the systems studied and the timescales of the events of interest.  Machine learning is bringing transformative changes to the field of molecular dynamics, impacting how initial structures and parameters are generated, how simulations are run, and how they are analyzed.  This graduate-level course will provide an introduction to both machine learning and molecular dynamics theory.  Students will learn about modern tools for both MD and ML, and apply them to problems in a collaborative, hands-on environment.</p>
+<p>By the end of this course, you will be able to:</p>
+<ol class="simple">
+<li><p>Have a working understanding of the basic algorithms used in machine learning and molecular dynamics.</p></li>
+<li><p>Setup, run and analyze molecular dynamics simulations for a system of interest.</p></li>
+<li><p>Build machine learning models and apply them to prediction problems.</p></li>
+<li><p>Apply machine learning models to a variety of molecular dynamics problems.</p></li>
+</ol>
+<p>We will work toward these goals by learning material through readings and lectures and applying
+this knowledge in hands-on coding laboratories, where programs will be written both individually
+and in small groups.  The course will culminate in a research project where students will apply
+these skills to study a problem of their own choosing.</p>
+</div>
+<div class="section" id="topics-covered">
+<h2>Topics covered<a class="headerlink" href="#topics-covered" title="Permalink to this headline">¶</a></h2>
+<p>A preliminary list of topics covered in this course are listed below.
+Specific libraries or tools are listed in <strong>bold</strong>.</p>
+<ul class="simple">
+<li><p>Repositories, packages and Google Colab</p></li>
+<li><p>Introduction to Machine Learning (<strong><code class="docutils literal notranslate"><span class="pre">pytorch</span></code></strong>)</p></li>
+<li><p>Hyperparameter optimization (<strong><code class="docutils literal notranslate"><span class="pre">skorch</span></code></strong>)</p></li>
+<li><p>Advanced ML architectures</p></li>
+<li><p>Structure prediction (<strong>AlphaFold</strong>)</p></li>
+<li><p>Molecular dynamics simulation</p></li>
+<li><p>Biomolecular system preparation (<strong>CHARMM-GUI</strong>)</p></li>
+<li><p>Biomolecular simulation (<strong>OpenMM</strong>)</p></li>
+<li><p>Analysis of MD simulations</p></li>
+<li><p>ML for MD parameter generation</p></li>
+<li><p>ML integrators for MD</p></li>
+<li><p>Analysis of MD using neural networks (<strong>VAMPnets</strong>)</p></li>
+</ul>
+</div>
+<div class="section" id="required-reading-materials">
+<h2>Required reading materials<a class="headerlink" href="#required-reading-materials" title="Permalink to this headline">¶</a></h2>
+<p>This class has no required book or course pack. Course content will be distributed via
+JupyterBook and can be accessed by the following link: <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb/intro.html">https://adicksonlab.github.io/ml4md-jb/intro.html</a>.
+From time to time we will direct you toward outside
+online resources, but the main materials will be on the course website.</p>
+</div>
+<div class="section" id="class-format">
+<h2>Class format<a class="headerlink" href="#class-format" title="Permalink to this headline">¶</a></h2>
+<p>We plan to run this class in a hybrid format, where attendance is possible either
+in-person or via Zoom, both for the lecture and the laboratory components.
+This plan is subject to change following institutional or government recommendations.
+This course will meet on <strong>Tues 3:00-3:50 PM in BPS 1420</strong> for lecture and
+<strong>Thurs 2:00-4:00 PM in BMB 202</strong> for lab.</p>
+</div>
+<div class="section" id="required-materials-for-class">
+<h2>Required materials for class<a class="headerlink" href="#required-materials-for-class" title="Permalink to this headline">¶</a></h2>
+<p>Programming assignments are a critical part of the learning process in this
+course. To that end, if you attend in person you are expected to bring your laptop and its power cord to
+every class.
+If you are attending remotely you would need:</p>
+<ul class="simple">
+<li><p>The ability to run the Zoom video conferencing software, which you can
+download here: <a class="reference external" href="https://msu.zoom.us/support/download">https://msu.zoom.us/support/download</a></p></li>
+<li><p>A computer with a reliable internet connection and a functional webcam,
+microphone and speakers.</p></li>
+</ul>
+<p>Details regarding the software needed for this course are provided in the <strong>“Software
+Setup Guide”</strong> on the course website.</p>
+</div>
+<div class="section" id="covid-19-policy">
+<h2>COVID-19 policy<a class="headerlink" href="#covid-19-policy" title="Permalink to this headline">¶</a></h2>
+<p>As a reminder, the university has put in place a mask mandate and
+students are required to wear properly fitting masks during indoor class meetings. You
+should refrain from eating or drinking during class to avoid having to remove your mask.
+If you do consume food or drinks inside, you should remove the mask only to take a sip
+of beverage or a bite to eat, and you must replace the mask properly between each bite
+and sip. If you do not comply with this mask mandate, you may be asked to leave the
+building. If you forgot your mask, you will be allowed to leave to go get one.</p>
+<p>If you have to miss class due to illness or self-isolation (as per the CDC recommended
+guidelines), your instructor will work to provide the necessary accommodations to
+ensure that your performance in class is not significantly impacted. However, should
+you find that your overall success in your courses is significantly impacted by any
+illness, please refer to the University policy on medical leave and withdrawal.</p>
+</div>
+<div class="section" id="inclusive-classroom-behavior">
+<h2>Inclusive classroom behavior<a class="headerlink" href="#inclusive-classroom-behavior" title="Permalink to this headline">¶</a></h2>
+<p>Respectful and responsible behavior is expected at all
+times, which includes not interrupting other students, turning your cell phone off,
+refraining from non-course-related use of electronic devices, and not using offensive or
+demeaning language in our discussions. Flagrant or repeated violations of this
+expectation may result in ejection from the classroom, grade-related penalties, and/or
+involvement of the university Ombudsperson. In particular, behaviors that could be
+considered discriminatory or harassing, or unwanted sexual attention, will not be
+tolerated and will be immediately reported to the appropriate MSU office (which may
+include the MSU Police Department).</p>
+<p>In addition, MSU welcomes a full spectrum of experiences, viewpoints, and intellectual
+approaches because they enrich the conversation, even as they challenge us to think
+differently and grow. However, we believe that expressions and actions that demean
+individuals or groups comprise the environment for intellectual growth and undermine
+the social fabric on which the community is based. These demeaning behaviors are not
+welcome in this classroom.</p>
+</div>
+<div class="section" id="accommodations">
+<h2>Accommodations<a class="headerlink" href="#accommodations" title="Permalink to this headline">¶</a></h2>
+<p>If you have a university-documented learning difficulty or require
+other accommodations, please provide me with your VISA as soon as possible and
+speak with me about how I can assist you in your learning. If you do not have a VISA
+but have been documented with a learning difficulty or other problems for which you
+may still require accommodation, please contact MSU’s Resource Center for People
+with Disabilities (355-9642) in order to acquire current documentation.</p>
+</div>
+<div class="section" id="instructor-contact-information">
+<h2>Instructor contact information<a class="headerlink" href="#instructor-contact-information" title="Permalink to this headline">¶</a></h2>
+<p>Course Instructors:</p>
+<p><strong>Alex Dickson</strong> <br />
+<a class="reference external" href="mailto:alexrd&#37;&#52;&#48;msu&#46;edu">alexrd<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Associate Professor, Dept of Biochemistry &amp; Molecular Biology and Dept of Computational Mathematics, Science &amp; Engineering</p>
+<p><strong>Michael Feig</strong> <br />
+<a class="reference external" href="mailto:feig&#37;&#52;&#48;msu&#46;edu">feig<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
+Professor, Dept of Biochemistry &amp; Molecular Biology</p>
+<p>Office hours are available by appointment.</p>
+</div>
+<div class="section" id="grading-information">
+<h2>Grading information<a class="headerlink" href="#grading-information" title="Permalink to this headline">¶</a></h2>
+<p>The grading breakdown for this course is as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grade Item</p></th>
+<th class="head"><p>Points</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Participation, attendance, in-class activities</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>Independent study proposal</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Independent study project</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-odd"><td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>100</p></td>
+</tr>
+</tbody>
+</table>
+<p>Total: 100%</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Grading scale
+4.0 ≥ 90%
+3.5 ≥ 85%
+3.0 ≥ 80%
+2.5 ≥ 75%
+2.0 ≥ 70%
+1.5 ≥ 65%
+1.0 ≥ 60%
+0.0 &lt; 60%
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Course_Materials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003</a>
+    <a class='right-next' id="next-link" href="SoftwareSetupGuide.html" title="next page">Machine Learning for Molecular Dynamics <br> Software Setup Guide</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
