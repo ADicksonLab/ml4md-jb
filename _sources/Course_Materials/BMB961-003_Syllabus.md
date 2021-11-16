@@ -132,21 +132,21 @@ The grading breakdown for this course is as follows:
 | Participation, attendance, in-class activities | 50 |
 | Independent study proposal | 10 |
 | Independent study project | 40 |
-| --- | --- |
+| --- | ----------- |
 | Total | 100 |
 
 Total: 100%
 
-```
-Grading scale
-4.0 ≥ 90%
-3.5 ≥ 85%
-3.0 ≥ 80%
-2.5 ≥ 75%
-2.0 ≥ 70%
-1.5 ≥ 65%
-1.0 ≥ 60%
-0.0 < 60%
-```
+### Grading scale
+
+4.0 ≥ 90%  
+3.5 ≥ 85%  
+3.0 ≥ 80%  
+2.5 ≥ 75%  
+2.0 ≥ 70%  
+1.5 ≥ 65%  
+1.0 ≥ 60%  
+0.0 < 60%  
+
 
 
