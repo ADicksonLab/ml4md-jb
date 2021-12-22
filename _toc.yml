@@ -9,7 +9,7 @@ parts:
     chapters:
     - file: Course_Materials/BMB961-003_Syllabus
       title: Syllabus
-    - file: Course_Materials/BMB961-003-Schedule
+    - file: Course_Materials/BMB961-003_Schedule
       title: Course Schedule
     - file: Course_Materials/SoftwareSetupGuide
       title: Software Setup Guide
