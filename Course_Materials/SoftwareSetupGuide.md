@@ -2,6 +2,10 @@
 
 All of the assignments and in-class activities will be completed in python using Jupyter Notebooks.  Some of these notebooks can be easily run on your own machine using the `jupyter notebook` library from the Anaconda python distribution.  For others it will be better to run them using Google Colab as a backend.
 
+## Slack
+
+To communicate with each other during lectures and labs we'll use Slack.  To join the Slack workspace for this class you can use this link:  https://join.slack.com/t/ml4mdbmb961/shared_invite/zt-1104s1e4l-DVWxtS7rnUZfXBe74tDO1A .  To have the right permissions you should sign in with your MSU email address.  If this link has expired, or you are having trouble signing in please let us know!
+
 ## Course website
 
 You are probably reading this right now on the course website: [https://adicksonlab.github.io/ml4md-jb](https://adicksonlab.github.io/ml4md-jb). This website will host all of the notebooks used for lectures and the laboratory sections of the course. It will also be the primary gateway to launch notebooks on Google Colab.
