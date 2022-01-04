@@ -267,6 +267,11 @@
      Opening notebooks with Jupyter Notebook
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommended-packages">
+     Recommended packages
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -326,6 +331,22 @@
 <h3>Opening notebooks with Jupyter Notebook<a class="headerlink" href="#opening-notebooks-with-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
 <p>Notebooks can be downloaded from the course website by selecting them from the menu on the left, then hovering over the download button on the top right and selecting “.ipynb” as the download format.  This will save a copy of the notebook to your computer.</p>
 <p>After opening Jupyter using the instructions above you can navigate to the folder that contains this notebook and open it.</p>
+</div>
+<div class="section" id="recommended-packages">
+<h3>Recommended packages<a class="headerlink" href="#recommended-packages" title="Permalink to this headline">¶</a></h3>
+<p>You can add packages to your Anaconda installation using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> commands.  If you already use conda you might want to create a separate conda environment for this course:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">ml4md</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">ml4md</span>
+</pre></div>
+</div>
+<p>The following packages will be useful:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">openmm</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">jupyterlab</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">mdtraj</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">nglview</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="google-colab-instructions">

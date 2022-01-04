@@ -48,6 +48,25 @@ Notebooks can be downloaded from the course website by selecting them from the m
 
 After opening Jupyter using the instructions above you can navigate to the folder that contains this notebook and open it.
 
+### Recommended packages
+
+You can add packages to your Anaconda installation using `conda install` or `pip install` commands.  If you already use conda you might want to create a separate conda environment for this course:
+
+```
+conda create -n ml4md python=3.8
+conda activate ml4md
+```
+
+The following packages will be useful:
+
+```
+conda install -c conda-forge openmm
+conda install -c conda-forge jupyterlab
+pip install mdtraj
+pip install nglview
+conda install -c conda-forge matplotlib
+```
+
 ## Google colab instructions
 
 **To launch a notebook with Google Colab**, simply open a notebook on the course website, hover over "Launch" (rocket ship icon) and click the Colab link.  This will open a Colab session.
