@@ -21,6 +21,10 @@ parts:
       title: LearnPython.zip
     - url: https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf
       title: BMB_Community_Standards.pdf
+    - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb
+      title: sEH_nowater.pdb
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd
+      title: sEH_unbinding.dcd
     - file: Week-01/W1_Lecture_Welcome.ipynb
     - file: Week-01/W1_Lab_Intro-Concepts.ipynb
 
