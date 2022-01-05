@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>BMB 961 Sec 003: Machine Learning for Molecular Dynamics &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
@@ -41,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -196,7 +197,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -230,7 +231,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -302,12 +303,87 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>BMB 961 Sec 003: Machine Learning for Molecular Dynamics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-description">
+   Course Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topics-covered">
+   Topics covered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-reading-materials">
+   Required reading materials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-format">
+   Class format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-materials-for-class">
+   Required materials for class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covid-19-policy">
+   COVID-19 policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inclusive-classroom-behavior">
+   Inclusive classroom behavior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accommodations">
+   Accommodations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructor-contact-information">
+   Instructor contact information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grading-information">
+   Grading information
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grading-scale">
+     Grading scale
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bmb-961-sec-003-machine-learning-for-molecular-dynamics">
+  <section class="tex2jax_ignore mathjax_ignore" id="bmb-961-sec-003-machine-learning-for-molecular-dynamics">
 <h1>BMB 961 Sec 003: Machine Learning for Molecular Dynamics<a class="headerlink" href="#bmb-961-sec-003-machine-learning-for-molecular-dynamics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="course-description">
+<section id="course-description">
 <h2>Course Description<a class="headerlink" href="#course-description" title="Permalink to this headline">¶</a></h2>
 <p>For almost 50 years, researchers have used in silico approaches to gain insight into the dynamics of molecular systems.  Advances in computational hardware and algorithms have greatly increased the reach of these simulations both in the size of the systems studied and the timescales of the events of interest.  Machine learning is bringing transformative changes to the field of molecular dynamics, impacting how initial structures and parameters are generated, how simulations are run, and how they are analyzed.  This graduate-level course will provide an introduction to both machine learning and molecular dynamics theory.  Students will learn about modern tools for both MD and ML, and apply them to problems in a collaborative, hands-on environment.</p>
 <p>By the end of this course, you will be able to:</p>
@@ -321,8 +397,8 @@
 this knowledge in hands-on coding laboratories, where programs will be written both individually
 and in small groups.  The course will culminate in a research project where students will apply
 these skills to study a problem of their own choosing.</p>
-</div>
-<div class="section" id="topics-covered">
+</section>
+<section id="topics-covered">
 <h2>Topics covered<a class="headerlink" href="#topics-covered" title="Permalink to this headline">¶</a></h2>
 <p>A preliminary list of topics covered in this course are listed below.
 Specific libraries or tools are listed in <strong>bold</strong>.</p>
@@ -340,23 +416,23 @@ Specific libraries or tools are listed in <strong>bold</strong>.</p>
 <li><p>ML integrators for MD</p></li>
 <li><p>Analysis of MD using neural networks (<strong>VAMPnets</strong>)</p></li>
 </ul>
-</div>
-<div class="section" id="required-reading-materials">
+</section>
+<section id="required-reading-materials">
 <h2>Required reading materials<a class="headerlink" href="#required-reading-materials" title="Permalink to this headline">¶</a></h2>
 <p>This class has no required book or course pack. Course content will be distributed via
 JupyterBook and can be accessed by the following link: <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb/intro.html">https://adicksonlab.github.io/ml4md-jb/intro.html</a>.
 From time to time we will direct you toward outside
 online resources, but the main materials will be on the course website.</p>
-</div>
-<div class="section" id="class-format">
+</section>
+<section id="class-format">
 <h2>Class format<a class="headerlink" href="#class-format" title="Permalink to this headline">¶</a></h2>
 <p>We plan to run this class in a hybrid format, where attendance is possible either
 in-person or via Zoom, both for the lecture and the laboratory components.
 This plan is subject to change following institutional or government recommendations.
 This course will meet on <strong>Tues 3:00-3:50 PM in BPS 1420</strong> for lecture and
 <strong>Thurs 2:00-4:00 PM in BMB 202</strong> for lab.</p>
-</div>
-<div class="section" id="required-materials-for-class">
+</section>
+<section id="required-materials-for-class">
 <h2>Required materials for class<a class="headerlink" href="#required-materials-for-class" title="Permalink to this headline">¶</a></h2>
 <p>Programming assignments are a critical part of the learning process in this
 course. To that end, if you attend in person you are expected to bring your laptop and its power cord to
@@ -370,8 +446,8 @@ microphone and speakers.</p></li>
 </ul>
 <p>Details regarding the software needed for this course are provided in the <strong>“Software
 Setup Guide”</strong> on the course website.</p>
-</div>
-<div class="section" id="covid-19-policy">
+</section>
+<section id="covid-19-policy">
 <h2>COVID-19 policy<a class="headerlink" href="#covid-19-policy" title="Permalink to this headline">¶</a></h2>
 <p>As a reminder, the university has put in place a mask mandate and
 students are required to wear properly fitting masks during indoor class meetings. You
@@ -385,8 +461,8 @@ guidelines), your instructor will work to provide the necessary accommodations t
 ensure that your performance in class is not significantly impacted. However, should
 you find that your overall success in your courses is significantly impacted by any
 illness, please refer to the University policy on medical leave and withdrawal.</p>
-</div>
-<div class="section" id="inclusive-classroom-behavior">
+</section>
+<section id="inclusive-classroom-behavior">
 <h2>Inclusive classroom behavior<a class="headerlink" href="#inclusive-classroom-behavior" title="Permalink to this headline">¶</a></h2>
 <p>Respectful and responsible behavior is expected at all
 times, which includes not interrupting other students, turning your cell phone off,
@@ -403,8 +479,8 @@ differently and grow. However, we believe that expressions and actions that deme
 individuals or groups comprise the environment for intellectual growth and undermine
 the social fabric on which the community is based. These demeaning behaviors are not
 welcome in this classroom.</p>
-</div>
-<div class="section" id="accommodations">
+</section>
+<section id="accommodations">
 <h2>Accommodations<a class="headerlink" href="#accommodations" title="Permalink to this headline">¶</a></h2>
 <p>If you have a university-documented learning difficulty or require
 other accommodations, please provide me with your VISA as soon as possible and
@@ -412,8 +488,8 @@ speak with me about how I can assist you in your learning. If you do not have a 
 but have been documented with a learning difficulty or other problems for which you
 may still require accommodation, please contact MSU’s Resource Center for People
 with Disabilities (355-9642) in order to acquire current documentation.</p>
-</div>
-<div class="section" id="instructor-contact-information">
+</section>
+<section id="instructor-contact-information">
 <h2>Instructor contact information<a class="headerlink" href="#instructor-contact-information" title="Permalink to this headline">¶</a></h2>
 <p>Course Instructors:</p>
 <p><strong>Alex Dickson</strong> <br />
@@ -423,8 +499,8 @@ Associate Professor, Dept of Biochemistry &amp; Molecular Biology and Dept of Co
 <a class="reference external" href="mailto:feig&#37;&#52;&#48;msu&#46;edu">feig<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
 Professor, Dept of Biochemistry &amp; Molecular Biology</p>
 <p>Office hours are available by appointment.</p>
-</div>
-<div class="section" id="grading-information">
+</section>
+<section id="grading-information">
 <h2>Grading information<a class="headerlink" href="#grading-information" title="Permalink to this headline">¶</a></h2>
 <p>The grading breakdown for this course is as follows:</p>
 <table class="colwidths-auto table">
@@ -449,7 +525,7 @@ Professor, Dept of Biochemistry &amp; Molecular Biology</p>
 </tbody>
 </table>
 <p>Total: 100%</p>
-<div class="section" id="grading-scale">
+<section id="grading-scale">
 <h3>Grading scale<a class="headerlink" href="#grading-scale" title="Permalink to this headline">¶</a></h3>
 <p>4.0 ≥ 90%<br />
 3.5 ≥ 85%<br />
@@ -459,9 +535,9 @@ Professor, Dept of Biochemistry &amp; Molecular Biology</p>
 1.5 ≥ 65%<br />
 1.0 ≥ 60%<br />
 0.0 &lt; 60%</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -485,8 +561,8 @@ Professor, Dept of Biochemistry &amp; Molecular Biology</p>
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -503,19 +579,17 @@ Professor, Dept of Biochemistry &amp; Molecular Biology</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Alex Dickson and Michael Feig<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 

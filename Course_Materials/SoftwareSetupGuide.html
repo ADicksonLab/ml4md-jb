@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Machine Learning for Molecular Dynamics Software Setup Guide &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
@@ -41,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -196,7 +197,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -230,7 +231,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -287,29 +288,89 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Machine Learning for Molecular Dynamics <br> Software Setup Guide</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slack">
+   Slack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-website">
+   Course website
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-zoom">
+   Getting Zoom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-python-for-this-course">
+   Installing Python for this course
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instructions-for-downloading-anaconda-python-3-8-x">
+     Instructions for downloading Anaconda (Python 3.8.x):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opening-notebooks-with-jupyter-notebook">
+     Opening notebooks with Jupyter Notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recommended-packages">
+     Recommended packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#google-colab-instructions">
+   Google colab instructions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-for-molecular-dynamics-br-software-setup-guide">
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-for-molecular-dynamics-br-software-setup-guide">
 <h1>Machine Learning for Molecular Dynamics <br> Software Setup Guide<a class="headerlink" href="#machine-learning-for-molecular-dynamics-br-software-setup-guide" title="Permalink to this headline">¶</a></h1>
 <p>All of the assignments and in-class activities will be completed in python using Jupyter Notebooks.  Some of these notebooks can be easily run on your own machine using the <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> library from the Anaconda python distribution.  For others it will be better to run them using Google Colab as a backend.</p>
-<div class="section" id="slack">
+<section id="slack">
 <h2>Slack<a class="headerlink" href="#slack" title="Permalink to this headline">¶</a></h2>
 <p>To communicate with each other during lectures and labs we’ll use Slack.  To join the Slack workspace for this class you can use this link:  <a class="reference external" href="https://join.slack.com/t/ml4mdbmb961/shared_invite/zt-1104s1e4l-DVWxtS7rnUZfXBe74tDO1A">https://join.slack.com/t/ml4mdbmb961/shared_invite/zt-1104s1e4l-DVWxtS7rnUZfXBe74tDO1A</a> .  To have the right permissions you should sign in with your MSU email address.  If this link has expired, or you are having trouble signing in please let us know!</p>
-</div>
-<div class="section" id="course-website">
+</section>
+<section id="course-website">
 <h2>Course website<a class="headerlink" href="#course-website" title="Permalink to this headline">¶</a></h2>
 <p>You are probably reading this right now on the course website: <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb">https://adicksonlab.github.io/ml4md-jb</a>. This website will host all of the notebooks used for lectures and the laboratory sections of the course. It will also be the primary gateway to launch notebooks on Google Colab.</p>
-</div>
-<div class="section" id="getting-zoom">
+</section>
+<section id="getting-zoom">
 <h2>Getting Zoom<a class="headerlink" href="#getting-zoom" title="Permalink to this headline">¶</a></h2>
 <p>Although the course will be conducted in person, the video conferencing software Zoom can be used on days when you are unable to come to class.  Zoom can also be used to conduct office hours, so it is important to have access to this platform. First, you should download the software, which you can do by going here: <a class="reference external" href="https://msu.zoom.us/support/download">https://msu.zoom.us/support/download</a>.</p>
 <p>Once you have the software on your computer, you can <strong>link it to your MSU account</strong> by following the steps laid out <a class="reference external" href="https://www.canr.msu.edu/od/educational-technology/zoomlogin">here</a></p>
-</div>
-<div class="section" id="installing-python-for-this-course">
+</section>
+<section id="installing-python-for-this-course">
 <h2>Installing Python for this course<a class="headerlink" href="#installing-python-for-this-course" title="Permalink to this headline">¶</a></h2>
 <p>Follow the instructions below to get the Anaconda distribution of Python installed on your computer. Even if you already have a version of Python installed on your machine, we encourage you to go through this installation process as the assignments will assume that you are working with the same versions of the Anaconda Python packages that the instructors are using. If you already specifically have Anaconda installed, we encourage you to update all of the Python packages (you may need to look up how to do this).</p>
-<div class="section" id="instructions-for-downloading-anaconda-python-3-8-x">
+<section id="instructions-for-downloading-anaconda-python-3-8-x">
 <h3>Instructions for downloading Anaconda (Python 3.8.x):<a class="headerlink" href="#instructions-for-downloading-anaconda-python-3-8-x" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Go to the Anaconda Download webpage: <a class="reference external" href="https://www.anaconda.com/download/">https://www.anaconda.com/download/</a> Then click the “Download” button under “Your Data Science Toolkit” to jump to the bottom of the page.</p></li>
@@ -326,13 +387,13 @@
 <li><p>Type “jupyter notebook” in the command line and hit enter.</p></li>
 </ol>
 <p>If everything goes correctly, a browser window should open up with the Jupyter interface running. If things don’t work, let us know and we will help you get started.</p>
-</div>
-<div class="section" id="opening-notebooks-with-jupyter-notebook">
+</section>
+<section id="opening-notebooks-with-jupyter-notebook">
 <h3>Opening notebooks with Jupyter Notebook<a class="headerlink" href="#opening-notebooks-with-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
 <p>Notebooks can be downloaded from the course website by selecting them from the menu on the left, then hovering over the download button on the top right and selecting “.ipynb” as the download format.  This will save a copy of the notebook to your computer.</p>
 <p>After opening Jupyter using the instructions above you can navigate to the folder that contains this notebook and open it.</p>
-</div>
-<div class="section" id="recommended-packages">
+</section>
+<section id="recommended-packages">
 <h3>Recommended packages<a class="headerlink" href="#recommended-packages" title="Permalink to this headline">¶</a></h3>
 <p>You can add packages to your Anaconda installation using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> commands.  If you already use conda you might want to create a separate conda environment for this course:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">ml4md</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
@@ -347,14 +408,14 @@
 <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="google-colab-instructions">
+</section>
+</section>
+<section id="google-colab-instructions">
 <h2>Google colab instructions<a class="headerlink" href="#google-colab-instructions" title="Permalink to this headline">¶</a></h2>
 <p><strong>To launch a notebook with Google Colab</strong>, simply open a notebook on the course website, hover over “Launch” (rocket ship icon) and click the Colab link.  This will open a Colab session.</p>
 <p><strong>To save a copy of your notebook with Google Colab</strong>, click on “File”, then “Download”, and download as an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file.  This file is then saved on your computer and you can then submit this to D2L, if required.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -378,8 +439,8 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="BMB961-003_Schedule.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -396,19 +457,17 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Alex Dickson and Michael Feig<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 

@@ -48,3 +48,7 @@ Research Associate, Dept of Biochemistry &amp; Molecular Biology
 [nazanin@msu.edu](mailto:nazanin@msu.edu)\
 Ph.D. Candidate, Dept of Computational Mathematics, Science &amp; Engineering
 
+**Giacomo Janson**\
+[giacomo.janson@gmail.com](mailto:giacomo.janson@gmail.com)\
+Research Associate, Dept of Biochemistry &amp; Molecular Biology
+
