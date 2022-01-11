@@ -26,5 +26,4 @@ parts:
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd
       title: sEH_unbinding.dcd
     - file: Week-01/W1_Lecture_Welcome.ipynb
-    - file: Week-01/W1_Lab_Intro-Concepts.ipynb
-
+    - file: Week-01/W1_Lab_Python_Refresher.ipynb
