@@ -8,7 +8,7 @@
 | Lab 2 (Jan 20) | First steps with a neural network |
 | Lec 3 (Jan 25) | Advanced neural networks |
 | Lab 3 (Jan 27) | Learning something useful |
-| Lec 4 (Feb 1) | Using ML to generate |
+| Lec 4 (Feb 1) | Generating things with ML |
 | Lab 4 (Feb 3) | GAN lab |
 | Lec 5 (Feb 8) | ML case study: AlphaFold |
 | Lab 5 (Feb 10) | Predicting structures with AlphaFold |
