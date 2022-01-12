@@ -27,4 +27,9 @@ parts:
       title: sEH_unbinding.dcd
     - file: Week-01/W1_Lecture_Welcome.ipynb
     - file: Week-01/W1_Lab_Python_Refresher.ipynb
+
+  - caption: Week 02
+    numbered: False
+    chapters:
     - file: Week-02/tstEquation.ipynb
+
