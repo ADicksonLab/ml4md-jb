@@ -44,7 +44,7 @@ To add a lesson, do the following on your terminal:
 7) Push to the remote repository:\
    `git push origin main`
 8) Publish to the github.io site:\
-   `jb build .`\
+   `jb build .`  (use `--all` flag to rebuild all pages when adding new entries)\
    `ghp-import -n -p -f _build/html`\
    or alternatively:\
    `./build_and_deploy.sh`
