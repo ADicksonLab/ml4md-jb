@@ -4,14 +4,14 @@
 | :----: | :-----: |
 | Lec 1 (Jan 11)  | Class introduction, review materials |
 | Lab 1 (Jan 13)  | Introduction to Google Colab, python review |
-| Lec 2 (Jan 18) | Machine Learning Day 1 |
-| Lab 2 (Jan 20) | Machine Learning Lab 1 |
-| Lec 3 (Jan 25) | Machine Learning Day 2 |
-| Lab 3 (Jan 27) | Machine Learning Lab 2 |
-| Lec 4 (Feb 1) | Machine Learning Day 3 |
-| Lab 4 (Feb 3) | Machine Learning Lab 3 |
-| Lec 5 (Feb 8) | Machine Learning Day 4 |
-| Lab 5 (Feb 10) | Machine Learning Lab 4 |
+| Lec 2 (Jan 18) | Basics of Machine Learning |
+| Lab 2 (Jan 20) | First steps with a neural network |
+| Lec 3 (Jan 25) | Advanced neural networks |
+| Lab 3 (Jan 27) | Learning something useful |
+| Lec 4 (Feb 1) | Using ML to generate |
+| Lab 4 (Feb 3) | GAN lab |
+| Lec 5 (Feb 8) | ML case study: AlphaFold |
+| Lab 5 (Feb 10) | Predicting structures with AlphaFold |
 | Lec 6 (Feb 15) | Hamiltonian Mechanics |
 | Lab 6 (Feb 17) | Liquid Argon simulation Day #1 |
 | Lec 7 (Feb 22) | Periodic boundaries and thermostats |

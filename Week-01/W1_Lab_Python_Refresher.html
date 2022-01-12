@@ -1,0 +1,1209 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 01 Lab: Python Refresher Course &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 01 Lecture: Welcome to ML4MD" href="W1_Lecture_Welcome.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-01/W1_Lab_Python_Refresher.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-01/W1_Lab_Python_Refresher.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-01/W1_Lab_Python_Refresher.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-01/W1_Lab_Python_Refresher.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 01 Lab: Python Refresher Course
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-name-your-name-here">
+     Student Name: YOUR NAME HERE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-shortcuts-for-working-with-jupyter-notebooks">
+   Part 1: Shortcuts for working with Jupyter notebooks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-cells">
+     Running cells
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#click-on-the-cell-below-and-press-shift-enter">
+       Click on the cell below and press Shift+Enter
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side">
+       Execute the cells below and notice the asterisks on the left hand side
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter">
+       Double click on the Markdown cell below to see its “code” and then “run” it with Shift+Enter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manipulating-cells">
+     Manipulating cells
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all">
+       Make three empty cells below, write some code in each, copy the middle one and paste it, then delete them all
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-installing-and-importing-packages-finding-documentation-and-source-code">
+   Part 2: Installing and importing packages, finding documentation and source code
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-packages">
+     Importing packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-packages">
+     Installing packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-documentation">
+     Finding documentation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examining-source-code">
+     Examining source code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-working-with-numpy-arrays">
+   Part 3: Working with Numpy arrays
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy-basics">
+     Numpy basics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares">
+       Turn the following list into a numpy array, square all of the elements and print out the sum of the squares.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manipulating-multidimensional-arrays">
+     Manipulating multidimensional arrays
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b">
+       Reshape the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         a
+        </span>
+       </code>
+       array below to a 2D array of shape (3,3).  Then input
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         a
+        </span>
+       </code>
+       and
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         b
+        </span>
+       </code>
+       to the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         solve
+        </span>
+       </code>
+       function you imported from
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         scipy
+        </span>
+       </code>
+       .  Then use the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.matmul
+        </span>
+       </code>
+       command to see if
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ax
+        </span>
+        <span class="pre">
+         =
+        </span>
+        <span class="pre">
+         b
+        </span>
+       </code>
+       .
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-and-writing-numpy-arrays">
+     Reading and writing numpy arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-object-oriented-programming">
+   Part 4: Object oriented programming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-class-statement">
+     The Class statement
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank">
+       Perform 10000 random trials where you shuffle the deck and deal out two cards.  What is the probability that they are “suited connectors”?  (That they have the same suit and differ by one in their numerical rank?)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder">
+   Congratulations!  You are all done with Lab 1.  Save this file and upload it to the corresponding D2L folder.
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 01 Lab: Python Refresher Course</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 01 Lab: Python Refresher Course
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-name-your-name-here">
+     Student Name: YOUR NAME HERE
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-1-shortcuts-for-working-with-jupyter-notebooks">
+   Part 1: Shortcuts for working with Jupyter notebooks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#running-cells">
+     Running cells
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#click-on-the-cell-below-and-press-shift-enter">
+       Click on the cell below and press Shift+Enter
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side">
+       Execute the cells below and notice the asterisks on the left hand side
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter">
+       Double click on the Markdown cell below to see its “code” and then “run” it with Shift+Enter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manipulating-cells">
+     Manipulating cells
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all">
+       Make three empty cells below, write some code in each, copy the middle one and paste it, then delete them all
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-installing-and-importing-packages-finding-documentation-and-source-code">
+   Part 2: Installing and importing packages, finding documentation and source code
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-packages">
+     Importing packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-packages">
+     Installing packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-documentation">
+     Finding documentation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examining-source-code">
+     Examining source code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-working-with-numpy-arrays">
+   Part 3: Working with Numpy arrays
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy-basics">
+     Numpy basics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares">
+       Turn the following list into a numpy array, square all of the elements and print out the sum of the squares.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manipulating-multidimensional-arrays">
+     Manipulating multidimensional arrays
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b">
+       Reshape the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         a
+        </span>
+       </code>
+       array below to a 2D array of shape (3,3).  Then input
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         a
+        </span>
+       </code>
+       and
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         b
+        </span>
+       </code>
+       to the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         solve
+        </span>
+       </code>
+       function you imported from
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         scipy
+        </span>
+       </code>
+       .  Then use the
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         np.matmul
+        </span>
+       </code>
+       command to see if
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ax
+        </span>
+        <span class="pre">
+         =
+        </span>
+        <span class="pre">
+         b
+        </span>
+       </code>
+       .
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-and-writing-numpy-arrays">
+     Reading and writing numpy arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-4-object-oriented-programming">
+   Part 4: Object oriented programming
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-class-statement">
+     The Class statement
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank">
+       Perform 10000 random trials where you shuffle the deck and deal out two cards.  What is the probability that they are “suited connectors”?  (That they have the same suit and differ by one in their numerical rank?)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder">
+   Congratulations!  You are all done with Lab 1.  Save this file and upload it to the corresponding D2L folder.
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="week-01-lab-python-refresher-course">
+<h1>Week 01 Lab: Python Refresher Course<a class="headerlink" href="#week-01-lab-python-refresher-course" title="Permalink to this headline">¶</a></h1>
+<section id="student-name-your-name-here">
+<h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
+<p><img alt="python" src="https://www.ksn.com/wp-content/uploads/sites/13/2021/07/GettyImages-487568800.jpg?w=876&amp;h=493&amp;crop=1" /></p>
+<p>Before we start our 4-week machine learning content, we thought we should take some time to make sure everyone has the necessary tools and background knowledge.  While a lot of the upcoming content will be heavily scaffolded with pre-written code, ideally by the end of this course you will not only be able to <strong>fully understand what this code is doing and how it works</strong>, but also be able to <strong>adapt these tools to your own purposes</strong> and even <strong>create and share your own tools with the scientific community</strong>.</p>
+<p>Today we will learn (or practice) the following:</p>
+<ul class="simple">
+<li><p>Shortcuts for working with jupyter notebooks</p></li>
+<li><p>Installing and importing packages</p></li>
+<li><p>Creating, manipulating, reading and writing Numpy arrays</p></li>
+<li><p>Object oriented programming: Defining classes</p></li>
+</ul>
+<p><strong>For this class we will be working in pairs.</strong>  Each pair will be working in their own Zoom breakout room.  Remember to work together as you go through the notebook!  If you have questions or difficulties either come back to the main session or use the “ask for help” Zoom function.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-shortcuts-for-working-with-jupyter-notebooks">
+<h1>Part 1: Shortcuts for working with Jupyter notebooks<a class="headerlink" href="#part-1-shortcuts-for-working-with-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
+<p>As you’ve already seen, Jupyter notebooks are great ways to combine code, formatted text, images, and even YouTube videos together into a single interactive document.</p>
+<p>There are some keyboard shortcuts that make working in Jupyter much easier and learning them now will save you a lot of time in the long run!</p>
+<section id="running-cells">
+<h2>Running cells<a class="headerlink" href="#running-cells" title="Permalink to this headline">¶</a></h2>
+<section id="click-on-the-cell-below-and-press-shift-enter">
+<h3>Click on the cell below and press Shift+Enter<a class="headerlink" href="#click-on-the-cell-below-and-press-shift-enter" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some python code</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y equals&#39;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>This is the most common way to traverse through notebooks:  holding down the Shift key and executing the cells one at a time.</strong></p>
+</section>
+<section id="execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side">
+<h3>Execute the cells below and notice the asterisks on the left hand side<a class="headerlink" href="#execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># more python code</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finally...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this cell won&#39;t run until the one above finishes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That took a while..&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Cells are run one at a time.  An asterisk denotes either that a cell is currently being executed, or it is waiting for another cell to finish.  Cells can be executed in any order and the number that appears on the left indicates the order in which it was executed.</strong></p>
+</section>
+<section id="double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter">
+<h3>Double click on the Markdown cell below to see its “code” and then “run” it with Shift+Enter<a class="headerlink" href="#double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter" title="Permalink to this headline">¶</a></h3>
+<p>Check out this picture of a penguin!</p>
+<p><img alt="penguin" src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/upwk62273402-wikimedia-image.jpg?w=800&amp;dpr=1&amp;fit=default&amp;crop=default&amp;q=65&amp;vib=3&amp;con=3&amp;usm=15&amp;bg=F4F4F3&amp;auto=format&amp;ixlib=js-2.2.1&amp;s=24cefcf6cab5e52d909f73fb3ce39b1b" /></p>
+<p><strong>Markdown cells can be edited and run just like code cells.</strong></p>
+</section>
+</section>
+<section id="manipulating-cells">
+<h2>Manipulating cells<a class="headerlink" href="#manipulating-cells" title="Permalink to this headline">¶</a></h2>
+<p>When working on a notebook often you want to create a new cell, change its type (e.g. “Code” to “Markdown”), move it, or delete it entirely.  While there are tools to do these things in the menu above, there are also useful keyboard shortcuts that you should learn.</p>
+<p><strong>Use the Esc key on the cell below to change into “Command Mode”.</strong>  The box surrounding the cell should turn blue.</p>
+<p><strong>Then go back to “Edit Mode” by pressing Enter.</strong> The box should turn green.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># some python code</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>When you are in Edit Mode you can (obviously) edit the cells, add and remove text, etc.  In Command Mode you can do things like the following:</strong></p>
+<ul class="simple">
+<li><p>Add a cell above this one (a)</p></li>
+<li><p>Add a cell below this one (b)</p></li>
+<li><p>Remove this cell (x)</p></li>
+<li><p>Copy this cell (c)</p></li>
+<li><p>Paste this cell (v)</p></li>
+<li><p><strong>Open up a help screen that tells you all of this and more! (h)</strong></p></li>
+</ul>
+<section id="make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all">
+<h3>Make three empty cells below, write some code in each, copy the middle one and paste it, then delete them all<a class="headerlink" href="#make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-installing-and-importing-packages-finding-documentation-and-source-code">
+<h1>Part 2: Installing and importing packages, finding documentation and source code<a class="headerlink" href="#part-2-installing-and-importing-packages-finding-documentation-and-source-code" title="Permalink to this headline">¶</a></h1>
+<p>A great thing about the Python language is that we can make use of a whole world of packages for numerical analysis, data visualization, statistics and machine learning.  There are also a number of great packages for analysing biomolecular data, performing and analyzing molecular dynamics simulations, and even (as we saw on Tuesday) visualize biomolecular structures directly in Jupyter notebooks!  <strong>This truly lets us stand on the shoulders of giants.</strong></p>
+<p><img alt="BFG" src="https://i0.wp.com/images.amcnetworks.com/bbcamerica.com/wp-content/uploads/2016/05/anglo_2000x1025_thebfg-1600x720.jpg" /></p>
+<section id="importing-packages">
+<h2>Importing packages<a class="headerlink" href="#importing-packages" title="Permalink to this headline">¶</a></h2>
+<p><strong>Say we want to solve the linear equation:</strong></p>
+<p>\begin{equation}
+{\bf A}{\bf x} = {\bf B}
+\end{equation}</p>
+<p>where <span class="math notranslate nohighlight">\({\bf A}\)</span> and <span class="math notranslate nohighlight">\({\bf B}\)</span> are known matrices and <span class="math notranslate nohighlight">\(x\)</span> is unknown.  We can do this by importing a particular package from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note that if you see a message like: <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'scipy'</span></code> then this indicates scipy has not been installed or is not accessible to this Python kernel.</strong></p>
+</section>
+<section id="installing-packages">
+<h2>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h2>
+<p>To install a new package you should use a package manager such as <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> using the command line.  To make these new packages accessible you should shutdown and restart the server running the Jupyter notebook.</p>
+<p><strong>However, there is a shortcut:</strong> in Jupyter notebooks (and on Google Colab) you can run command line commands without leaving the notebook:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># no need to run this if you already have scipy</span>
+<span class="o">!</span>pip install scipy
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Any command that starts with “!” is run in the command line.  Try out some other <code class="docutils literal notranslate"><span class="pre">bash</span></code> commands below such as <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-ltr</span></code> and <code class="docutils literal notranslate"><span class="pre">top</span></code>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try out some bash commands</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="finding-documentation">
+<h2>Finding documentation<a class="headerlink" href="#finding-documentation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Back to our linear equation example.</strong> Now that we imported the <code class="docutils literal notranslate"><span class="pre">solve</span></code> function, what if we forget how to format the inputs?  Or we want to know which options are available when we call it?  <strong>This information is in the documentation for this function, also known as the “doc string”</strong>.  Documentation is of course available on the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> webpage (<a class="reference external" href="https://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve">found here</a>), but again there is a shortcut:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>solve<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Adding a question mark to any function or object will bring up the doc string for that object.</strong> It also works with user-defined functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function returns the square of a number.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_function<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examining-source-code">
+<h2>Examining source code<a class="headerlink" href="#examining-source-code" title="Permalink to this headline">¶</a></h2>
+<p><strong>What if we want to see the source code?</strong> Well you could look at the bottom of the docstring to find the location of the file on your computer, open the file in a text editor, and search for the corresponding function name.  But as you probably guessed, <strong>there is an easier way!</strong>  Just add another question mark:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>solve<span class="o">??</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Scrolling down past the call signature and the docstring shows the source code of this function.</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-3-working-with-numpy-arrays">
+<h1>Part 3: Working with Numpy arrays<a class="headerlink" href="#part-3-working-with-numpy-arrays" title="Permalink to this headline">¶</a></h1>
+<p>One library that is going to be indispensible in this course (and in most of scientific computing) is called <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.  This provides a convenient structure for organizing large sets of data of the same datatype (e.g. integers or floats) into single objects called “arrays”.</p>
+<p>These arrays can be one-dimensional (like vectors), two-dimensional (like matrices) or have three or more dimensions.  Each dimension of the array is also referred to as an “axis”.</p>
+<p><img alt="arrays" src="https://predictivehacks.com/wp-content/uploads/2020/08/numpy_arrays-1024x572.png" /></p>
+<p>The size of an array along each axis is revealed by its “shape”, which is a list of integers, the first integer giving the shape along axis 0, the second integer giving the shape along axis 1, and so on.</p>
+<p>The length of the shape list reveals the “dimensionality” of the array.</p>
+<section id="numpy-basics">
+<h2>Numpy basics<a class="headerlink" href="#numpy-basics" title="Permalink to this headline">¶</a></h2>
+<p><strong>Here are some YouTube videos made by the CMSE 201 team at MSU that give some background on Numpy arrays and multi-dimensional Numpy arrays:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpy basics</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;g7epZeDA_lQ&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mathematical operations with Numpy </span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;V2C9expTF1o&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares">
+<h3>Turn the following list into a numpy array, square all of the elements and print out the sum of the squares.<a class="headerlink" href="#turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares" title="Permalink to this headline">¶</a></h3>
+<p>Hint: summing an array can be done easily with the <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">some_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.6</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mf">64.7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Check: the sum should be 4746.65</strong></p>
+</section>
+</section>
+<section id="manipulating-multidimensional-arrays">
+<h2>Manipulating multidimensional arrays<a class="headerlink" href="#manipulating-multidimensional-arrays" title="Permalink to this headline">¶</a></h2>
+<p><strong>Here’s another CMSE 201 video describing two-dimensional arrays:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;KXPtg7iHbfw&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">640</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Much of our hands-on experience with arrays will be in “reshaping” them.</strong>  Let’s practice starting with a 1D array of the numbers 1 through 120:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">121</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr:&quot;</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr.shape:&quot;</span><span class="p">,</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We know this starts as a 1D array since <code class="docutils literal notranslate"><span class="pre">arr.shape</span></code> has only one element.</strong>  Let’s reshape this as a 2D array that is (10,12):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2D</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr2D: &quot;</span><span class="p">,</span><span class="n">arr2D</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr2D.shape:&quot;</span><span class="p">,</span><span class="n">arr2D</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note that this did not change <code class="docutils literal notranslate"><span class="pre">arr</span></code>!  The <code class="docutils literal notranslate"><span class="pre">.reshape</span></code> command does not occur “in place”.  It returns a new array that we have assigned to a new variable: <code class="docutils literal notranslate"><span class="pre">arr2d</span></code>.</strong></p>
+<p>Now let’s go further and break each row of 12 into (3,4):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3D</span> <span class="o">=</span> <span class="n">arr2D</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr3D: &quot;</span><span class="p">,</span><span class="n">arr3D</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arr3D.shape:&quot;</span><span class="p">,</span><span class="n">arr3D</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>You can think of this as having a collection of 10 3x4 matrices.</strong></p>
+<p>Now let’s say we want to get the 3x4 matrix that contains the average values of the 10 matrices above.  To do this we can use the <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> command that is built into each numpy array, but we sure to specify that we want to take the mean over the first axis (axis=0):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avgs</span> <span class="o">=</span> <span class="n">arr3D</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;avgs: &quot;</span><span class="p">,</span> <span class="n">avgs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;avgs.shape: &quot;</span><span class="p">,</span> <span class="n">avgs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>At any point we can flatten this back to a 1D array using the <code class="docutils literal notranslate"><span class="pre">.flatten()</span></code> function:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avgs1D</span> <span class="o">=</span> <span class="n">avgs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">avgs1D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b">
+<h3>Reshape the <code class="docutils literal notranslate"><span class="pre">a</span></code> array below to a 2D array of shape (3,3).  Then input <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> to the <code class="docutils literal notranslate"><span class="pre">solve</span></code> function you imported from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.  Then use the <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code> command to see if <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">=</span> <span class="pre">b</span></code>.<a class="headerlink" href="#reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reading-and-writing-numpy-arrays">
+<h2>Reading and writing numpy arrays<a class="headerlink" href="#reading-and-writing-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>There are two main ways to read and write numpy arrays.  <strong>The first is as a human-readable text file.</strong>  This can be done with <code class="docutils literal notranslate"><span class="pre">np.savetxt</span></code> and <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;random_numbers.txt&#39;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+
+<span class="o">!</span>ls -l random_numbers.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;random_numbers.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b.shape:&quot;</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This has benefits in that you can easily transport this data to other applications, such as Excel, and it is easy to look inside and see the contents.</p>
+<p><strong>However, this does not work for arrays of dimensionality 3 or higher:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a3D</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1">#np.savetxt(&#39;random_numbers.txt&#39;,a3D) # this will throw an error!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Also, saving this data as human-readable text is not very efficient, since it takes up much more space than using a binary representation.</strong></p>
+<p>This brings us to the second way to read and write, which is <code class="docutils literal notranslate"><span class="pre">np.save</span></code> and <code class="docutils literal notranslate"><span class="pre">np.load</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;random_numbers_binary.npy&#39;</span><span class="p">,</span><span class="n">a3D</span><span class="p">)</span>
+
+<span class="o">!</span>ls -l random_numbers*
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note that the binary file is much smaller than the txt file</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;random_numbers_binary.npy&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b3D.shape: &quot;</span><span class="p">,</span><span class="n">b3D</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Arrays are pretty much conceptually identical to tensors, which are the fundamental data type of machine learning.  You will get a lot of experience working with these datatypes in the coming weeks.</strong></p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="part-4-object-oriented-programming">
+<h1>Part 4: Object oriented programming<a class="headerlink" href="#part-4-object-oriented-programming" title="Permalink to this headline">¶</a></h1>
+<p>The last stop on our high-speed recap of Python concepts is the idea of working with objects.  An object is a generalization of a data type (like string, int, and float) that is defined to make things easier for a specific task.<br />
+<strong>We have already seen this for numpy arrays.</strong>  The creators of the numpy package thought it would be useful to make a standard “object” that could have an arbitrary shape and could hold only objects of the same type (and they were right!) and they called this object an “array”.</p>
+<p>When they defined this new object they also defined a set of functions that were associated with it.  We’ve already accessed a few of these today (<code class="docutils literal notranslate"><span class="pre">.mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">.reshape()</span></code> and <code class="docutils literal notranslate"><span class="pre">.flatten()</span></code>).</p>
+<p><strong>In Jupyter, a full set of functions associated with a given variable’s datatype can be accessed by typing the name of the variable, a period, and then pressing TAB:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># go to the end of the last line and hit TAB</span>
+<span class="n">a</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Wow, you can do a lot of things with numpy arrays!</strong>  All of these functions (e.g. <code class="docutils literal notranslate"><span class="pre">.mean()</span></code>) and attributes (e.g. <code class="docutils literal notranslate"><span class="pre">.shape</span></code>) are embedded within the object itself.  This type of programming usually results in a workflow where the user constructs objects, uses them to create other objects, which are used to create bigger more complex objects, and which finally culminates in a function call like:  <code class="docutils literal notranslate"><span class="pre">simulation_manager.run()</span></code> or <code class="docutils literal notranslate"><span class="pre">neural_network.train()</span></code>.</p>
+<p><strong>This hides a lot of detail from the user and it can be frustrating when things don’t work since errors messages often involve a multi-level hierarchy of functions calling functions calling functions…</strong></p>
+<p>To help us debug these errors when they occur, let’s spend a bit of time learning how objects are defined in Python.</p>
+<section id="the-class-statement">
+<h2>The Class statement<a class="headerlink" href="#the-class-statement" title="Permalink to this headline">¶</a></h2>
+<p>To define a new custom object we use a <code class="docutils literal notranslate"><span class="pre">class</span></code> statement. <strong>Let’s make one for a playing card to demonstrate:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Card</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A playing card.  This must have a rank (e.g. &quot;2&quot;, &quot;3&quot;, &quot;K&quot;, &quot;A&quot;) and a suit</span>
+<span class="sd">        (e.g. &quot;hearts&quot;, &quot;spades&quot;, &quot;diamonds&quot;, &quot;clubs&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suit</span> <span class="o">=</span> <span class="n">suit</span>
+        <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;J&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_rank</span> <span class="o">=</span> <span class="mi">11</span>
+        <span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;Q&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_rank</span> <span class="o">=</span> <span class="mi">12</span>
+        <span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_rank</span> <span class="o">=</span> <span class="mi">13</span>
+        <span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_rank</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_rank</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the full name of the card.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">suit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>This code defines a class called “Card” that has three associated attributes (<code class="docutils literal notranslate"><span class="pre">rank</span></code>, <code class="docutils literal notranslate"><span class="pre">suit</span></code> and <code class="docutils literal notranslate"><span class="pre">num_rank</span></code>) and one associated function (<code class="docutils literal notranslate"><span class="pre">full_name</span></code>).</strong>  The word in the parentheses on the first line is the class wish to inherit from.  If we specified another class, then all of its functions and attributes would be included in our new object by default.  Here we used <code class="docutils literal notranslate"><span class="pre">object</span></code>, which is the simplest base class built into python and has no attributes or functions.</p>
+<p>Note that each attribute within the class is preceded by <code class="docutils literal notranslate"><span class="pre">self.</span></code>.  This helps the class functions access the information stored within the object.</p>
+<p>Also, all class functions have <code class="docutils literal notranslate"><span class="pre">self</span></code> as a first argument.  This is not included explicitly in the list of arguments when the functions are called.  For example, <code class="docutils literal notranslate"><span class="pre">my_array.mean()</span></code> automatically includes <code class="docutils literal notranslate"><span class="pre">my_array</span></code> as the first argument to the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function associated with numpy arrays.</p>
+<p>Now we can define a deck, which is a collection of these cards:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">full_deck</span><span class="p">():</span>
+    <span class="n">deck</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;hearts&#39;</span><span class="p">,</span><span class="s1">&#39;spades&#39;</span><span class="p">,</span><span class="s1">&#39;diamonds&#39;</span><span class="p">,</span><span class="s1">&#39;clubs&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;9&#39;</span><span class="p">,</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="s1">&#39;J&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">]:</span>
+            <span class="n">new_card</span> <span class="o">=</span> <span class="n">Card</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">deck</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_card</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">deck</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note how we define each new card simply by calling the name of the class as a function and passing it two arguments.</strong> This calls the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function, and we can see that those two arguments are <code class="docutils literal notranslate"><span class="pre">rank</span></code> and <code class="docutils literal notranslate"><span class="pre">suit</span></code>.  Each time we call the this function we are <strong>“instantiating”</strong> the <code class="docutils literal notranslate"><span class="pre">Card</span></code> class.  This is a fancy way of saying we are making a new instance of the <code class="docutils literal notranslate"><span class="pre">Card</span></code> class.</p>
+<p>Just like we can make any number of separate arrays in a given program, we can also create as many <code class="docutils literal notranslate"><span class="pre">Card</span></code> objects as we want.  In the above function we return a full deck of 52 cards that are stored in a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># get a full, unshuffled deck of cards</span>
+<span class="n">deck</span> <span class="o">=</span> <span class="n">full_deck</span><span class="p">()</span>
+
+<span class="c1"># shuffle it</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">deck</span><span class="p">)</span>
+
+<span class="c1"># deal out the top five cards</span>
+<span class="n">my_hand</span> <span class="o">=</span> <span class="n">deck</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># print their values</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_hand</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">full_name</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Here we accessed the <code class="docutils literal notranslate"><span class="pre">full_name</span></code> function that we defined to be associated with each <code class="docutils literal notranslate"><span class="pre">Card</span></code> object.</strong> We can also access the attributes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numerical rank of the first card:&quot;</span><span class="p">,</span><span class="n">my_hand</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">num_rank</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank">
+<h3>Perform 10000 random trials where you shuffle the deck and deal out two cards.  What is the probability that they are “suited connectors”?  (That they have the same suit and differ by one in their numerical rank?)<a class="headerlink" href="#perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Error check: the answer should be around 0.036.</strong></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder">
+<h1>Congratulations!  You are all done with Lab 1.  Save this file and upload it to the corresponding D2L folder.<a class="headerlink" href="#congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder" title="Permalink to this headline">¶</a></h1>
+<p>© Copyright 2022,  Michigan State University Board of Trustees</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-01"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="W1_Lecture_Welcome.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 01 Lecture: Welcome to ML4MD</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
