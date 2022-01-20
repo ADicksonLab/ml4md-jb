@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 01 Lecture: Welcome to ML4MD &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
@@ -166,6 +165,26 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
    Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
   </a>
  </li>
 </ul>
@@ -430,10 +449,10 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-01-lecture-welcome-to-ml4md">
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-01-lecture-welcome-to-ml4md">
 <h1>Week 01 Lecture: Welcome to ML4MD<a class="headerlink" href="#week-01-lecture-welcome-to-ml4md" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to Machine Learning for Molecular Dynamics!</p>
-<section id="course-details-and-instructors">
+<div class="section" id="course-details-and-instructors">
 <h2>Course details and instructors<a class="headerlink" href="#course-details-and-instructors" title="Permalink to this headline">¶</a></h2>
 <p>This is a graduate special topics course in the Biochemistry &amp; Molecular Dynamics department at Michigan State University (BMB 961 Sec 003).  This is being offered for the first time in the Spring 2022 semester.</p>
 <p>The main instructors for this course are:</p>
@@ -448,8 +467,8 @@
 <li><p>Giacomo Janson (<a class="reference external" href="mailto:giacomo&#46;janson&#37;&#52;&#48;gmail&#46;com">giacomo<span>&#46;</span>janson<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
 <li><p>and others to be named!</p></li>
 </ul>
-</section>
-<section id="why-molecular-dynamics">
+</div>
+<div class="section" id="why-molecular-dynamics">
 <h2>Why Molecular Dynamics?<a class="headerlink" href="#why-molecular-dynamics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Atomic-scale models of molecular systems are indispensible tools for drug discovery, molecular engineering, catalysis and beyond!</strong></p></li>
@@ -469,8 +488,8 @@
 </ul>
 </li>
 </ul>
-</section>
-<section id="why-machine-learning-for-molecular-dynamics">
+</div>
+<div class="section" id="why-machine-learning-for-molecular-dynamics">
 <h2>Why Machine Learning for Molecular Dynamics?<a class="headerlink" href="#why-machine-learning-for-molecular-dynamics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Machine learning has revolutionized one area of computation after another (image recognition, language processing)</p></li>
@@ -493,8 +512,8 @@
 </ul>
 </li>
 </ul>
-</section>
-<section id="recommended-background-for-this-course">
+</div>
+<div class="section" id="recommended-background-for-this-course">
 <h2>Recommended background for this course<a class="headerlink" href="#recommended-background-for-this-course" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Math (calculus, differential equations, chain rule differentiation)</p></li>
@@ -512,8 +531,8 @@
 <li><p>Computer programming (Python, numpy, matplotlib)</p></li>
 </ul>
 <p>We will do our best to provide relevant background resources over the course of the semester.  <strong>If you have any questions or concerns about any of these points let us know and we will try to help!</strong></p>
-</section>
-<section id="course-grade-breakdown">
+</div>
+<div class="section" id="course-grade-breakdown">
 <h2>Course grade breakdown<a class="headerlink" href="#course-grade-breakdown" title="Permalink to this headline">¶</a></h2>
 <p>The course grade will be calculated based on the following assessments:</p>
 <ul class="simple">
@@ -522,13 +541,13 @@
 <li><p>Independent study project (40%)</p></li>
 </ul>
 <p>Rubric for the independent study project is forthcoming and will be posted to the website.</p>
-</section>
-<section id="course-website">
+</div>
+<div class="section" id="course-website">
 <h2>Course website<a class="headerlink" href="#course-website" title="Permalink to this headline">¶</a></h2>
 <p>If you are looking at this notebook you likely have already found the course website: <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb">https://adicksonlab.github.io/ml4md-jb</a>.  This is a jupyter book, which is a collection of ipython notebooks and markdown files that are rendered into a website.</p>
 <p>If you are interested in the source code, it is hosted in a public Github repository here: <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb">https://github.com/ADicksonLab/ml4md-jb</a>.</p>
-</section>
-<section id="jupyter-notebooks">
+</div>
+<div class="section" id="jupyter-notebooks">
 <h2>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
 <p>Both the lectures and laboratories will be offered via Jupyter notebooks. This allows us to intersperse comments, links and documentation (in Markdown cells) with executable code written in Python. You can interact with these notebooks either:</p>
 <ul class="simple">
@@ -559,11 +578,11 @@
 </div>
 </div>
 </div>
-</section>
-<section id="discussion-on-slack">
+</div>
+<div class="section" id="discussion-on-slack">
 <h2>Discussion on Slack<a class="headerlink" href="#discussion-on-slack" title="Permalink to this headline">¶</a></h2>
 <p>To allow us to communicate even outside of lectures and labratory periods, we are going to use Slack.  If you haven’t already, join the Slack workspace with your MSU address using <a class="reference external" href="https://join.slack.com/t/ml4mdbmb961/shared_invite/zt-1104s1e4l-DVWxtS7rnUZfXBe74tDO1A">this link</a>.</p>
-<section id="bmb-community-standards">
+<div class="section" id="bmb-community-standards">
 <h3>BMB Community Standards<a class="headerlink" href="#bmb-community-standards" title="Permalink to this headline">¶</a></h3>
 <p>This is also a good time to remind you of the BMB community standards.  In all of our classroom communications it is important to:</p>
 <ul class="simple">
@@ -571,9 +590,9 @@
 <li><p>Be welcoming and inclusive of all people</p></li>
 </ul>
 <p>A copy of these community standards is available in the course website under “Week 01”.</p>
-</section>
-</section>
-<section id="in-class-activity-1-introductions">
+</div>
+</div>
+<div class="section" id="in-class-activity-1-introductions">
 <h2>In-class Activity 1: Introductions<a class="headerlink" href="#in-class-activity-1-introductions" title="Permalink to this headline">¶</a></h2>
 <p><em><strong>Post a message on the class Slack channel that includes the following:</strong></em></p>
 <ul class="simple">
@@ -582,8 +601,8 @@
 <li><p>A one sentence description of your research area</p></li>
 <li><p>One thing you look forward to learning in this course</p></li>
 </ul>
-</section>
-<section id="in-class-activity-2-visualize-a-protein-with-nglview">
+</div>
+<div class="section" id="in-class-activity-2-visualize-a-protein-with-nglview">
 <h2>In-class Activity 2: Visualize a protein with NGLview<a class="headerlink" href="#in-class-activity-2-visualize-a-protein-with-nglview" title="Permalink to this headline">¶</a></h2>
 <p><em><strong>Open this notebook either on your own machine or in Colab and execute the following cells.</strong></em></p>
 <p>Acknowledgements and props to the following resources:</p>
@@ -620,12 +639,12 @@
 </div>
 </div>
 </div>
-</section>
-<section id="that-s-all-for-lecture-1">
+</div>
+<div class="section" id="that-s-all-for-lecture-1">
 <h2>That’s all for Lecture 1.<a class="headerlink" href="#that-s-all-for-lecture-1" title="Permalink to this headline">¶</a></h2>
 <p>See you on Thursday for the first Lab!</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

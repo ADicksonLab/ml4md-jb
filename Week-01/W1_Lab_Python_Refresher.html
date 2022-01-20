@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 01 Lab: Python Refresher Course &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
@@ -43,8 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -168,6 +167,26 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
    Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
   </a>
  </li>
 </ul>
@@ -684,9 +703,9 @@
             
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="week-01-lab-python-refresher-course">
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-01-lab-python-refresher-course">
 <h1>Week 01 Lab: Python Refresher Course<a class="headerlink" href="#week-01-lab-python-refresher-course" title="Permalink to this headline">¶</a></h1>
-<section id="student-name-your-name-here">
+<div class="section" id="student-name-your-name-here">
 <h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
 <p><img alt="python" src="https://www.ksn.com/wp-content/uploads/sites/13/2021/07/GettyImages-487568800.jpg?w=876&amp;h=493&amp;crop=1" /></p>
 <p>Before we start our 4-week machine learning content, we thought we should take some time to make sure everyone has the necessary tools and background knowledge.  While a lot of the upcoming content will be heavily scaffolded with pre-written code, ideally by the end of this course you will not only be able to <strong>fully understand what this code is doing and how it works</strong>, but also be able to <strong>adapt these tools to your own purposes</strong> and even <strong>create and share your own tools with the scientific community</strong>.</p>
@@ -698,16 +717,16 @@
 <li><p>Object oriented programming: Defining classes</p></li>
 </ul>
 <p><strong>For this class we will be working in pairs.</strong>  Each pair will be working in their own Zoom breakout room.  Remember to work together as you go through the notebook!  If you have questions or difficulties either come back to the main session or use the “ask for help” Zoom function.</p>
-</section>
-</section>
+</div>
+</div>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-1-shortcuts-for-working-with-jupyter-notebooks">
+<div class="tex2jax_ignore mathjax_ignore section" id="part-1-shortcuts-for-working-with-jupyter-notebooks">
 <h1>Part 1: Shortcuts for working with Jupyter notebooks<a class="headerlink" href="#part-1-shortcuts-for-working-with-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
 <p>As you’ve already seen, Jupyter notebooks are great ways to combine code, formatted text, images, and even YouTube videos together into a single interactive document.</p>
 <p>There are some keyboard shortcuts that make working in Jupyter much easier and learning them now will save you a lot of time in the long run!</p>
-<section id="running-cells">
+<div class="section" id="running-cells">
 <h2>Running cells<a class="headerlink" href="#running-cells" title="Permalink to this headline">¶</a></h2>
-<section id="click-on-the-cell-below-and-press-shift-enter">
+<div class="section" id="click-on-the-cell-below-and-press-shift-enter">
 <h3>Click on the cell below and press Shift+Enter<a class="headerlink" href="#click-on-the-cell-below-and-press-shift-enter" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,8 +739,8 @@
 </div>
 </div>
 <p><strong>This is the most common way to traverse through notebooks:  holding down the Shift key and executing the cells one at a time.</strong></p>
-</section>
-<section id="execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side">
+</div>
+<div class="section" id="execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side">
 <h3>Execute the cells below and notice the asterisks on the left hand side<a class="headerlink" href="#execute-the-cells-below-and-notice-the-asterisks-on-the-left-hand-side" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -742,15 +761,15 @@
 </div>
 </div>
 <p><strong>Cells are run one at a time.  An asterisk denotes either that a cell is currently being executed, or it is waiting for another cell to finish.  Cells can be executed in any order and the number that appears on the left indicates the order in which it was executed.</strong></p>
-</section>
-<section id="double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter">
+</div>
+<div class="section" id="double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter">
 <h3>Double click on the Markdown cell below to see its “code” and then “run” it with Shift+Enter<a class="headerlink" href="#double-click-on-the-markdown-cell-below-to-see-its-code-and-then-run-it-with-shift-enter" title="Permalink to this headline">¶</a></h3>
 <p>Check out this picture of a penguin!</p>
 <p><img alt="penguin" src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/upwk62273402-wikimedia-image.jpg?w=800&amp;dpr=1&amp;fit=default&amp;crop=default&amp;q=65&amp;vib=3&amp;con=3&amp;usm=15&amp;bg=F4F4F3&amp;auto=format&amp;ixlib=js-2.2.1&amp;s=24cefcf6cab5e52d909f73fb3ce39b1b" /></p>
 <p><strong>Markdown cells can be edited and run just like code cells.</strong></p>
-</section>
-</section>
-<section id="manipulating-cells">
+</div>
+</div>
+<div class="section" id="manipulating-cells">
 <h2>Manipulating cells<a class="headerlink" href="#manipulating-cells" title="Permalink to this headline">¶</a></h2>
 <p>When working on a notebook often you want to create a new cell, change its type (e.g. “Code” to “Markdown”), move it, or delete it entirely.  While there are tools to do these things in the menu above, there are also useful keyboard shortcuts that you should learn.</p>
 <p><strong>Use the Esc key on the cell below to change into “Command Mode”.</strong>  The box surrounding the cell should turn blue.</p>
@@ -772,17 +791,17 @@
 <li><p>Paste this cell (v)</p></li>
 <li><p><strong>Open up a help screen that tells you all of this and more! (h)</strong></p></li>
 </ul>
-<section id="make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all">
+<div class="section" id="make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all">
 <h3>Make three empty cells below, write some code in each, copy the middle one and paste it, then delete them all<a class="headerlink" href="#make-three-empty-cells-below-write-some-code-in-each-copy-the-middle-one-and-paste-it-then-delete-them-all" title="Permalink to this headline">¶</a></h3>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-2-installing-and-importing-packages-finding-documentation-and-source-code">
+<div class="tex2jax_ignore mathjax_ignore section" id="part-2-installing-and-importing-packages-finding-documentation-and-source-code">
 <h1>Part 2: Installing and importing packages, finding documentation and source code<a class="headerlink" href="#part-2-installing-and-importing-packages-finding-documentation-and-source-code" title="Permalink to this headline">¶</a></h1>
 <p>A great thing about the Python language is that we can make use of a whole world of packages for numerical analysis, data visualization, statistics and machine learning.  There are also a number of great packages for analysing biomolecular data, performing and analyzing molecular dynamics simulations, and even (as we saw on Tuesday) visualize biomolecular structures directly in Jupyter notebooks!  <strong>This truly lets us stand on the shoulders of giants.</strong></p>
 <p><img alt="BFG" src="https://i0.wp.com/images.amcnetworks.com/bbcamerica.com/wp-content/uploads/2016/05/anglo_2000x1025_thebfg-1600x720.jpg" /></p>
-<section id="importing-packages">
+<div class="section" id="importing-packages">
 <h2>Importing packages<a class="headerlink" href="#importing-packages" title="Permalink to this headline">¶</a></h2>
 <p><strong>Say we want to solve the linear equation:</strong></p>
 <p>\begin{equation}
@@ -797,8 +816,8 @@
 </div>
 </div>
 <p><strong>Note that if you see a message like: <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'scipy'</span></code> then this indicates scipy has not been installed or is not accessible to this Python kernel.</strong></p>
-</section>
-<section id="installing-packages">
+</div>
+<div class="section" id="installing-packages">
 <h2>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h2>
 <p>To install a new package you should use a package manager such as <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> using the command line.  To make these new packages accessible you should shutdown and restart the server running the Jupyter notebook.</p>
 <p><strong>However, there is a shortcut:</strong> in Jupyter notebooks (and on Google Colab) you can run command line commands without leaving the notebook:</p>
@@ -818,8 +837,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="finding-documentation">
+</div>
+<div class="section" id="finding-documentation">
 <h2>Finding documentation<a class="headerlink" href="#finding-documentation" title="Permalink to this headline">¶</a></h2>
 <p><strong>Back to our linear equation example.</strong> Now that we imported the <code class="docutils literal notranslate"><span class="pre">solve</span></code> function, what if we forget how to format the inputs?  Or we want to know which options are available when we call it?  <strong>This information is in the documentation for this function, also known as the “doc string”</strong>.  Documentation is of course available on the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> webpage (<a class="reference external" href="https://scipy.github.io/devdocs/reference/generated/scipy.linalg.solve.html#scipy.linalg.solve">found here</a>), but again there is a shortcut:</p>
 <div class="cell docutils container">
@@ -846,8 +865,8 @@
 </div>
 </div>
 </div>
-</section>
-<section id="examining-source-code">
+</div>
+<div class="section" id="examining-source-code">
 <h2>Examining source code<a class="headerlink" href="#examining-source-code" title="Permalink to this headline">¶</a></h2>
 <p><strong>What if we want to see the source code?</strong> Well you could look at the bottom of the docstring to find the location of the file on your computer, open the file in a text editor, and search for the corresponding function name.  But as you probably guessed, <strong>there is an easier way!</strong>  Just add another question mark:</p>
 <div class="cell docutils container">
@@ -858,17 +877,17 @@
 </div>
 </div>
 <p><strong>Scrolling down past the call signature and the docstring shows the source code of this function.</strong></p>
-</section>
-</section>
+</div>
+</div>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-3-working-with-numpy-arrays">
+<div class="tex2jax_ignore mathjax_ignore section" id="part-3-working-with-numpy-arrays">
 <h1>Part 3: Working with Numpy arrays<a class="headerlink" href="#part-3-working-with-numpy-arrays" title="Permalink to this headline">¶</a></h1>
 <p>One library that is going to be indispensible in this course (and in most of scientific computing) is called <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.  This provides a convenient structure for organizing large sets of data of the same datatype (e.g. integers or floats) into single objects called “arrays”.</p>
 <p>These arrays can be one-dimensional (like vectors), two-dimensional (like matrices) or have three or more dimensions.  Each dimension of the array is also referred to as an “axis”.</p>
 <p><img alt="arrays" src="https://predictivehacks.com/wp-content/uploads/2020/08/numpy_arrays-1024x572.png" /></p>
 <p>The size of an array along each axis is revealed by its “shape”, which is a list of integers, the first integer giving the shape along axis 0, the second integer giving the shape along axis 1, and so on.</p>
 <p>The length of the shape list reveals the “dimensionality” of the array.</p>
-<section id="numpy-basics">
+<div class="section" id="numpy-basics">
 <h2>Numpy basics<a class="headerlink" href="#numpy-basics" title="Permalink to this headline">¶</a></h2>
 <p><strong>Here are some YouTube videos made by the CMSE 201 team at MSU that give some background on Numpy arrays and multi-dimensional Numpy arrays:</strong></p>
 <div class="cell docutils container">
@@ -891,7 +910,7 @@
 </div>
 </div>
 </div>
-<section id="turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares">
+<div class="section" id="turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares">
 <h3>Turn the following list into a numpy array, square all of the elements and print out the sum of the squares.<a class="headerlink" href="#turn-the-following-list-into-a-numpy-array-square-all-of-the-elements-and-print-out-the-sum-of-the-squares" title="Permalink to this headline">¶</a></h3>
 <p>Hint: summing an array can be done easily with the <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> function</p>
 <div class="cell docutils container">
@@ -904,9 +923,9 @@
 </div>
 </div>
 <p><strong>Check: the sum should be 4746.65</strong></p>
-</section>
-</section>
-<section id="manipulating-multidimensional-arrays">
+</div>
+</div>
+<div class="section" id="manipulating-multidimensional-arrays">
 <h2>Manipulating multidimensional arrays<a class="headerlink" href="#manipulating-multidimensional-arrays" title="Permalink to this headline">¶</a></h2>
 <p><strong>Here’s another CMSE 201 video describing two-dimensional arrays:</strong></p>
 <div class="cell docutils container">
@@ -968,7 +987,7 @@
 </div>
 </div>
 </div>
-<section id="reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b">
+<div class="section" id="reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b">
 <h3>Reshape the <code class="docutils literal notranslate"><span class="pre">a</span></code> array below to a 2D array of shape (3,3).  Then input <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> to the <code class="docutils literal notranslate"><span class="pre">solve</span></code> function you imported from <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.  Then use the <code class="docutils literal notranslate"><span class="pre">np.matmul</span></code> command to see if <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">=</span> <span class="pre">b</span></code>.<a class="headerlink" href="#reshape-the-a-array-below-to-a-2d-array-of-shape-3-3-then-input-a-and-b-to-the-solve-function-you-imported-from-scipy-then-use-the-np-matmul-command-to-see-if-ax-b" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -985,9 +1004,9 @@
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="reading-and-writing-numpy-arrays">
+</div>
+</div>
+<div class="section" id="reading-and-writing-numpy-arrays">
 <h2>Reading and writing numpy arrays<a class="headerlink" href="#reading-and-writing-numpy-arrays" title="Permalink to this headline">¶</a></h2>
 <p>There are two main ways to read and write numpy arrays.  <strong>The first is as a human-readable text file.</strong>  This can be done with <code class="docutils literal notranslate"><span class="pre">np.savetxt</span></code> and <code class="docutils literal notranslate"><span class="pre">np.loadtxt</span></code>:</p>
 <div class="cell docutils container">
@@ -1039,10 +1058,10 @@
 </div>
 </div>
 <p><strong>Arrays are pretty much conceptually identical to tensors, which are the fundamental data type of machine learning.  You will get a lot of experience working with these datatypes in the coming weeks.</strong></p>
-</section>
-</section>
+</div>
+</div>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-4-object-oriented-programming">
+<div class="tex2jax_ignore mathjax_ignore section" id="part-4-object-oriented-programming">
 <h1>Part 4: Object oriented programming<a class="headerlink" href="#part-4-object-oriented-programming" title="Permalink to this headline">¶</a></h1>
 <p>The last stop on our high-speed recap of Python concepts is the idea of working with objects.  An object is a generalization of a data type (like string, int, and float) that is defined to make things easier for a specific task.<br />
 <strong>We have already seen this for numpy arrays.</strong>  The creators of the numpy package thought it would be useful to make a standard “object” that could have an arbitrary shape and could hold only objects of the same type (and they were right!) and they called this object an “array”.</p>
@@ -1066,7 +1085,7 @@
 <p><strong>Wow, you can do a lot of things with numpy arrays!</strong>  All of these functions (e.g. <code class="docutils literal notranslate"><span class="pre">.mean()</span></code>) and attributes (e.g. <code class="docutils literal notranslate"><span class="pre">.shape</span></code>) are embedded within the object itself.  This type of programming usually results in a workflow where the user constructs objects, uses them to create other objects, which are used to create bigger more complex objects, and which finally culminates in a function call like:  <code class="docutils literal notranslate"><span class="pre">simulation_manager.run()</span></code> or <code class="docutils literal notranslate"><span class="pre">neural_network.train()</span></code>.</p>
 <p><strong>This hides a lot of detail from the user and it can be frustrating when things don’t work since errors messages often involve a multi-level hierarchy of functions calling functions calling functions…</strong></p>
 <p>To help us debug these errors when they occur, let’s spend a bit of time learning how objects are defined in Python.</p>
-<section id="the-class-statement">
+<div class="section" id="the-class-statement">
 <h2>The Class statement<a class="headerlink" href="#the-class-statement" title="Permalink to this headline">¶</a></h2>
 <p>To define a new custom object we use a <code class="docutils literal notranslate"><span class="pre">class</span></code> statement. <strong>Let’s make one for a playing card to demonstrate:</strong></p>
 <div class="cell docutils container">
@@ -1147,7 +1166,7 @@
 </div>
 </div>
 </div>
-<section id="perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank">
+<div class="section" id="perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank">
 <h3>Perform 10000 random trials where you shuffle the deck and deal out two cards.  What is the probability that they are “suited connectors”?  (That they have the same suit and differ by one in their numerical rank?)<a class="headerlink" href="#perform-10000-random-trials-where-you-shuffle-the-deck-and-deal-out-two-cards-what-is-the-probability-that-they-are-suited-connectors-that-they-have-the-same-suit-and-differ-by-one-in-their-numerical-rank" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1157,14 +1176,14 @@
 </div>
 </div>
 <p><strong>Error check: the answer should be around 0.036.</strong></p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder">
+<div class="tex2jax_ignore mathjax_ignore section" id="congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder">
 <h1>Congratulations!  You are all done with Lab 1.  Save this file and upload it to the corresponding D2L folder.<a class="headerlink" href="#congratulations-you-are-all-done-with-lab-1-save-this-file-and-upload-it-to-the-corresponding-d2l-folder" title="Permalink to this headline">¶</a></h1>
 <p>© Copyright 2022,  Michigan State University Board of Trustees</p>
-</section>
+</div>
 
     <script type="text/x-thebe-config">
     {

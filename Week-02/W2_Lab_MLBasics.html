@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 02 Lab: Machine Learning Basics &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations" href="W2_Lecture_MLBasics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-02/W2_Lab_MLBasics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-02/W2_Lab_MLBasics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-02/W2_Lab_MLBasics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-02/W2_Lab_MLBasics.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-long-does-it-take-for-an-object-to-fall-to-earth-from-a-given-height">
+   How long does it take for an object to fall to earth from a given height?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#can-we-learn-this-function-from-observational-data">
+   Can we learn this function from observational data?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-neural-network">
+   Training a neural network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-things-up">
+     Setting things up
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-the-data">
+     Preparing the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-a-model">
+     Building a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-a-model">
+     Training a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-the-model">
+     Testing the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-on-your-own">
+     Exploring on your own
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-more-data">
+     Using more data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exploring on your own
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-homework">
+   OPTIONAL HOMEWORK
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-something-useful">
+     Learning something useful
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 02 Lab: Machine Learning Basics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-long-does-it-take-for-an-object-to-fall-to-earth-from-a-given-height">
+   How long does it take for an object to fall to earth from a given height?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#can-we-learn-this-function-from-observational-data">
+   Can we learn this function from observational data?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-neural-network">
+   Training a neural network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-things-up">
+     Setting things up
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-the-data">
+     Preparing the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-a-model">
+     Building a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-a-model">
+     Training a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-the-model">
+     Testing the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-on-your-own">
+     Exploring on your own
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-more-data">
+     Using more data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exploring on your own
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-homework">
+   OPTIONAL HOMEWORK
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-something-useful">
+     Learning something useful
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-02-lab-machine-learning-basics">
+<h1>Week 02 Lab: Machine Learning Basics<a class="headerlink" href="#week-02-lab-machine-learning-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="student-name-your-name-here">
+<h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="how-long-does-it-take-for-an-object-to-fall-to-earth-from-a-given-height">
+<h2>How long does it take for an object to fall to earth from a given height?<a class="headerlink" href="#how-long-does-it-take-for-an-object-to-fall-to-earth-from-a-given-height" title="Permalink to this headline">¶</a></h2>
+<img alt="newton-apple" src="http://3.bp.blogspot.com/-ex0MoQErWu8/U3jenn_DFMI/AAAAAAAAAUY/49lw-QXQyVM/s1600/philosophy-apple-newton.jpg" width="300"/>
+<p>On earth there is gravitational force:</p>
+<div class="math notranslate nohighlight">
+\[
+F_{grav} = mg
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass and <span class="math notranslate nohighlight">\(g = 9.81 m/s^2\)</span>.</p>
+<p>In vacuum (which isn’t very realistic) there is only gravitational force and the equations of motion are given as:</p>
+<p>Total force:
+$<span class="math notranslate nohighlight">\(
+F = F_{grav}
+\)</span>$</p>
+<p>Acceleration:
+$<span class="math notranslate nohighlight">\(
+a = \frac{F}{m} = g
+\)</span>$</p>
+<p>Velocity after time <span class="math notranslate nohighlight">\(t\)</span>:
+$<span class="math notranslate nohighlight">\(
+v = at = gt
+\)</span>$</p>
+<p>Distance after time <span class="math notranslate nohighlight">\(t\)</span>:
+$<span class="math notranslate nohighlight">\(
+h = \frac{1}{2}at^2 = \frac{1}{2}gt^2
+\)</span>$</p>
+<p>We can solve this for the time it takes to fall from a given height:
+$<span class="math notranslate nohighlight">\(
+t = \sqrt{\frac{2h}{g}}
+\)</span>$</p>
+<p>We can plot time as a function of height based on this equation using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">=</span><span class="mf">9.81</span>
+<span class="n">height</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">50.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">height</span><span class="o">/</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">time</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+
+<span class="c1">#you can adjust the figure size if you like</span>
+<span class="c1">#plt.rcParams[&quot;figure.figsize&quot;] = (7,5)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="can-we-learn-this-function-from-observational-data">
+<h2>Can we learn this function from observational data?<a class="headerlink" href="#can-we-learn-this-function-from-observational-data" title="Permalink to this headline">¶</a></h2>
+<img alt="apple experiments" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple-experiment.png" width="400"/>
+<p>Here is a data set that was taken in vacuum:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-02/apple.vacuum.dat">apple.vacuum.dat</a></p>
+<p>Please download this file to your local directory so that you can run the following part of the notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;apple.vacuum.dat&#39;</span><span class="p">)</span>
+<span class="n">data_x</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data_y</span><span class="o">=</span><span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># note: &#39;ro&#39; means &#39;red circles&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-a-neural-network">
+<h2>Training a neural network<a class="headerlink" href="#training-a-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>In the following we will train a neural network using the data above. The goal is to develop a model that takes a height value as input and predicts the time it takes to hit the ground. We will train the model based on the (noisy) data shown above, but we will test it afterwards using the exact answer given by the equation above.</p>
+<div class="section" id="setting-things-up">
+<h3>Setting things up<a class="headerlink" href="#setting-things-up" title="Permalink to this headline">¶</a></h3>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> for machine learning.</p>
+<p>Please try the following to load the modules (and to check that the installation is fine):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you get error messages above, you probably need to install <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>.</p>
+<p>Try the following command if you are using a conda environment:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pytorch</span> <span class="pre">-c</span> <span class="pre">pytorch</span></code></p>
+<p>If you do not have a GPU (and no CUDA), try the following command instead:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pytorch</span> <span class="pre">cpuonly</span> <span class="pre">-c</span> <span class="pre">pytorch</span></code></p>
+<p>You can check for CUDA and the presence of GPUs with the following command (on Linux)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi
+</pre></div>
+</div>
+</div>
+</div>
+<p>If it says ‘command not found’ or if there is another error message you probably do not have GPUs that can be used via CUDA.</p>
+<p>If the package import did not succeed earlier, go back and try again after installing the pytorch package before proceeding.</p>
+</div>
+<div class="section" id="preparing-the-data">
+<h3>Preparing the data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">¶</a></h3>
+<p>We will begin by splitting the data into training and validation sets. This will be done with the following function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">randomsplitdata</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="n">training_fraction</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    
+    <span class="n">tflag</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">tflag</span><span class="p">)</span><span class="o">&lt;</span><span class="n">training_fraction</span><span class="p">:</span>
+        <span class="n">tflag</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="mi">1</span>
+    
+    <span class="n">tdata</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">tflag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">vdata</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tflag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">tdata</span><span class="p">,</span><span class="n">vdata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we generate the training and validation sets. We need to specify what fraction of data should be the training set. In the example below it is set to 0.8 (i.e. 80%), but feel free to try out other values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">training</span><span class="p">,</span><span class="n">validation</span><span class="p">]</span><span class="o">=</span><span class="n">randomsplitdata</span><span class="p">(</span><span class="s1">&#39;apple.vacuum.dat&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we generate <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects needed for <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>. First we define a class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use the class with the training and validation data sets generated above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">training</span><span class="p">)</span>
+<span class="n">validation_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">validation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the data sets we set up data loader objects that are needed by <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> for batch processing. Batches are only needed for the training data. The initial data here is small and we can choose small batch sizes, but for larger data sets, the batch size should be increased. A good choice for larger sets is 64 or 128.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">validation_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-a-model">
+<h3>Building a model<a class="headerlink" href="#building-a-model" title="Permalink to this headline">¶</a></h3>
+<p>The neural network model is build as a class.</p>
+<p>In this case we are starting with the following architecture:</p>
+<img alt="newton-nn" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/newton-nn-model.png" width="400"/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>    <span class="c1"># fully connected layer 1 -&gt; 4 nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>    <span class="c1"># fully connected layer 4 -&gt; 4 nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># fully connected layer 4 -&gt; 1 nodes</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>       <span class="c1"># run through first layer w/ ReLU activation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>       <span class="c1"># run through second layer w/ ReLU activation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>               <span class="c1"># run through final layer w/o activation</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-a-model">
+<h3>Training a model<a class="headerlink" href="#training-a-model" title="Permalink to this headline">¶</a></h3>
+<p>First, we write training and validation functions.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">train</span></code> function returns the loss after going through an epoch (i.e. a number of batches to cover the training data).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">validate</span></code> function calculates the loss for the validation set so that we can determine when to stop the training.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">do_training</span></code> function runs through a given number of epochs and returns the losses for the training and validation sets for further inspection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">loader</span><span class="p">):</span>
+    <span class="n">loss_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        
+        <span class="c1">#input = input.to(&quot;cuda&quot;)      # uncomment if CUDA/GPU platform available</span>
+        <span class="c1">#label = label.to(&quot;cuda&quot;)      # uncomment if CUDA/GPU platofrm available</span>
+        
+        <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>              <span class="c1"># this is where the model is evaluated</span>
+        
+        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>  
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>  <span class="c1"># this is where the loss function is calculated</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                <span class="c1"># this calculates the back-propagated loss</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>                     <span class="c1"># this carries out the gradient descent</span>
+    
+    <span class="k">return</span> <span class="n">loss_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">loader</span><span class="p">):</span>
+    <span class="n">loss_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="c1">#input = input.to(&quot;cuda&quot;)     # if CUDA/GPU available</span>
+        <span class="c1">#label = label.to(&quot;cuda&quot;)     # if CUDA/GPU available</span>
+        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        
+        <span class="n">output</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loss_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">output</span><span class="p">):</span>
+    <span class="c1"># use MSE loss fucntion</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+    
+    <span class="n">tloss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+    <span class="n">vloss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">tloss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">)</span>
+        <span class="n">vloss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">vloader</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">output</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">tloss</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vloss</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            
+    <span class="k">return</span> <span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to train.</p>
+<p>First, we create a <strong>model instance</strong>. Then we initialize the weights (randomly) and set the gradients to zero.</p>
+<p>Then we intiialize an <strong>optimizer</strong>. There are two good optimizers: Adam and SGD. Choose one! The learning rate is set with <code class="docutils literal notranslate"><span class="pre">lr</span></code> and may need to be adjusted. The <code class="docutils literal notranslate"><span class="pre">weight_decay</span></code> rate adds regularization in the Aadm optimizer to avoid overfitting.</p>
+<p>We also define the <strong>loss function</strong>. We will use a simple MSE loss.</p>
+<p>Then we run through 50 epochs to train the model. The output is the training data loss and the validation data loss.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="c1">#model.to(&quot;cuda&quot;)    # &lt;--- uncomment this statement if you have CUDA and a GPU</span>
+<span class="n">model</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">)</span>
+<span class="c1">#optimizer = torch.optim.SGD(model.parameters(), lr=0.002, momentum=0.1)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">50</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">training_loss</span><span class="p">,</span><span class="n">validation_loss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">optimizer</span><span class="p">,</span><span class="n">train_loader</span><span class="p">,</span><span class="n">validation_loader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epoch_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">training_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">validation_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-the-model">
+<h3>Testing the model<a class="headerlink" href="#testing-the-model" title="Permalink to this headline">¶</a></h3>
+<p>We now have a trained model that we can compare to the solution we know from physics</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_time</span><span class="p">)):</span>
+    <span class="c1"># this is ugly ... anybody know how to do this better?</span>
+    <span class="n">tval</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)]])</span>
+    <span class="n">model_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">model</span><span class="p">(</span><span class="n">tval</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do you think about your first ML experiment?</p>
+</div>
+<div class="section" id="exploring-on-your-own">
+<h3>Exploring on your own<a class="headerlink" href="#exploring-on-your-own" title="Permalink to this headline">¶</a></h3>
+<p><strong>TODO:</strong> If you run again, how different is the solution?
+You should train multiple models with different training/validation data splits and obtain an average of the final loss to have a statistically meaningful result</p>
+<p><strong>TODO:</strong> Does training longer or changing the model improve accuracy?</p>
+<p><strong>TODO:</strong> Does changing optimizer parameters improve the speed of training?</p>
+<p><strong>OPTION:</strong> expand the notebook to calculate the loss with respect to the physics answer as the ‘gold standard’.</p>
+</div>
+<div class="section" id="using-more-data">
+<h3>Using more data<a class="headerlink" href="#using-more-data" title="Permalink to this headline">¶</a></h3>
+<p>Machine learning is expected to work better with more data.</p>
+<p>Here is a much larger data set:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-02/apple.vacuum.highres.dat">apple.vacuum.highres.dat</a></p>
+<p>Please also download this file to your local directory and check that you can plot the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_hr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;apple.vacuum.highres.dat&#39;</span><span class="p">)</span>
+<span class="n">data_hr_x</span><span class="o">=</span><span class="n">data_hr</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data_hr_y</span><span class="o">=</span><span class="n">data_hr</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_hr_x</span><span class="p">,</span><span class="n">data_hr_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, retrain your model from above.</p>
+<p>First prepare the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">traininghr</span><span class="p">,</span><span class="n">validationhr</span><span class="p">]</span><span class="o">=</span><span class="n">randomsplitdata</span><span class="p">(</span><span class="s1">&#39;apple.vacuum.highres.dat&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">train_hr_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">traininghr</span><span class="p">)</span>
+<span class="n">validation_hr_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">validationhr</span><span class="p">)</span>
+
+<span class="n">train_hr_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_hr_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">validation_hr_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_hr_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, run the training:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_hr</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="c1">#model_hr.to(&quot;cuda&quot;)    # uncomment this statement if you have CUDA and a GPU</span>
+<span class="n">model_hr</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">model_hr</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">model_hr</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">optimizer_hr</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_hr</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">[</span><span class="n">training_hr_loss</span><span class="p">,</span><span class="n">validation_hr_loss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">model_hr</span><span class="p">,</span><span class="n">optimizer_hr</span><span class="p">,</span><span class="n">train_hr_loader</span><span class="p">,</span><span class="n">validation_hr_loader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">epoch_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">training_hr_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">validation_hr_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and inspect the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_hr_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_hr_time</span><span class="p">)):</span>
+    <span class="n">tval</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)]])</span>
+    <span class="n">model_hr_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">model_hr</span><span class="p">(</span><span class="n">tval</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_hr_x</span><span class="p">,</span><span class="n">data_hr_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># original model in green</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># highres model in blue</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_hr_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is it better?</p>
+</div>
+<div class="section" id="id1">
+<h3>Exploring on your own<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>TODO:</strong> Build a new model with deeper layers (more layers and more nodes) and training again using the high-resolution data. For this you should create a new class (see template below that you can modify).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modify to make more complex model!</span>
+
+<span class="k">class</span> <span class="nc">DeepModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeepModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>    <span class="c1"># fully connected layer 1 -&gt; 4 nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>    <span class="c1"># fully connected layer 4 -&gt; 4 nodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>    <span class="c1"># fully connected layer 4 -&gt; 4 nodes</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># fully connected layer 4 -&gt; 1 nodes</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>       <span class="c1"># run through first layer w/ ReLU activation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>       <span class="c1"># run through second layer w/ ReLU activation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>       <span class="c1"># run through second layer w/ ReLU activation</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>               <span class="c1"># run through final layer w/o activation</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s train it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deepmodel</span> <span class="o">=</span> <span class="n">DeepModel</span><span class="p">()</span>
+<span class="c1">#deepmodel.to(&quot;cuda&quot;)    # uncomment this statement if you have CUDA and a GPU</span>
+<span class="n">deepmodel</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">deepmodel</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">deepmodel</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">optimizer_deep</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">deepmodel</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">50</span>
+
+<span class="p">[</span><span class="n">training_deep_loss</span><span class="p">,</span><span class="n">validation_deep_loss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">deepmodel</span><span class="p">,</span><span class="n">optimizer_deep</span><span class="p">,</span><span class="n">train_hr_loader</span><span class="p">,</span><span class="n">validation_hr_loader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">epoch_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">training_deep_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">validation_deep_loss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_deep_time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_deep_time</span><span class="p">)):</span>
+    <span class="n">tval</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)]])</span>
+    <span class="n">model_deep_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">deepmodel</span><span class="p">(</span><span class="n">tval</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_hr_x</span><span class="p">,</span><span class="n">data_hr_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_hr_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">height</span><span class="p">,</span><span class="n">model_deep_time</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TODO</strong> Most of the models are not very good at 0 because there is no data, but we know that the time is 0 for an initial height of 0. Augment the training data by repeating 0,0 ten times (Why no just once?). Then try again using one of the models above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you add ONE extra data point:</span>
+<span class="c1"># traininghr_augmented=np.concatenate((traininghr,[[0.0,0.0]))</span>
+
+<span class="c1"># you will then need to re-generate a new training data loader:</span>
+<span class="c1">#train_aug_set=Dataset(traininghr_augmented)</span>
+<span class="c1">#train_aug_loader = torch.utils.data.DataLoader(train_aug_set, batch_size=32, shuffle=True, num_workers=4)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TODO</strong> Build a new model with the augmented data and run the training again. Start by copying the notebook cells from above.</p>
+</div>
+</div>
+<div class="section" id="optional-homework">
+<h2>OPTIONAL HOMEWORK<a class="headerlink" href="#optional-homework" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="learning-something-useful">
+<h3>Learning something useful<a class="headerlink" href="#learning-something-useful" title="Permalink to this headline">¶</a></h3>
+<p>In reality, objects fall in air where there is a drag force that opposes the gravitational force. Becuase of the drag force there is a terminal velocity and lighter objects fall slower than heavier objects with the same cross-section exposed to air. The solution to this problem is not quite so straightforward because it involves solving a differential equation and it would be good to have a ML model for this problem.</p>
+<p>Here is a data set for apples and leaves falling in air:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-02/apple.leaf.air.highres.dat">apple.leaf.air.highres.dat</a></p>
+<p>Please also download this file to your local directory and check that you can plot the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_air</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;apple.leaf.air.highres.dat&#39;</span><span class="p">)</span>
+<span class="n">data_air_x</span><span class="o">=</span><span class="n">data_air</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data_air_y</span><span class="o">=</span><span class="n">data_air</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_air_x</span><span class="p">,</span><span class="n">data_air_y</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;height [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;time [s]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are two curves, one for apples, with the faster times, and one for leaves, with the slower times. Both data is in the same file.</p>
+<p>Data in the third column distinguishes whether a data point belongs to an apple (‘1’) or to a leaf (‘2’):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_air</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Think about how you could modify the above training protocol to take not one but two input values (i.e. height and classification (apple/leaf)) to train a model that correctly predicts the time it takes to fall to the ground for either an apple or a leaf.</p>
+<p>How would such a model work for predicting the time it takes for a branch to fall?</p>
+<p>How could the model be improved to be more transferable to other objects?</p>
+<p><strong>Additional notes:</strong></p>
+<p>The drag force that opposes the gravitational force is given as:
+$<span class="math notranslate nohighlight">\(
+F_{drag}=C_d \frac{\rho_{air}}{2} v^2 A
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>C_d<span class="math notranslate nohighlight">\( is the drag coefficient (0.5 for a sphere, 2 for a flat plate), \)</span>\rho_{air}<span class="math notranslate nohighlight">\( is \)</span>1.225 kg/m^3<span class="math notranslate nohighlight">\( on the surface of the earth, \)</span>v<span class="math notranslate nohighlight">\( is the velocity of an object falling through air, and \)</span>A$ is the cross-sectional area of the object in the direction it falls.</p>
+<p>The drag force as to be subtracted from the graviational force to obtain the instantaneous acceleration:
+$<span class="math notranslate nohighlight">\(
+a = \frac{F_{grav}-F_{drag}}{m} = g - \frac{F_{drag}}{m}
+\)</span>$</p>
+<p>The velocity is then given as:
+$<span class="math notranslate nohighlight">\(
+\frac{dv}{dt} = a
+\)</span>$</p>
+<p>and distance is obtained from:
+$<span class="math notranslate nohighlight">\(
+\frac{dx}{dt} = v
+\)</span>$</p>
+<p>This gives the following differential equation to be solved:
+$<span class="math notranslate nohighlight">\(
+\frac{dx^2}{dt^2}-g+\frac{C_d}{m}\frac{\rho_{air}}{2}A\left(\frac{dx}{dt}\right)^2 = 0
+\)</span>$</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="W2_Lecture_MLBasics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
