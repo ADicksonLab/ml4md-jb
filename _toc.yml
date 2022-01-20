@@ -32,4 +32,12 @@ parts:
     numbered: False
     chapters:
     - file: Week-02/W2_Lecture_MLBasics.ipynb
+    - file: Week-02/W2_Lab_MLBasics.ipynb
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat
+      title: apple.vacuum.dat
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat
+      title: apple.vacuum.highres.dat
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat
+      title: apple.leaf.air.highres.dat
+
 
