@@ -489,26 +489,31 @@ F_{grav} = mg
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass and <span class="math notranslate nohighlight">\(g = 9.81 m/s^2\)</span>.</p>
 <p>In vacuum (which isn’t very realistic) there is only gravitational force and the equations of motion are given as:</p>
-<p>Total force:
-$<span class="math notranslate nohighlight">\(
+<p>Total force:</p>
+<div class="math notranslate nohighlight">
+\[
 F = F_{grav}
-\)</span>$</p>
-<p>Acceleration:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>Acceleration:</p>
+<div class="math notranslate nohighlight">
+\[
 a = \frac{F}{m} = g
-\)</span>$</p>
-<p>Velocity after time <span class="math notranslate nohighlight">\(t\)</span>:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>Velocity after time <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 v = at = gt
-\)</span>$</p>
-<p>Distance after time <span class="math notranslate nohighlight">\(t\)</span>:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>Distance after time <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 h = \frac{1}{2}at^2 = \frac{1}{2}gt^2
-\)</span>$</p>
-<p>We can solve this for the time it takes to fall from a given height:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>We can solve this for the time it takes to fall from a given height:</p>
+<div class="math notranslate nohighlight">
+\[
 t = \sqrt{\frac{2h}{g}}
-\)</span>$</p>
+\]</div>
 <p>We can plot time as a function of height based on this equation using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -743,8 +748,7 @@ t = \sqrt{\frac{2h}{g}}
 </div>
 <p>We are now ready to train.</p>
 <p>First, we create a <strong>model instance</strong>. Then we initialize the weights (randomly) and set the gradients to zero.</p>
-<p>Then we intiialize an <strong>optimizer</strong>. There are two good optimizers: Adam and SGD. Choose one! The learning rate is set with <code class="docutils literal notranslate"><span class="pre">lr</span></code> and may need to be adjusted. The <code class="docutils literal notranslate"><span class="pre">weight_decay</span></code> rate adds regularization in the Aadm optimizer to avoid overfitting.</p>
-<p>We also define the <strong>loss function</strong>. We will use a simple MSE loss.</p>
+<p>Then we initialize an <strong>optimizer</strong>. There are two good optimizers: Adam and SGD. Choose one! The learning rate is set with <code class="docutils literal notranslate"><span class="pre">lr</span></code> and may need to be adjusted. The <code class="docutils literal notranslate"><span class="pre">weight_decay</span></code> rate adds regularization in the Aadm optimizer to avoid overfitting.</p>
 <p>Then we run through 50 epochs to train the model. The output is the training data loss and the validation data loss.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1043,27 +1047,35 @@ You should train multiple models with different training/validation data splits 
 <p>How would such a model work for predicting the time it takes for a branch to fall?</p>
 <p>How could the model be improved to be more transferable to other objects?</p>
 <p><strong>Additional notes:</strong></p>
-<p>The drag force that opposes the gravitational force is given as:
-$<span class="math notranslate nohighlight">\(
+<p>The drag force that opposes the gravitational force is given as:</p>
+<div class="math notranslate nohighlight">
+\[
 F_{drag}=C_d \frac{\rho_{air}}{2} v^2 A
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>C_d<span class="math notranslate nohighlight">\( is the drag coefficient (0.5 for a sphere, 2 for a flat plate), \)</span>\rho_{air}<span class="math notranslate nohighlight">\( is \)</span>1.225 kg/m^3<span class="math notranslate nohighlight">\( on the surface of the earth, \)</span>v<span class="math notranslate nohighlight">\( is the velocity of an object falling through air, and \)</span>A$ is the cross-sectional area of the object in the direction it falls.</p>
-<p>The drag force as to be subtracted from the graviational force to obtain the instantaneous acceleration:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p><span class="math notranslate nohighlight">\(C_d\)</span> is the drag coefficient (0.5 for a sphere, 2 for a flat plate)</p>
+<p><span class="math notranslate nohighlight">\(\rho_{air}\)</span> is <span class="math notranslate nohighlight">\(1.225 kg/m^3\)</span> on the surface of the earth.</p>
+<p><span class="math notranslate nohighlight">\(v\)</span> is the velocity of an object falling through air.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> is the cross-sectional area of the object in the direction it falls.</p>
+<p>The drag force has to be subtracted from the gravitational force to obtain the instantaneous acceleration:</p>
+<div class="math notranslate nohighlight">
+\[
 a = \frac{F_{grav}-F_{drag}}{m} = g - \frac{F_{drag}}{m}
-\)</span>$</p>
-<p>The velocity is then given as:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>The velocity is then given as:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{dv}{dt} = a
-\)</span>$</p>
-<p>and distance is obtained from:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>and distance is obtained from:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{dx}{dt} = v
-\)</span>$</p>
-<p>This gives the following differential equation to be solved:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>This gives the following differential equation to be solved:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{dx^2}{dt^2}-g+\frac{C_d}{m}\frac{\rho_{air}}{2}A\left(\frac{dx}{dt}\right)^2 = 0
-\)</span>$</p>
+\]</div>
 </div>
 </div>
 </div>
