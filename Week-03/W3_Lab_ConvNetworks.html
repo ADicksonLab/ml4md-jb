@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BMB 961 Sec 003 Semester Schedule &#8212; Machine Learning for Molecular Dynamics</title>
+    <title>Week 03 Lab: Convolutional Networks &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,7 @@
     <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Machine Learning for Molecular Dynamics Software Setup Guide" href="SoftwareSetupGuide.html" />
-    <link rel="prev" title="BMB 961 Sec 003: Machine Learning for Molecular Dynamics" href="BMB961-003_Syllabus.html" />
+    <link rel="prev" title="Week 03 Lecture: Neural Network Architectures" href="W3_Lecture_NNArchitectures.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -102,19 +101,19 @@
   Course Materials
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="BMB961-003_Syllabus.html">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
    Syllabus
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
    Course Schedule
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="SoftwareSetupGuide.html">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
    Software Setup Guide
   </a>
  </li>
@@ -193,14 +192,14 @@
   Week 03
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+  <a class="reference internal" href="W3_Lecture_NNArchitectures.html">
    Week 03 Lecture: Neural Network Architectures
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 03 Lab: Convolutional Networks
   </a>
  </li>
@@ -245,9 +244,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Course_Materials/BMB961-003_Schedule.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/Week-03/W3_Lab_ConvNetworks.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -265,7 +264,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FCourse_Materials/BMB961-003_Schedule.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-03/W3_Lab_ConvNetworks.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -281,11 +280,51 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-03/W3_Lab_ConvNetworks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-03/W3_Lab_ConvNetworks.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-still-need-to-finish-this">
+   We still need to finish this
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -293,110 +332,55 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>BMB 961 Sec 003 Semester Schedule</h1>
+                <h1>Week 03 Lab: Convolutional Networks</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-still-need-to-finish-this">
+   We still need to finish this
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bmb-961-sec-003-semester-schedule">
-<h1>BMB 961 Sec 003 Semester Schedule<a class="headerlink" href="#bmb-961-sec-003-semester-schedule" title="Permalink to this headline">¶</a></h1>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Day</p></th>
-<th class="text-align:center head"><p>Topic</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:center"><p>Lec 1 (Jan 11)</p></td>
-<td class="text-align:center"><p>Class introduction, review materials</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 1 (Jan 13)</p></td>
-<td class="text-align:center"><p>Introduction to Google Colab, python review</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 2 (Jan 18)</p></td>
-<td class="text-align:center"><p>Basics of Machine Learning</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 2 (Jan 20)</p></td>
-<td class="text-align:center"><p>First steps with a neural network</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 3 (Jan 25)</p></td>
-<td class="text-align:center"><p>Advanced neural networks</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 3 (Jan 27)</p></td>
-<td class="text-align:center"><p>Learning something useful</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 4 (Feb 1)</p></td>
-<td class="text-align:center"><p>Generating things with ML</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 4 (Feb 3)</p></td>
-<td class="text-align:center"><p>GAN lab</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 5 (Feb 8)</p></td>
-<td class="text-align:center"><p>ML case study: AlphaFold</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 5 (Feb 10)</p></td>
-<td class="text-align:center"><p>Predicting structures with AlphaFold</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 6 (Feb 15)</p></td>
-<td class="text-align:center"><p>Hamiltonian Mechanics</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 6 (Feb 17)</p></td>
-<td class="text-align:center"><p>Liquid Argon simulation Day #1</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 7 (Feb 22)</p></td>
-<td class="text-align:center"><p>Periodic boundaries and thermostats</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 7 (Feb 24)</p></td>
-<td class="text-align:center"><p>Liquid Argon simulation Day #2</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lec 8 (Mar 1)</p></td>
-<td class="text-align:center"><p>Biomolecular simulations</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lab 8 (Mar 3)</p></td>
-<td class="text-align:center"><p>Running simulations with OpenMM</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Mar 7 - 11</p></td>
-<td class="text-align:center"><p>Spring Break</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lec 9 (Mar 15)</p></td>
-<td class="text-align:center"><p>Simulation analysis: clustering and Markov state models</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lab 9 (Mar 17)</p></td>
-<td class="text-align:center"><p>Trajectory featurization, clustering and network analysis</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lec 10 (Mar 22)</p></td>
-<td class="text-align:center"><p>Parameterization of molecular dynamics forcefields with ML</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lab 10 (Mar 24)</p></td>
-<td class="text-align:center"><p>ML-based forcefield laboratory</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lec 11 (Mar 29)</p></td>
-<td class="text-align:center"><p>Reactive forcefields with neural networks</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lab 11 (Mar 31)</p></td>
-<td class="text-align:center"><p>ANI simulations</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Lec 12 (Apr 5)</p></td>
-<td class="text-align:center"><p>Analysis of MD simulations using neural networks</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Lab 12 (Apr 7)</p></td>
-<td class="text-align:center"><p>Learning collective variables with VAMPnets</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>Apr 12 - Apr 26</p></td>
-<td class="text-align:center"><p>Independent research projects</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>Last class period (Apr 26)</p></td>
-<td class="text-align:center"><p>Presentations for independent projects</p></td>
-</tr>
-</tbody>
-</table>
-<p><em>This is the tentative schedule prior to the start of the semester. The overall content shouldn’t change, but ordering or deadlines may shift somewhat. If deadlines change, substantial notice will be given!</em></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-03-lab-convolutional-networks">
+<h1>Week 03 Lab: Convolutional Networks<a class="headerlink" href="#week-03-lab-convolutional-networks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="student-name-your-name-here">
+<h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="we-still-need-to-finish-this">
+<h2>We still need to finish this<a class="headerlink" href="#we-still-need-to-finish-this" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -412,7 +396,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Course_Materials"
+            path: "./Week-03"
         },
         predefinedOutput: true
     }
@@ -424,19 +408,12 @@
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="BMB961-003_Syllabus.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="W3_Lecture_NNArchitectures.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">BMB 961 Sec 003: Machine Learning for Molecular Dynamics</p>
+            <p class="prev-next-title">Week 03 Lecture: Neural Network Architectures</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="SoftwareSetupGuide.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Machine Learning for Molecular Dynamics <br> Software Setup Guide</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

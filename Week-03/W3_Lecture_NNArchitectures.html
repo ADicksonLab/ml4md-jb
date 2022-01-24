@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 03 Lecture: Neural Network Architectures &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 03 Lab: Convolutional Networks" href="W3_Lab_ConvNetworks.html" />
+    <link rel="prev" title="Week 02 Lab: Machine Learning Basics" href="../Week-02/W2_Lab_MLBasics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-03/W3_Lecture_NNArchitectures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-03/W3_Lecture_NNArchitectures.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-03/W3_Lecture_NNArchitectures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-03/W3_Lecture_NNArchitectures.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolutional-neural-networks">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-neural-networks">
+   Graph Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-n-equivariant-graph-neural-networks">
+     E(n) Equivariant Graph Neural Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recurrent-neural-networks">
+   Recurrent Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-newton-s-equations-of-motion-with-large-timesteps-using-recurrent-neural-networks-based-operators">
+     Solving Newton’s Equations of Motion with Large Timesteps using Recurrent Neural Networks based Operators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformers">
+   Transformers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attention">
+   Attention
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 03 Lecture: Neural Network Architectures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#convolutional-neural-networks">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-neural-networks">
+   Graph Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-n-equivariant-graph-neural-networks">
+     E(n) Equivariant Graph Neural Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recurrent-neural-networks">
+   Recurrent Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-newton-s-equations-of-motion-with-large-timesteps-using-recurrent-neural-networks-based-operators">
+     Solving Newton’s Equations of Motion with Large Timesteps using Recurrent Neural Networks based Operators
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformers">
+   Transformers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attention">
+   Attention
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-03-lecture-neural-network-architectures">
+<h1>Week 03 Lecture: Neural Network Architectures<a class="headerlink" href="#week-03-lecture-neural-network-architectures" title="Permalink to this headline">¶</a></h1>
+<p>In the lecture we will survey the following types of neural networks:</p>
+<ol class="simple">
+<li><p>Convolutional Neural Networks</p></li>
+<li><p>Graph Neural Networks</p></li>
+<li><p>Recurrent Neural Networks</p></li>
+<li><p>Attention and Transformers</p></li>
+</ol>
+<div class="section" id="convolutional-neural-networks">
+<h2>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h2>
+<img alt="image_with_pixels" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/image_pixels.png" width="500px"/>
+<p>Convolutional networks were initialy motivated by image processing tasks (2D data x 3 colors).</p>
+<img alt="convolutional_network" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/convolution.png" width="600px"/>
+<p>Convolutional networks operate on multi-dimensional data by applying filters that are scanned over the data by focusing on <strong>data proximity</strong>.</p>
+<p>The filters are small matrices that capture <strong>local</strong> features. The small size of the filters also has practical advantages (less memory, easier training).</p>
+<p>Convolutional layers  <strong>encode</strong> multi-dimensional data. Fully connected linear layers may be used to ‘read out’ desired classifiers or values.</p>
+<img alt="convolution_operation" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/convolution_operation.png" width="800px"/>
+<p>The convolution operation involves the dot product between the weight matrix calculated by sliding over the input data with the results accumulated across all input layers.</p>
+<p>Input data may be <strong>padded</strong> with zeros. The <strong>stride</strong> determines how much the weight matrix is advanced at every step. The number of weight matrices determines the <strong>depth of the output layer</strong>.</p>
+<img alt="pooling operation" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/pooling.png" width="500px"/>
+<p>Pooling may be used to combine data and reduce the dimensionality.</p>
+<p>In most recent networks larger strides are used instead of pooling.</p>
+<img alt="alex_net" src="https://miro.medium.com/max/1400/1*wzflNwJw9QkjWWvTosXhNw.png" width="800px"/>
+<p>AlexNet is a convolutional network that was very successful ‘early on’ (i.e. 2012) with image classification in the <a class="reference external" href="http://www.image-net.org/challenges/LSVRC/">ImageNet Large Scale Visual Recognition Challenge</a>.</p>
+<img alt="alex_net" src="https://open-instruction.com/loading/2021/05/q.png" width="800px"/>
+<p>ResNet architectures are more advanced convolutional network with additional ‘shortcut’ connections to transfer information between more distant layers.</p>
+<p>The main advantage of this architecture is to facilitate the training of very deep networks where vanishing gradients are a common problem. In ResNet models, skipped layers can be excluded initially and added back later to ‘fine-tune’ a model.</p>
+<img alt="image_classification" src="https://cs.stanford.edu/people/karpathy/cnnembed/cnn_embed_full_1k.jpg" width="500px"/>
+<p>Recent networks are even more complicated and can outperform humans in correctly classifiyng objects seen in images.</p>
+<img alt="image_classification" src="https://kpwulab.files.wordpress.com/2021/04/p5_j18_2d_classes_for_iteration_20.png" width="600px"/>
+<p>Convolutional networks can be used for the classification of images in many areas of science, e.g. cryo-electron microscopy images.</p>
+<img alt="distance_matrix" src="https://nanohub.org/app/site/resources/2010/10/09924/5002/1ubq.jpg" width="600px"/>
+<p>Convolutional networks are also well-suited for processing data such as <strong>distance matrices</strong>.</p>
+<img alt="xray_density_volumet" src="https://www.ruppweb.org/Xray/tutorial/Maps/bundle_map_bonds.GIF" width="500px"/>
+<p><strong>density grid volumes</strong> can be handled via 3D convolutional networks.</p>
+<img alt="multiple_sequence_alignment" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/RPLP0_90_ClustalW_aln.gif/1150px-RPLP0_90_ClustalW_aln.gif" width="700px"/>
+<p><strong>multiple sequence alignments</strong> are also suitable for convolutional networks after generating a suitable representation of the alignment.</p>
+</div>
+<div class="section" id="graph-neural-networks">
+<h2>Graph Neural Networks<a class="headerlink" href="#graph-neural-networks" title="Permalink to this headline">¶</a></h2>
+<img alt="graph_neural_network" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/gnn.png" width="700px"/>
+<p>Graph neural networks are designed to capture data that is described by graphs that consist of <strong>nodes</strong> connected by <strong>edges</strong>.</p>
+<p>Transformations between layers maintain connections and edge properties. Nodes are transformed via convolutions over neighboring nodes. The functions <strong>f</strong> and <strong>g</strong> may be represented as fully connected neural networks with trainable weights.</p>
+<p>For more information check <a class="reference external" href="https://distill.pub/2021/gnn-intro/">here</a>.</p>
+<img alt="molecule" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Demeton_-Molecule-3D-balls-by-AHRLS.png/800px-Demeton_-Molecule-3D-balls-by-AHRLS.png" width="500px"/>
+<p>Graph neural networks are especially relevant for representing molecules:</p>
+<ul class="simple">
+<li><p>Nodes: <strong>atoms</strong> with properties: chemical type, radius, charge, mass, coordinates</p></li>
+<li><p>Edges: <strong>bonds</strong> with properties: single/double, covalent, hydrogen-bonding, non-bonded contact</p></li>
+</ul>
+<p>When applied to 3D objects, GNNs should maintain <strong>equivariance</strong> with respect to translations and rotations. Otherwise, the network model has to learn that translation/rotation does not change objects, training is difficult, and model output is more likely to be non-physical.</p>
+<p>For an input layer <span class="math notranslate nohighlight">\(x\)</span> that is transformed to a new layer <span class="math notranslate nohighlight">\(y = \phi(x)\)</span> this requires:</p>
+<ul class="simple">
+<li><p>translation equivariance: <span class="math notranslate nohighlight">\( y + T = \phi(x + T) \)</span></p></li>
+<li><p>rotational equivariance: <span class="math notranslate nohighlight">\( Ry = \phi(Rx) \)</span></p></li>
+</ul>
+<img alt="equivariance" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/equivariance.png" width="400 px"/>
+<div class="section" id="e-n-equivariant-graph-neural-networks">
+<h3>E(n) Equivariant Graph Neural Networks<a class="headerlink" href="#e-n-equivariant-graph-neural-networks" title="Permalink to this headline">¶</a></h3>
+<p>Satorras, Hoogeboom, Welling: [arXiv: 2102.09844 (2021)] (<a class="reference external" href="https://arxiv.org/abs/2102.09844">https://arxiv.org/abs/2102.09844</a>)</p>
+<img alt="egnn" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/egnn.png" />
+<p>Strategies for achieving equivariant transformations typically involve relative distances and radial or spherical harmonic functions.</p>
+<p>Other relevant papers on <a class="reference external" href="https://arxiv.org/abs/1802.08219">tensor field networks</a> and <a class="reference external" href="https://arxiv.org/abs/2006.10503">SE(3) Transformers</a>.</p>
+</div>
+</div>
+<div class="section" id="recurrent-neural-networks">
+<h2>Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permalink to this headline">¶</a></h2>
+<img alt="natural_language_orocessing" src="https://www.cesarsway.com/wp-content/uploads/2020/08/Screen-Shot-2020-08-08-at-1.29.12-PM.png" width="300px"/>
+<img alt="natural_language_orocessing" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/squirrels.png" width="500px"/>
+<p>Recurrent neural networks focus on capturing <strong>sequential processes</strong> and were initialy motivated by natural language processing tasks.</p>
+<img alt="recurrent neural network all-to-all" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/rnn_all_to_all.png" width="500px"/>
+<p>Recurrent neural networks involve a hidden state <strong>h</strong> that is propagated iteratively using the <strong>same weight matrix</strong>, e.g. with the following non-linear function:</p>
+<div class="math notranslate nohighlight">
+\[
+h_i = \tanh(w_{hh} h_{i-1} + w_{xh} x_i)
+\]</div>
+<p>Another recurring weight matrix is used to calculate output values:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = w_{hy} h_i
+\]</div>
+<img alt="recurrent neural network one-to-one" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/rnn_one_to_one.png" width="500px"/>
+<p>In model variations there may be input only at the beginning and at the end.</p>
+<img alt="recurrent neural network one-to-all" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/rnn_one_to_all.png" width="500px"/>
+<p>Or continuous output may be generated iteratively from initial input.</p>
+<p>This looks a lot like a conformational sampling algorithm!</p>
+<img alt="long_short_term_memory" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/lstm.png" width="600px"/>
+<p>A traditional RNN is difficult to train because input at early times affects output much later (vanishing gradients). The LSTM (long short term memory) model provides more control how information is retained over many interations and makes the training of RNNs easier.</p>
+<div class="section" id="solving-newton-s-equations-of-motion-with-large-timesteps-using-recurrent-neural-networks-based-operators">
+<h3>Solving Newton’s Equations of Motion with Large Timesteps using Recurrent Neural Networks based Operators<a class="headerlink" href="#solving-newton-s-equations-of-motion-with-large-timesteps-using-recurrent-neural-networks-based-operators" title="Permalink to this headline">¶</a></h3>
+<p>Kadupitiya, Fox, Jadhao: <a class="reference external" href="https://arxiv.org/abs/2004.06493">arXiv: 2004.06493 (2021)</a></p>
+<img alt="rnn_sampling" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/rnn_md_jadhao.png" width="800px"/>
+<p>Recurrent neural networks are well-suited for generating iterative trajectory sampling as in molecular dynamics or Monte Carlo simulations but with longer time steps.</p>
+<p>See also <a class="reference external" href="https://www.nature.com/articles/s41467-020-18959-8">recent work from the Tiwary lab</a>.</p>
+</div>
+</div>
+<div class="section" id="transformers">
+<h2>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h2>
+<img alt="transformers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/transformer.png" width="300px"/>
+<p>Transfomers are more flexible architectures that are replacing RNNs.  All of the elements may be a combination of deep (convolutional) network layers.</p>
+<p>For structure prediction the ‘input’ may be multiple sequence alignments and the ‘target’ may be an initial template-based model that is subsequently refined via multiple rounds through the decoder.</p>
+</div>
+<div class="section" id="attention">
+<h2>Attention<a class="headerlink" href="#attention" title="Permalink to this headline">¶</a></h2>
+<img alt="attention" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/attention.png" width="400px"/>
+<p>Transfomers often incorporate attention modules to capture relationships between different elements of sequential data (such as language, sequence data, spatial proximity).</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-02/W2_Lab_MLBasics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 02 Lab: Machine Learning Basics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="W3_Lab_ConvNetworks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 03 Lab: Convolutional Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

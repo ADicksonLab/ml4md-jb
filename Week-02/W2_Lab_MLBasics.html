@@ -54,6 +54,7 @@
     <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 03 Lecture: Neural Network Architectures" href="../Week-03/W3_Lecture_NNArchitectures.html" />
     <link rel="prev" title="Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations" href="W2_Lecture_MLBasics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -186,6 +187,23 @@
  <li class="toctree-l1">
   <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
    apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
   </a>
  </li>
 </ul>
@@ -652,7 +670,7 @@ t = \sqrt{\frac{2h}{g}}
 <p>Using the data sets we set up data loader objects that are needed by <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> for batch processing. Batches are only needed for the training data. The initial data here is small and we can choose small batch sizes, but for larger data sets, the batch size should be increased. A good choice for larger sets is 64 or 128.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">validation_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -852,7 +870,7 @@ You should train multiple models with different training/validation data splits 
 <span class="n">train_hr_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">traininghr</span><span class="p">)</span>
 <span class="n">validation_hr_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">validationhr</span><span class="p">)</span>
 
-<span class="n">train_hr_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_hr_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">train_hr_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_hr_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">validation_hr_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_hr_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1000,11 +1018,11 @@ You should train multiple models with different training/validation data splits 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you add ONE extra data point:</span>
-<span class="c1"># traininghr_augmented=np.concatenate((traininghr,[[0.0,0.0]))</span>
+<span class="c1"># traininghr_augmented=np.concatenate((traininghr,[[0.0,0.0]]))</span>
 
 <span class="c1"># you will then need to re-generate a new training data loader:</span>
 <span class="c1">#train_aug_set=Dataset(traininghr_augmented)</span>
-<span class="c1">#train_aug_loader = torch.utils.data.DataLoader(train_aug_set, batch_size=32, shuffle=True, num_workers=4)</span>
+<span class="c1">#train_aug_loader = torch.utils.data.DataLoader(train_aug_set, batch_size=32, shuffle=True)</span>
 </pre></div>
 </div>
 </div>
@@ -1111,6 +1129,13 @@ a = \frac{F_{grav}-F_{drag}}{m} = g - \frac{F_{drag}}{m}
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Week-03/W3_Lecture_NNArchitectures.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 03 Lecture: Neural Network Architectures</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
