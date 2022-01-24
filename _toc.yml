@@ -44,4 +44,5 @@ parts:
     numbered: False
     chapters:
     - file: Week-03/W3_Lecture_NNArchitectures.ipynb
+    - file: Week-03/W3_Lab_ConvNetworks.ipynb
 
