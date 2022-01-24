@@ -40,4 +40,8 @@ parts:
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat
       title: apple.leaf.air.highres.dat
 
+  - caption: Week 03
+    numbered: False
+    chapters:
+    - file: Week-03/W3_Lecture_NNArchitectures.ipynb
 
