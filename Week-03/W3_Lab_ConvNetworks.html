@@ -42,6 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -203,6 +205,31 @@
    Week 03 Lab: Convolutional Networks
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -318,8 +345,95 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-still-need-to-finish-this">
-   We still need to finish this
+  <a class="reference internal nav-link" href="#predicting-molecular-properties">
+   Predicting molecular properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downloading-data">
+   Downloading data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-target-data">
+   Preparing target data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-input-features">
+   Preparing input features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-xyz-coordinates">
+     Input feature: XYZ coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-distance-from-center">
+     Input feature: Distance from center
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-atom-atom-distances">
+     Input feature: Atom-atom distances
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-the-data-loader">
+   Setting up the Data Loader
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-training-functions">
+   Setting up Training Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-models">
+   Building Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models">
+   Training models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models-to-represent-more-complex-properties">
+   Training models to represent more complex properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-the-model">
+   Tuning the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-a-good-model-improving-the-loss">
+   What is a good model? Improving the loss.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#going-deeper">
+   Going deeper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#increasing-details">
+   Increasing details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reusing-models">
+   Reusing models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-thoughts">
+   Final thoughts
   </a>
  </li>
 </ul>
@@ -348,8 +462,95 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#we-still-need-to-finish-this">
-   We still need to finish this
+  <a class="reference internal nav-link" href="#predicting-molecular-properties">
+   Predicting molecular properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downloading-data">
+   Downloading data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-target-data">
+   Preparing target data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-input-features">
+   Preparing input features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-xyz-coordinates">
+     Input feature: XYZ coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-distance-from-center">
+     Input feature: Distance from center
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-feature-atom-atom-distances">
+     Input feature: Atom-atom distances
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-the-data-loader">
+   Setting up the Data Loader
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-training-functions">
+   Setting up Training Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-models">
+   Building Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models">
+   Training models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models-to-represent-more-complex-properties">
+   Training models to represent more complex properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-the-model">
+   Tuning the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-a-good-model-improving-the-loss">
+   What is a good model? Improving the loss.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#going-deeper">
+   Going deeper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#increasing-details">
+   Increasing details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reusing-models">
+   Reusing models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-thoughts">
+   Final thoughts
   </a>
  </li>
 </ul>
@@ -366,20 +567,837 @@
 <div class="section" id="student-name-your-name-here">
 <h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="we-still-need-to-finish-this">
-<h2>We still need to finish this<a class="headerlink" href="#we-still-need-to-finish-this" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="predicting-molecular-properties">
+<h2>Predicting molecular properties<a class="headerlink" href="#predicting-molecular-properties" title="Permalink to this headline">¶</a></h2>
+<p>In this lab we will build networks that learn how to predict molecular properties from PDB structures.</p>
+<p>As a test system we will use simulation-generated snapshots of <span class="math notranslate nohighlight">\(AAQAA_5\)</span>. This peptide assumes partial helical structures. An example conformation is shown below:</p>
+<img alt="image_with_pixels" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aaqaa.png" width="500px"/>
+</div>
+<div class="section" id="downloading-data">
+<h2>Downloading data<a class="headerlink" href="#downloading-data" title="Permalink to this headline">¶</a></h2>
+<p>We begin by downloading a set of conformations in PDB format for <span class="math notranslate nohighlight">\(AAQAA_5\)</span> that we will use for this tutorial:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15_pdbs.tgz">aq15_pdbs.tgz</a></p>
+<p>Instead of downloading it via the browswer you can use <code class="docutils literal notranslate"><span class="pre">wget</span></code>. That may be convenient for example when using Google Colab.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget -nc https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15_pdbs.tgz
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once downloaded, we unpack the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>tar xzf aq15_pdbs.tgz
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preparing-target-data">
+<h2>Preparing target data<a class="headerlink" href="#preparing-target-data" title="Permalink to this headline">¶</a></h2>
+<p>As target data we will use different molecular properties. For training and validation, they are calculated based on conventional methods from the PDB structures. The goal of machine learning is then to learn models that can predict these properties from the input conformations.</p>
+<p>Let’s begin by calculating the radius of gyration based on <span class="math notranslate nohighlight">\(C\alpha\)</span> atoms from the PDB files using <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code>.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code> should be installed along with <code class="docutils literal notranslate"><span class="pre">openmm</span></code>. Install it now if you get an error message below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output file exists already, skipping&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">rgout</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+    <span class="n">ndata</span><span class="o">=</span><span class="mi">8000</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndata</span><span class="p">):</span>
+        <span class="n">fname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;aq15_pdbs/aq15.</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="k">1000</span>==0): 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reading: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+        <span class="c1"># reading PDB</span>
+        <span class="n">pdb</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    
+        <span class="c1"># selecting CA atoms</span>
+        <span class="n">calist</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+        <span class="n">pdbca</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">calist</span><span class="p">)</span>
+    
+        <span class="c1"># calculating radius of gyration (output is in [nm])</span>
+        <span class="n">rg</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">compute_rg</span><span class="p">(</span><span class="n">pdbca</span><span class="p">)</span>
+    
+        <span class="c1"># writing output to file</span>
+        <span class="n">rgout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">rg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">rgout</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the above code does not work or runs too slow, you can download the data file from here:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.rgyr.dat">aq15.rgyr.dat</a></p>
+<p>To check, we can make a histogram and plot the distribution of <span class="math notranslate nohighlight">\(R_g\)</span> values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="n">rgdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">)</span>
+<span class="n">rgdata</span><span class="o">=</span><span class="n">rgdata</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">rgmin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rgdata</span><span class="p">)</span>
+<span class="n">rgmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rgdata</span><span class="p">)</span>
+
+<span class="n">bins</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">hist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bins</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">delta</span><span class="o">=</span><span class="p">(</span><span class="n">rgmax</span><span class="o">-</span><span class="n">rgmin</span><span class="p">)</span><span class="o">/</span><span class="n">bins</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">rgdata</span><span class="p">:</span>
+    <span class="n">inx</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">d</span><span class="o">-</span><span class="n">rgmin</span><span class="p">)</span><span class="o">/</span><span class="n">delta</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">hist</span><span class="p">[</span><span class="n">inx</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="n">hist</span><span class="o">/=</span><span class="nb">len</span><span class="p">(</span><span class="n">rgdata</span><span class="p">)</span>
+    
+<span class="n">xhist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">rgmin</span><span class="p">,</span><span class="n">rgmax</span><span class="p">,</span><span class="n">bins</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xhist</span><span class="p">,</span><span class="n">hist</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s also download data files with pre-calculated solvation free energies (using PB and GB models) and pre-calculated solvent-accessible surface areas. We will need these files later.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.pb.dat">aq15_pb.dat</a></p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.gb.dat">aq15_gb.dat</a></p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.sasa.dat">aq15.sasa.dat</a></p>
+<p>As before, you can use <code class="docutils literal notranslate"><span class="pre">wget</span></code> to download all of the files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget -nc https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.pb.dat
+<span class="o">!</span>wget -nc https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.gb.dat
+<span class="o">!</span>wget -nc https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-03/aq15.sasa.dat
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preparing-input-features">
+<h2>Preparing input features<a class="headerlink" href="#preparing-input-features" title="Permalink to this headline">¶</a></h2>
+<p>The input data used here are the structures from the PDB files. However, there are different ways how such conformations can be ‘featurized’ as input to the machine learning model.</p>
+<p>We will try the following features:</p>
+<ul class="simple">
+<li><p>XYZ coordinates as is from the PDB</p></li>
+<li><p>distance of each atom from the center of the molecule</p></li>
+<li><p>pairwise distances for all pairs of atoms</p></li>
+</ul>
+<p>To keep things simple and manageable we will only use <span class="math notranslate nohighlight">\(C\alpha\)</span> atoms for now. It is easy to modify the code below to consider other atoms as well.</p>
+<p>Let’s get started!</p>
+<div class="section" id="input-feature-xyz-coordinates">
+<h3>Input feature: XYZ coordinates<a class="headerlink" href="#input-feature-xyz-coordinates" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">oname</span><span class="o">=</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">oname</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output file exists already, skipping&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">xyzlist</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">ndata</span><span class="o">=</span><span class="mi">8000</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndata</span><span class="p">):</span>
+        <span class="n">fname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;aq15_pdbs/aq15.</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="k">1000</span>==0): 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reading: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+        <span class="n">pdb</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    
+        <span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="o">=</span><span class="n">z</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">calist</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ca</span> <span class="ow">in</span> <span class="n">calist</span><span class="p">:</span>
+            <span class="n">xyz</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">ca</span><span class="p">]</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">xyzlist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xyzlist</span><span class="p">,[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span>
+         
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xyzlist</span><span class="p">,(</span><span class="n">ndata</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">oname</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="input-feature-distance-from-center">
+<h3>Input feature: Distance from center<a class="headerlink" href="#input-feature-distance-from-center" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">oname</span><span class="o">=</span><span class="s1">&#39;aq15.input.distance_from_center.npy&#39;</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">oname</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output file exists already, skipping&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">ndata</span><span class="o">=</span><span class="mi">8000</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndata</span><span class="p">):</span>
+        <span class="n">fname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;aq15_pdbs/aq15.</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="k">1000</span>==0): 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reading: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+        <span class="n">pdb</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="n">pdb</span><span class="o">.</span><span class="n">center_coordinates</span><span class="p">()</span>
+        
+        <span class="n">calist</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">ca</span> <span class="ow">in</span> <span class="n">calist</span><span class="p">:</span>
+            <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">ca</span><span class="p">]))</span>
+                                
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">d</span><span class="p">,(</span><span class="n">ndata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">oname</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="input-feature-atom-atom-distances">
+<h3>Input feature: Atom-atom distances<a class="headerlink" href="#input-feature-atom-atom-distances" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">oname</span><span class="o">=</span><span class="s1">&#39;aq15.input.atom_atom.npy&#39;</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">oname</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;output file exists already, skipping&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">ndata</span><span class="o">=</span><span class="mi">8000</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndata</span><span class="p">):</span>
+        <span class="n">fname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;aq15_pdbs/aq15.</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="k">1000</span>==0): 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reading: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+        <span class="n">pdb</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="n">calist</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+        
+        <span class="n">pairs</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cai</span> <span class="ow">in</span> <span class="n">calist</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">caj</span> <span class="ow">in</span> <span class="n">calist</span><span class="p">:</span>
+                <span class="n">pairs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pairs</span><span class="p">,[</span><span class="n">cai</span><span class="p">,</span><span class="n">caj</span><span class="p">])</span>
+        <span class="n">pairs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pairs</span><span class="p">,(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        
+        <span class="n">distances</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">compute_distances</span><span class="p">(</span><span class="n">pdb</span><span class="p">,</span><span class="n">pairs</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">distances</span><span class="p">)</span>
+                                
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">d</span><span class="p">,(</span><span class="n">ndata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">calist</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">oname</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-up-the-data-loader">
+<h2>Setting up the Data Loader<a class="headerlink" href="#setting-up-the-data-loader" title="Permalink to this headline">¶</a></h2>
+<p>We are now ready to set up the data functions and classes for machine learning.</p>
+<p>We will use the following function to read two files (one for the target data and one for a set of input features) and generate merged data sets for training and validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="c1"># optional parameters allow target data to be shifted and scaled</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="n">target</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">+</span><span class="n">offset</span><span class="p">)</span><span class="o">/</span><span class="n">scale</span>
+<span class="c1"># assumes that data is prepared in correct shape beforehand</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">randomsplitdata</span><span class="p">(</span><span class="n">targetfn</span><span class="p">,</span><span class="n">inputfn</span><span class="p">,</span><span class="n">training_fraction</span><span class="p">):</span>
+    <span class="n">targetdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">targetfn</span><span class="p">)</span>    
+    <span class="n">inputdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">inputfn</span><span class="p">)</span>
+    
+    <span class="n">flag</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">targetdata</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span><span class="o">&lt;</span><span class="n">training_fraction</span><span class="p">:</span>
+        <span class="n">flag</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">targetdata</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="mi">1</span>
+    
+    <span class="n">target_training</span><span class="o">=</span><span class="n">targetdata</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">flag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">target_validation</span><span class="o">=</span><span class="n">targetdata</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">flag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">input_training</span><span class="o">=</span><span class="n">inputdata</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">flag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">input_validation</span><span class="o">=</span><span class="n">inputdata</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">flag</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        
+    <span class="k">return</span> <span class="n">target_training</span><span class="p">,</span><span class="n">input_training</span><span class="p">,</span><span class="n">target_validation</span><span class="p">,</span><span class="n">input_validation</span>
+
+<span class="c1"># use optional parameters to shift and scale data if used above for Dataset class</span>
+<span class="k">def</span> <span class="nf">get_loaders</span><span class="p">(</span><span class="n">targetfn</span><span class="p">,</span><span class="n">inputfn</span><span class="p">,</span><span class="n">training_fraction</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">ttarget</span><span class="p">,</span><span class="n">tinput</span><span class="p">,</span><span class="n">vtarget</span><span class="p">,</span><span class="n">vinput</span><span class="p">]</span><span class="o">=</span><span class="n">randomsplitdata</span><span class="p">(</span><span class="n">targetfn</span><span class="p">,</span><span class="n">inputfn</span><span class="p">,</span><span class="n">training_fraction</span><span class="p">)</span> 
+    <span class="n">train_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">ttarget</span><span class="p">,</span><span class="n">tinput</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">validation_set</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="n">vtarget</span><span class="p">,</span><span class="n">vinput</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">validation_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span><span class="n">validation_loader</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-up-training-functions">
+<h2>Setting up Training Functions<a class="headerlink" href="#setting-up-training-functions" title="Permalink to this headline">¶</a></h2>
+<p>As before we set up training functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># klfactor allows KL divergence to be used as additional loss</span>
+<span class="c1"># use factors of 0.01-0.3 to obtain useful results</span>
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">loader</span><span class="p">,</span><span class="n">klfactor</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="n">klloss</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">KLDivLoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;batchmean&#39;</span><span class="p">)</span>
+    
+    <span class="n">loss_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        
+        <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>              <span class="c1"># this is where the model is evaluated</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>  <span class="c1"># this is where the model is evaluated</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>        <span class="c1"># accumulate MSE loss</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="n">klfactor</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>               <span class="c1"># additional KL loss if requested</span>
+            <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="o">+</span><span class="n">klfactor</span><span class="o">*</span><span class="n">klloss</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">label</span><span class="p">)</span>                         
+                
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                <span class="c1"># this calculates the back-propagated loss</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>                     <span class="c1"># this carries out the gradient descent</span>
+    
+    <span class="k">return</span> <span class="n">loss_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>      <span class="c1"># Note: KL loss is not included in reported loss</span>
+
+<span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">loader</span><span class="p">):</span>
+    <span class="n">loss_sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        
+        <span class="n">output</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loss_sum</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
+
+<span class="c1"># klfactor allows KL divergence to be used as additional loss</span>
+<span class="c1"># use factors of 0.01-0.3 to obtain useful results</span>
+<span class="k">def</span> <span class="nf">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="n">klfactor</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="c1"># use MSE loss fucntion</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+    
+    <span class="n">tloss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+    <span class="n">vloss</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">tloss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">klfactor</span><span class="o">=</span><span class="n">klfactor</span><span class="p">)</span>
+        <span class="n">vloss</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">loss_fn</span><span class="p">,</span><span class="n">vloader</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">output</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">tloss</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vloss</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            
+    <span class="k">return</span> <span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also set up plotting functions, including a calculation of linear regression for the analysis of results later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="k">def</span> <span class="nf">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">):</span>
+    <span class="n">epoch_index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tloss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;training&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_index</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vloss</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># specify offset/scale if used with DataSet</span>
+<span class="k">def</span> <span class="nf">plot_validation</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>    
+    <span class="n">target</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">prediction</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>        
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>        
+        <span class="n">target</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">prediction</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span><span class="n">output</span><span class="p">)</span>
+        
+    <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="o">*</span><span class="n">scale</span><span class="o">-</span><span class="n">offset</span>
+    <span class="n">prediction</span><span class="o">=</span><span class="n">prediction</span><span class="o">*</span><span class="n">scale</span><span class="o">-</span><span class="n">offset</span>
+    
+    <span class="n">minval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">maxval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">lin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">minval</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">maxval</span><span class="o">-</span><span class="n">minval</span><span class="p">),</span><span class="n">maxval</span><span class="o">+</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">maxval</span><span class="o">-</span><span class="n">minval</span><span class="p">),</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span><span class="n">lin</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">prediction</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;prediction&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="n">x</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">prediction</span>
+    
+    <span class="n">linmodel</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="n">r2</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">mval</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nval</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">intercept_</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r2: </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s1"> slope: </span><span class="si">{</span><span class="n">mval</span><span class="si">}</span><span class="s1"> intercept: </span><span class="si">{</span><span class="n">nval</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>    
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="building-models">
+<h2>Building Models<a class="headerlink" href="#building-models" title="Permalink to this headline">¶</a></h2>
+<p>We now define models with convolutional layers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="k">class</span> <span class="nc">ModelFC</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelFC</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>           
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#print(x.size())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Model1D</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model1D</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># dimensional flattening</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="c1"># fully connected layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>           
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1">#print(x.size())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            
+<span class="k">class</span> <span class="nc">Model1D3</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model1D3</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># dimensional flattening</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="c1"># fully connected layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>           
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1">#print(x.size())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            
+<span class="k">class</span> <span class="nc">Model2D</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model2D</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># define layers to be used</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># dimensional flattening</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="c1"># fully connected layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>         
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>           
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># back-propagation is done automatically</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv_1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1">#print(x.size())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>         
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># initialization of weights, setting them to zero is not good</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-models">
+<h2>Training models<a class="headerlink" href="#training-models" title="Permalink to this headline">¶</a></h2>
+<p>We will start training models to predict the <strong>radius of gyration</strong>. Let’s begin with a simple, fully-connected model and use XYZ coordinates as the input.</p>
+<p>We will use the class <code class="docutils literal notranslate"><span class="pre">ModelFC</span></code> that has been set up with the correct dimensions to work with XYZ data for this data set. For other input data, it would need to be adjusted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">ModelFC</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s pretty good. Now let’s try with a convolutional network.</p>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">Model1D3</span></code> class that uses 1D convolutions for data with a depth of 3. The data is arranged as 1D data because there is only one set of coordinates for each <span class="math notranslate nohighlight">\(C\alpha\)</span> atom and the x/y/z coordinate values are used as the depth layers (like RGB values for an image).</p>
+<p>The data could be arranged differently, for example as (N,3) 2D data with an initial layer depth of 1, or as N*3 1D data also with an initial layer depth of 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model1D3</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probably you will find that this performs better.</p>
+<p>Let’s explore using different input data features.</p>
+<p>We will try next using the distance from the center. We will use <code class="docutils literal notranslate"><span class="pre">Model1D</span></code> which calculates 1D covolutions as above but for input data that has a depth of 1 (instead of 3 for the XYZ data).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.distance_from_center.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model1D</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should look even better.</p>
+<p>Finally, let’s use the intramolecular distance matrix.</p>
+<p>For this we use <code class="docutils literal notranslate"><span class="pre">Model2D</span></code> that used 2D convolutions for input data that is 2D with a depth of 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.rgyr.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.atom_atom.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model2D</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should also work well, but training the model was probably a bit slower since the model is larger and more data has to be used for training.</p>
+<p>TODO: Based on the loss curves, when should have stopped the training?</p>
+<p>TODO: Discuss why different input features give different results:</p>
+<ul class="simple">
+<li><p>Why are the results with the XYZ coordinates not as good?</p></li>
+<li><p>Why can you fit a very good model with just the distances from the center?</p></li>
+</ul>
+</div>
+<div class="section" id="training-models-to-represent-more-complex-properties">
+<h2>Training models to represent more complex properties<a class="headerlink" href="#training-models-to-represent-more-complex-properties" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have some initial experience with convolutational networks, we will train models to predict more interesting features where a ML model would be of greater practical value.</p>
+<p>We will focus on <strong>electrostatic solvation free energies</strong>. An accurate calculation requires solving the Poisson equation which is numerically demanding and a ML model would offer practical advantages.</p>
+<p>We can reuse the model classes from above since only the target data is different.</p>
+<p>Let’s start with using the xyz coordinates again as input:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.pb.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model1D3</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probably you are disappointed by the poor performance. But how bad is it?</p>
+<p>Let’s compare with what can be achieved with a highly optimized Generalized Born model for the rapid calculation of approximate electrostatic free energies based on physics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;aq15.pb.dat&#39;</span><span class="p">)</span>
+<span class="n">pbdata</span><span class="o">=</span><span class="n">pbdata</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">gbdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;aq15.gb.dat&#39;</span><span class="p">)</span>
+<span class="n">gbdata</span><span class="o">=</span><span class="n">gbdata</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>          
+    
+<span class="n">minval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pbdata</span><span class="p">)</span>
+<span class="n">maxval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pbdata</span><span class="p">)</span>
+<span class="n">lin</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">minval</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">maxval</span><span class="o">-</span><span class="n">minval</span><span class="p">),</span><span class="n">maxval</span><span class="o">+</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">maxval</span><span class="o">-</span><span class="n">minval</span><span class="p">),</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lin</span><span class="p">,</span><span class="n">lin</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pbdata</span><span class="p">,</span><span class="n">gbdata</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;PB&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">x</span><span class="o">=</span><span class="n">pbdata</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">y</span><span class="o">=</span><span class="n">gbdata</span>
+    
+<span class="n">linmodel</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    
+<span class="n">r2</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">mval</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">nval</span><span class="o">=</span><span class="n">linmodel</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r2: </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s1"> slope: </span><span class="si">{</span><span class="n">mval</span><span class="si">}</span><span class="s1"> intercept: </span><span class="si">{</span><span class="n">nval</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the GB model performs better, but it is not perfect.</p>
+<p>The GB model is our baseline here. Can we reach the same performance (or do better?) with a ML model?</p>
+</div>
+<div class="section" id="tuning-the-model">
+<h2>Tuning the model<a class="headerlink" href="#tuning-the-model" title="Permalink to this headline">¶</a></h2>
+<p>To improve the model, we will try a number of different things.</p>
+<p>First, for numerical reasons, ML predictions work best for (output) data values around 1.</p>
+<p>Let’s see if we can improve the model by shifting and scaling the data. This does not make any practical difference, because we can simply reverse the scaling and shift after the final output is obtained.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.pb.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model1D3</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should make a (small) difference. But the performance is still not very good.</p>
+<p>Can we improve the prediction by using different input data?</p>
+<p>TODO: Try training the model again using distances from the center. Remember to change the model class.</p>
+<p>TODO: What about using the intramolecular distances as input? Again, you will need a different Model class.</p>
+<p>The correlation probably improved when using the atom-atom distances, but there is a practical issue: The calculation of an intra-molecular distance is computationally a bit expensive because we have to evaluate all pairwise distances, which is an O(N*N) operation. If we want to have a very fast model, it would be better to use input features that can be calculated faster.</p>
+<p>TODO: Reconsider using XYZ coordinates, but think about how we could change the coordinates to make training more successful. Think about centering and/or rotating coordinates with respect to a reference. For this you will need to generate new input data and then rerun the model training. Hint: Check the <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code> functions for centering and superposing a molecule!</p>
+<p>Depending on the results you get decide whether to continue with the atom-atom distances or the updated XYZ coordinates.</p>
+</div>
+<div class="section" id="what-is-a-good-model-improving-the-loss">
+<h2>What is a good model? Improving the loss.<a class="headerlink" href="#what-is-a-good-model-improving-the-loss" title="Permalink to this headline">¶</a></h2>
+<p>In all cases above you should notice that predictions are biases at the most negative solvation free energies. As a result, the slope in all of the predictions is less than 1.</p>
+<p>One way to address this issue is to change the loss function. So far we have only used MSE (mean-squared error) as the loss. We can add a second loss function based on <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> which compares the distributions of input and output values.</p>
+<p>The KL loss function is already included in the training calculation above but it needs to be activated by giving it a non-zero weight.</p>
+<p>The following example below shows how to use for the XYZ input data set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.pb.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model1D3</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">initialize_weights</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">opt</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">,</span><span class="n">klfactor</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should find that the slope improves but the MSE loss (that is printed out) may be worse, especially if you use a large weight factor for the KL loss. One consequence is that will find that the output data has an offset, but that could be corrected for by applying a constant offset at the end.</p>
+<p>TODO: Experiment to find good values that improve the slope but still give a good model with low MSE and high R2 values.</p>
+</div>
+<div class="section" id="going-deeper">
+<h2>Going deeper<a class="headerlink" href="#going-deeper" title="Permalink to this headline">¶</a></h2>
+<p>The next step for improving the model is to try a deeper model with more (convolutional) layers and increased depths for each layer.</p>
+<p>TODO: Design a deep version of either Model1D3 (used with updated XYZ coordinates) or Model2D (used with atom-atom distance) and retrain using your new model.</p>
+<p>How much better is your model? Does it approach the performance of the GB model yet?</p>
+</div>
+<div class="section" id="increasing-details">
+<h2>Increasing details<a class="headerlink" href="#increasing-details" title="Permalink to this headline">¶</a></h2>
+<p>Probably you are now approaching the maximal accuracy in predicting solvation free energies with a neural network based on the given input data (i.e. <span class="math notranslate nohighlight">\(C\alpha\)</span> coordinates).</p>
+<p>It may be possible to do a little bit better with a different type of model (i.e. a graph neural network) but the more promising direction for further improvements is to increase the detail in the input data.</p>
+<p>Only using <span class="math notranslate nohighlight">\(C\alpha\)</span> coordinates neglects the side chains and while the model may in principle be able to learn indirectly where side chains are located, there is significant uncertainty associated with that, especially for extended chains.</p>
+<p>TODO (optional): Let’s see if we can improve the model further if we include additional atoms. To do that you will need to generate new data, for example XYZ coordinates for all heavy atoms, and then retrain the best model so far to see how much the performance can be improved.</p>
+</div>
+<div class="section" id="reusing-models">
+<h2>Reusing models<a class="headerlink" href="#reusing-models" title="Permalink to this headline">¶</a></h2>
+<p>You should now have a well-trained model that predicts solvation free energies reasonably well. In this model, the convolutional layers encode the structural information, while the linear layers are trained to predict the desired output (i.e. the electrostatic solvation free energies or radii of gyration at the beginning).</p>
+<p>Let’s see if we can re-use the convolutional part and just re-train the output layers to target different properties.</p>
+<p>Assuming that your last model is stored in <code class="docutils literal notranslate"><span class="pre">m</span></code>, let’s begin by ‘saving the model’ (i.e. the optimized weights):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span><span class="s1">&#39;greatmodel.dict&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will create an instance of a new model (using the same Model class), read the saved model, turn off optimization for the convolutational layers and retrain it to target SASA (solvent-accessible surface area) values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this assumes that you defined a deep 1D-model for XYZ coordinates that were are reusing</span>
+<span class="c1"># adjust if your Model class is different</span>
+
+<span class="n">msasa</span> <span class="o">=</span> <span class="n">Model1D3deep</span><span class="p">()</span>
+<span class="n">msasa</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;greatmodel.dict&#39;</span><span class="p">))</span>
+
+<span class="c1"># turn off optimization for all layers</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">msasa</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># turn optimization back on for linear layers</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">msasa</span><span class="o">.</span><span class="n">fc_1</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">msasa</span><span class="o">.</span><span class="n">fc_2</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">msasa</span><span class="o">.</span><span class="n">fc_f</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># tell the optimizer to only optimize linear layers (where requires_grad = True)</span>
+<span class="n">optsasa</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="n">msasa</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">)</span>
+
+<span class="c1"># now load SASA data, offset/scale is not needed and train</span>
+<span class="p">[</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">]</span><span class="o">=</span><span class="n">get_loaders</span><span class="p">(</span><span class="s1">&#39;aq15.sasa.dat&#39;</span><span class="p">,</span><span class="s1">&#39;aq15.input.xyz.npy&#39;</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
+
+<span class="n">epochs</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">showoutput</span><span class="o">=</span><span class="kc">True</span>
+
+<span class="c1"># make sure to use &#39;msasa&#39; and &#39;optsasa&#39;</span>
+<span class="p">[</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">]</span><span class="o">=</span><span class="n">do_training</span><span class="p">(</span><span class="n">msasa</span><span class="p">,</span><span class="n">optsasa</span><span class="p">,</span><span class="n">tloader</span><span class="p">,</span><span class="n">vloader</span><span class="p">,</span><span class="n">epochs</span><span class="p">,</span><span class="n">showoutput</span><span class="p">)</span>
+
+<span class="n">plot_progress</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span><span class="n">tloss</span><span class="p">,</span><span class="n">vloss</span><span class="p">)</span>
+<span class="n">plot_validation</span><span class="p">(</span><span class="n">vloader</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>TODO: For comparison, also retrain another model as before, but without reusing any of the pretrained weights.</p>
+<p>Does it make a big difference?</p>
+<p>TODO (optional): <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code> has a function for calculating SASA (shake_rupley) that uses a different algorithm than what was used for the SASA values provided in this exercise. How does the the error in the ML predictions compare to the differences between the provided and values calculated via <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code>?</p>
+</div>
+<div class="section" id="final-thoughts">
+<h2>Final thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
+<p>TODO: The models you have trained probably work fairly well by now and you could easily train new models for new properties, such as other kinds of energies, moments of inertia, rotational diffusion etc. However, there are serious limitations with the approach so far in terms of transferability. Discuss the following questions:</p>
+<ul class="simple">
+<li><p>What practical applications could you imagine with the model(s) developed so far?</p></li>
+<li><p>In what way is transferability to other applications limited?</p></li>
+<li><p>How could transferability issues be overcome?</p></li>
+</ul>
 </div>
 </div>
 
