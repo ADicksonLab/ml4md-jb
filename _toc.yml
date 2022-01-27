@@ -45,4 +45,14 @@ parts:
     chapters:
     - file: Week-03/W3_Lecture_NNArchitectures.ipynb
     - file: Week-03/W3_Lab_ConvNetworks.ipynb
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz
+      title: aq15_pdbs.tgz
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat
+      title: aq15.rgyr.dat
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat
+      title: aq15.pb.dat
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat
+      title: aq15.gb.dat
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat
+      title: aq15.sasa.dat
 
