@@ -56,3 +56,7 @@ parts:
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat
       title: aq15.sasa.dat
 
+  - caption: Week 04
+    numbered: False
+    chapters:
+    - file: Week-04/W4_Lecture_GenerativeModels.ipynb
