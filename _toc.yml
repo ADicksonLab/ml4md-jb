@@ -60,3 +60,4 @@ parts:
     numbered: False
     chapters:
     - file: Week-04/W4_Lecture_GenerativeModels.ipynb
+    - file: Week-04/W4_Lab_GenerateMolecularConformations.ipynb
