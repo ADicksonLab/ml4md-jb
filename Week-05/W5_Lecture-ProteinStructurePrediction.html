@@ -387,8 +387,18 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
-     Coeevolutionary couplings provide residue contacts from multiple sequence alignments.
+    <a class="reference internal nav-link" href="#homology-modeling">
+     Homology modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physics-based-protein-folding">
+     Physics-based protein folding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coeevolutionary-couplings">
+     Coeevolutionary couplings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -471,8 +481,18 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
-     Coeevolutionary couplings provide residue contacts from multiple sequence alignments.
+    <a class="reference internal nav-link" href="#homology-modeling">
+     Homology modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physics-based-protein-folding">
+     Physics-based protein folding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coeevolutionary-couplings">
+     Coeevolutionary couplings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -568,23 +588,29 @@ If we know the structure, can we understand function?</p>
 <p>Tertiary protein structure prediction accuracy has improved dramatically in recent years.</p>
 <img alt="casp progress" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/casp-progress.png" width="600px"/>
 <p><a class="reference external" href="https://predictioncenter.org/">CASP</a> | <a class="reference external" href="https://en.wikipedia.org/wiki/Global_distance_test">GDT</a></p>
-<p><strong>Homology modeling</strong> predicts structures based on sequence-structure similarity.</p>
+<div class="section" id="homology-modeling">
+<h3>Homology modeling<a class="headerlink" href="#homology-modeling" title="Permalink to this headline">¶</a></h3>
+<p>Structures are predicted based on sequence-structure similarity.</p>
 <img alt="sequence-structure-function homology" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/sequence-structure-function.png" width="500px"/>
 <p>If we know structure for one protein, we can generate a good model for another protein with a similar sequence (e.g. Human thioredoxin based on E. coli). This requires good sequence alignment and model building tools to mutate side chains and add missing parts.</p>
 <p><a class="reference external" href="https://swissmodel.expasy.org/">SWISS-MODEL</a> | <a class="reference external" href="https://salilab.org/modeller/">Modeller</a></p>
 <p>Improved protocols assemble structures from homologous and de novo <strong>fragments</strong>.</p>
 <img alt="i-tasser" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/I-TASSER-pipeline.jpg/1920px-I-TASSER-pipeline.jpg" width="700px"/>
 <p><a class="reference external" href="https://zhanggroup.org/I-TASSER/">I-Tasser</a> | <a class="reference external" href="https://www.rosettacommons.org/software">Rosetta</a></p>
-<p><strong>Molecular dynamics simulations</strong> can fold proteins, but with great computational effort.</p>
+</div>
+<div class="section" id="physics-based-protein-folding">
+<h3>Physics-based protein folding<a class="headerlink" href="#physics-based-protein-folding" title="Permalink to this headline">¶</a></h3>
+<p>Molecular dynamics simulations can fold proteins, but with great computational effort.</p>
 <img alt="shaw-folding" src="notpublic/shaw-folding.jpeg" width="500px"/>
 <p><a class="reference external" href="https://doi.org/10.1126/science.1208351">Lindorff-Larsen, K., Piana, S., Dror, R.O. and Shaw, D.E., <strong>2011</strong>. How fast-folding proteins fold. Science, 334, 517-520</a></p>
 <p>Molecular dynamics simulations can also <strong>refine predictions</strong>.</p>
 <img alt="refinement_via_md" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/refinement.png" width="800px"/>
 <p><a class="reference external" href="https://doi.org/10.1073/pnas.1811364115">Heo, L. and Feig, M., <strong>2018</strong>. Experimental accuracy in protein structure refinement via molecular dynamics simulations. PNAS, 115, 13276-13281.</a></p>
-<div class="section" id="coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
-<h3>Coeevolutionary couplings provide residue contacts from multiple sequence alignments.<a class="headerlink" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="coeevolutionary-couplings">
+<h3>Coeevolutionary couplings<a class="headerlink" href="#coeevolutionary-couplings" title="Permalink to this headline">¶</a></h3>
+<p>Residue contacts are extracted from multiple sequence alignments.</p>
 <img alt="coevolutionary coupling" src="https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0028766.g001" width="800px"/>
-<p>Initially, deep multiple sequence alignments were needed, but with better statistics and machine learning methods it has become possible to use much shallower alignments so that this approach can be applied to many more targets.</p>
 </div>
 <div class="section" id="homology-modeling-without-contact-restraints">
 <h3>Homology modeling without contact restraints<a class="headerlink" href="#homology-modeling-without-contact-restraints" title="Permalink to this headline">¶</a></h3>
