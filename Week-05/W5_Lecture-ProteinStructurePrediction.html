@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 04 Lab: Generating Molecular Conformations" href="../Week-04/W4_Lab_GenerateMolecularConformations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-05/W5_Lecture-ProteinStructurePrediction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-05/W5_Lecture-ProteinStructurePrediction.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-05/W5_Lecture-ProteinStructurePrediction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-05/W5_Lecture-ProteinStructurePrediction.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#protein-sequence-structure-function-paradigm">
+   Protein sequence - structure - function paradigm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#levels-of-protein-structure">
+   Levels of protein structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secondary-structure-prediction">
+   Secondary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiary-structure-prediction">
+   Tertiary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quaternary-structure-prediction">
+   Quaternary structure prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#are-we-done">
+     Are we done?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#protein-sequence-structure-function-paradigm">
+   Protein sequence - structure - function paradigm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#levels-of-protein-structure">
+   Levels of protein structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secondary-structure-prediction">
+   Secondary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiary-structure-prediction">
+   Tertiary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quaternary-structure-prediction">
+   Quaternary structure prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#are-we-done">
+     Are we done?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-05-lecture-protein-structure-prediction-in-the-age-of-artificial-intelligence">
+<h1>Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence<a class="headerlink" href="#week-05-lecture-protein-structure-prediction-in-the-age-of-artificial-intelligence" title="Permalink to this headline">¶</a></h1>
+<p>High-accuracy structural biology at the intersection of machine learning and physical modeling.</p>
+<div class="section" id="protein-sequence-structure-function-paradigm">
+<h2>Protein sequence - structure - function paradigm<a class="headerlink" href="#protein-sequence-structure-function-paradigm" title="Permalink to this headline">¶</a></h2>
+<img alt="sequence-structure-function homology" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/sequence-structure-function.png" width="500px"/>
+<p>Proteins with <strong>similar amino acid sequence</strong> have <strong>similar structure</strong> and <strong>similar function</strong>.</p>
+<p>If we know the sequence, can we predict the structure?<br />
+If we know the structure, can we understand function?</p>
+</div>
+<div class="section" id="levels-of-protein-structure">
+<h2>Levels of protein structure<a class="headerlink" href="#levels-of-protein-structure" title="Permalink to this headline">¶</a></h2>
+<img alt="protein-structure-hierarchy" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/protein-structure-hierarchy.png" width="750px"/>
+</div>
+<div class="section" id="secondary-structure-prediction">
+<h2>Secondary structure prediction<a class="headerlink" href="#secondary-structure-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Neural networks were used early on for secondary structure prediction.</p>
+<img alt="karplus-neuralnetwork-secondary" src="notpublic/karplusnn.png" width="350px"/>
+<p><a class="reference external" href="https://doi.org/10.1073/pnas.86.1.152">Holley, L.H. and Karplus, M., <strong>1989</strong>. Protein secondary structure prediction with a neural network. PNAS, 86, 152-156</a></p>
+<p>Neural networks were used early on for secondary structure prediction.</p>
+<img alt="cohen-langridge-neuralnetwork-secondary" src="notpublic/cohennn.png" width="450px"/>
+<p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/002228369090154E?via%3Dihub">Kneller, D.G., Cohen, F.E. and Langridge, R., <strong>1990</strong>. Improvements in protein secondary structure prediction by an enhanced neural network. J. Mol. Biol., 214, 171-182</a></p>
+<p>Weight matrices in early networks were simple.</p>
+<img alt="cohen-langridge-neuralnetwork-secondary-weightmatrix" src="notpublic/cohenweights.png" width="700px"/>
+<p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/002228369090154E?via%3Dihub">Kneller, D.G., Cohen, F.E. and Langridge, R., <strong>1990</strong>. Improvements in protein secondary structure prediction by an enhanced neural network. J. Mol. Biol., 214, 171-182</a></p>
+<p>Improved networks learn from sequence alignments.</p>
+<img alt="rost-sander-neuralnetwork-secondary" src="notpublic/rostsander.png" width="700px"/>
+<p><a class="reference external" href="https://doi.org/10.1073/pnas.90.16.7558">Rost, B. and Sander, C., <strong>1993</strong>. Improved prediction of protein secondary structure by use of sequence profiles and neural networks. PNAS, 90, 7558-7562</a></p>
+<p>Improved networks learn from sequence alignments (encoded with more sensitive position-specific iterated alignment matrices).</p>
+<img alt="psipred-network" src="notpublic/psipred.gif" width="550px"/>
+<p><a class="reference external" href="https://doi.org/10.1006/jmbi.1999.3091">Jones, D.T., <strong>1999</strong>. Protein secondary structure prediction based on position-specific scoring matrices. J. Mol. Biol., 292, 195-202</a></p>
+<p>Secondary structure prediction accuracies routinely reached 80% by 2002 (CASP5).</p>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.10546">Aloy, P., Stark, A., Hadley, C. and Russell, R.B., <strong>2003</strong>. Predictions without templates: new folds, secondary structure, and contacts in CASP5. Proteins, 53, 436-456</a></p>
+<p>PSIPRED server gives reliable answers in a few minutes.</p>
+<p><a class="reference external" href="http://bioinf.cs.ucl.ac.uk/psipred/">http://bioinf.cs.ucl.ac.uk/psipred</a></p>
+<img alt="psipred-output" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/psipred-output.png" width="800px"/>
+<p>Simulations can predict secondary structures as well, but with much more computational effort and results are very sensitive to the choice of force field.</p>
+<img alt="dill-peptidesampling" src="notpublic/dillff.png" width="650px"/>
+<p><a class="reference external" href="https://doi.org/10.1021/jp800282x">Shell, M.S., Ritterson, R. and Dill, K.A., <strong>2008</strong>. A test on peptide stability of AMBER force fields with implicit solvation. The J. Phys. Chem. B, 112, 6878-6886</a></p>
+</div>
+<div class="section" id="tertiary-structure-prediction">
+<h2>Tertiary structure prediction<a class="headerlink" href="#tertiary-structure-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Tertiary protein structure prediction accuracy has improved dramatically in recent years.</p>
+<img alt="casp progress" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/casp-progress.png" width="600px"/>
+<p><a class="reference external" href="https://predictioncenter.org/">CASP</a> | <a class="reference external" href="https://en.wikipedia.org/wiki/Global_distance_test">GDT</a></p>
+<p><strong>Homology modeling</strong> predicts structures based on sequence-structure similarity.</p>
+<img alt="sequence-structure-function homology" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/sequence-structure-function.png" width="500px"/>
+<p>If we know structure for one protein, we can generate a good model for another protein with a similar sequence (e.g. Human thioredoxin based on E. coli). This requires good sequence alignment and model building tools to mutate side chains and add missing parts.</p>
+<p><a class="reference external" href="https://swissmodel.expasy.org/">SWISS-MODEL</a> | <a class="reference external" href="https://salilab.org/modeller/">Modeller</a></p>
+<p>Improved protocols assemble structures from homologous and de novo <strong>fragments</strong>.</p>
+<img alt="i-tasser" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/I-TASSER-pipeline.jpg/1920px-I-TASSER-pipeline.jpg" width="700px"/>
+<p><a class="reference external" href="https://zhanggroup.org/I-TASSER/">I-Tasser</a> | <a class="reference external" href="https://www.rosettacommons.org/software">Rosetta</a></p>
+<p><strong>Molecular dynamics simulations</strong> can fold proteins, but with great computational effort.</p>
+<img alt="shaw-folding" src="notpublic/shaw-folding.jpeg" width="500px"/>
+<p><a class="reference external" href="https://doi.org/10.1126/science.1208351">Lindorff-Larsen, K., Piana, S., Dror, R.O. and Shaw, D.E., <strong>2011</strong>. How fast-folding proteins fold. Science, 334, 517-520</a></p>
+<p>Molecular dynamics simulations can also <strong>refine predictions</strong>.</p>
+<img alt="refinement_via_md" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/refinement.png" width="800px"/>
+<p><a class="reference external" href="https://doi.org/10.1073/pnas.1811364115">Heo, L. and Feig, M., <strong>2018</strong>. Experimental accuracy in protein structure refinement via molecular dynamics simulations. PNAS, 115, 13276-13281.</a></p>
+<p><strong>Coeevolutionary couplings</strong> provide information about residue contacts from <strong>multiple sequence alignments</strong>.</p>
+<img alt="coevolutionary coupling" src="https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0028766.g001" width="800px"/>
+<p>Initially, deep multiple sequence alignments were needed, but with better statistics and machine learning methods it has become possible to use much shallower alignments so that this approach can be applied to many more targets.</p>
+<p>Homology modeling without contact restraints</p>
+<video controls autoplay loop src="https://predictioncenter.org/video/T0915.1.mp4" />
+<p>Modeling with contact restraints</p>
+<video controls autoplay loop src="https://predictioncenter.org/video/T0915.2.mp4" />     
+<p>Contact predictions were initially based on statistical inference methods, but machine learning methods can perform better.</p>
+<img alt="contacts-neural-network" src="https://journals.plos.org/ploscompbiol/article/figure/image?size=large&id=10.1371/journal.pcbi.1005324.g001" width="600px"/>
+<p><a class="reference external" href="https://doi.org/10.1093/bioinformatics/btv472">Ma, J., Wang, S., Wang, Z. and Xu, J., <strong>2015</strong>. Protein contact prediction by integrating joint evolutionary coupling analysis and supervised learning. Bioinformatics, 31, 3506-3513.</a></p>
+<p><a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1005324">Wang, S., Sun, S., Li, Z., Zhang, R. and Xu, J., <strong>2017</strong>. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLoS Comp. Biol., 13, e1005324.</a></p>
+<p><strong>AlphaFold 1</strong> (A7D) combined <strong>distograms</strong> (and <strong>backbone torsion angles</strong>) predicted from coevolutionary couplings with <strong>generative models</strong> trained to <strong>maximize GDT</strong> similarity scores.</p>
+<img alt="af1-gdtnet" src="https://onlinelibrary.wiley.com/cms/asset/1167cec5-05c3-4254-ac09-6b1bfd2e7d0c/prot25834-fig-0001-m.jpg" width="600 px"/>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.25834">Senior, A.W., Evans, R., Jumper, J., Kirkpatrick, J., Sifre, L., Green, T., Qin, C., Žídek, A., Nelson, A.W., Bridgland, A. and Penedones, H., <strong>2019</strong>. Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13). Proteins, 87, 1141-1148.</a></p>
+<p><strong>AlphaFold 1</strong> generated actual structures either via a complex <strong>simulated annealing protocol</strong> or via <strong>gradient descent</strong> using potentials augmented by other potentials (Rosetta etc.)</p>
+<img alt="af1-simulatedannealing" src="https://onlinelibrary.wiley.com/cms/asset/9460e6ad-ac63-432c-92ca-3a76d7f7ca2d/prot25834-fig-0002-m.jpg" width="600px"/>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.25834">Senior, A.W., Evans, R., Jumper, J., Kirkpatrick, J., Sifre, L., Green, T., Qin, C., Žídek, A., Nelson, A.W., Bridgland, A. and Penedones, H., <strong>2019</strong>. Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13). Proteins, 87, 1141-1148.</a></p>
+<p><strong>trRosetta</strong> improves over AlphaFold1 by predicting residue distances and relative orientations</p>
+<img alt="trRosetta" src="https://yanglab.nankai.edu.cn/trRosetta/help/flowchart.png" width="550px"/>
+<p><a class="reference external" href="https://doi.org/10.1073/pnas.1914677117">Yang, J., Anishchenko, I., Park, H., Peng, Z., Ovchinnikov, S. and Baker, D., <strong>2020</strong>. Improved protein structure prediction using predicted interresidue orientations. PNAS, 117, 1496-1503.</a></p>
+<p><strong>AlphaFold2</strong> introduces an attention-based transformer architecture with iterative refinement and directly generates structures (end-to-end predictions).</p>
+<img alt="af2-overall" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-overall.png" width="900px"/>
+<p><a class="reference external" href="https://doi.org/10.1038/s41586-021-03819-2">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A. and Bridgland, A., <strong>2021</strong>. Highly accurate protein structure prediction with AlphaFold. Nature, 596, 583-589.</a></p>
+<p><strong>AlphaFold2</strong>’s ‘evoformer’ convolutes co-evolutionary information from the multiple sequence alignment with structural information (initially from templates, then iteratively from models that are generated). The architecture uses elements of graph neural networks to maintain equivariance.</p>
+<img alt="af2-evoformer" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-evoformer.png" width="900px"/>
+<p><a class="reference external" href="https://doi.org/10.1038/s41586-021-03819-2">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A. and Bridgland, A., <strong>2021</strong>. Highly accurate protein structure prediction with AlphaFold. Nature, 596, 583-589.</a></p>
+<p><strong>AlphaFold2</strong>’s structure module directly generates structures via an attention-based module trained on actual structures but also augmented with physical constraints. Final models are generated after minimization with Amber (not shown).</p>
+<img alt="af2-structuremodule" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-structuremodule.png" width="900px"/>
+<p><a class="reference external" href="https://doi.org/10.1038/s41586-021-03819-2">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A. and Bridgland, A., <strong>2021</strong>. Highly accurate protein structure prediction with AlphaFold. Nature, 596, 583-589.</a></p>
+<p>AlphaFold2 models are remarkably accurate at the atomistic detail, including for side chains.</p>
+<img alt="af2 prediction" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/alphafold-7m7a.png" width="600px"/>
+<p>Errors are generally around 1Å RMSD but may be larger in loop regions or parts of a structure subject to contacts with other units, for example due to crystal packing.</p>
+<p>Errors are generally around 1Å RMSD but may be larger in loop regions or parts of a structure subject to contacts with other units, for example due to crystal packing.</p>
+<img alt="af2-errors" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-errors.png" width="600px"/>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.26161">Heo, L., Janson, G. and Feig, M., <strong>2021</strong>. Physics‐based protein structure refinement in the era of artificial intelligence. Proteins, 89, 1870-1887.</a></p>
+<p>What happens when AlphaFold2 structures are used in simulations?</p>
+<img alt="af2-md" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-md.png" width="800px"/>
+<p><a class="reference external" href="https://doi.org/10.1002/prot.26161">Heo, L., Janson, G. and Feig, M., <strong>2021</strong>. Physics‐based protein structure refinement in the era of artificial intelligence. Proteins, 89, 1870-1887.</a></p>
+<p>AlphaFold2 is very good at generating <strong>one</strong> structure, but what if there are multiple functional states?</p>
+<img alt="GPCR-predictions" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-gpcr.png" width="800px"/>
+<p><a class="reference external" href="https://www.biorxiv.org/content/10.1101/2021.11.26.470086v1">Heo, L., Feig, M. <strong>2021</strong>. Multi-State Modeling of G-protein Coupled Receptors at Experimental Accuracy. bioRxiv, 2021.11.26.470086</a></p>
+<p><strong>RoseTTAfold</strong> is alternative but conceptually similar approach to provide structures at accuracy approaching AlphaFold2.</p>
+<img alt="RosetTTAfold architecture" src="notpublic/rosettafold.png" width="900px"/>
+<p><a class="reference external" href="https://doi.org/10.1126/science.abj8754">Baek, M., DiMaio, F., Anishchenko, I., Dauparas, J., Ovchinnikov, S., Lee, G.R., Wang, J., Cong, Q., Kinch, L.N., Schaeffer, R.D. and Millán, C., <strong>2021</strong>. Accurate prediction of protein structures and interactions using a three-track neural network. Science, 373, 871-876.</a></p>
+</div>
+<div class="section" id="quaternary-structure-prediction">
+<h2>Quaternary structure prediction<a class="headerlink" href="#quaternary-structure-prediction" title="Permalink to this headline">¶</a></h2>
+<p>Predictions of complexes have remained a challenge, but much progress is being made:</p>
+<img alt="Complex predictions" src="notpublic/complex-predictions.png" width="900px"/>
+<p><a class="reference external" href="https://doi.org/10.1101/2021.09.15.460468">Bryant, P., Pozzati, G. and Elofsson, A., <strong>2021</strong>. Improved prediction of protein-protein interactions using AlphaFold2 and extended multiple-sequence alignments. BioRxiv 2021.09.15.460468.</a></p>
+<p><a class="reference external" href="https://doi.org/10.1101/2021.10.04.463034">Evans, R., O’Neill, M., Pritzel, A., Antropova, N., Senior, A.W., Green, T., Žídek, A., Bates, R., Blackwell, S., Yim, J. and Ronneberger, O., <strong>2021</strong>. Protein complex prediction with AlphaFold-Multimer. BioRxiv 2021.10.04.463034.</a></p>
+<div class="section" id="are-we-done">
+<h3>Are we done?<a class="headerlink" href="#are-we-done" title="Permalink to this headline">¶</a></h3>
+<p><em>“At present, for the best cases, the C-alpha coordinate RMSD accuracy of AlphaFold-predicted structures roughly corresponds to the accuracy expected for structures determined at resolutions no better than ∼4 Å. Thus, although structural predictions by AlphaFold and RoseTTAfold may be accurate enough to assist with experimental structure determination, they alone cannot provide the kind of detailed understanding of molecular and chemical interactions that is required for studies of molecular mechanisms and for structure-based drug design.”</em></p>
+<p>and</p>
+<p><em>“… solving the protein-folding problem means making accurate predictions of structures from amino acid sequences starting from first principles based on the underlying physics and chemistry.”</em></p>
+<p><a class="reference external" href="https://doi.org/10.1126/science.abn9422">Moore, P.B., Hendrickson, W.A., Henderson, R. and Brunger, A.T., <strong>2022</strong>. The protein-folding problem: Not yet solved. Science, 375, 507-507.</a></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-04/W4_Lab_GenerateMolecularConformations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 04 Lab: Generating Molecular Conformations</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

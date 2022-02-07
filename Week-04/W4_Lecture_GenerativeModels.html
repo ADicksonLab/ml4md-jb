@@ -1,0 +1,1759 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 04 Lecture: Generating things with ML &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 04 Lab: Generating Molecular Conformations" href="W4_Lab_GenerateMolecularConformations.html" />
+    <link rel="prev" title="Week 03 Lab: Convolutional Networks" href="../Week-03/W3_Lab_ConvNetworks.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-04/W4_Lecture_GenerativeModels.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-04/W4_Lecture_GenerativeModels.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-04/W4_Lecture_GenerativeModels.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-04/W4_Lecture_GenerativeModels.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 04 Lecture: Generating things with ML
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generative-models-and-molecular-conformational-ensambles">
+     Generative Models and Molecular Conformational Ensambles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-for-today">
+   Overview for today
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-generative-models">
+   1 - What are Generative Models?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-generative-models-used-for">
+   What are Generative Models used for?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-nns-example-of-a-generative-model-using-a-nn">
+   Why NNs? Example of a Generative Model using a NN
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-need-machine-learning-for-generative-modeling">
+   Why do we need Machine Learning for Generative Modeling?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biophysical-sciences-and-complex-systems">
+   Biophysical Sciences and complex systems
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-people-currently-apply-generative-models-in-molecular-sciences">
+   2 - How do people (currently) apply Generative Models in Molecular Sciences?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-sciences-applications">
+   Molecular Sciences Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-molecular-formulas">
+   Generate new molecular formulas
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-molecular-formulas-examples">
+   Generate new molecular formulas: examples
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-the-distributions-of-molecular-conformations">
+   Model the distributions of molecular conformations
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-representation-xyz-coordinates">
+   Molecular representation: xyz coordinates
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-representation-coordinates-internal-coordinates">
+   Molecular representation: coordinates internal coordinates
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-kind-of-generative-models-are-there">
+   3 - What kind of Generative Models are there?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-of-generative-models">
+   Map of Generative Models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-characteristics-of-generative-models-in-today-s-lecture">
+   Common characteristics of Generative Models in today’s lecture
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unconditional-generative-models">
+   Unconditional Generative Models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-generative-models-very-useful-in-molecular-sciences">
+   Conditional Generative Models (very useful in Molecular Sciences)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows">
+   Normalizing Flows
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-learn-distributions-maximum-likelihood-principle">
+   How to learn distributions: maximum likelihood principle
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-slide-maximum-likelihood-and-kl-divergence">
+   Optional slide: maximum likelihood and KL divergence
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-slide-a-neural-network-to-model-p-sub-data-sub-directly">
+   Optional slide: a neural network to model
+   <em>
+    <strong>
+     p
+     <sub>
+      data
+     </sub>
+    </strong>
+   </em>
+   directly?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-principles">
+   Normalizing flows principles
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-in-practice">
+   Normalizing flows in practice
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-examples">
+   Normalizing flows examples
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-overview">
+   Normalizing flows overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variational-autoencoders-vae">
+   Variational Autoencoders (VAE)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vae-overview">
+   VAE overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoencoders">
+   Autoencoders
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-can-not-easily-use-vanilla-autoencoders-as-generative-models">
+   We can not easily use vanilla autoencoders as generative models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-need-some-form-of-regularization-vaes">
+   We need some form of regularization: VAEs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-are-they-called-variational">
+   Why are they called variational?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-in-conformational-ensembles-modeling">
+   Examples in conformational ensembles modeling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vaes-summary">
+   VAEs summary
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generative-adversarial-networks">
+   Generative Adversarial Networks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history-of-gans">
+   History of GANs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-overview">
+   GAN overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-objective">
+   GAN objective
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-training-is-notably-instable">
+   GAN training is notably instable
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-summary">
+   GAN summary
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-choose-our-generative-model">
+   How to choose our Generative Model?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-guidelines-on-how-to-choose-our-model">
+   Some Guidelines on how to Choose our Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-limits-of-generative-models-when-generating-molecular-conformations">
+   4 - What are the limits of Generative Models when generating molecular conformations?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-conformational-ensembles-what-can-we-learn">
+   Modeling conformational ensembles: what can we learn?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-recover-and-generate-entirely-new-conformations-then">
+   How to recover
+   <em>
+    µ
+   </em>
+   and generate entirely new conformations then…?
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 04 Lecture: Generating things with ML</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 04 Lecture: Generating things with ML
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generative-models-and-molecular-conformational-ensambles">
+     Generative Models and Molecular Conformational Ensambles
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-for-today">
+   Overview for today
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-generative-models">
+   1 - What are Generative Models?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-generative-models-used-for">
+   What are Generative Models used for?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-nns-example-of-a-generative-model-using-a-nn">
+   Why NNs? Example of a Generative Model using a NN
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-need-machine-learning-for-generative-modeling">
+   Why do we need Machine Learning for Generative Modeling?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biophysical-sciences-and-complex-systems">
+   Biophysical Sciences and complex systems
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-people-currently-apply-generative-models-in-molecular-sciences">
+   2 - How do people (currently) apply Generative Models in Molecular Sciences?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-sciences-applications">
+   Molecular Sciences Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-molecular-formulas">
+   Generate new molecular formulas
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-new-molecular-formulas-examples">
+   Generate new molecular formulas: examples
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-the-distributions-of-molecular-conformations">
+   Model the distributions of molecular conformations
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-representation-xyz-coordinates">
+   Molecular representation: xyz coordinates
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-representation-coordinates-internal-coordinates">
+   Molecular representation: coordinates internal coordinates
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-kind-of-generative-models-are-there">
+   3 - What kind of Generative Models are there?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-of-generative-models">
+   Map of Generative Models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-characteristics-of-generative-models-in-today-s-lecture">
+   Common characteristics of Generative Models in today’s lecture
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unconditional-generative-models">
+   Unconditional Generative Models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-generative-models-very-useful-in-molecular-sciences">
+   Conditional Generative Models (very useful in Molecular Sciences)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows">
+   Normalizing Flows
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-learn-distributions-maximum-likelihood-principle">
+   How to learn distributions: maximum likelihood principle
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-slide-maximum-likelihood-and-kl-divergence">
+   Optional slide: maximum likelihood and KL divergence
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-slide-a-neural-network-to-model-p-sub-data-sub-directly">
+   Optional slide: a neural network to model
+   <em>
+    <strong>
+     p
+     <sub>
+      data
+     </sub>
+    </strong>
+   </em>
+   directly?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-principles">
+   Normalizing flows principles
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-in-practice">
+   Normalizing flows in practice
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-examples">
+   Normalizing flows examples
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalizing-flows-overview">
+   Normalizing flows overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#variational-autoencoders-vae">
+   Variational Autoencoders (VAE)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vae-overview">
+   VAE overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#autoencoders">
+   Autoencoders
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-can-not-easily-use-vanilla-autoencoders-as-generative-models">
+   We can not easily use vanilla autoencoders as generative models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-need-some-form-of-regularization-vaes">
+   We need some form of regularization: VAEs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-are-they-called-variational">
+   Why are they called variational?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-in-conformational-ensembles-modeling">
+   Examples in conformational ensembles modeling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vaes-summary">
+   VAEs summary
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generative-adversarial-networks">
+   Generative Adversarial Networks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history-of-gans">
+   History of GANs
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-overview">
+   GAN overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-objective">
+   GAN objective
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-training-is-notably-instable">
+   GAN training is notably instable
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gan-summary">
+   GAN summary
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-choose-our-generative-model">
+   How to choose our Generative Model?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-guidelines-on-how-to-choose-our-model">
+   Some Guidelines on how to Choose our Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-limits-of-generative-models-when-generating-molecular-conformations">
+   4 - What are the limits of Generative Models when generating molecular conformations?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-conformational-ensembles-what-can-we-learn">
+   Modeling conformational ensembles: what can we learn?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-recover-and-generate-entirely-new-conformations-then">
+   How to recover
+   <em>
+    µ
+   </em>
+   and generate entirely new conformations then…?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="week-04-lecture-generating-things-with-ml">
+<h1>Week 04 Lecture: Generating things with ML<a class="headerlink" href="#week-04-lecture-generating-things-with-ml" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="generative-models-and-molecular-conformational-ensambles">
+<h2>Generative Models and Molecular Conformational Ensambles<a class="headerlink" href="#generative-models-and-molecular-conformational-ensambles" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="overview-for-today">
+<h1>Overview for today<a class="headerlink" href="#overview-for-today" title="Permalink to this headline">¶</a></h1>
+<p>Today we will cover the following topics:</p>
+<ol class="simple">
+<li><p>What are Generative Models?</p></li>
+<li><p>How do people (currently) apply Generative Models in Molecular Sciences?</p></li>
+</ol>
+<ul class="simple">
+<li><p>Particular attention on: generation of molecular conformations.</p></li>
+</ul>
+<ol class="simple">
+<li><p>What kind of Generative Models are there?</p></li>
+</ol>
+<ul class="simple">
+<li><p>Normalizing Flows</p></li>
+<li><p>Variational Autoencoders (VAEs)</p></li>
+<li><p>Generative Adversarial Networks (GANs)</p></li>
+</ul>
+<ol class="simple">
+<li><p>What are the limits of Generative Models when generating molecular conformations?</p></li>
+</ol>
+</div>
+<div class="section" id="what-are-generative-models">
+<h1>1 - What are Generative Models?<a class="headerlink" href="#what-are-generative-models" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="what-are-generative-models-used-for">
+<h1>What are Generative Models used for?<a class="headerlink" href="#what-are-generative-models-used-for" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>We have a series of data samples <em><strong>x</strong></em> in a training set.</p></li>
+<li><p>There exists a probability distribution <em>p<sub>data</sub></em> for them.</p></li>
+<li><p>We want a model that learns a distribution <em>p<sub>model</sub></em> to approximate <em>p<sub>data</sub></em>.</p></li>
+<li><p>Once our model is trained, we want to:</p>
+<ul>
+<li><p>Sample from <em>p<sub>model</sub></em>.</p>
+<ul>
+<li><p>Always possible.</p></li>
+</ul>
+</li>
+<li><p>Compute <em>p<sub>model</sub>(<strong>x</strong>)</em> for arbitrary samples.</p>
+<ul>
+<li><p>Not always possible.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Currently, most Generative Models are based on neural networks (NNs). Why?</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/probability_distributions.png" alt="Probability density functions" title="Probability density functions" width="400" /></div>
+<div class="section" id="why-nns-example-of-a-generative-model-using-a-nn">
+<h1>Why NNs? Example of a Generative Model using a NN<a class="headerlink" href="#why-nns-example-of-a-generative-model-using-a-nn" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Random 1024x1024 pixel samples from StyleGAN2 <a class="reference external" href="https://arxiv.org/abs/1912.04958">[Karras et al., 2019]</a>.</p>
+<ul>
+<li><p>Number of dimensions: 1024x1024x3=3145728.</p></li>
+<li><p>GAN based on a CNN architecture (with a LOT of engineering).</p></li>
+<li><p>Training set: 70k images from Flickr.</p></li>
+<li><p>Training time: 9 days with 8 Tesla V100 GPUs.</p></li>
+</ul>
+</li>
+<li><p>Try it at: <a class="reference external" href="https://thispersondoesnotexist.com">https://thispersondoesnotexist.com</a>.
+<img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/stylegan2.png" /></p></li>
+</ul>
+</div>
+<div class="section" id="why-do-we-need-machine-learning-for-generative-modeling">
+<h1>Why do we need Machine Learning for Generative Modeling?<a class="headerlink" href="#why-do-we-need-machine-learning-for-generative-modeling" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>The machine learning toolkit allows us to build Generative Models with:</p>
+<ul>
+<li><p>Statistically-efficient learning:</p>
+<ul>
+<li><p>Neural networks “understand” data better than histograms.</p></li>
+<li><p>But exactly how? <strong>Local</strong> interpolation and extrapolation abilities (even experts do not know exactly).</p></li>
+</ul>
+</li>
+<li><p>Computationally-efficient (or at least reasonable) training:</p>
+<ul>
+<li><p>Time (processing) and space (memory).</p></li>
+</ul>
+</li>
+<li><p>Sampling quality and sampling speed.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="biophysical-sciences-and-complex-systems">
+<h1>Biophysical Sciences and complex systems<a class="headerlink" href="#biophysical-sciences-and-complex-systems" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>In Biophysical Sciences, we are interested in complex, highly dimensional systems.</p></li>
+<li><p>Example: <a class="reference external" href="https://pdb101.rcsb.org/motm/121">bacterial ribosome</a>.
+<img src="https://cdn.rcsb.org/pdb101/motm/121/2wdk_2wdl_front.jpg" alt="Bacterial ribosome" title="Bacterial ribosome" width="600"/></p></li>
+</ul>
+</div>
+<div class="section" id="how-do-people-currently-apply-generative-models-in-molecular-sciences">
+<h1>2 - How do people (currently) apply Generative Models in Molecular Sciences?<a class="headerlink" href="#how-do-people-currently-apply-generative-models-in-molecular-sciences" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="molecular-sciences-applications">
+<h1>Molecular Sciences Applications<a class="headerlink" href="#molecular-sciences-applications" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Numerous applications.</p>
+<ul>
+<li><p>Cutting-edge field. So <strong>MUCH</strong> remains to be done!</p></li>
+</ul>
+</li>
+<li><p>Some examples:</p>
+<ul>
+<li><p>Generate new molecular formulas (e.g.: drugs).</p>
+<ul>
+<li><p>In case you are interested: we will just discuss quickly and will give some references.</p></li>
+</ul>
+</li>
+<li><p>Model the distributions of molecular conformations.</p>
+<ul>
+<li><p>We will talk about this a lot in the rest of the lecture!</p></li>
+<li><p>The field is still in its infancy.</p></li>
+<li><p>Lot of room for improvement and exploring new methods.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="generate-new-molecular-formulas">
+<h1>Generate new molecular formulas<a class="headerlink" href="#generate-new-molecular-formulas" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Basic principle.</p>
+<ul>
+<li><p>Find some way to encode molecular formulas in <em><strong>x</strong></em>.</p></li>
+<li><p>Collect a dataset of molecules of interest.</p></li>
+<li><p>Train a Generative Model (may also use <a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement Learning</a> in the process).</p></li>
+<li><p>Sample from it (generate new molecular formulas).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="generate-new-molecular-formulas-examples">
+<h1>Generate new molecular formulas: examples<a class="headerlink" href="#generate-new-molecular-formulas-examples" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>One of the pioneering articles in the field: <em>MolGAN: An implicit generative model for small molecular graphs</em> (<a class="reference external" href="https://arxiv.org/abs/1805.11973">link</a>).</p></li>
+<li><p>One success story of deep learning and drug development: <em>Deep learning enables rapid identification of potent DDR1 kinase inhibitors</em> (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/31477924/">link</a>)</p></li>
+<li><p>Commentary on the state of the art in this field: <em>Can Generative-Model-Based Drug Design Become a New Normal in Drug Discovery?</em> (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/34913338/">link</a>)</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/molgan.png" alt="Scheme of molGAN" title="Scheme of molGAN" width="550"/></div>
+<div class="section" id="model-the-distributions-of-molecular-conformations">
+<h1>Model the distributions of molecular conformations<a class="headerlink" href="#model-the-distributions-of-molecular-conformations" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Sampling the conformations of a molecular system using “classical” approaches:</p>
+<ul>
+<li><p>Using molecular dynamics (MD) or Monte Carlo-based methods we can sample the distribution of its conformations.</p></li>
+<li><p>MD is a very powerful method, but many iterations are need to sample the whole distribution. We need a lot of computing power.</p></li>
+</ul>
+</li>
+</ul>
+<img src="https://fold.it/portal/files/images/dill_landscape.png" alt="Energy landscape. From https://pubmed.ncbi.nlm.nih.gov/23180855/" title="Energy landscape. From https://pubmed.ncbi.nlm.nih.gov/23180855/" width="425"/><ul class="simple">
+<li><p>Machine learning “promise”:</p>
+<ul>
+<li><p>Can we train a generative model that learns the distribution of conformations of molecular systems?</p></li>
+<li><p>Can we sample from these distribution faster than “classical” methods?</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>What do we need to train a generative model for doing that?</p>
+<ul>
+<li><p>Training data: conformations from “classical” methods (MD). How much? Open question.</p></li>
+<li><p>How to best describe <em><strong>x</strong></em>, our conformations? It’s an open question:</p>
+<ul>
+<li><p>xyz coordinates.</p></li>
+<li><p>Internal coordinates.</p></li>
+</ul>
+</li>
+<li><p>Train a generative model. Which one? Another open question.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="molecular-representation-xyz-coordinates">
+<h1>Molecular representation: xyz coordinates<a class="headerlink" href="#molecular-representation-xyz-coordinates" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Pros: all the geometric information we need.</p></li>
+<li><p>Cons: most NNs are not SE(3) invariant.</p>
+<ul>
+<li><p>Whichever translation or rotatation of our training data, the network should always learn the same thing!</p></li>
+<li><p>We must rely on clever tricks to remove translational or rotatational degrees of freedom.</p></li>
+</ul>
+</li>
+<li><p>NNs with SE(3) invariances exists, but there is yet no consensus on which one works best, in practice. <strong>Active area of research</strong>.</p></li>
+</ul>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Alanine-from-xtal-3D-bs-17.png/1024px-Alanine-from-xtal-3D-bs-17.png" alt="Alanine xyz" title="Alanine xyz" width="325"/><ul class="simple">
+<li><p>Optional: works with some E(3) and SE(3) invariant NNs.</p>
+<ul>
+<li><p><em>E(n) Equivariant Graph Neural Networks.</em> (<a class="reference external" href="https://arxiv.org/abs/2102.09844">link</a>)</p></li>
+<li><p><em>E(n) Equivariant Normalizing Flows.</em> (<a class="reference external" href="https://arxiv.org/abs/2105.09016">link</a>, note: a <strong>generative model</strong>)</p></li>
+<li><p><em>Tensor field networks: Rotation- and translation-equivariant neural networks for 3D point clouds</em> (<a class="reference external" href="https://arxiv.org/abs/1802.08219">link</a>)</p></li>
+<li><p><em>SE(3)-Transformers: 3D Roto-Translation Equivariant Attention Networks</em> (<a class="reference external" href="https://arxiv.org/abs/2006.10503">link</a>)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="molecular-representation-coordinates-internal-coordinates">
+<h1>Molecular representation: coordinates internal coordinates<a class="headerlink" href="#molecular-representation-coordinates-internal-coordinates" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>E.g.: distance matrices.</p></li>
+<li><p>Pros: their computation is SE(3) invariant.</p></li>
+<li><p>Cons: not straightforward to go back to xyz coordinates.</p></li>
+</ul>
+<img src="https://nanohub.org/app/site/resources/2010/10/09924/5002/1ubq.jpg" alt="Protein distance map" title="Protein distance map" width="450"/></div>
+<div class="section" id="what-kind-of-generative-models-are-there">
+<h1>3 - What kind of Generative Models are there?<a class="headerlink" href="#what-kind-of-generative-models-are-there" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="map-of-generative-models">
+<h1>Map of Generative Models<a class="headerlink" href="#map-of-generative-models" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Figure copyright and adapted from <a class="reference external" href="https://arxiv.org/abs/1701.00160">NIPS 2016 Tutorial on GANs</a>.</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/generative_models_map.png" alt="Generative models map" title="Generative models map" /></div>
+<div class="section" id="common-characteristics-of-generative-models-in-today-s-lecture">
+<h1>Common characteristics of Generative Models in today’s lecture<a class="headerlink" href="#common-characteristics-of-generative-models-in-today-s-lecture" title="Permalink to this headline">¶</a></h1>
+<p>All these models:</p>
+<ul class="simple">
+<li><p>Learn from data.</p></li>
+<li><p>Use neural networks (NNs) as functions approximators.</p>
+<ul>
+<li><p>Common NN architectures are used. You saw many of them before.</p></li>
+<li><p>These NNs are trained with batches using gradient-descent.</p></li>
+<li><p>The differences from supervised learning are:</p>
+<ul>
+<li><p>Input and output of the NNs.</p></li>
+<li><p>Loss function that we use.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Generate samples by randomly drawing from a simple prior (e.g.: normal distribution).</p>
+<ul>
+<li><p>The networks will map noise <em><strong>z</strong></em> to some object <em><strong>x</strong></em>.</p></li>
+<li><p>In other words: it’s extremely easy to sample from <em>p<sub>model</sub></em>!</p></li>
+</ul>
+</li>
+<li><p>Can be used as <strong>unconditional</strong> or <strong>conditional</strong> models.</p></li>
+</ul>
+</div>
+<div class="section" id="unconditional-generative-models">
+<h1>Unconditional Generative Models<a class="headerlink" href="#unconditional-generative-models" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>They learn to approximate <em>p<sub>data</sub>(<strong>x</strong>)</em>.</p></li>
+<li><p>In the figure: random samples from <a class="reference external" href="https://openai.com/blog/image-gpt/">Image GPT</a>.</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/unconditional.png" alt="Unconditional model" title="Unconditional model" /></div>
+<div class="section" id="conditional-generative-models-very-useful-in-molecular-sciences">
+<h1>Conditional Generative Models (very useful in Molecular Sciences)<a class="headerlink" href="#conditional-generative-models-very-useful-in-molecular-sciences" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>They learn to approximate <em>p<sub>data</sub>(<strong>x</strong> | <strong>y</strong>)</em>.</p></li>
+<li><p>What is <em><strong>y</strong></em>? Typical example: a class.</p></li>
+<li><p>In the image: class-conditioned samples from <a class="reference external" href="https://arxiv.org/abs/1802.05957">[Miyato et al., 2018]</a>.</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/conditional.png" alt="Conditional model" title="Conditional model" width="675" /><ul class="simple">
+<li><p>Actually, <em><strong>y</strong></em> in <em>p<sub>data</sub>(<strong>x</strong> | <strong>y</strong>)</em> can be any variable:</p>
+<ul>
+<li><p>Parameters of the system (e.g: temperature, pH, etc…).</p></li>
+<li><p>Topology (e.g: molecular formula, amino acid sequence, etc…).</p></li>
+<li><p>Entire data sample (e.g: conformation at previous time step).</p></li>
+<li><p>Anything you can think of…</p></li>
+</ul>
+</li>
+<li><p>Conditional models allow us to control what to generate.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Example from <a class="reference external" href="https://arxiv.org/abs/1909.11459">[Simm and Hernández-Lobato, 2019]</a>:</p>
+<ul>
+<li><p>They use a Variational Autoencoder to model a distribution <em>p<sub>data</sub>(<strong>x</strong> | <strong>y</strong>)</em>.</p></li>
+<li><p><em><strong>y</strong></em>: graph representing a molecule.</p></li>
+<li><p><em><strong>x</strong></em>: molecular conformation.</p></li>
+<li><p>If we train with many different molecules (we cover some significant part of the chemical space): allows us to generalize and generate conformations for molecules unseen in training data!</p></li>
+</ul>
+</li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/conditional_vae.png" alt="Conditional generation of molecular conformations" title="Conditional generation of molecular conformations" width="625" /></div>
+<div class="section" id="normalizing-flows">
+<h1>Normalizing Flows<a class="headerlink" href="#normalizing-flows" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="how-to-learn-distributions-maximum-likelihood-principle">
+<h1>How to learn distributions: maximum likelihood principle<a class="headerlink" href="#how-to-learn-distributions-maximum-likelihood-principle" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation#Relation_to_minimizing_Kullback%E2%80%93Leibler_divergence_and_cross_entropy">Maximum likelihood estimation</a>: important method in statistics.</p>
+<ul>
+<li><p>Normalizing flows (and other generative models) use it.</p></li>
+</ul>
+</li>
+<li><p>Basic principle: our model (with parameters <span class="math notranslate nohighlight">\(\theta\)</span>) should assign high probability to the examples in the training set (image from the <a class="reference external" href="https://arxiv.org/abs/1701.00160">NIPS 2016 Tutorial on GANs</a>).</p></li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/maximum_likelihood.png" /></p>
+<ul>
+<li><p>A maximum likelihood-based loss:</p>
+<p><span class="math notranslate nohighlight">\(L = -\frac{1}{n}\)</span> <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} log(p_{\theta}(\boldsymbol{x_i}))\)</span></p>
+</li>
+<li><p>Here <em>p<sub>model</sub> = p<sub><span class="math notranslate nohighlight">\(\theta\)</span></sub></em>, we just want highlight that the likelihood depends on <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p>Train the model: differentiate the loss with respect to <span class="math notranslate nohighlight">\(\theta\)</span> and optimze.</p></li>
+</ul>
+</div>
+<div class="section" id="optional-slide-maximum-likelihood-and-kl-divergence">
+<h1>Optional slide: maximum likelihood and KL divergence<a class="headerlink" href="#optional-slide-maximum-likelihood-and-kl-divergence" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Maximizing the likelihood asymptotically corresponds to minimizing the Kullback-Leibler divergence between <em>p<sub>data</sub></em> and <em>p<sub>model</sub></em> (proof <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation#Relation_to_minimizing_Kullback%E2%80%93Leibler_divergence_and_cross_entropy">here</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="optional-slide-a-neural-network-to-model-p-sub-data-sub-directly">
+<h1>Optional slide: a neural network to model <em><strong>p<sub>data</sub></strong></em> directly?<a class="headerlink" href="#optional-slide-a-neural-network-to-model-p-sub-data-sub-directly" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p>Suppose our data <em><strong>x</strong></em> is continous (e.g.: xyz coordinates or distances).</p></li>
+<li><p>Any NN is a function approximator <em><span class="math notranslate nohighlight">\(f(\boldsymbol x; \theta)\)</span></em>.</p></li>
+<li><p>So why not use NNs to model <em>p<sub>data</sub></em> by training with maximum likelihood? The idea is:</p>
+<p><em><span class="math notranslate nohighlight">\(p_{model}(\boldsymbol x) = f(\boldsymbol x; \theta)\)</span></em></p>
+</li>
+<li><p>Will not work.</p></li>
+<li><p>Probability density functions (<em>pdf</em>) are normalized.</p>
+<p><em><span class="math notranslate nohighlight">\(\int_{-\infty}^\infty p_{model}(x)dx = 1\)</span></em></p>
+<p><em><span class="math notranslate nohighlight">\(p_{model}(x) \geq 0 \quad \forall x\)</span></em></p>
+</li>
+<li><p>NNs are not normalized… will not learn a true <em>pdf</em>.</p></li>
+<li><p>Training outcome: a powerful NN will put extremely high density (tends to infinite) on training datapoints, extremely low on the rest of the dataspace.</p></li>
+<li><p>We need a partition function… but how to evaluate?</p></li>
+<li><p>We can still try to model energies with our NN: <a class="reference external" href="https://en.wikipedia.org/wiki/Energy_based_model">Energy Based models</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="normalizing-flows-principles">
+<h1>Normalizing flows principles<a class="headerlink" href="#normalizing-flows-principles" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Start from a simple prior. E.g. multivariate normal distribution: <em>p<sub>z</sub> = N(<strong>0</strong>, I)</em>.</p>
+<ul>
+<li><p>We can easily sample from it a <em><strong>z</strong></em> vector.</p></li>
+<li><p>We can also easily evaluate its <em>p<sub>z</sub>(<strong>z</strong>)</em>.</p></li>
+</ul>
+</li>
+<li><p>Our model: a NN function <em>g</em> that maps <em><strong>z</strong></em> to <em><strong>x</strong></em> (e.g.: a conformation):</p>
+<ul>
+<li><p>The samples <em><strong>x</strong></em> = <em>g(<strong>z</strong>; <span class="math notranslate nohighlight">\(\theta\)</span>)</em> will be distributed according to some (arbitrarly complex) distribution <em>p<sub>x</sub></em>.</p></li>
+<li><p>We will use <em>p<sub>x</sub></em> as our <em>p<sub>model</sub></em>. How can we compute <em>p<sub>x</sub>(<strong>x</strong>)</em>?</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/normalizing_flows.png" /></p>
+<ul>
+<li><p>We can exactly compute <em>p<sub>x</sub>(<strong>x</strong>)</em> if <em>g</em>:</p>
+<ul class="simple">
+<li><p>Is an <a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_function">invertible</a> function.</p></li>
+<li><p>We can compute the <a class="reference external" href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">determinant of its jacobian</a> with respect to <em><strong>z</strong></em>.</p></li>
+</ul>
+</li>
+<li><p>Just use the <a class="reference external" href="https://en.wikipedia.org/wiki/Integration_by_substitution#Application_in_probability">change of variable formula</a>:</p>
+<p><span class="math notranslate nohighlight">\(p_x(\boldsymbol{x}) = p_z(f(\boldsymbol{x})) |det(Df(\boldsymbol{x}))|\)</span></p>
+</li>
+<li><p>Note, we define:</p>
+<ul class="simple">
+<li><p><em>f = g<sup>-1</sup></em>.</p></li>
+<li><p><em>Df(<strong>x</strong>)</em> is the jacobian of <em>f(<strong>x</strong>)</em> with respect to <em><strong>x</strong></em>.</p></li>
+</ul>
+</li>
+<li><p>Now we can train using maximum likelihood estimation.</p>
+<p><span class="math notranslate nohighlight">\( log(p_x(\boldsymbol{x})) = log(p_z(f(\boldsymbol{x}))) + log(|det(Df(\boldsymbol{x}))|)\)</span></p>
+</li>
+</ul>
+</div>
+<div class="section" id="normalizing-flows-in-practice">
+<h1>Normalizing flows in practice<a class="headerlink" href="#normalizing-flows-in-practice" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Very elegant method, but poses a restraints on our neural network <em>g</em>.</p>
+<ul>
+<li><p><em>g</em> must be invertible (not difficult to obtain).</p></li>
+<li><p>We must be able to compute <em>det(Df(<strong>x</strong>))</em> and compute it <strong>efficiently</strong> (difficult to obtain).</p>
+<ul>
+<li><p>For many of the architectures that you have seen the computation is too expensive.</p></li>
+<li><p>How can we use our favourite architectures?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Solutions exists:</p>
+<ul>
+<li><p>RealNVP from [<a class="reference external" href="https://arxiv.org/abs/1605.08803">Dinh et al., 2016</a>]. Simple and clever solution (the article is recommended), but we still have to modify our overall network architecture.</p></li>
+<li><p>FFJORD from [<a class="reference external" href="https://arxiv.org/abs/1810.01367">Grathwohl et al., 2018</a>]. No restraints on the architectures, but computationally is slow (must also run a ordinary differential equation solver).</p></li>
+<li><p>See this review [<a class="reference external" href="https://arxiv.org/abs/1908.09257">Kobyzev et al., 2019</a>] for an overview of the challenges in Normalizing Flows.</p></li>
+</ul>
+</li>
+<li><p>Active area of research, much room for improvement.</p></li>
+</ul>
+</div>
+<div class="section" id="normalizing-flows-examples">
+<h1>Normalizing flows examples<a class="headerlink" href="#normalizing-flows-examples" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Normalizing flows have an important application in molecular conformational ensembles modeling: <strong>Boltzmann generators</strong> [<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/31488660/">Noe et al., 2019</a>].
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/boltzmann_generators.png" alt="Boltzmann generators" title="Boltzmann generators" width="400" /></p></li>
+</ul>
+</div>
+<div class="section" id="normalizing-flows-overview">
+<h1>Normalizing flows overview<a class="headerlink" href="#normalizing-flows-overview" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Pros:</p>
+<ul>
+<li><p>Good quality samples.</p></li>
+<li><p>Sampling speed is good.</p></li>
+<li><p>Allow us to compute <em>p<sub>x</sub>(<strong>x</strong>)</em>.</p></li>
+<li><p>Very popular in conformational ensembles modeling.</p>
+<ul>
+<li><p>Allows to build Boltzmann generators.</p></li>
+</ul>
+</li>
+<li><p>With new methodolical improvements, could be a very promising method.</p></li>
+</ul>
+</li>
+<li><p>Cons:</p>
+<ul>
+<li><p>Put restraints on neural newtork architectures.</p>
+<ul>
+<li><p>Not immediately easy to work with.</p></li>
+<li><p>Limited model capacity.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="variational-autoencoders-vae">
+<h1>Variational Autoencoders (VAE)<a class="headerlink" href="#variational-autoencoders-vae" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="vae-overview">
+<h1>VAE overview<a class="headerlink" href="#vae-overview" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Probabilistic models. Conceptually slightly more complex than other models, but very elegant.</p></li>
+<li><p>There are different ways of interpreting and understading VAEs.</p>
+<ul>
+<li><p>We will give an high-level and schematic overview of the method.</p>
+<ul>
+<li><p><strong>Autoencoder</strong> view of VAEs.</p></li>
+</ul>
+</li>
+<li><p>We will skip many important details.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>If you are interested in these topics:</p>
+<ul>
+<li><p>Encourage you to understand it more deeply.</p></li>
+<li><p>Introductory blog post: <a class="reference external" href="https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73">link</a>.</p></li>
+<li><p>Extremely well-done lecture on VAEs: <a class="reference external" href="https://www.youtube.com/watch?v=1CT-kxjYbFU">video</a>.</p>
+<ul>
+<li><p>From the Berkley <a class="reference external" href="https://sites.google.com/view/berkeley-cs294-158-sp20/home">CS294-158-SP20</a> course on generative modeling. Check the other lectures too!</p></li>
+</ul>
+</li>
+<li><p>Introductory review <a class="reference external" href="https://arxiv.org/abs/1606.05908">[Doersch, 2016]</a>.</p></li>
+<li><p>Also try the original paper <a class="reference external" href="https://arxiv.org/abs/1312.6114">[Kingma and Welling, 2013]</a>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="autoencoders">
+<h1>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p>A <em>Encoder</em> NN (E) takes as input some <em><strong>x</strong></em> from the training set.</p></li>
+<li><p>It compresses it to some lower dimensional <em><strong>z</strong></em> (in a <strong>latent space</strong>).</p></li>
+<li><p>A <em>Decoder</em> NN (D) takes <em><strong>z</strong></em> and tries to reconstruct <em><strong>x</strong></em>.</p></li>
+<li><p>How to train? We use a reconstruction loss. Example L2 loss:</p>
+<p><span class="math notranslate nohighlight">\(L_{reconstruction} = ||\boldsymbol{x} - \boldsymbol{x'}||^2\)</span></p>
+</li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/VAE_Basic.png" /></p>
+</div>
+<div class="section" id="we-can-not-easily-use-vanilla-autoencoders-as-generative-models">
+<h1>We can not easily use vanilla autoencoders as generative models<a class="headerlink" href="#we-can-not-easily-use-vanilla-autoencoders-as-generative-models" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Generative modeling idea:</p>
+<ul>
+<li><p>Train an autoencoder.</p></li>
+<li><p>Sample from the latent space and reconstruct with the <em>Decoder</em>.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Problem: how to sample from the latent space?</p>
+<ul>
+<li><p>Randomly sample from a uniform distribution? Will not work. Most samples will be “junk”.</p></li>
+<li><p>Why: the distribution of points in the latent space is irregular. The <em>Encoder</em> “decided” it! Example from this <a class="reference external" href="https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf">blog post</a>.</p></li>
+</ul>
+</li>
+</ul>
+<img src="https://miro.medium.com/max/1000/1*-i8cp3ry4XS-05OWPAJLPg.png" alt="Unregularized latent space" title="Unregularized latent space" width="450" /></div>
+<div class="section" id="we-need-some-form-of-regularization-vaes">
+<h1>We need some form of regularization: VAEs<a class="headerlink" href="#we-need-some-form-of-regularization-vaes" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>VAE solution: we force the points in the latent space to be distributed according to some simple <em>p<sub>z</sub></em> (e.g.: normal). Image from [<a class="reference external" href="https://arxiv.org/abs/1906.02691">Kingma and Welling</a>].</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/vae.png" alt="VAE scheme" title="VAE scheme" width="375" /><ul>
+<li><p>VAE solution: modify the loss we use to train our autoencoder.</p>
+<p><span class="math notranslate nohighlight">\(L_{tot} = L_{reconstruction} + L_{regularization}\)</span></p>
+</li>
+<li><p>In VAEs, we use as <em>L<sub>regularization</sub></em> the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> between <em>q<sub><span class="math notranslate nohighlight">\(\phi\)</span></sub>(<strong>z</strong> | <strong>x</strong>)</em> (our probabilistic encoder) and <em>p<sub>z</sub>(<strong>z</strong>)</em> (our simple prior).</p></li>
+</ul>
+</div>
+<div class="section" id="why-are-they-called-variational">
+<h1>Why are they called variational?<a class="headerlink" href="#why-are-they-called-variational" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p>VAEs are probabilistic models! They were derived using a variational approach.</p></li>
+<li><p>If we treat them as such, we can find out (see the links in previous slides) that their objective is:</p>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/elbo_1.png" alt="ELBO loss" title="ELBO loss" width="900" />
+where, on the right side, the first term is the regularization objective and the second is the reconstruction objective.
+</li>
+<li><p>And that:</p>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/elbo_2.png" alt="Lower bound" title="Lower bound" width="300" />
+</li>
+<li><p>Therefore in VAEs we attempt to optimize a variational lower bound of the likelihood of training data points.</p></li>
+<li><p>For this reason, their objective is also called ELBO (Evidence lower bound).</p></li>
+<li><p>Formulas are from <a class="reference external" href="https://arxiv.org/abs/1312.6114">[Kingma and Welling, 2013]</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="examples-in-conformational-ensembles-modeling">
+<h1>Examples in conformational ensembles modeling<a class="headerlink" href="#examples-in-conformational-ensembles-modeling" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Example from <a class="reference external" href="https://arxiv.org/abs/1909.11459">[Simm and Hernández-Lobato, 2019]</a>:</p>
+<ul>
+<li><p>We saw it before when discussing about conditional models!</p></li>
+<li><p>It uses a VAE.</p></li>
+<li><p>Good starting point to start studying conformational ensembles modeling and Generative Models.</p></li>
+</ul>
+</li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/conditional_vae.png" alt="Conditional generation of molecular conformations" title="Conditional generation of molecular conformations" width="625" /><ul class="simple">
+<li><p>Example from [<a class="reference external" href="https://arxiv.org/abs/2106.14108">Rosenbaum et al., 2021</a>]:</p>
+<ul>
+<li><p>Proof of concept study in which a VAE is used to model the distribution of 3D conformations of a protein that underlies the micrographs in a Cryo-EM experiment.</p></li>
+</ul>
+</li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/cryoem.png" alt="Cryo-EM and VAEs" title="Cryo-EM and VAEs" /></div>
+<div class="section" id="vaes-summary">
+<h1>VAEs summary<a class="headerlink" href="#vaes-summary" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Seems to be the go-to choice of many machine learning practitioners.</p></li>
+<li><p>Pros:</p>
+<ul>
+<li><p>Easy-to-use and flexible.</p></li>
+<li><p>Training is (usually) stable and quick.</p></li>
+<li><p>Many applications in Molecular Sciences.</p></li>
+</ul>
+</li>
+<li><p>Cons:</p>
+<ul>
+<li><p>A good theoretical understanding is necessary to get the most ouf of them (could also be in the “pros” list).</p></li>
+<li><p>Not great sample quality (need improvements over the vanilla implementation).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="generative-adversarial-networks">
+<h1>Generative Adversarial Networks<a class="headerlink" href="#generative-adversarial-networks" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="history-of-gans">
+<h1>History of GANs<a class="headerlink" href="#history-of-gans" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>From the original GAN article [<a class="reference external" href="https://arxiv.org/abs/1406.2661">Goodfellow et al., 2014</a>] (highly recommend reading it).</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/gan_2014.png" alt="Examples from the original GAN article" title="Examples from the original GAN article" width=700 /><ul class="simple">
+<li><p>From an article some years later [<a class="reference external" href="https://arxiv.org/abs/1812.04948">Karras et al., 2019</a>] (the first version of StyleGAN).</p></li>
+</ul>
+<img src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/gan_2019.png" alt="Examples from the StyleGAN article" title="Examples from the StyleGAN article" width=700 /></div>
+<div class="section" id="gan-overview">
+<h1>GAN overview<a class="headerlink" href="#gan-overview" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>In GANs, we have two networks:</p>
+<ul>
+<li><p>Generator (G):</p>
+<ul>
+<li><p>Input: noise <em><strong>z</strong></em>. Output: samples <em><strong>x</strong></em>.</p></li>
+</ul>
+</li>
+<li><p>Discriminator (D):</p>
+<ul>
+<li><p>Input: samples <em><strong>x</strong></em>. Output: probability of <em><strong>x</strong></em> being “real” (from training set) or “fake” (from the generator).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Both are trained in an adversarial game.</p></li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://developers.google.com/machine-learning/gan/images/gan_diagram.svg" /></p>
+<ul class="simple">
+<li><p>Image from <a class="reference external" href="https://developers.google.com/machine-learning/gan/gan_structure">Overview of GAN Structure</a> from <em><a class="reference external" href="http://developers.google.com">developers.google.com</a></em>.</p></li>
+</ul>
+</div>
+<div class="section" id="gan-objective">
+<h1>GAN objective<a class="headerlink" href="#gan-objective" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Let’s take a look at the GAN objective:</p></li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/minmax_loss.png" /></p>
+<ul class="simple">
+<li><p><em>D(<strong>x</strong>)</em>: probability (a scalar from 0 to 1) of a sample <em><strong>x</strong></em> to be real.</p></li>
+<li><p><em>G(<strong>z</strong>)</em>: a generated sample <em><strong>x</strong></em>.</p></li>
+<li><p>The <em>D</em> network wants to:</p>
+<ul>
+<li><p>Maximize <em>D(<strong>x</strong>)</em>.</p></li>
+<li><p>Minimize <em>D(G(<strong>z</strong>))</em>.</p></li>
+</ul>
+</li>
+<li><p>The <em>G</em> network wants to:</p>
+<ul>
+<li><p>Maximize <em>D(G(<strong>z</strong>))</em>.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Note: we never know how to compute of <em>p<sub>model</sub>(<strong>x</strong>)</em>! We can only sample from it via <em><strong>x</strong></em> = <em>G(<strong>z</strong>)</em>.</p>
+<ul>
+<li><p>GANs are implicit density models.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Under ideal conditions, the global optimum of this objective will result in:</p>
+<ul>
+<li><p><em>p<sub>model</sub> = p<sub>data</sub></em></p></li>
+<li><p>For proof, see the <a class="reference external" href="https://arxiv.org/abs/1406.2661">original article</a> (“Theoretical Results” section).</p></li>
+</ul>
+</li>
+<li><p>But we never have ideal conditions:</p>
+<ul>
+<li><p>We train with batches.</p></li>
+<li><p>We do not have a perfect optimization algorithm.</p></li>
+<li><p>G and D have limited capacities.</p></li>
+</ul>
+</li>
+<li><p>So… only good approximations of <em>p<sub>data</sub></em> if we are careful enough (see next slide).</p></li>
+</ul>
+</div>
+<div class="section" id="gan-training-is-notably-instable">
+<h1>GAN training is notably instable<a class="headerlink" href="#gan-training-is-notably-instable" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>A common problem is <strong>mode collapse</strong> (see example below from the <a class="reference external" href="https://arxiv.org/abs/1701.00160">NIPS 2016 Tutorial on GANs</a>).</p></li>
+<li><p>How to improve training? People have found several solutions that seem to work well:</p>
+<ul>
+<li><p>WGAN: changes the GAN loss, try to approximate Wasserstein distance. See [<a class="reference external" href="https://arxiv.org/abs/1701.07875">Arjovsky et al., 2017</a>] and [<a class="reference external" href="https://arxiv.org/abs/1704.00028">Gulrajani et al., 2017</a>].</p></li>
+<li><p>Spectral normalization: regularizes the discriminator. See [<a class="reference external" href="https://arxiv.org/abs/1802.05957">Miyato et al., 2018</a>].</p></li>
+<li><p>And many others (active area of research).</p></li>
+</ul>
+</li>
+<li><p>All modern GANs use one of these modifications.</p></li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/mode_collapse.png" /></p>
+</div>
+<div class="section" id="gan-summary">
+<h1>GAN summary<a class="headerlink" href="#gan-summary" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Pros:</p>
+<ul>
+<li><p>Usually considered the method with best sample quality.</p>
+<ul>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=W-O7AZNzbzQ">Diffusion Models</a> are catching up.</p></li>
+</ul>
+</li>
+<li><p>Once trained, they have very fast sampling capabilities.</p></li>
+<li><p>In principle, we can use any NN architecture for G and D.</p></li>
+</ul>
+</li>
+<li><p>Cons:</p>
+<ul>
+<li><p>Unstable training.</p></li>
+<li><p>Stabilizing may require a LOT of hyper-parameter tuning.</p></li>
+<li><p>Usually, training is computational expensive (must update D and then G each mini-batch).</p></li>
+<li><p>So far, not many examples in conformational ensembles modeling.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-choose-our-generative-model">
+<h1>How to choose our Generative Model?<a class="headerlink" href="#how-to-choose-our-generative-model" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="some-guidelines-on-how-to-choose-our-model">
+<h1>Some Guidelines on how to Choose our Model<a class="headerlink" href="#some-guidelines-on-how-to-choose-our-model" title="Permalink to this headline">¶</a></h1>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Loss</p></th>
+<th class="head"><p>Explicit Likelihood</p></th>
+<th class="head"><p>Training stability</p></th>
+<th class="head"><p>Sampling speed</p></th>
+<th class="head"><p>Sample quality</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VAE</p></td>
+<td><p>ELBO</p></td>
+<td><p>Can be estimated</p></td>
+<td><p>Good</p></td>
+<td><p>Fast</p></td>
+<td><p>Average</p></td>
+</tr>
+<tr class="row-odd"><td><p>Normalizing Flows</p></td>
+<td><p>Maximum Likelihood</p></td>
+<td><p>Yes</p></td>
+<td><p>Good</p></td>
+<td><p>Average</p></td>
+<td><p>Good</p></td>
+</tr>
+<tr class="row-even"><td><p>GANs</p></td>
+<td><p>Adversarial Loss (or others)</p></td>
+<td><p>No</p></td>
+<td><p>Bad</p></td>
+<td><p>Very Fast</p></td>
+<td><p>Very Good</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note: please take <em>cum grano salis</em>! Part of the table is based on clichés. Things will vary with time (e.g.: methodological improvements) and on details of your project and implementation. This table is partly inspired by a table here [<a class="reference external" href="https://arxiv.org/abs/2103.04922">Bond-Taylor et al., 2021</a>].</p>
+<ul class="simple">
+<li><p>First narrow down our selection. What do we care about?</p>
+<ul>
+<li><p>Fast sampling?</p></li>
+<li><p>High-quality samples?</p></li>
+<li><p>Exact evaluation of <em>p<sub>model</sub>(<strong>x</strong>)</em>?</p></li>
+<li><p>Amount of fine-tuning (i.e.: time you want to invest in fixing the model)?</p></li>
+</ul>
+</li>
+<li><p>Start from what other people have been doing.</p>
+<ul>
+<li><p>Method development (inventing entirely new things) in machine learning is not easy.</p>
+<ul>
+<li><p>Trial and error process: often requires a lot of computational resources.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Empirically evaluate different choices.</p>
+<ul>
+<li><p>In machine learning, that is what people do.</p></li>
+</ul>
+</li>
+<li><p>When it works, start introducing some modifications of ours!</p></li>
+</ul>
+</div>
+<div class="section" id="what-are-the-limits-of-generative-models-when-generating-molecular-conformations">
+<h1>4 - What are the limits of Generative Models when generating molecular conformations?<a class="headerlink" href="#what-are-the-limits-of-generative-models-when-generating-molecular-conformations" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="modeling-conformational-ensembles-what-can-we-learn">
+<h1>Modeling conformational ensembles: what can we learn?<a class="headerlink" href="#modeling-conformational-ensembles-what-can-we-learn" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>We have a true data generating distribution <em>µ</em>.</p>
+<ul>
+<li><p>In MD studies this can often be a Boltzmann distribution:</p>
+<ul>
+<li><p><em>p(<strong>x</strong>) = e<sup>-E(x)/(kT)</sup> / Z<sub>x</sub></em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Then we have our training set with <em><strong>x</strong></em><sup>(1)</sup>, <em><strong>x</strong></em><sup>(2)</sup>, …, <em><strong>x</strong></em><sup>(n)</sup> = {<em><strong>x</strong></em><sup>(i)</sup>}<sup>n</sup><sub>i=1</sub></p></li>
+<li><p>Rembember, Generative Models learn from <em>p<sub>data</sub></em>, not from <em>µ</em>.</p>
+<ul>
+<li><p>They do not have access to <em>µ</em>.</p></li>
+</ul>
+</li>
+<li><p>What if we did we not sample throughly enough <em>µ</em> when collecting the samples?</p></li>
+</ul>
+<ul class="simple">
+<li><p>Suppose: our system has <em>N<sub>states</sub></em> metastable states.</p></li>
+<li><p>In our MD simulation we sample only in one.</p></li>
+<li><p>We train a generative model on that data only.</p></li>
+<li><p>Will our model be able to generate samples (with the right probabilities) from other states…?</p></li>
+<li><p>Most likely, no!</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">There is no free lunch</a>, only local interpolation and extrapolation.</p></li>
+</ul>
+<p><img alt="alt text for screen readers" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-04/energy_landscapes.png" /></p>
+</div>
+<div class="section" id="how-to-recover-and-generate-entirely-new-conformations-then">
+<h1>How to recover <em>µ</em> and generate entirely new conformations then…?<a class="headerlink" href="#how-to-recover-and-generate-entirely-new-conformations-then" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Open (and difficult) challenge.</p></li>
+<li><p>Already accurately modeling <em>p<sub>data</sub></em> is not easy.</p>
+<ul>
+<li><p>Start simple and then build-up.</p></li>
+</ul>
+</li>
+<li><p>Solutions?</p>
+<ul>
+<li><p>Very interesting (incomplete) solution to the problem (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/31488660/">Boltzmann Generators</a>).</p></li>
+<li><p>“Vanilla” generative models may be only part of the solution.</p></li>
+<li><p>New ideas are necessary!</p></li>
+</ul>
+</li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-03/W3_Lab_ConvNetworks.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 03 Lab: Convolutional Networks</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="W4_Lab_GenerateMolecularConformations.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 04 Lab: Generating Molecular Conformations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
