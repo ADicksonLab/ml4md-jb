@@ -61,3 +61,9 @@ parts:
     chapters:
     - file: Week-04/W4_Lecture_GenerativeModels.ipynb
     - file: Week-04/W4_Lab_GenerateMolecularConformations.ipynb
+
+  - caption: Week 05
+    numbered: False
+    chapters:
+    - file: Week-05/W5_Lecture_ProteinStructurePrediction.ipynb
+
