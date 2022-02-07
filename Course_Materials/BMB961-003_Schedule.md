@@ -10,8 +10,8 @@
 | Lab 3 (Jan 27) | Learning something useful |
 | Lec 4 (Feb 1) | Generating things with ML |
 | Lab 4 (Feb 3) | GAN lab |
-| Lec 5 (Feb 8) | ML case study: AlphaFold |
-| Lab 5 (Feb 10) | Predicting structures with AlphaFold |
+| Lec 5 (Feb 8) | Protein structure prediction |
+| Lab 5 (Feb 10) | Protein structure prediction |
 | Lec 6 (Feb 15) | Hamiltonian Mechanics |
 | Lab 6 (Feb 17) | Liquid Argon simulation Day #1 |
 | Lec 7 (Feb 22) | Periodic boundaries and thermostats |
