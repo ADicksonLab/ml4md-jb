@@ -387,6 +387,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
+     Coeevolutionary couplings provide residue contacts from multiple sequence alignments.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#homology-modeling-without-contact-restraints">
      Homology modeling without contact restraints
     </a>
@@ -394,6 +399,21 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modeling-with-contact-restraints">
      Modeling with contact restraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contact-predictions-via-machine-learning">
+     Contact predictions via machine learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold-1">
+     AlphaFold 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold2">
+     AlphaFold2
     </a>
    </li>
   </ul>
@@ -451,6 +471,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
+     Coeevolutionary couplings provide residue contacts from multiple sequence alignments.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#homology-modeling-without-contact-restraints">
      Homology modeling without contact restraints
     </a>
@@ -458,6 +483,21 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modeling-with-contact-restraints">
      Modeling with contact restraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contact-predictions-via-machine-learning">
+     Contact predictions via machine learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold-1">
+     AlphaFold 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold2">
+     AlphaFold2
     </a>
    </li>
   </ul>
@@ -541,9 +581,11 @@ If we know the structure, can we understand function?</p>
 <p>Molecular dynamics simulations can also <strong>refine predictions</strong>.</p>
 <img alt="refinement_via_md" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/refinement.png" width="800px"/>
 <p><a class="reference external" href="https://doi.org/10.1073/pnas.1811364115">Heo, L. and Feig, M., <strong>2018</strong>. Experimental accuracy in protein structure refinement via molecular dynamics simulations. PNAS, 115, 13276-13281.</a></p>
-<p><strong>Coeevolutionary couplings</strong> provide information about residue contacts from <strong>multiple sequence alignments</strong>.</p>
+<div class="section" id="coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments">
+<h3>Coeevolutionary couplings provide residue contacts from multiple sequence alignments.<a class="headerlink" href="#coeevolutionary-couplings-provide-residue-contacts-from-multiple-sequence-alignments" title="Permalink to this headline">¶</a></h3>
 <img alt="coevolutionary coupling" src="https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0028766.g001" width="800px"/>
 <p>Initially, deep multiple sequence alignments were needed, but with better statistics and machine learning methods it has become possible to use much shallower alignments so that this approach can be applied to many more targets.</p>
+</div>
 <div class="section" id="homology-modeling-without-contact-restraints">
 <h3>Homology modeling without contact restraints<a class="headerlink" href="#homology-modeling-without-contact-restraints" title="Permalink to this headline">¶</a></h3>
 <video controls autoplay loop src="https://predictioncenter.org/video/T0915.1.mp4" />
@@ -551,11 +593,17 @@ If we know the structure, can we understand function?</p>
 <div class="section" id="modeling-with-contact-restraints">
 <h3>Modeling with contact restraints<a class="headerlink" href="#modeling-with-contact-restraints" title="Permalink to this headline">¶</a></h3>
 <video controls autoplay loop src="https://predictioncenter.org/video/T0915.2.mp4" />
-<p>Contact predictions were initially based on statistical inference methods, but machine learning methods can perform better.</p>
+</div>
+<div class="section" id="contact-predictions-via-machine-learning">
+<h3>Contact predictions via machine learning<a class="headerlink" href="#contact-predictions-via-machine-learning" title="Permalink to this headline">¶</a></h3>
+<p>Initial methods were based on statistical inference, but ML methods perform better.</p>
 <img alt="contacts-neural-network" src="https://journals.plos.org/ploscompbiol/article/figure/image?size=large&id=10.1371/journal.pcbi.1005324.g001" width="600px"/>
 <p><a class="reference external" href="https://doi.org/10.1093/bioinformatics/btv472">Ma, J., Wang, S., Wang, Z. and Xu, J., <strong>2015</strong>. Protein contact prediction by integrating joint evolutionary coupling analysis and supervised learning. Bioinformatics, 31, 3506-3513.</a></p>
 <p><a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1005324">Wang, S., Sun, S., Li, Z., Zhang, R. and Xu, J., <strong>2017</strong>. Accurate de novo prediction of protein contact map by ultra-deep learning model. PLoS Comp. Biol., 13, e1005324.</a></p>
-<p><strong>AlphaFold 1</strong> (A7D) combined <strong>distograms</strong> (and <strong>backbone torsion angles</strong>) predicted from coevolutionary couplings with <strong>generative models</strong> trained to <strong>maximize GDT</strong> similarity scores.</p>
+</div>
+<div class="section" id="alphafold-1">
+<h3>AlphaFold 1<a class="headerlink" href="#alphafold-1" title="Permalink to this headline">¶</a></h3>
+<p>Combined <strong>distograms</strong> (and <strong>backbone torsion angles</strong>) predicted from coevolutionary couplings with <strong>generative models</strong> trained to <strong>maximize GDT</strong> similarity scores.</p>
 <img alt="af1-gdtnet" src="https://onlinelibrary.wiley.com/cms/asset/1167cec5-05c3-4254-ac09-6b1bfd2e7d0c/prot25834-fig-0001-m.jpg" width="600 px"/>
 <p><a class="reference external" href="https://doi.org/10.1002/prot.25834">Senior, A.W., Evans, R., Jumper, J., Kirkpatrick, J., Sifre, L., Green, T., Qin, C., Žídek, A., Nelson, A.W., Bridgland, A. and Penedones, H., <strong>2019</strong>. Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13). Proteins, 87, 1141-1148.</a></p>
 <p><strong>AlphaFold 1</strong> generated actual structures either via a complex <strong>simulated annealing protocol</strong> or via <strong>gradient descent</strong> using potentials augmented by other potentials (Rosetta etc.)</p>
@@ -564,7 +612,10 @@ If we know the structure, can we understand function?</p>
 <p><strong>trRosetta</strong> improves over AlphaFold1 by predicting residue distances and relative orientations</p>
 <img alt="trRosetta" src="https://yanglab.nankai.edu.cn/trRosetta/help/flowchart.png" width="550px"/>
 <p><a class="reference external" href="https://doi.org/10.1073/pnas.1914677117">Yang, J., Anishchenko, I., Park, H., Peng, Z., Ovchinnikov, S. and Baker, D., <strong>2020</strong>. Improved protein structure prediction using predicted interresidue orientations. PNAS, 117, 1496-1503.</a></p>
-<p><strong>AlphaFold2</strong> introduces an attention-based transformer architecture with iterative refinement and directly generates structures (end-to-end predictions).</p>
+</div>
+<div class="section" id="alphafold2">
+<h3>AlphaFold2<a class="headerlink" href="#alphafold2" title="Permalink to this headline">¶</a></h3>
+<p>Introduction of attention-based transformer architecture with iterative refinement and directly generates structures (end-to-end predictions).</p>
 <img alt="af2-overall" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-overall.png" width="900px"/>
 <p><a class="reference external" href="https://doi.org/10.1038/s41586-021-03819-2">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., Žídek, A., Potapenko, A. and Bridgland, A., <strong>2021</strong>. Highly accurate protein structure prediction with AlphaFold. Nature, 596, 583-589.</a></p>
 <p><strong>AlphaFold2</strong>’s ‘evoformer’ convolutes co-evolutionary information from the multiple sequence alignment with structural information (initially from templates, then iteratively from models that are generated). The architecture uses elements of graph neural networks to maintain equivariance.</p>
