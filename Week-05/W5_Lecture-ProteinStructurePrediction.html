@@ -385,6 +385,18 @@
   <a class="reference internal nav-link" href="#tertiary-structure-prediction">
    Tertiary structure prediction
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#homology-modeling-without-contact-restraints">
+     Homology modeling without contact restraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling-with-contact-restraints">
+     Modeling with contact restraints
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quaternary-structure-prediction">
@@ -437,6 +449,18 @@
   <a class="reference internal nav-link" href="#tertiary-structure-prediction">
    Tertiary structure prediction
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#homology-modeling-without-contact-restraints">
+     Homology modeling without contact restraints
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling-with-contact-restraints">
+     Modeling with contact restraints
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quaternary-structure-prediction">
@@ -520,10 +544,13 @@ If we know the structure, can we understand function?</p>
 <p><strong>Coeevolutionary couplings</strong> provide information about residue contacts from <strong>multiple sequence alignments</strong>.</p>
 <img alt="coevolutionary coupling" src="https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0028766.g001" width="800px"/>
 <p>Initially, deep multiple sequence alignments were needed, but with better statistics and machine learning methods it has become possible to use much shallower alignments so that this approach can be applied to many more targets.</p>
-<p>Homology modeling without contact restraints</p>
-<p>video controls autoplay loop src=”<a class="reference external" href="https://predictioncenter.org/video/T0915.1.mp4">https://predictioncenter.org/video/T0915.1.mp4</a>”</p>
-<p>Modeling with contact restraints</p>
-<p>video controls autoplay loop src=”<a class="reference external" href="https://predictioncenter.org/video/T0915.2.mp4">https://predictioncenter.org/video/T0915.2.mp4</a>”</p>
+<div class="section" id="homology-modeling-without-contact-restraints">
+<h3>Homology modeling without contact restraints<a class="headerlink" href="#homology-modeling-without-contact-restraints" title="Permalink to this headline">¶</a></h3>
+<video controls autoplay loop src="https://predictioncenter.org/video/T0915.1.mp4" />
+</div>
+<div class="section" id="modeling-with-contact-restraints">
+<h3>Modeling with contact restraints<a class="headerlink" href="#modeling-with-contact-restraints" title="Permalink to this headline">¶</a></h3>
+<video controls autoplay loop src="https://predictioncenter.org/video/T0915.2.mp4" />
 <p>Contact predictions were initially based on statistical inference methods, but machine learning methods can perform better.</p>
 <img alt="contacts-neural-network" src="https://journals.plos.org/ploscompbiol/article/figure/image?size=large&id=10.1371/journal.pcbi.1005324.g001" width="600px"/>
 <p><a class="reference external" href="https://doi.org/10.1093/bioinformatics/btv472">Ma, J., Wang, S., Wang, Z. and Xu, J., <strong>2015</strong>. Protein contact prediction by integrating joint evolutionary coupling analysis and supervised learning. Bioinformatics, 31, 3506-3513.</a></p>
@@ -558,9 +585,10 @@ If we know the structure, can we understand function?</p>
 <p>AlphaFold2 is very good at generating <strong>one</strong> structure, but what if there are multiple functional states?</p>
 <img alt="GPCR-predictions" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/af2-gpcr.png" width="800px"/>
 <p><a class="reference external" href="https://www.biorxiv.org/content/10.1101/2021.11.26.470086v1">Heo, L., Feig, M. <strong>2021</strong>. Multi-State Modeling of G-protein Coupled Receptors at Experimental Accuracy. bioRxiv, 2021.11.26.470086</a></p>
-<p><strong>RoseTTAfold</strong> is alternative but conceptually similar approach to provide structures at accuracy approaching AlphaFold2.</p>
+<p><strong>RoseTTAfold</strong> is an alternative but conceptually similar approach to provide structures at accuracy approaching AlphaFold2.</p>
 <img alt="RosetTTAfold architecture" src="notpublic/rosettafold.png" width="900px"/>
 <p><a class="reference external" href="https://doi.org/10.1126/science.abj8754">Baek, M., DiMaio, F., Anishchenko, I., Dauparas, J., Ovchinnikov, S., Lee, G.R., Wang, J., Cong, Q., Kinch, L.N., Schaeffer, R.D. and Millán, C., <strong>2021</strong>. Accurate prediction of protein structures and interactions using a three-track neural network. Science, 373, 871-876.</a></p>
+</div>
 </div>
 <div class="section" id="quaternary-structure-prediction">
 <h2>Quaternary structure prediction<a class="headerlink" href="#quaternary-structure-prediction" title="Permalink to this headline">¶</a></h2>
