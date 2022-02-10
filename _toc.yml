@@ -66,4 +66,6 @@ parts:
     numbered: False
     chapters:
     - file: Week-05/W5_Lecture-ProteinStructurePrediction.ipynb
+    - file: Week-05/W5_Lab_StructurePrediction.ipynb
+
 
