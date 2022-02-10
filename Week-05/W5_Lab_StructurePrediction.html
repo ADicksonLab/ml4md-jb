@@ -262,6 +262,11 @@
    Week 05 Lab: Structure Prediction
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -647,6 +652,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Crystal structure of retroviral protease-like domain of Ddi1 from Cryptosporidium hominis
+PDB ID: 7EFY
+Uniprot ID: A0A0S4TE75
+
+&gt;tr|A0A0S4TE75|A0A0S4TE75_CRYHO UBA domain-containing protein OS=Cryptosporidium hominis OX=237895 GN=CHUDEA3_2190 PE=3 SV=1
+MKVNILYSVTGELISVEIHEETTVEVLKSLIEIELNLDSFKNYELSIEGKILQNDGFVLS
+DIVNEGSIFVLSEKTNKNTFENSNFSLNDQENLIQLLSKELFTKIKEDQSLKSVYYSKSS
+KYRDSIDKDDIKSFTELIKNDYFSGNLNSIPSSSNSSSNLYNLDPLSPEYQRLIEEQVRK
+QNVEENLILAQDHLPESFTQVHMLYINAEVNGISIKAFVDSGAQTTIMSKKCAEKCNLVR
+LIDYRFSGIAQGVGTSKIVGKIHVAQMKIGNSFFPFSITVLEESHVDFLFGLDLLKRYQC
+CIDLHQNALIIGDEKVQFLSESEINSEISRIDPNNEYDQCFEQGKKLQLLSLGFSESQVI
+NALRATNGNTELAASLLFSNETFE
+</pre></div>
+</div>
+</div>
 </div>
 <p>Once loaded we can look at the PDB structure</p>
 <div class="cell docutils container">
@@ -663,6 +684,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3d302aeeb9b2437dbd9a5799c4ca2256", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b92d94239a754baba5286384dbf6797d", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <p>Let’s do a bit more analysis of what we have here:</p>
 <div class="cell docutils container">
@@ -685,6 +712,13 @@
     
 <span class="nb">print</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">)</span>
 <span class="n">chaininfo</span><span class="p">(</span><span class="n">pdb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mdtraj.Topology with 2 chains, 118 residues, 857 atoms, 865 bonds&gt;
+chain 0 has residues [[201, 247], [257, 322]], first residue: VAL201
+chain 1 has residues [[401, 405]], first residue: HOH401
 </pre></div>
 </div>
 </div>
@@ -789,6 +823,13 @@
 <p><em>Note:</em> The names of the model PDBs in the downloaded package are different than what is used below (for simplicity). When you generate models yourself, you should either rename the PDBs to match the names below or change the code in the notebook. This also applies to all of the other methods below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget -o work-7efy/af2_rank_1.pdb https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/af2_rank_1.pdb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
 
@@ -827,6 +868,10 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "55c1f887749e422882e3f43daaa90772", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <p>The topology is similar, but there is quite a bit of diversity, especially in the C-terminal domain.</p>
 <p>We only have the experimental structure for the N-terminal domain, but let’s compare:</p>
