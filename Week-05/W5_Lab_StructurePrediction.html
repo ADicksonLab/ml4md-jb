@@ -1,0 +1,1254 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 05 Lab: Structure Prediction &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence" href="W5_Lecture-ProteinStructurePrediction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-05/W5_Lab_StructurePrediction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-05/W5_Lab_StructurePrediction.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-05/W5_Lab_StructurePrediction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-05/W5_Lab_StructurePrediction.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predicting-protein-structures">
+   Predicting protein structures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-a-working-directory">
+     Setting up a working directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-files-from-the-pdb">
+     Getting files from the PDB
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secondary-structure-prediction">
+   Secondary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiary-structure-prediction">
+   Tertiary structure prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold2-predictions">
+     AlphaFold2 predictions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-alphafold2-on-your-own-computer">
+       Install AlphaFold2 on your own computer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-alphafold2-via-the-deepmind-colab-notebook">
+       Run AlphaFold2 via the DeepMind Colab notebook:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-alphafold2-via-an-alternative-colab-notebook">
+       Run AlphaFold2 via an alternative Colab notebook:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rosettafold-predictions">
+     RoseTTAFold predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raptorx-predictions">
+     RaptorX predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-tasser-predictions">
+     I-Tasser predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swiss-model-predictions">
+     SWISS-MODEL predictions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 05 Lab: Structure Prediction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#student-name-your-name-here">
+   Student Name: YOUR NAME HERE
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predicting-protein-structures">
+   Predicting protein structures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-a-working-directory">
+     Setting up a working directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-files-from-the-pdb">
+     Getting files from the PDB
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secondary-structure-prediction">
+   Secondary structure prediction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tertiary-structure-prediction">
+   Tertiary structure prediction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alphafold2-predictions">
+     AlphaFold2 predictions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-alphafold2-on-your-own-computer">
+       Install AlphaFold2 on your own computer
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-alphafold2-via-the-deepmind-colab-notebook">
+       Run AlphaFold2 via the DeepMind Colab notebook:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#run-alphafold2-via-an-alternative-colab-notebook">
+       Run AlphaFold2 via an alternative Colab notebook:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rosettafold-predictions">
+     RoseTTAFold predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raptorx-predictions">
+     RaptorX predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-tasser-predictions">
+     I-Tasser predictions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swiss-model-predictions">
+     SWISS-MODEL predictions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-05-lab-structure-prediction">
+<h1>Week 05 Lab: Structure Prediction<a class="headerlink" href="#week-05-lab-structure-prediction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="student-name-your-name-here">
+<h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="predicting-protein-structures">
+<h2>Predicting protein structures<a class="headerlink" href="#predicting-protein-structures" title="Permalink to this headline">¶</a></h2>
+<p>In this lab we will predict and compare protein structures that were generated via different methods.</p>
+<p>As a test system we will predict a recently solved crystal structure. The experimental structure will be our reference agains we can compare the predictions.</p>
+<p>Many prediction tools use structural databases based on the PDB that are updated regularly. We will use a structure that was made available just yesterday so that it is less likely that structural databases used by different prediction servers have been updated already to reflect the newly solved structure.</p>
+<p>The following three PDBs are good candidates:
+<a class="reference external" href="https://www.rcsb.org/structure/7EFY">7EFY</a>
+<a class="reference external" href="https://www.rcsb.org/structure/7TRV">7TRV</a>
+<a class="reference external" href="https://www.rcsb.org/structure/7E90">7E90</a></p>
+<p>In the following the notebook contains the results for the first (7EFY).</p>
+<p>Your task will be to study this esample and then rerun as much as you can for one of the other targets. The third target (7E90) can probably be done faster and is recommended.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdbid</span><span class="o">=</span><span class="s1">&#39;7EFY&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-up-a-working-directory">
+<h3>Setting up a working directory<a class="headerlink" href="#setting-up-a-working-directory" title="Permalink to this headline">¶</a></h3>
+<p>We may want to store all of the data in a separate working directory. This would be useful if we work on multiple targets. Let’s set it up below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># if we want to store files in current directory uncomment below:</span>
+<span class="c1"># dir=&#39;.&#39;</span>
+
+<span class="nb">dir</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;work-</span><span class="si">{</span><span class="n">pdbid</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-files-from-the-pdb">
+<h3>Getting files from the PDB<a class="headerlink" href="#getting-files-from-the-pdb" title="Permalink to this headline">¶</a></h3>
+<p>We begin by downloading files and information from the PDB</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">get_pdb_from_rcsb</span><span class="p">(</span><span class="n">pdb_id</span><span class="p">):</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;http://files.rcsb.org/download/</span><span class="si">{</span><span class="n">pdb_id</span><span class="si">}</span><span class="s1">.pdb&#39;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_uniprot_id_from_rcsb</span><span class="p">(</span><span class="n">pdb_id</span><span class="p">):</span>
+    <span class="n">query</span><span class="o">=</span><span class="s1">&#39;query={polymer_entity(entry_id:&quot;&#39;</span><span class="o">+</span><span class="n">pdb_id</span><span class="o">+</span><span class="s1">&#39;&quot;, entity_id:&quot;1&quot;){uniprots</span><span class="si">{rcsb_id}</span><span class="s1">}}&#39;</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://data.rcsb.org/graphql&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;polymer_entity&#39;</span><span class="p">][</span><span class="s1">&#39;uniprots&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;rcsb_id&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">get_title_from_rcsb</span><span class="p">(</span><span class="n">pdb_id</span><span class="p">):</span>
+    <span class="n">query</span><span class="o">=</span><span class="s1">&#39;query={entry(entry_id:&quot;&#39;</span><span class="o">+</span><span class="n">pdb_id</span><span class="o">+</span><span class="s1">&#39;&quot;){struct</span><span class="si">{title}</span><span class="s1">}}&#39;</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://data.rcsb.org/graphql&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;entry&#39;</span><span class="p">][</span><span class="s1">&#39;struct&#39;</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">get_fasta_from_uniprot</span><span class="p">(</span><span class="n">uniprot_id</span><span class="p">):</span>
+    <span class="n">response</span><span class="o">=</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;https://www.uniprot.org/uniprot/</span><span class="si">{</span><span class="n">uniprot_id</span><span class="si">}</span><span class="s1">.fasta&#39;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">title</span><span class="o">=</span><span class="n">get_title_from_rcsb</span><span class="p">(</span><span class="n">pdbid</span><span class="p">)</span>
+<span class="n">uniprot</span><span class="o">=</span><span class="n">get_uniprot_id_from_rcsb</span><span class="p">(</span><span class="n">pdbid</span><span class="p">)</span>
+
+<span class="n">pdbfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">pdbid</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pdbfile</span><span class="p">):</span>
+    <span class="n">contents</span><span class="o">=</span><span class="n">get_pdb_from_rcsb</span><span class="p">(</span><span class="n">pdbid</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">pdbfile</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">fastafile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">uniprot</span><span class="si">}</span><span class="s1">.fasta&#39;</span>    
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fastafile</span><span class="p">):</span>
+    <span class="n">contents</span><span class="o">=</span><span class="n">get_fasta_from_uniprot</span><span class="p">(</span><span class="n">uniprot</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">fastafile</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PDB ID: </span><span class="si">{</span><span class="n">pdbid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Uniprot ID: </span><span class="si">{</span><span class="n">uniprot</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fastafile</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">fasta</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fasta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once loaded we can look at the PDB structure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+
+<span class="n">pdb</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">pdbfile</span><span class="p">)</span>
+<span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">(</span><span class="n">nv</span><span class="o">.</span><span class="n">MDTrajTrajectory</span><span class="p">(</span><span class="n">pdb</span><span class="p">))</span>
+<span class="n">view</span><span class="o">.</span><span class="n">clear_representations</span><span class="p">()</span>
+<span class="n">view</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color_scheme</span><span class="o">=</span><span class="s2">&quot;chainindex&quot;</span><span class="p">)</span>
+<span class="n">view</span><span class="o">.</span><span class="n">camera</span><span class="o">=</span><span class="s1">&#39;orthographic&#39;</span>
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s do a bit more analysis of what we have here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chaininfo</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">topology</span>
+    <span class="k">for</span> <span class="n">chain</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">chains</span><span class="p">:</span>
+        <span class="n">seglist</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">first</span><span class="o">=</span><span class="n">last</span><span class="o">=-</span><span class="mi">999</span>
+        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">chain</span><span class="o">.</span><span class="n">residues</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">first</span><span class="o">&lt;-</span><span class="mi">100</span><span class="p">):</span>
+                <span class="n">first</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">resSeq</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">resSeq</span><span class="o">&gt;</span><span class="n">last</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">seglist</span><span class="o">+=</span><span class="p">[[</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">]]</span>
+                    <span class="n">first</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">resSeq</span>
+            <span class="n">last</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">resSeq</span>
+        <span class="n">seglist</span><span class="o">+=</span><span class="p">[[</span><span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">]]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chain </span><span class="si">{</span><span class="n">chain</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s1"> has residues </span><span class="si">{</span><span class="n">seglist</span><span class="si">}</span><span class="s1">, first residue: </span><span class="si">{</span><span class="n">chain</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">)</span>
+<span class="n">chaininfo</span><span class="p">(</span><span class="n">pdb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So in this case, there is only one protein chain. The second ‘chain’ contains water molecules.</p>
+<p>The protein chain covers residues 201-322, with a break between 248-256. So the PDB structure does not cover the entire sequence!</p>
+<p>Let’s set up a pdb that contains just one chain and a selection string we will use later for analysis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">refchain</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;chainid 0&quot;</span><span class="p">)</span>
+<span class="n">pdbref</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">refchain</span><span class="p">)</span>
+
+<span class="n">firstres</span><span class="o">=</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">resSeq</span>
+<span class="n">lastres</span><span class="o">=</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">n_residues</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">resSeq</span>
+
+<span class="n">refresidues</span><span class="o">=</span><span class="s2">&quot;residue 201 to 247 or residue 257 to 322&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="secondary-structure-prediction">
+<h2>Secondary structure prediction<a class="headerlink" href="#secondary-structure-prediction" title="Permalink to this headline">¶</a></h2>
+<p>It is a good idea to start with a prediction of the secondary structure to get an overall idea of a protein.</p>
+<p>Secondary structure prediction traditionally means predicting helices and sheets, but there is additional information about which parts of a sequence may be disordered or correspond to transmembrane helices.</p>
+<p>So let’s start with submitting the amino acid sequence (from the FASTA file above) to the PSIPRED server at:</p>
+<p><a class="reference external" href="http://bioinf.cs.ucl.ac.uk/psipred">http://bioinf.cs.ucl.ac.uk/psipred</a></p>
+<p>There are many options, some of which take a bit of time. A good start is to request only the following:</p>
+<ul class="simple">
+<li><p>PSIPRED 4.0 (secondary structure)</p></li>
+<li><p>DISOPRED3 (disordered elements)</p></li>
+<li><p>MEMSAT-SVM (prediction of transmembrane helices)</p></li>
+</ul>
+<p>It should take 5-20 minutes to obtain an answer.</p>
+<p>The results will appear in the web browser and you can download a package with the results.</p>
+<p>The results for the first system are <a class="reference external" href="http://bioinf.cs.ucl.ac.uk/psipred/&amp;uuid=73062586-898b-11ec-9b8f-00163e100d53">here</a></p>
+<p>The first view that comes up shows the prediction of transmembrane helices. It predicts one TM helix in the middle of the sequence as shown below (the figure is from the package that can be downloaded from the PSIPRED server):</p>
+<img alt="psipred-membrane-topology" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/psipred.membrane.png" width="300px"/> 
+<p>This would suggest two domains on different sides of a membrane. However the <a class="reference external" href="https://www.uniprot.org/uniprot/A0A0S4TE75">sequence entry in Uniprot</a> does not say anything about it and it may be an incorrect prediction. You may need to check the literature for more information.</p>
+<p>To see the secondary structure prediction, click on <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Psipred</span></code>.</p>
+<p>The following figure should appear (which you can download and save to your ‘work’ directory):</p>
+<img alt="psipred" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/psipred.png" width="900px"/> 
+<p>So the structure is mostly ordered with both beta-sheets and alpha-helices. Potentially there are a few disordered segments that could be flexible linkers between different domains.</p>
+<p>How consistent are the predictions from PSIPRED with the experimental structure?</p>
+</div>
+<div class="section" id="tertiary-structure-prediction">
+<h2>Tertiary structure prediction<a class="headerlink" href="#tertiary-structure-prediction" title="Permalink to this headline">¶</a></h2>
+<p>In the rest of the lab we will focus on tertiary structure prediction.</p>
+<p>We will show you how to obtain models via the following tools:</p>
+<ul class="simple">
+<li><p>AlphaFold2</p></li>
+<li><p>RoseTTAfold</p></li>
+<li><p>RaptorX</p></li>
+<li><p>I-Tasser</p></li>
+<li><p>Homology modeling via SWISS-MODEL</p></li>
+</ul>
+<div class="section" id="alphafold2-predictions">
+<h3>AlphaFold2 predictions<a class="headerlink" href="#alphafold2-predictions" title="Permalink to this headline">¶</a></h3>
+<p>Before you think about making predictions, you should check whether a model has already been generated.</p>
+<p>There is a database of AlphaFold2 models available here:</p>
+<p><a class="reference external" href="https://alphafold.ebi.ac.uk/">https://alphafold.ebi.ac.uk/</a></p>
+<p>You can download structures for entire proteomes from here:</p>
+<p><a class="reference external" href="https://alphafold.ebi.ac.uk/download#proteomes-section">https://alphafold.ebi.ac.uk/download#proteomes-section</a></p>
+<p>Alphafold Structures are also provided directly in many uniprot entries, e.g. here:</p>
+<p><a class="reference external" href="https://www.uniprot.org/uniprot/Q5VSL9">https://www.uniprot.org/uniprot/Q5VSL9</a></p>
+<p>If you cannot find a model, you can run AlphaFold2 by yourself. There are three options:</p>
+<div class="section" id="install-alphafold2-on-your-own-computer">
+<h4>Install AlphaFold2 on your own computer<a class="headerlink" href="#install-alphafold2-on-your-own-computer" title="Permalink to this headline">¶</a></h4>
+<p>official distribution with docker:</p>
+<p><a class="reference external" href="https://github.com/deepmind/alphafold">https://github.com/deepmind/alphafold</a></p>
+<p>modified installations without docker:</p>
+<p><a class="reference external" href="https://pythonrepo.com/repo/kuixu-alphafold">https://pythonrepo.com/repo/kuixu-alphafold</a></p>
+<p><a class="reference external" href="https://github.com/kalininalab/alphafold_non_docker">https://github.com/kalininalab/alphafold_non_docker</a></p>
+<p>Note that 2TB disk space and a recent GPU card are needed and it may take several days just to download the necessary databases.</p>
+</div>
+<div class="section" id="run-alphafold2-via-the-deepmind-colab-notebook">
+<h4>Run AlphaFold2 via the DeepMind Colab notebook:<a class="headerlink" href="#run-alphafold2-via-the-deepmind-colab-notebook" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb">https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb</a></p>
+</div>
+<div class="section" id="run-alphafold2-via-an-alternative-colab-notebook">
+<h4>Run AlphaFold2 via an alternative Colab notebook:<a class="headerlink" href="#run-alphafold2-via-an-alternative-colab-notebook" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb">https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb</a></p>
+<p>All versions should run the same AlphaFold2 model, but they differ in how the multiple sequence alignment is generated and whether an initial template is taken from a template database.</p>
+<p>The easiest and fastest way is the last notebook. It uses MMseqs2 for fast alignments and can be run without searching for templates (which often does not make much of a difference).</p>
+<p>For the systems we are working on here (200-400 residues) predictions take between 30 minutes to five hours depending on the Runtime that you are connected to.</p>
+<p><em>Notes:</em></p>
+<ul class="simple">
+<li><p>You will need to login to Google with a non-MSU account and connect to a GPU runtime.</p></li>
+<li><p>You may run out of resources in which case Google will prevent you from running until some time has passed (typically next day).</p></li>
+</ul>
+<p>At the end of an AlphaFold2 run, five models are generated along with some additional analysis. all is packaged up into a zip file and presented for download.</p>
+<p>Let’s look what we get for the example:</p>
+<p>First, the following graph shows you the <strong>multiple sequence coverage</strong> as a function of residue.</p>
+<img alt="af2-msa" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/af2_msa_coverage.png" width="600px"/> 
+<p>Better coverage means more reliable contact predictions and more reliable structures for those residues. So in this case we have coverage across the entire sequence, but it is best towards the N-terminus.</p>
+<p>The <strong>contact maps</strong> used in the predictions are shown next:</p>
+<img alt="af2-contacts" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/af2_contactmap.png" width="900px"/> 
+<p>To assess the <strong>quality of the models</strong> that are generated, AlphaFold2 predicts lDDT scores as a measure of local residue accuracy. The maximum value is 100 and many parts of the structure reach such values as shown in the next plot. Residues for which the plDDT values are lower indicate that the model is likely less accurate - or that there is a dynamic region for which a single structure makes less sense.</p>
+<img alt="af2-plddt" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work-7efy/af2_plddt.png" width="700px"/> 
+<p>Finally, we look at the models themselves. The models are ranked by the total plDDT scores.</p>
+<p><em>Note:</em> The names of the model PDBs in the downloaded package are different than what is used below (for simplicity). When you generate models yourself, you should either rename the PDBs to match the names below or change the code in the notebook. This also applies to all of the other methods below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+
+<span class="k">def</span> <span class="nf">showmodels</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span>
+    <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)):</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">add_trajectory</span><span class="p">(</span><span class="n">nv</span><span class="o">.</span><span class="n">MDTrajTrajectory</span><span class="p">(</span><span class="n">mol</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)):</span>
+        <span class="n">view</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">clear_representations</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;brown&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">6</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">7</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">8</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">9</span><span class="p">):</span> <span class="n">view</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
+
+    <span class="n">view</span><span class="o">.</span><span class="n">camera</span><span class="o">=</span><span class="s1">&#39;orthographic&#39;</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+
+<span class="n">af</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">affile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/af2_rank_</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+    <span class="n">af</span><span class="o">+=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">affile</span><span class="p">)]</span>
+    
+<span class="n">afnlist</span><span class="o">=</span><span class="n">af</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">af</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">af</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">af</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">afnlist</span><span class="p">)</span>
+
+<span class="n">showmodels</span><span class="p">(</span><span class="n">af</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The topology is similar, but there is quite a bit of diversity, especially in the C-terminal domain.</p>
+<p>We only have the experimental structure for the N-terminal domain, but let’s compare:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_rmsd</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">ref</span><span class="p">,</span><span class="n">residues</span><span class="p">):</span>
+    <span class="n">reflist</span><span class="o">=</span><span class="n">ref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+    <span class="n">targetlist</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">residues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">rmsd</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">ref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">targetlist</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">af</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">af</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So how good is the best model for the N-terminal domain?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">comparewithpdb</span><span class="p">(</span><span class="n">pdb</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">residues</span><span class="p">):</span>
+    <span class="n">reflist</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+    <span class="n">targetlist</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">residues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="n">smodel</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdb</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">targetlist</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)</span>
+
+    <span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">()</span>
+
+    <span class="n">view</span><span class="o">.</span><span class="n">add_trajectory</span><span class="p">(</span><span class="n">nv</span><span class="o">.</span><span class="n">MDTrajTrajectory</span><span class="p">(</span><span class="n">pdb</span><span class="p">))</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">add_trajectory</span><span class="p">(</span><span class="n">nv</span><span class="o">.</span><span class="n">MDTrajTrajectory</span><span class="p">(</span><span class="n">smodel</span><span class="p">))</span>
+    
+    <span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">clear_representations</span><span class="p">()</span>
+    <span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">clear_representations</span><span class="p">()</span>
+    <span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_cartoon</span><span class="p">(</span><span class="s1">&#39;protein&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+    <span class="n">view</span><span class="o">.</span><span class="n">camera</span><span class="o">=</span><span class="s1">&#39;orthographic&#39;</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>    
+
+<span class="n">afnterm</span><span class="o">=</span><span class="n">af</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">afnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">afnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rosettafold-predictions">
+<h3>RoseTTAFold predictions<a class="headerlink" href="#rosettafold-predictions" title="Permalink to this headline">¶</a></h3>
+<p>To run RoseTTAfold, you can install it again locally. For more details check <a class="reference external" href="https://github.com/RosettaCommons/RoseTTAFold">here</a></p>
+<p>Alternatively, you can obtain predictions via the Robetta server:</p>
+<p><a class="reference external" href="https://robetta.bakerlab.org/submit.php">https://robetta.bakerlab.org/submit.php</a></p>
+<p>You have to create an account and login in order to submit predictions but the server is responsive and you can get results relatively quickly.</p>
+<p>When submitting a job, there are different options. Make sure you select <code class="docutils literal notranslate"><span class="pre">RoseTTAFold</span></code> to get the best predictions. Older methods are available as well if you are interested in comparisons.</p>
+<p>At the end five models are generated.</p>
+<p>The results for the example are <a class="reference external" href="https://robetta.bakerlab.org/results.php?id=207611">here</a></p>
+<p>On the web site there is additional information about predicated accuracy as a function of residue index for each of the model.</p>
+<p>You can download only a single PDB that contains all five models.</p>
+<p>The resulting PDB is processed below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rff</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">rfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/rff_models.pdb&#39;</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">rff</span><span class="o">+=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">rfile</span><span class="p">,</span><span class="n">frame</span><span class="o">=</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="n">rfnlist</span><span class="o">=</span><span class="n">rff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rff</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">rff</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">rff</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">rfnlist</span><span class="p">)</span>
+    
+<span class="n">showmodels</span><span class="p">(</span><span class="n">rff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, there is again quite a bit of diversity, especially in the C-terminal domain.</p>
+<p>Let’s compare again with the N-terminal experimental structure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rff</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">rff</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rffnterm</span><span class="o">=</span><span class="n">rff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">rfnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">rffnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="raptorx-predictions">
+<h3>RaptorX predictions<a class="headerlink" href="#raptorx-predictions" title="Permalink to this headline">¶</a></h3>
+<p>RaptorX is available for download <a class="reference external" href="http://raptorx.uchicago.edu/download/">here</a></p>
+<p>Otherwise, we can submit a sequence to the server at:</p>
+<p><a class="reference external" href="http://raptorx.uchicago.edu/ContactMap/">http://raptorx.uchicago.edu/ContactMap/</a></p>
+<p>There are no important options, just the amino acid sequence is needed.</p>
+<p>No registration is needed, but once an email is provided, there is an automatic registration process.</p>
+<p>It may take a few hours to obtain a prediction depending on how busy the server is.</p>
+<p>At the end five models are generated.</p>
+<p>The results for the example are <a class="reference external" href="http://raptorx.uchicago.edu/ContactMap/myjobs/22110354_703375/">here</a></p>
+<p>There is quite a bit information on the web interface and a package with the complete results can be downloaded.</p>
+<p>The models are ranked by a scoring function. The models are anlyzed below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rx</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">rfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/rx_rank_</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+    <span class="n">rx</span><span class="o">+=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">rfile</span><span class="p">)]</span>
+    
+<span class="n">rxnlist</span><span class="o">=</span><span class="n">rx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">rx</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">rx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">rxnlist</span><span class="p">)</span>
+    
+<span class="n">showmodels</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare with the experimental structure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">rx</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rxnterm</span><span class="o">=</span><span class="n">rx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">rxnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">rxnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="i-tasser-predictions">
+<h3>I-Tasser predictions<a class="headerlink" href="#i-tasser-predictions" title="Permalink to this headline">¶</a></h3>
+<p>I-Tasser software can be downloaded from <a class="reference external" href="https://zhanggroup.org/I-TASSER/download/">here</a></p>
+<p>The server is available via the following link:</p>
+<p><a class="reference external" href="https://zhanggroup.org/I-TASSER/">https://zhanggroup.org/I-TASSER/</a></p>
+<p>Registration (not with a .com email address!) is required and only one job can be submitted at a time.</p>
+<p>The input is the amino acid sequence, an email address, a password (obtained after registering) . There are additional options to include restraints but for standard structure prediction they are not needed.</p>
+<p>The server is quite busy and it may take about a day to obtain results.</p>
+<p>At the end five models are generated.</p>
+<p>The output for the example is <a class="reference external" href="https://zhanggroup.org/I-TASSER/output/S669847/384vym/">here</a></p>
+<p>The models are ranked by <code class="docutils literal notranslate"><span class="pre">C-score</span></code>, a confidence score that is correlated with expected model accuracy.  Larger values are better and in this example, none of the C-scores are very good.</p>
+<p>There is a package with the results that can be downloaded with a lot of information, including structures of the fragments from threading that were used in the model assembly.</p>
+<p>Below, we look at the models:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">it</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">rfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/it_rank_</span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.pdb&#39;</span>
+    <span class="n">it</span><span class="o">+=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">rfile</span><span class="p">)]</span>
+
+<span class="n">itnlist</span><span class="o">=</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">it</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">it</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">atom_indices</span><span class="o">=</span><span class="n">itnlist</span><span class="p">)</span>
+    
+<span class="n">showmodels</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The topology is similar, but there is quite a bit of diversity, especially in the C-terminal domain.</p>
+<p>We only have the experimental structure for the N-terminal domain, but let’s compare:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">it</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">it</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">itnterm</span><span class="o">=</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">itnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">itnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That is not so great but there is another model …</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">itnterm2</span><span class="o">=</span><span class="n">it</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">itnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">itnterm2</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="swiss-model-predictions">
+<h3>SWISS-MODEL predictions<a class="headerlink" href="#swiss-model-predictions" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we come to homology modeling. The classic software for homology modeling is <a class="reference external" href="https://salilab.org/modeller/">MODELLER</a>. The software can be installed easily, but to use it, one has to find templates and generate alignments separately, for example via <a class="reference external" href="https://toolkit.tuebingen.mpg.de/tools/hhpred">HHpred</a>.</p>
+<p>Another way to do homology is via the SWISS-MODEL service:</p>
+<p><a class="reference external" href="https://swissmodel.expasy.org/interactive">https://swissmodel.expasy.org/interactive</a></p>
+<p>There are two steps:</p>
+<ul class="simple">
+<li><p>Search for possible templates based on PDB structures based on the given sequence</p></li>
+<li><p>Model building after selecting a template</p></li>
+</ul>
+<p>We want to select the best template, but SWISS-MODEL updates their databases very rapidly and already had the new PDB structures immediately after they were released.</p>
+<p>To test homology modeling we have to check the presented templates carefully and select one that is not identical to the experimental structure.</p>
+<p>For the example, we choose 4Z2Z as the best template that is listed after the actual PDB structures. Once we have selected a template, we can build a model.</p>
+<p>It is possible to build multiple models based on multiple templates. Homology modeling is fast and results are available quickly.</p>
+<p>An alternative is to build models based on a user-provided template via the same <a class="reference external" href="https://swissmodel.expasy.org/interactive">link</a>. In this case, we have to provide a PDB structure.
+With the large number of AlphaFold2 models, it is an interesting option to use one of those models from the <a class="reference external" href="https://alphafold.ebi.ac.uk/">AlphaFold database</a> as a template. You can find suitable templates based on sequence via this interface:</p>
+<p><a class="reference external" href="https://www.ebi.ac.uk/Tools/sss/fasta/">https://www.ebi.ac.uk/Tools/sss/fasta/</a></p>
+<p>You will have to go to the <code class="docutils literal notranslate"><span class="pre">Structures</span></code> tab and select <code class="docutils literal notranslate"><span class="pre">AlphaFold</span> <span class="pre">DB</span></code>.</p>
+<p>For the example, the closest template is <a class="reference external" href="https://alphafold.ebi.ac.uk/entry/Q8IM03">AFDB:AF-Q8IM03-F1</a></p>
+<p>The results for the example based on 4Z2Z are <a class="reference external" href="https://swissmodel.expasy.org/interactive/SjBcL8/models/">here</a></p>
+<p>The result for the example based on the AlphaFold2 template structure are <a class="reference external" href="https://swissmodel.expasy.org/interactive/YhjybT/models/">here</a></p>
+<p>As with other methods, there is an estimate of model quality and the generated model can be downloaded (under the <code class="docutils literal notranslate"><span class="pre">Model</span> <span class="pre">01</span></code> tab on the left).</p>
+<p>Let’s look first at the homology model based on the closest template from the PDB (4Z2Z):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/swissmodel_hm.pdb&#39;</span>
+<span class="n">smhm</span><span class="o">=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">rfile</span><span class="p">)]</span>
+<span class="n">showmodels</span><span class="p">(</span><span class="n">smhm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The homology model was built as a dimer because the template is a dimer. Let’s continue with just the first chain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chaininfo</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;chainid 0&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smhm</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smhmnlist</span><span class="o">=</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">smhmnterm</span><span class="o">=</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">smhmnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">smhmnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally let’s look at the homology model based on the closest AF2 template (AF_Q8IM03):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rfile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">dir</span><span class="si">}</span><span class="s1">/swissmodel_af.pdb&#39;</span>
+<span class="n">smaf</span><span class="o">=</span><span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="n">rfile</span><span class="p">)]</span>
+<span class="n">showmodels</span><span class="p">(</span><span class="n">smaf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smaf</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">smaf</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smafnlist</span><span class="o">=</span><span class="n">smaf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;residue&gt;=</span><span class="si">{</span><span class="n">firstres</span><span class="si">}</span><span class="s1"> and residue&lt;=</span><span class="si">{</span><span class="n">lastres</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">smafnterm</span><span class="o">=</span><span class="n">smaf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">smafnlist</span><span class="p">)</span>
+
+<span class="n">comparewithpdb</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">smafnterm</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the analysis for all of the models together:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">refresidues</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">af</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">af</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;AlphaFold2        model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rff</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">rff</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;RoseTTAFold       model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">rx</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Raptor X          model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">it</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">it</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;I-Tasser          model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smhm</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SWISS-MODEL (PDB) model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smaf</span><span class="p">)):</span>
+    <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">smaf</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SWISS-MODEL (AF)  model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best</span><span class="o">=</span><span class="p">[</span><span class="n">pdbref</span><span class="p">]</span>
+<span class="n">reflist</span><span class="o">=</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA&quot;</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">af</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">af</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">rff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">rff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">rx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">rx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">it</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="nb">list</span><span class="o">=</span><span class="n">smaf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;name CA and (&quot;</span><span class="o">+</span><span class="n">refresidues</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="n">best</span><span class="o">+=</span><span class="p">[</span><span class="n">smaf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">superpose</span><span class="p">(</span><span class="n">pdbref</span><span class="p">,</span><span class="n">atom_indices</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span><span class="n">ref_atom_indices</span><span class="o">=</span><span class="n">reflist</span><span class="p">)]</span>
+
+<span class="n">showmodels</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do your predictions look like?</p>
+<p>Can you think of more ways in which the models can be analyzed/compared?</p>
+<p>Which model you would select and which parts you would trust?</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="W5_Lecture-ProteinStructurePrediction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
