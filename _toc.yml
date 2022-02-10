@@ -67,5 +67,7 @@ parts:
     chapters:
     - file: Week-05/W5_Lecture-ProteinStructurePrediction.ipynb
     - file: Week-05/W5_Lab_StructurePrediction.ipynb
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip
+      title: work7efy.zip
 
 
