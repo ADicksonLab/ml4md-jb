@@ -37,9 +37,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -126,6 +129,16 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
    LearnPython.zip
   </a>
@@ -143,16 +156,6 @@
  <li class="toctree-l1">
   <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
    sEH_unbinding.dcd
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
-   Week 01 Lecture: Welcome to ML4MD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
-   Week 01 Lab: Python Refresher Course
   </a>
  </li>
 </ul>
@@ -266,6 +269,18 @@
  <li class="toctree-l1">
   <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
    work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
   </a>
  </li>
 </ul>
@@ -642,33 +657,8 @@
 <p>Instead of downloading it via the browswer, you can use <code class="docutils literal notranslate"><span class="pre">wget</span></code> in the cell below. That may be convenient when using Google Colab.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget -nc http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-nowater.pdb
-<span class="o">!</span>wget -nc http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-3x250ns-heavy-atom-positions.npz
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2022-02-03 14:17:44--  http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-nowater.pdb
-Resolving ftp.imp.fu-berlin.de (ftp.imp.fu-berlin.de)... 160.45.117.8
-Connecting to ftp.imp.fu-berlin.de (ftp.imp.fu-berlin.de)|160.45.117.8|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 1813 (1.8K) [chemical/x-pdb]
-Saving to: ‘alanine-dipeptide-nowater.pdb’
-
-alanine-dipeptide-n 100%[===================&gt;]   1.77K  --.-KB/s    in 0s      
-
-2022-02-03 14:17:44 (347 MB/s) - ‘alanine-dipeptide-nowater.pdb’ saved [1813/1813]
-
---2022-02-03 14:17:44--  http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-3x250ns-heavy-atom-positions.npz
-Resolving ftp.imp.fu-berlin.de (ftp.imp.fu-berlin.de)... 160.45.117.8
-Connecting to ftp.imp.fu-berlin.de (ftp.imp.fu-berlin.de)|160.45.117.8|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 90000544 (86M)
-Saving to: ‘alanine-dipeptide-3x250ns-heavy-atom-positions.npz’
-
-alanine-dipeptide-3 100%[===================&gt;]  85.83M  42.9MB/s    in 2.0s    
-
-2022-02-03 14:17:46 (42.9 MB/s) - ‘alanine-dipeptide-3x250ns-heavy-atom-positions.npz’ saved [90000544/90000544]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !wget -nc http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-nowater.pdb</span>
+<span class="c1"># !wget -nc http://ftp.imp.fu-berlin.de/pub/cmb-data/alanine-dipeptide-3x250ns-heavy-atom-positions.npz</span>
 </pre></div>
 </div>
 </div>
@@ -699,7 +689,7 @@ alanine-dipeptide-3 100%[===================&gt;]  85.83M  42.9MB/s    in 2.0s
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6ce4152becff484191923ade3a583335", "version_major": 2, "version_minor": 0}
+{"model_id": "c52a2ab200fc4c9d8227fc4c126bffa1", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Decide which device we want to run on pytorch (which we will use to implement neural networks)</p>
@@ -759,7 +749,7 @@ alanine-dipeptide-3 100%[===================&gt;]  85.83M  42.9MB/s    in 2.0s
 <p>Insert in the cell below the number of atoms that we have in our system.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_atoms</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Your code here.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -767,12 +757,6 @@ alanine-dipeptide-3 100%[===================&gt;]  85.83M  42.9MB/s    in 2.0s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number_of_frames</span> <span class="o">=</span> <span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">number_of_frames</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>750000
 </pre></div>
 </div>
 </div>
@@ -781,7 +765,7 @@ alanine-dipeptide-3 100%[===================&gt;]  85.83M  42.9MB/s    in 2.0s
 See <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html">https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">all_xyz</span><span class="p">,(</span><span class="n">number_of_frames</span><span class="p">,</span><span class="n">n_atoms</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># Your code here.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span> <span class="o">=</span> <span class="n">all_xyz</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">number_of_frames</span><span class="p">,</span><span class="n">n_atoms</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># Your code here.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Final xyz array shape:&quot;</span><span class="p">,</span> <span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -837,7 +821,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mdtraj.Topology with 1 chains, 3 residues, 10 atoms, 9 bonds at 0x7f60845148b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mdtraj.Topology with 1 chains, 3 residues, 10 atoms, 9 bonds at 0x7fb30d58bdf0&gt;
 </pre></div>
 </div>
 </div>
@@ -866,7 +850,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "615bf200313c4e10b3f6ac8a77f61792", "version_major": 2, "version_minor": 0}
+{"model_id": "8070215fb1ba46acbd9be7cfbcc185eb", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>The conformations seem to be somewhat centered. That’s lucky! Our generative model will generate xyz coordinates. We will use neural networks that are NOT SE(3) invariant. This means that rotating or translating the conformations could drastically alter the way our networks see the conformations.</p>
@@ -936,43 +920,43 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 39902
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 27504
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 44083
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 25274
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 22054
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 46684
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 17340
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 33331
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_7.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 15262
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 27624
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_9.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 6801
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 779
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_11.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 4142
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 1815
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_13.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 46055
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 38312
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_15.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 36638
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 10070
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_17.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 36144
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 44272
 </pre></div>
 </div>
 <img alt="../_images/W4_Lab_GenerateMolecularConformations_38_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_19.png" />
@@ -1269,7 +1253,9 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19840
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19968
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20096
-- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20224
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20224
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20352
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20480
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20608
@@ -1427,7 +1413,9 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40064
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40192
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40320
-- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40448
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40448
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40576
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40704
 - Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40832
@@ -1515,8 +1503,8 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <p>We will use <code class="docutils literal notranslate"><span class="pre">16</span></code> as the dimension of our latent space from where the <code class="docutils literal notranslate"><span class="pre">z</span></code> vectors are sampled. Again, this is some hyper-parameter that would need fine-tuning, but <code class="docutils literal notranslate"><span class="pre">16</span></code> is probably a good value here. Usually, the dimension of <code class="docutils literal notranslate"><span class="pre">z</span></code> is supposed to be lower than that <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_z</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Latent space dimension.</span>
-<span class="n">hidden_dim_g</span> <span class="o">=</span> <span class="mi">1024</span>  <span class="c1"># Number of hidden units in our generator MLP.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_z</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Latent space dimension.</span>
+<span class="n">hidden_dim_g</span> <span class="o">=</span> <span class="mi">196</span>  <span class="c1"># Number of hidden units in our generator MLP.</span>
                     <span class="c1"># In GANs, the competing generator and discriminator should be &quot;balanced&quot;</span>
                     <span class="c1"># so we will need to use a similar value for the discriminator (see below).</span>
 </pre></div>
@@ -1564,11 +1552,11 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generator(
-  (input_layer): Linear(in_features=16, out_features=1024, bias=True)
+  (input_layer): Linear(in_features=4, out_features=196, bias=True)
   (act_0): ReLU()
-  (hidden_layer_1): Linear(in_features=1024, out_features=1024, bias=True)
+  (hidden_layer_1): Linear(in_features=196, out_features=196, bias=True)
   (act_1): ReLU()
-  (output_layer): Linear(in_features=1024, out_features=30, bias=True)
+  (output_layer): Linear(in_features=196, out_features=30, bias=True)
 )
 </pre></div>
 </div>
@@ -1590,7 +1578,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- z shape: torch.Size([32, 16])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- z shape: torch.Size([32, 4])
 - x_gen shape: torch.Size([32, 10, 3])
 </pre></div>
 </div>
@@ -1615,6 +1603,18 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_dim_d</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="n">use_spectral_norm</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">use_scaler</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(50000, 10, 3)
 </pre></div>
 </div>
 </div>
@@ -1720,16 +1720,16 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- x_ref shape: torch.Size([128, 10, 3])
 - discriminator output shape: torch.Size([128, 1])
-- First 10 elements of the output: tensor([[0.4346],
-        [0.4429],
-        [0.4521],
-        [0.4680],
-        [0.4676],
-        [0.4522],
-        [0.4055],
-        [0.4289],
-        [0.4952],
-        [0.4316]])
+- First 10 elements of the output: tensor([[0.5348],
+        [0.5043],
+        [0.4772],
+        [0.5041],
+        [0.5518],
+        [0.4964],
+        [0.4849],
+        [0.5096],
+        [0.4949],
+        [0.5098]])
 </pre></div>
 </div>
 </div>
@@ -2009,224 +2009,224 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 
 
 # Epoch 0 of 50
-[0/50]	Loss_D: 0.1241	Loss_G: 4.8512	D(x): 0.6121	D(G(z)): 0.0542
-	Average KLD for all inter-atomic distances: 10.2652
+[0/50]	Loss_D: 0.2939	Loss_G: 3.3048	D(x): 0.6044	D(G(z)): 0.1026
+	Average KLD for all inter-atomic distances: 1.6616
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_1.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 1 of 50
-[1/50]	Loss_D: 0.2247	Loss_G: 5.5331	D(x): 0.7992	D(G(z)): 0.0885
-	Average KLD for all inter-atomic distances: 6.9317
+[1/50]	Loss_D: 0.3500	Loss_G: 2.4367	D(x): 0.7458	D(G(z)): 0.1498
+	Average KLD for all inter-atomic distances: 1.2268
 
 # Epoch 2 of 50
-[2/50]	Loss_D: 0.2752	Loss_G: 5.3413	D(x): 0.8497	D(G(z)): 0.1015
-	Average KLD for all inter-atomic distances: 2.7086
+[2/50]	Loss_D: 0.4514	Loss_G: 2.1169	D(x): 0.7753	D(G(z)): 0.1882
+	Average KLD for all inter-atomic distances: 1.1237
 
 # Epoch 3 of 50
-[3/50]	Loss_D: 0.3648	Loss_G: 4.8661	D(x): 0.8606	D(G(z)): 0.1284
-	Average KLD for all inter-atomic distances: 3.0554
+[3/50]	Loss_D: 0.4859	Loss_G: 2.1314	D(x): 0.7860	D(G(z)): 0.1979
+	Average KLD for all inter-atomic distances: 1.0207
 
 # Epoch 4 of 50
-[4/50]	Loss_D: 0.3287	Loss_G: 4.3222	D(x): 0.8631	D(G(z)): 0.1225
-	Average KLD for all inter-atomic distances: 1.6382
+[4/50]	Loss_D: 0.5891	Loss_G: 1.8881	D(x): 0.7702	D(G(z)): 0.2338
+	Average KLD for all inter-atomic distances: 0.9749
 
 # Epoch 5 of 50
-[5/50]	Loss_D: 0.4585	Loss_G: 4.3878	D(x): 0.8494	D(G(z)): 0.1565
-	Average KLD for all inter-atomic distances: 1.7236
+[5/50]	Loss_D: 0.6287	Loss_G: 1.8017	D(x): 0.7564	D(G(z)): 0.2475
+	Average KLD for all inter-atomic distances: 0.9421
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_3.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 6 of 50
-[6/50]	Loss_D: 0.3690	Loss_G: 4.1126	D(x): 0.8523	D(G(z)): 0.1359
-	Average KLD for all inter-atomic distances: 1.8033
+[6/50]	Loss_D: 0.6326	Loss_G: 1.8902	D(x): 0.7531	D(G(z)): 0.2443
+	Average KLD for all inter-atomic distances: 0.9153
 
 # Epoch 7 of 50
-[7/50]	Loss_D: 0.4064	Loss_G: 3.8215	D(x): 0.8484	D(G(z)): 0.1503
-	Average KLD for all inter-atomic distances: 1.7114
+[7/50]	Loss_D: 0.5837	Loss_G: 1.8274	D(x): 0.7597	D(G(z)): 0.2346
+	Average KLD for all inter-atomic distances: 0.8936
 
 # Epoch 8 of 50
-[8/50]	Loss_D: 0.4584	Loss_G: 3.7628	D(x): 0.8417	D(G(z)): 0.1646
-	Average KLD for all inter-atomic distances: 2.4627
+[8/50]	Loss_D: 0.6218	Loss_G: 1.5838	D(x): 0.7497	D(G(z)): 0.2550
+	Average KLD for all inter-atomic distances: 0.825
 
 # Epoch 9 of 50
-[9/50]	Loss_D: 0.4898	Loss_G: 3.7442	D(x): 0.8309	D(G(z)): 0.1730
-	Average KLD for all inter-atomic distances: 1.448
+[9/50]	Loss_D: 0.6164	Loss_G: 1.7354	D(x): 0.7536	D(G(z)): 0.2467
+	Average KLD for all inter-atomic distances: 0.8135
 
 # Epoch 10 of 50
-[10/50]	Loss_D: 0.4415	Loss_G: 3.6018	D(x): 0.8341	D(G(z)): 0.1622
-	Average KLD for all inter-atomic distances: 3.3572
+[10/50]	Loss_D: 0.6565	Loss_G: 1.7242	D(x): 0.7480	D(G(z)): 0.2573
+	Average KLD for all inter-atomic distances: 0.7954
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_5.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 11 of 50
-[11/50]	Loss_D: 0.3546	Loss_G: 3.1467	D(x): 0.8477	D(G(z)): 0.1440
-	Average KLD for all inter-atomic distances: 1.9027
+[11/50]	Loss_D: 0.6941	Loss_G: 1.6562	D(x): 0.7354	D(G(z)): 0.2697
+	Average KLD for all inter-atomic distances: 0.7579
 
 # Epoch 12 of 50
-[12/50]	Loss_D: 0.5116	Loss_G: 3.4922	D(x): 0.8278	D(G(z)): 0.1800
-	Average KLD for all inter-atomic distances: 1.0052
+[12/50]	Loss_D: 0.7132	Loss_G: 1.6435	D(x): 0.7288	D(G(z)): 0.2744
+	Average KLD for all inter-atomic distances: 0.7299
 
 # Epoch 13 of 50
-[13/50]	Loss_D: 0.4897	Loss_G: 3.3051	D(x): 0.8228	D(G(z)): 0.1794
-	Average KLD for all inter-atomic distances: 1.3774
+[13/50]	Loss_D: 0.6547	Loss_G: 1.7107	D(x): 0.7371	D(G(z)): 0.2568
+	Average KLD for all inter-atomic distances: 0.8327
 
 # Epoch 14 of 50
-[14/50]	Loss_D: 0.4965	Loss_G: 3.1078	D(x): 0.8169	D(G(z)): 0.1849
-	Average KLD for all inter-atomic distances: 0.9726
+[14/50]	Loss_D: 0.6157	Loss_G: 1.5941	D(x): 0.7451	D(G(z)): 0.2527
+	Average KLD for all inter-atomic distances: 0.7141
 
 # Epoch 15 of 50
-[15/50]	Loss_D: 0.4950	Loss_G: 3.1153	D(x): 0.8164	D(G(z)): 0.1833
-	Average KLD for all inter-atomic distances: 1.0904
+[15/50]	Loss_D: 0.7035	Loss_G: 1.3889	D(x): 0.7175	D(G(z)): 0.2865
+	Average KLD for all inter-atomic distances: 0.7319
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_7.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 16 of 50
-[16/50]	Loss_D: 0.5191	Loss_G: 3.0323	D(x): 0.8102	D(G(z)): 0.1909
-	Average KLD for all inter-atomic distances: 1.1783
+[16/50]	Loss_D: 0.6473	Loss_G: 1.6265	D(x): 0.7368	D(G(z)): 0.2593
+	Average KLD for all inter-atomic distances: 0.6949
 
 # Epoch 17 of 50
-[17/50]	Loss_D: 0.4910	Loss_G: 2.9016	D(x): 0.8102	D(G(z)): 0.1861
-	Average KLD for all inter-atomic distances: 1.5669
+[17/50]	Loss_D: 0.7069	Loss_G: 1.5869	D(x): 0.7282	D(G(z)): 0.2757
+	Average KLD for all inter-atomic distances: 0.6139
 
 # Epoch 18 of 50
-[18/50]	Loss_D: 0.4552	Loss_G: 2.7258	D(x): 0.8183	D(G(z)): 0.1804
-	Average KLD for all inter-atomic distances: 0.9618
+[18/50]	Loss_D: 0.7367	Loss_G: 1.5563	D(x): 0.7197	D(G(z)): 0.2843
+	Average KLD for all inter-atomic distances: 0.5917
 
 # Epoch 19 of 50
-[19/50]	Loss_D: 0.5260	Loss_G: 2.8211	D(x): 0.8027	D(G(z)): 0.1954
-	Average KLD for all inter-atomic distances: 0.6922
+[19/50]	Loss_D: 0.7371	Loss_G: 1.5442	D(x): 0.7168	D(G(z)): 0.2847
+	Average KLD for all inter-atomic distances: 0.5693
 
 # Epoch 20 of 50
-[20/50]	Loss_D: 0.5466	Loss_G: 2.8064	D(x): 0.7996	D(G(z)): 0.2009
-	Average KLD for all inter-atomic distances: 0.7047
+[20/50]	Loss_D: 0.7035	Loss_G: 1.5497	D(x): 0.7209	D(G(z)): 0.2767
+	Average KLD for all inter-atomic distances: 0.5697
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_9.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 21 of 50
-[21/50]	Loss_D: 0.5467	Loss_G: 2.7136	D(x): 0.7974	D(G(z)): 0.2030
-	Average KLD for all inter-atomic distances: 0.7099
+[21/50]	Loss_D: 0.6863	Loss_G: 1.4516	D(x): 0.7188	D(G(z)): 0.2785
+	Average KLD for all inter-atomic distances: 0.5905
 
 # Epoch 22 of 50
-[22/50]	Loss_D: 0.5514	Loss_G: 2.6269	D(x): 0.7943	D(G(z)): 0.2064
-	Average KLD for all inter-atomic distances: 0.6373
+[22/50]	Loss_D: 0.7466	Loss_G: 1.2910	D(x): 0.6986	D(G(z)): 0.3037
+	Average KLD for all inter-atomic distances: 0.5662
 
 # Epoch 23 of 50
-[23/50]	Loss_D: 0.5626	Loss_G: 2.5905	D(x): 0.7909	D(G(z)): 0.2096
-	Average KLD for all inter-atomic distances: 0.8187
+[23/50]	Loss_D: 0.7158	Loss_G: 1.3951	D(x): 0.7074	D(G(z)): 0.2895
+	Average KLD for all inter-atomic distances: 0.5513
 
 # Epoch 24 of 50
-[24/50]	Loss_D: 0.5682	Loss_G: 2.5653	D(x): 0.7897	D(G(z)): 0.2113
-	Average KLD for all inter-atomic distances: 0.7568
+[24/50]	Loss_D: 0.7085	Loss_G: 1.5222	D(x): 0.7214	D(G(z)): 0.2794
+	Average KLD for all inter-atomic distances: 0.5658
 
 # Epoch 25 of 50
-[25/50]	Loss_D: 0.5738	Loss_G: 2.5432	D(x): 0.7867	D(G(z)): 0.2131
-	Average KLD for all inter-atomic distances: 0.8308
+[25/50]	Loss_D: 0.7327	Loss_G: 1.5223	D(x): 0.7171	D(G(z)): 0.2846
+	Average KLD for all inter-atomic distances: 0.5438
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_11.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_11.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 26 of 50
-[26/50]	Loss_D: 0.5728	Loss_G: 2.5261	D(x): 0.7869	D(G(z)): 0.2126
-	Average KLD for all inter-atomic distances: 0.6752
+[26/50]	Loss_D: 0.7496	Loss_G: 1.4909	D(x): 0.7125	D(G(z)): 0.2902
+	Average KLD for all inter-atomic distances: 0.4739
 
 # Epoch 27 of 50
-[27/50]	Loss_D: 0.5785	Loss_G: 2.4411	D(x): 0.7834	D(G(z)): 0.2168
-	Average KLD for all inter-atomic distances: 0.6249
+[27/50]	Loss_D: 0.7590	Loss_G: 1.4542	D(x): 0.7071	D(G(z)): 0.2946
+	Average KLD for all inter-atomic distances: 0.4742
 
 # Epoch 28 of 50
-[28/50]	Loss_D: 0.5540	Loss_G: 2.3682	D(x): 0.7851	D(G(z)): 0.2129
-	Average KLD for all inter-atomic distances: 0.7488
+[28/50]	Loss_D: 0.7442	Loss_G: 1.4311	D(x): 0.7077	D(G(z)): 0.2926
+	Average KLD for all inter-atomic distances: 0.4624
 
 # Epoch 29 of 50
-[29/50]	Loss_D: 0.5655	Loss_G: 2.3143	D(x): 0.7832	D(G(z)): 0.2172
-	Average KLD for all inter-atomic distances: 0.7186
+[29/50]	Loss_D: 0.7606	Loss_G: 1.3611	D(x): 0.7002	D(G(z)): 0.3012
+	Average KLD for all inter-atomic distances: 0.4551
 
 # Epoch 30 of 50
-[30/50]	Loss_D: 0.5929	Loss_G: 2.3630	D(x): 0.7788	D(G(z)): 0.2216
-	Average KLD for all inter-atomic distances: 0.6753
+[30/50]	Loss_D: 0.7842	Loss_G: 1.3309	D(x): 0.6933	D(G(z)): 0.3087
+	Average KLD for all inter-atomic distances: 0.4169
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_13.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_13.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 31 of 50
-[31/50]	Loss_D: 0.5965	Loss_G: 2.3239	D(x): 0.7768	D(G(z)): 0.2238
-	Average KLD for all inter-atomic distances: 0.5553
+[31/50]	Loss_D: 0.7595	Loss_G: 1.4239	D(x): 0.7037	D(G(z)): 0.2964
+	Average KLD for all inter-atomic distances: 0.4321
 
 # Epoch 32 of 50
-[32/50]	Loss_D: 0.6039	Loss_G: 2.2581	D(x): 0.7725	D(G(z)): 0.2277
-	Average KLD for all inter-atomic distances: 0.6005
+[32/50]	Loss_D: 0.7532	Loss_G: 1.4515	D(x): 0.7067	D(G(z)): 0.2932
+	Average KLD for all inter-atomic distances: 0.3952
 
 # Epoch 33 of 50
-[33/50]	Loss_D: 0.5810	Loss_G: 2.1752	D(x): 0.7735	D(G(z)): 0.2253
-	Average KLD for all inter-atomic distances: 0.6677
+[33/50]	Loss_D: 0.7580	Loss_G: 1.4198	D(x): 0.7030	D(G(z)): 0.2966
+	Average KLD for all inter-atomic distances: 0.4547
 
 # Epoch 34 of 50
-[34/50]	Loss_D: 0.5724	Loss_G: 2.1139	D(x): 0.7749	D(G(z)): 0.2245
-	Average KLD for all inter-atomic distances: 0.6728
+[34/50]	Loss_D: 0.7571	Loss_G: 1.3541	D(x): 0.6990	D(G(z)): 0.3013
+	Average KLD for all inter-atomic distances: 0.4425
 
 # Epoch 35 of 50
-[35/50]	Loss_D: 0.6055	Loss_G: 2.1569	D(x): 0.7694	D(G(z)): 0.2308
-	Average KLD for all inter-atomic distances: 0.6014
+[35/50]	Loss_D: 0.7816	Loss_G: 1.2561	D(x): 0.6868	D(G(z)): 0.3144
+	Average KLD for all inter-atomic distances: 0.4328
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_15.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_15.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 36 of 50
-[36/50]	Loss_D: 0.6182	Loss_G: 2.1726	D(x): 0.7678	D(G(z)): 0.2329
-	Average KLD for all inter-atomic distances: 0.5751
+[36/50]	Loss_D: 0.8536	Loss_G: 1.1310	D(x): 0.6620	D(G(z)): 0.3417
+	Average KLD for all inter-atomic distances: 0.4272
 
 # Epoch 37 of 50
-[37/50]	Loss_D: 0.6314	Loss_G: 2.1581	D(x): 0.7641	D(G(z)): 0.2369
-	Average KLD for all inter-atomic distances: 0.5386
+[37/50]	Loss_D: 0.7324	Loss_G: 1.3819	D(x): 0.7006	D(G(z)): 0.2936
+	Average KLD for all inter-atomic distances: 0.483
 
 # Epoch 38 of 50
-[38/50]	Loss_D: 0.6339	Loss_G: 2.0949	D(x): 0.7605	D(G(z)): 0.2400
-	Average KLD for all inter-atomic distances: 0.6188
+[38/50]	Loss_D: 0.7588	Loss_G: 1.3946	D(x): 0.7022	D(G(z)): 0.2983
+	Average KLD for all inter-atomic distances: 0.3949
 
 # Epoch 39 of 50
-[39/50]	Loss_D: 0.6359	Loss_G: 2.0709	D(x): 0.7604	D(G(z)): 0.2409
-	Average KLD for all inter-atomic distances: 0.5795
+[39/50]	Loss_D: 0.7839	Loss_G: 1.3721	D(x): 0.6959	D(G(z)): 0.3056
+	Average KLD for all inter-atomic distances: 0.4255
 
 # Epoch 40 of 50
-[40/50]	Loss_D: 0.6334	Loss_G: 2.0004	D(x): 0.7565	D(G(z)): 0.2433
-	Average KLD for all inter-atomic distances: 0.5049
+[40/50]	Loss_D: 0.7952	Loss_G: 1.3486	D(x): 0.6917	D(G(z)): 0.3098
+	Average KLD for all inter-atomic distances: 0.3735
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_17.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_17.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 41 of 50
-[41/50]	Loss_D: 0.6309	Loss_G: 2.0085	D(x): 0.7592	D(G(z)): 0.2418
-	Average KLD for all inter-atomic distances: 0.448
+[41/50]	Loss_D: 0.8020	Loss_G: 1.3215	D(x): 0.6885	D(G(z)): 0.3133
+	Average KLD for all inter-atomic distances: 0.3797
 
 # Epoch 42 of 50
-[42/50]	Loss_D: 0.6388	Loss_G: 2.0137	D(x): 0.7578	D(G(z)): 0.2427
-	Average KLD for all inter-atomic distances: 0.4275
+[42/50]	Loss_D: 0.8065	Loss_G: 1.2954	D(x): 0.6853	D(G(z)): 0.3161
+	Average KLD for all inter-atomic distances: 0.3803
 
 # Epoch 43 of 50
-[43/50]	Loss_D: 0.6449	Loss_G: 1.9776	D(x): 0.7544	D(G(z)): 0.2455
-	Average KLD for all inter-atomic distances: 0.5035
+[43/50]	Loss_D: 0.7934	Loss_G: 1.3031	D(x): 0.6858	D(G(z)): 0.3127
+	Average KLD for all inter-atomic distances: 0.3877
 
 # Epoch 44 of 50
-[44/50]	Loss_D: 0.6473	Loss_G: 1.9724	D(x): 0.7542	D(G(z)): 0.2460
-	Average KLD for all inter-atomic distances: 0.4281
+[44/50]	Loss_D: 0.7855	Loss_G: 1.2762	D(x): 0.6857	D(G(z)): 0.3133
+	Average KLD for all inter-atomic distances: 0.3845
 
 # Epoch 45 of 50
-[45/50]	Loss_D: 0.6605	Loss_G: 1.9403	D(x): 0.7500	D(G(z)): 0.2504
-	Average KLD for all inter-atomic distances: 0.5765
+[45/50]	Loss_D: 0.8437	Loss_G: 1.2114	D(x): 0.6704	D(G(z)): 0.3315
+	Average KLD for all inter-atomic distances: 0.3339
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_72_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_72_19.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_19.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 46 of 50
-[46/50]	Loss_D: 0.6599	Loss_G: 1.9584	D(x): 0.7508	D(G(z)): 0.2493
-	Average KLD for all inter-atomic distances: 0.5209
+[46/50]	Loss_D: 0.8013	Loss_G: 1.3134	D(x): 0.6856	D(G(z)): 0.3136
+	Average KLD for all inter-atomic distances: 0.3541
 
 # Epoch 47 of 50
-[47/50]	Loss_D: 0.6676	Loss_G: 1.9328	D(x): 0.7482	D(G(z)): 0.2522
-	Average KLD for all inter-atomic distances: 0.4854
+[47/50]	Loss_D: 0.7877	Loss_G: 1.3402	D(x): 0.6910	D(G(z)): 0.3085
+	Average KLD for all inter-atomic distances: 0.3073
 
 # Epoch 48 of 50
-[48/50]	Loss_D: 0.6757	Loss_G: 1.8711	D(x): 0.7439	D(G(z)): 0.2569
-	Average KLD for all inter-atomic distances: 0.4163
+[48/50]	Loss_D: 0.8062	Loss_G: 1.3038	D(x): 0.6849	D(G(z)): 0.3154
+	Average KLD for all inter-atomic distances: 0.2885
 
 # Epoch 49 of 50
-[49/50]	Loss_D: 0.6789	Loss_G: 1.8722	D(x): 0.7428	D(G(z)): 0.2573
-	Average KLD for all inter-atomic distances: 0.4893
+[49/50]	Loss_D: 0.8040	Loss_G: 1.2731	D(x): 0.6822	D(G(z)): 0.3172
+	Average KLD for all inter-atomic distances: 0.314
 </pre></div>
 </div>
 </div>
@@ -2256,7 +2256,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Generated xyz array shape: (50000, 10, 3)
-- It took 0.4679241180419922 seconds to generate 50000 independant conformations.
+- It took 0.16701698303222656 seconds to generate 50000 independant conformations.
 </pre></div>
 </div>
 </div>
@@ -2281,51 +2281,51 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_0.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_0.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_1.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_2.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_2.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_3.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_4.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_4.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_5.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_6.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_6.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_7.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_8.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_8.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_9.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_10.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_10.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_11.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_12.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_12.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_13.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_14.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_14.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_15.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_16.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_16.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_17.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_18.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_18.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_19.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_20.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_20.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_21.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_21.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_22.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_22.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_23.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_23.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_24.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_24.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_25.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_25.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_26.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_26.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_27.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_27.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_28.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_28.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_29.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_29.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_30.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_30.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_31.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_31.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_32.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_32.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_33.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_33.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_34.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_34.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_35.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_35.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_36.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_36.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_37.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_37.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_38.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_38.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_39.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_39.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_40.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_40.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_41.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_41.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_42.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_42.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_43.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_43.png" />
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_77_44.png" src="../_images/W4_Lab_GenerateMolecularConformations_77_44.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_0.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_0.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_1.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_2.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_2.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_3.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_4.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_4.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_5.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_6.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_6.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_7.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_8.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_8.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_9.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_10.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_10.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_11.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_12.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_12.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_13.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_14.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_14.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_15.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_16.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_16.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_17.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_18.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_18.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_19.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_20.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_20.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_21.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_21.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_22.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_22.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_23.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_23.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_24.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_24.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_25.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_25.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_26.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_26.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_27.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_27.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_28.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_28.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_29.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_29.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_30.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_30.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_31.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_31.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_32.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_32.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_33.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_33.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_34.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_34.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_35.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_35.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_36.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_36.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_37.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_37.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_38.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_38.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_39.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_39.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_40.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_40.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_41.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_41.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_42.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_42.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_43.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_43.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_44.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_44.png" />
 </div>
 </div>
 <p>The let’s take a look at the 3D conformations using <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code> and <code class="docutils literal notranslate"><span class="pre">nglview</span></code>. Do they look kind of real to you?</p>
@@ -2345,7 +2345,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "088403134cc2404d83b526eed6845277", "version_major": 2, "version_minor": 0}
+{"model_id": "2a7252a3a8964466aae0b0e0e4580d60", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Finally, let’s plot the Ramachandran plot for our generated ensemble. Does it bear some resemblance to the one observed in MD data? What are the most important differences? Is our GAN capturing all the metastable states in the system?</p>
@@ -2363,11 +2363,11 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Generated Ramachandran plot
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_81_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_81_1.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_82_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_82_1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- MD Ramachandran plot
 </pre></div>
 </div>
-<img alt="../_images/W4_Lab_GenerateMolecularConformations_81_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_81_3.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_82_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_82_3.png" />
 </div>
 </div>
 </div>
