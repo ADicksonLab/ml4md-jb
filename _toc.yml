@@ -17,6 +17,8 @@ parts:
   - caption: Week 01
     numbered: False
     chapters:
+    - file: Week-01/W1_Lecture_Welcome.ipynb
+    - file: Week-01/W1_Lab_Python_Refresher.ipynb
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip
       title: LearnPython.zip
     - url: https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf
@@ -25,8 +27,6 @@ parts:
       title: sEH_nowater.pdb
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd
       title: sEH_unbinding.dcd
-    - file: Week-01/W1_Lecture_Welcome.ipynb
-    - file: Week-01/W1_Lab_Python_Refresher.ipynb
 
   - caption: Week 02
     numbered: False
@@ -70,4 +70,7 @@ parts:
     - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip
       title: work7efy.zip
 
-
+  - caption: Week 06
+    numbered: False
+    chapters:
+    - file: Week-06/W6_Lecture_MD-Concepts1.ipynb
