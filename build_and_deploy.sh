@@ -1,4 +1,4 @@
 #!/bin/bash
 
-jb build .
+jb build . --all
 ghp-import -n -p -f _build/html
