@@ -37,11 +37,14 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -331,7 +334,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -387,7 +390,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -508,7 +511,131 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 04 Lab: Generating Molecular Conformations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-name-your-name-here">
+     Student Name: YOUR NAME HERE
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generating-molecular-conformations-with-machine-learning">
+     Generating molecular conformations with machine learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#downloading-data">
+     Downloading data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-our-environment">
+     Initialize our environment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-data">
+     Prepare data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#load-xyz-data">
+       Load xyz data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reshape-arrays">
+       Reshape arrays
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#select-a-random-portion-of-the-whole-md-data">
+       Select a random portion of the whole MD data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#use-mdtraj-for-the-analysis-and-modification-of-our-md-data">
+       Use mdtraj for the analysis and modification of our MD data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#analyze-distance-distributions">
+       Analyze distance distributions.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ramachandran-plot">
+       Ramachandran plot
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-and-train-a-generative-adversarial-network-gan">
+     Build and train a Generative Adversarial Network (GAN)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataloader">
+       Dataloader
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#build-our-generator-network">
+       Build our Generator network
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#build-our-discriminator-network">
+       Build our Discriminator network
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizers-and-loss-functions">
+     Optimizers and Loss Functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-to-train-the-model">
+     Functions to train the model
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-our-gan">
+     Evaluate our GAN
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="week-04-lab-generating-molecular-conformations">
@@ -565,12 +692,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c52a2ab200fc4c9d8227fc4c126bffa1", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <p>Decide which device we want to run on pytorch (which we will use to implement neural networks)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Using device &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Using device &#39;cpu&#39;
 </pre></div>
 </div>
 </div>
@@ -601,6 +737,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Trajectory with key arr_0 has shape: (250000, 30)
+- Trajectory with key arr_1 has shape: (250000, 30)
+- Trajectory with key arr_2 has shape: (250000, 30)
+- All frames are concatenated in an array with shape: (750000, 30)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="reshape-arrays">
@@ -610,7 +754,7 @@
 <p>Insert in the cell below the number of atoms that we have in our system.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_atoms</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Your code here.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -626,8 +770,13 @@
 See <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html">https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Your code here.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span> <span class="o">=</span> <span class="n">all_xyz</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">number_of_frames</span><span class="p">,</span><span class="n">n_atoms</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># Your code here.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Final xyz array shape:&quot;</span><span class="p">,</span> <span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Final xyz array shape: (750000, 10, 3)
 </pre></div>
 </div>
 </div>
@@ -656,6 +805,11 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Now our MD data has shape: (50000, 10, 3)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="use-mdtraj-for-the-analysis-and-modification-of-our-md-data">
@@ -668,6 +822,11 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <span class="n">allatom_topology</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">topology_filepath</span><span class="p">)</span><span class="o">.</span><span class="n">topology</span>
 <span class="n">heavyatom_topology</span> <span class="o">=</span> <span class="n">allatom_topology</span><span class="o">.</span><span class="n">subset</span><span class="p">(</span><span class="n">allatom_topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;element != H&quot;</span><span class="p">))</span>
 <span class="n">heavyatom_topology</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mdtraj.Topology with 1 chains, 3 residues, 10 atoms, 9 bonds at 0x7fb30d58bdf0&gt;
 </pre></div>
 </div>
 </div>
@@ -694,6 +853,10 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "8070215fb1ba46acbd9be7cfbcc185eb", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <p>The conformations seem to be somewhat centered. That’s lucky! Our generative model will generate xyz coordinates. We will use neural networks that are NOT SE(3) invariant. This means that rotating or translating the conformations could drastically alter the way our networks see the conformations.</p>
 <p>Since our conformations are centered, we will not need to alter their coordinates. In general, you might want to center your data on some reference conformation if you want to train a machine learning model.</p>
@@ -709,6 +872,21 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Atom indices&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">atom_i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m_traj</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">atoms</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">atom_i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Atom indices
+0 ACE1-CH3
+1 ACE1-C
+2 ACE1-O
+3 ALA2-N
+4 ALA2-CA
+5 ALA2-CB
+6 ALA2-C
+7 ALA2-O
+8 NME3-N
+9 NME3-C
 </pre></div>
 </div>
 </div>
@@ -730,6 +908,11 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Shape of distance matrix trajectory: (50000, 10, 10)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s plot some random distance matrices from our data.</p>
 <div class="cell docutils container">
@@ -740,6 +923,48 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 27504
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 25274
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 46684
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 33331
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 27624
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 779
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_11.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 1815
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_13.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 38312
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_15.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 10070
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_17.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Frame 44272
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_38_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_38_19.png" />
 </div>
 </div>
 <p>Now let’s plot the distance distributions of all the inter-atomic distances in our molecule.</p>
@@ -757,6 +982,53 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_0.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_0.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_1.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_2.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_2.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_3.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_4.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_4.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_5.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_6.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_6.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_7.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_8.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_8.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_9.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_10.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_10.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_11.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_12.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_12.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_13.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_14.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_14.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_15.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_16.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_16.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_17.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_18.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_18.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_19.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_20.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_20.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_21.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_21.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_22.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_22.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_23.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_23.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_24.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_24.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_25.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_25.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_26.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_26.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_27.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_27.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_28.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_28.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_29.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_29.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_30.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_30.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_31.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_31.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_32.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_32.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_33.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_33.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_34.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_34.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_35.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_35.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_36.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_36.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_37.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_37.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_38.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_38.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_39.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_39.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_40.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_40.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_41.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_41.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_42.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_42.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_43.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_43.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_40_44.png" src="../_images/W4_Lab_GenerateMolecularConformations_40_44.png" />
 </div>
 </div>
 <p>How do the distributions look like? Are there some multi-modal distributions? If you find some some multi-modal distributions, why do you think they are in our MD data for this molecule? And also, how come some distribution are mono-modal and some multi-modal? Please take a moment to briefly discuss!</p>
@@ -788,6 +1060,9 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_ramachandran_plot</span><span class="p">(</span><span class="n">m_traj</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_44_0.png" src="../_images/W4_Lab_GenerateMolecularConformations_44_0.png" />
 </div>
 </div>
 <p>Do you notice something that can backup your hypotheses on the presence of multi-modal distributions in our MD data?</p>
@@ -825,6 +1100,405 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 128
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 256
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 384
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 512
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 640
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 768
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 896
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1024
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1152
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1280
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1408
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1536
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1664
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1792
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 1920
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2048
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2176
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2304
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2432
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2560
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2688
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2816
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 2944
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3072
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3200
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3328
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3456
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3584
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3712
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3840
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 3968
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4096
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4224
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4352
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4480
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4608
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4736
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4864
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 4992
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5120
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5248
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5376
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5504
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5632
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5760
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 5888
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6016
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6144
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6272
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6400
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6528
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6656
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6784
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 6912
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7040
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7168
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7296
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7424
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7552
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7680
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7808
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 7936
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8064
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8192
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8320
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8448
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8576
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8704
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8832
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 8960
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9088
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9216
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9344
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9472
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9600
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9728
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9856
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 9984
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10112
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10240
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10368
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10496
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10624
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10752
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 10880
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11008
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11136
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11264
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11392
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11520
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11648
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11776
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 11904
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12032
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12160
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12288
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12416
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12544
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12672
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12800
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 12928
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13056
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13184
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13312
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13440
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13568
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13696
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13824
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 13952
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14080
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14208
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14336
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14464
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14592
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14720
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14848
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 14976
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15104
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15232
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15360
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15488
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15616
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15744
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 15872
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16000
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16128
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16256
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16384
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16512
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16640
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16768
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 16896
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17024
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17152
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17280
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17408
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17536
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17664
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17792
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 17920
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18048
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18176
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18304
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18432
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18560
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18688
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18816
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 18944
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19072
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19200
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19328
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19456
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19584
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19712
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19840
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 19968
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20096
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20224
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20352
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20480
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20608
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20736
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20864
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 20992
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21120
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21248
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21376
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21504
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21632
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21760
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 21888
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22016
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22144
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22272
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22400
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22528
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22656
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22784
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 22912
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23040
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23168
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23296
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23424
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23552
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23680
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23808
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 23936
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24064
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24192
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24320
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24448
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24576
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24704
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24832
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 24960
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25088
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25216
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25344
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25472
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25600
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25728
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25856
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 25984
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26112
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26240
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26368
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26496
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26624
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26752
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 26880
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27008
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27136
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27264
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27392
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27520
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27648
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27776
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 27904
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28032
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28160
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28288
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28416
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28544
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28672
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28800
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 28928
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29056
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29184
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29312
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29440
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29568
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29696
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29824
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 29952
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30080
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30208
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30336
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30464
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30592
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30720
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30848
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 30976
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31104
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31232
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31360
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31488
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31616
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31744
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 31872
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32000
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32128
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32256
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32384
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32512
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32640
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32768
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 32896
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33024
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33152
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33280
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33408
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33536
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33664
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33792
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 33920
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34048
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34176
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34304
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34432
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34560
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34688
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34816
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 34944
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35072
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35200
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35328
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35456
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35584
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35712
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35840
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 35968
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36096
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36224
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36352
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36480
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36608
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36736
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36864
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 36992
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37120
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37248
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37376
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37504
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37632
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37760
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 37888
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38016
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38144
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38272
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38400
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38528
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38656
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38784
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 38912
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39040
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39168
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39296
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39424
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39552
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39680
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39808
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 39936
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40064
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40192
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40320
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40448
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40576
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40704
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40832
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 40960
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41088
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41216
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41344
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41472
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41600
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41728
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41856
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 41984
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42112
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42240
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42368
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42496
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42624
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42752
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 42880
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43008
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43136
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43264
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43392
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43520
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43648
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43776
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 43904
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44032
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44160
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44288
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44416
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44544
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44672
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44800
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 44928
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45056
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45184
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45312
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45440
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45568
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45696
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45824
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 45952
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46080
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46208
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46336
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46464
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46592
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46720
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46848
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 46976
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47104
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47232
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47360
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47488
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47616
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47744
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 47872
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48000
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48128
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48256
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48384
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48512
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48640
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48768
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 48896
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49024
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49152
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49280
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49408
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49536
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49664
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49792
+- Current batch shape: torch.Size([128, 10, 3]), total frames so far: 49920
+- Current batch shape: torch.Size([80, 10, 3]), total frames so far: 50000
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="build-our-generator-network">
@@ -834,7 +1508,7 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <p>We will use <code class="docutils literal notranslate"><span class="pre">16</span></code> as the dimension of our latent space from where the <code class="docutils literal notranslate"><span class="pre">z</span></code> vectors are sampled. Again, this is some hyper-parameter that would need fine-tuning, but <code class="docutils literal notranslate"><span class="pre">16</span></code> is probably a good value here. Usually, the dimension of <code class="docutils literal notranslate"><span class="pre">z</span></code> is supposed to be lower than that <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_z</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Latent space dimension.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_z</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Latent space dimension.</span>
 <span class="n">hidden_dim_g</span> <span class="o">=</span> <span class="mi">196</span>  <span class="c1"># Number of hidden units in our generator MLP.</span>
                     <span class="c1"># In GANs, the competing generator and discriminator should be &quot;balanced&quot;</span>
                     <span class="c1"># so we will need to use a similar value for the discriminator (see below).</span>
@@ -881,6 +1555,17 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generator(
+  (input_layer): Linear(in_features=4, out_features=196, bias=True)
+  (act_0): ReLU()
+  (hidden_layer_1): Linear(in_features=196, out_features=196, bias=True)
+  (act_1): ReLU()
+  (output_layer): Linear(in_features=196, out_features=30, bias=True)
+)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s check what the generator is doing. Above you should see a scheme of its architecture.</p>
 <p>Why is <code class="docutils literal notranslate"><span class="pre">16</span></code> the dimension of its input vectors? Why is <code class="docutils literal notranslate"><span class="pre">30</span></code> the dimension of its output vectors? What do these <code class="docutils literal notranslate"><span class="pre">30</span></code> numbers represent?</p>
@@ -894,6 +1579,12 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
     <span class="c1"># Let&#39;s run the generator.</span>
     <span class="n">x_check</span> <span class="o">=</span> <span class="n">net_g</span><span class="p">(</span><span class="n">z_check</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- x_gen shape:&quot;</span><span class="p">,</span> <span class="n">x_check</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- z shape: torch.Size([32, 4])
+- x_gen shape: torch.Size([32, 10, 3])
 </pre></div>
 </div>
 </div>
@@ -917,6 +1608,18 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hidden_dim_d</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="n">use_spectral_norm</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">use_scaler</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_xyz</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(50000, 10, 3)
 </pre></div>
 </div>
 </div>
@@ -989,6 +1692,18 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Discriminator(
+  (input_layer): Linear(in_features=30, out_features=128, bias=True)
+  (act_0): ReLU()
+  (hidden_layer_1): Linear(in_features=128, out_features=128, bias=True)
+  (act_1): ReLU()
+  (output_layer): Linear(in_features=128, out_features=1, bias=True)
+  (act_sigmoid): Sigmoid()
+)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s check what the discriminator is doing. Above you should see a scheme of its architecture.</p>
 <p>Why is <code class="docutils literal notranslate"><span class="pre">30</span></code> the dimension of its input vectors? Why is <code class="docutils literal notranslate"><span class="pre">1</span></code> the dimension of its output?</p>
@@ -1004,6 +1719,22 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
     <span class="n">out_check</span> <span class="o">=</span> <span class="n">net_d</span><span class="p">(</span><span class="n">x_check</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- discriminator output shape:&quot;</span><span class="p">,</span> <span class="n">out_check</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- First 10 elements of the output:&quot;</span><span class="p">,</span> <span class="n">out_check</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- x_ref shape: torch.Size([128, 10, 3])
+- discriminator output shape: torch.Size([128, 1])
+- First 10 elements of the output: tensor([[0.5348],
+        [0.5043],
+        [0.4772],
+        [0.5041],
+        [0.5518],
+        [0.4964],
+        [0.4849],
+        [0.5096],
+        [0.4949],
+        [0.5098]])
 </pre></div>
 </div>
 </div>
@@ -1278,6 +2009,232 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting Training Loop...
+
+
+# Epoch 0 of 50
+[0/50]	Loss_D: 0.2939	Loss_G: 3.3048	D(x): 0.6044	D(G(z)): 0.1026
+	Average KLD for all inter-atomic distances: 1.6616
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 1 of 50
+[1/50]	Loss_D: 0.3500	Loss_G: 2.4367	D(x): 0.7458	D(G(z)): 0.1498
+	Average KLD for all inter-atomic distances: 1.2268
+
+# Epoch 2 of 50
+[2/50]	Loss_D: 0.4514	Loss_G: 2.1169	D(x): 0.7753	D(G(z)): 0.1882
+	Average KLD for all inter-atomic distances: 1.1237
+
+# Epoch 3 of 50
+[3/50]	Loss_D: 0.4859	Loss_G: 2.1314	D(x): 0.7860	D(G(z)): 0.1979
+	Average KLD for all inter-atomic distances: 1.0207
+
+# Epoch 4 of 50
+[4/50]	Loss_D: 0.5891	Loss_G: 1.8881	D(x): 0.7702	D(G(z)): 0.2338
+	Average KLD for all inter-atomic distances: 0.9749
+
+# Epoch 5 of 50
+[5/50]	Loss_D: 0.6287	Loss_G: 1.8017	D(x): 0.7564	D(G(z)): 0.2475
+	Average KLD for all inter-atomic distances: 0.9421
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 6 of 50
+[6/50]	Loss_D: 0.6326	Loss_G: 1.8902	D(x): 0.7531	D(G(z)): 0.2443
+	Average KLD for all inter-atomic distances: 0.9153
+
+# Epoch 7 of 50
+[7/50]	Loss_D: 0.5837	Loss_G: 1.8274	D(x): 0.7597	D(G(z)): 0.2346
+	Average KLD for all inter-atomic distances: 0.8936
+
+# Epoch 8 of 50
+[8/50]	Loss_D: 0.6218	Loss_G: 1.5838	D(x): 0.7497	D(G(z)): 0.2550
+	Average KLD for all inter-atomic distances: 0.825
+
+# Epoch 9 of 50
+[9/50]	Loss_D: 0.6164	Loss_G: 1.7354	D(x): 0.7536	D(G(z)): 0.2467
+	Average KLD for all inter-atomic distances: 0.8135
+
+# Epoch 10 of 50
+[10/50]	Loss_D: 0.6565	Loss_G: 1.7242	D(x): 0.7480	D(G(z)): 0.2573
+	Average KLD for all inter-atomic distances: 0.7954
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 11 of 50
+[11/50]	Loss_D: 0.6941	Loss_G: 1.6562	D(x): 0.7354	D(G(z)): 0.2697
+	Average KLD for all inter-atomic distances: 0.7579
+
+# Epoch 12 of 50
+[12/50]	Loss_D: 0.7132	Loss_G: 1.6435	D(x): 0.7288	D(G(z)): 0.2744
+	Average KLD for all inter-atomic distances: 0.7299
+
+# Epoch 13 of 50
+[13/50]	Loss_D: 0.6547	Loss_G: 1.7107	D(x): 0.7371	D(G(z)): 0.2568
+	Average KLD for all inter-atomic distances: 0.8327
+
+# Epoch 14 of 50
+[14/50]	Loss_D: 0.6157	Loss_G: 1.5941	D(x): 0.7451	D(G(z)): 0.2527
+	Average KLD for all inter-atomic distances: 0.7141
+
+# Epoch 15 of 50
+[15/50]	Loss_D: 0.7035	Loss_G: 1.3889	D(x): 0.7175	D(G(z)): 0.2865
+	Average KLD for all inter-atomic distances: 0.7319
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 16 of 50
+[16/50]	Loss_D: 0.6473	Loss_G: 1.6265	D(x): 0.7368	D(G(z)): 0.2593
+	Average KLD for all inter-atomic distances: 0.6949
+
+# Epoch 17 of 50
+[17/50]	Loss_D: 0.7069	Loss_G: 1.5869	D(x): 0.7282	D(G(z)): 0.2757
+	Average KLD for all inter-atomic distances: 0.6139
+
+# Epoch 18 of 50
+[18/50]	Loss_D: 0.7367	Loss_G: 1.5563	D(x): 0.7197	D(G(z)): 0.2843
+	Average KLD for all inter-atomic distances: 0.5917
+
+# Epoch 19 of 50
+[19/50]	Loss_D: 0.7371	Loss_G: 1.5442	D(x): 0.7168	D(G(z)): 0.2847
+	Average KLD for all inter-atomic distances: 0.5693
+
+# Epoch 20 of 50
+[20/50]	Loss_D: 0.7035	Loss_G: 1.5497	D(x): 0.7209	D(G(z)): 0.2767
+	Average KLD for all inter-atomic distances: 0.5697
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 21 of 50
+[21/50]	Loss_D: 0.6863	Loss_G: 1.4516	D(x): 0.7188	D(G(z)): 0.2785
+	Average KLD for all inter-atomic distances: 0.5905
+
+# Epoch 22 of 50
+[22/50]	Loss_D: 0.7466	Loss_G: 1.2910	D(x): 0.6986	D(G(z)): 0.3037
+	Average KLD for all inter-atomic distances: 0.5662
+
+# Epoch 23 of 50
+[23/50]	Loss_D: 0.7158	Loss_G: 1.3951	D(x): 0.7074	D(G(z)): 0.2895
+	Average KLD for all inter-atomic distances: 0.5513
+
+# Epoch 24 of 50
+[24/50]	Loss_D: 0.7085	Loss_G: 1.5222	D(x): 0.7214	D(G(z)): 0.2794
+	Average KLD for all inter-atomic distances: 0.5658
+
+# Epoch 25 of 50
+[25/50]	Loss_D: 0.7327	Loss_G: 1.5223	D(x): 0.7171	D(G(z)): 0.2846
+	Average KLD for all inter-atomic distances: 0.5438
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_11.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 26 of 50
+[26/50]	Loss_D: 0.7496	Loss_G: 1.4909	D(x): 0.7125	D(G(z)): 0.2902
+	Average KLD for all inter-atomic distances: 0.4739
+
+# Epoch 27 of 50
+[27/50]	Loss_D: 0.7590	Loss_G: 1.4542	D(x): 0.7071	D(G(z)): 0.2946
+	Average KLD for all inter-atomic distances: 0.4742
+
+# Epoch 28 of 50
+[28/50]	Loss_D: 0.7442	Loss_G: 1.4311	D(x): 0.7077	D(G(z)): 0.2926
+	Average KLD for all inter-atomic distances: 0.4624
+
+# Epoch 29 of 50
+[29/50]	Loss_D: 0.7606	Loss_G: 1.3611	D(x): 0.7002	D(G(z)): 0.3012
+	Average KLD for all inter-atomic distances: 0.4551
+
+# Epoch 30 of 50
+[30/50]	Loss_D: 0.7842	Loss_G: 1.3309	D(x): 0.6933	D(G(z)): 0.3087
+	Average KLD for all inter-atomic distances: 0.4169
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_13.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 31 of 50
+[31/50]	Loss_D: 0.7595	Loss_G: 1.4239	D(x): 0.7037	D(G(z)): 0.2964
+	Average KLD for all inter-atomic distances: 0.4321
+
+# Epoch 32 of 50
+[32/50]	Loss_D: 0.7532	Loss_G: 1.4515	D(x): 0.7067	D(G(z)): 0.2932
+	Average KLD for all inter-atomic distances: 0.3952
+
+# Epoch 33 of 50
+[33/50]	Loss_D: 0.7580	Loss_G: 1.4198	D(x): 0.7030	D(G(z)): 0.2966
+	Average KLD for all inter-atomic distances: 0.4547
+
+# Epoch 34 of 50
+[34/50]	Loss_D: 0.7571	Loss_G: 1.3541	D(x): 0.6990	D(G(z)): 0.3013
+	Average KLD for all inter-atomic distances: 0.4425
+
+# Epoch 35 of 50
+[35/50]	Loss_D: 0.7816	Loss_G: 1.2561	D(x): 0.6868	D(G(z)): 0.3144
+	Average KLD for all inter-atomic distances: 0.4328
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_15.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 36 of 50
+[36/50]	Loss_D: 0.8536	Loss_G: 1.1310	D(x): 0.6620	D(G(z)): 0.3417
+	Average KLD for all inter-atomic distances: 0.4272
+
+# Epoch 37 of 50
+[37/50]	Loss_D: 0.7324	Loss_G: 1.3819	D(x): 0.7006	D(G(z)): 0.2936
+	Average KLD for all inter-atomic distances: 0.483
+
+# Epoch 38 of 50
+[38/50]	Loss_D: 0.7588	Loss_G: 1.3946	D(x): 0.7022	D(G(z)): 0.2983
+	Average KLD for all inter-atomic distances: 0.3949
+
+# Epoch 39 of 50
+[39/50]	Loss_D: 0.7839	Loss_G: 1.3721	D(x): 0.6959	D(G(z)): 0.3056
+	Average KLD for all inter-atomic distances: 0.4255
+
+# Epoch 40 of 50
+[40/50]	Loss_D: 0.7952	Loss_G: 1.3486	D(x): 0.6917	D(G(z)): 0.3098
+	Average KLD for all inter-atomic distances: 0.3735
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_17.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 41 of 50
+[41/50]	Loss_D: 0.8020	Loss_G: 1.3215	D(x): 0.6885	D(G(z)): 0.3133
+	Average KLD for all inter-atomic distances: 0.3797
+
+# Epoch 42 of 50
+[42/50]	Loss_D: 0.8065	Loss_G: 1.2954	D(x): 0.6853	D(G(z)): 0.3161
+	Average KLD for all inter-atomic distances: 0.3803
+
+# Epoch 43 of 50
+[43/50]	Loss_D: 0.7934	Loss_G: 1.3031	D(x): 0.6858	D(G(z)): 0.3127
+	Average KLD for all inter-atomic distances: 0.3877
+
+# Epoch 44 of 50
+[44/50]	Loss_D: 0.7855	Loss_G: 1.2762	D(x): 0.6857	D(G(z)): 0.3133
+	Average KLD for all inter-atomic distances: 0.3845
+
+# Epoch 45 of 50
+[45/50]	Loss_D: 0.8437	Loss_G: 1.2114	D(x): 0.6704	D(G(z)): 0.3315
+	Average KLD for all inter-atomic distances: 0.3339
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_73_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_73_19.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Epoch 46 of 50
+[46/50]	Loss_D: 0.8013	Loss_G: 1.3134	D(x): 0.6856	D(G(z)): 0.3136
+	Average KLD for all inter-atomic distances: 0.3541
+
+# Epoch 47 of 50
+[47/50]	Loss_D: 0.7877	Loss_G: 1.3402	D(x): 0.6910	D(G(z)): 0.3085
+	Average KLD for all inter-atomic distances: 0.3073
+
+# Epoch 48 of 50
+[48/50]	Loss_D: 0.8062	Loss_G: 1.3038	D(x): 0.6849	D(G(z)): 0.3154
+	Average KLD for all inter-atomic distances: 0.2885
+
+# Epoch 49 of 50
+[49/50]	Loss_D: 0.8040	Loss_G: 1.2731	D(x): 0.6822	D(G(z)): 0.3172
+	Average KLD for all inter-atomic distances: 0.314
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="evaluate-our-gan">
@@ -1302,6 +2259,12 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Generated xyz array shape: (50000, 10, 3)
+- It took 0.16701698303222656 seconds to generate 50000 independant conformations.
+</pre></div>
+</div>
+</div>
 </div>
 <p>First let’s plot all the inter-atomic distance histograms. Is the GAN capturing multi-modal distributions?</p>
 <div class="cell docutils container">
@@ -1322,6 +2285,53 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_0.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_0.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_1.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_2.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_2.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_3.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_4.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_4.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_5.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_5.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_6.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_6.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_7.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_7.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_8.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_8.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_9.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_9.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_10.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_10.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_11.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_11.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_12.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_12.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_13.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_13.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_14.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_14.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_15.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_15.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_16.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_16.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_17.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_17.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_18.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_18.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_19.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_19.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_20.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_20.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_21.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_21.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_22.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_22.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_23.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_23.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_24.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_24.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_25.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_25.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_26.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_26.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_27.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_27.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_28.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_28.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_29.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_29.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_30.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_30.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_31.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_31.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_32.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_32.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_33.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_33.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_34.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_34.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_35.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_35.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_36.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_36.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_37.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_37.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_38.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_38.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_39.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_39.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_40.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_40.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_41.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_41.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_42.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_42.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_43.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_43.png" />
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_78_44.png" src="../_images/W4_Lab_GenerateMolecularConformations_78_44.png" />
+</div>
 </div>
 <p>The let’s take a look at the 3D conformations using <code class="docutils literal notranslate"><span class="pre">mdtraj</span></code> and <code class="docutils literal notranslate"><span class="pre">nglview</span></code>. Do they look kind of real to you?</p>
 <div class="cell docutils container">
@@ -1338,6 +2348,10 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2a7252a3a8964466aae0b0e0e4580d60", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <p>Finally, let’s plot the Ramachandran plot for our generated ensemble. Does it bear some resemblance to the one observed in MD data? What are the most important differences? Is our GAN capturing all the metastable states in the system?</p>
 <div class="cell docutils container">
@@ -1349,6 +2363,16 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 <span class="n">show_ramachandran_plot</span><span class="p">(</span><span class="n">m_traj</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- Generated Ramachandran plot
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_82_1.png" src="../_images/W4_Lab_GenerateMolecularConformations_82_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- MD Ramachandran plot
+</pre></div>
+</div>
+<img alt="../_images/W4_Lab_GenerateMolecularConformations_82_3.png" src="../_images/W4_Lab_GenerateMolecularConformations_82_3.png" />
 </div>
 </div>
 </div>
@@ -1384,8 +2408,8 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="W4_Lecture_GenerativeModels.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1402,19 +2426,17 @@ See <a class="reference external" href="https://numpy.org/doc/stable/reference/g
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Alex Dickson and Michael Feig<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
