@@ -75,3 +75,9 @@ parts:
     chapters:
     - file: Week-06/W6_Lecture_MD-Concepts1.ipynb
     - file: Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.ipynb
+
+  - caption: Week 07
+    numbered: False
+    chapters:
+    file: Week-07/W7_Lecture_MD-Concepts2.ipynb
+    
