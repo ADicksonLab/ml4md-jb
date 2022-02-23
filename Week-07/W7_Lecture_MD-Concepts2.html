@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 07 Lecture: Molecular Dynamics Concepts 2 &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 06 Lab: Single Particle Langevin Dynamics" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-07/W7_Lecture_MD-Concepts2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-07/W7_Lecture_MD-Concepts2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-07/W7_Lecture_MD-Concepts2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-07/W7_Lecture_MD-Concepts2.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-molecular-definition-of-temperature">
+   A molecular definition of temperature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temperature-is-a-speedometer">
+   Temperature is a speedometer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maxwell-boltzmann-distribution">
+   Maxwell-Boltzmann distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initializing-particle-velocities">
+   Initializing particle velocities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thermostats">
+   Thermostats
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#force-fields">
+   Force fields
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#periodic-boundaries">
+   Periodic boundaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-coordinates">
+   “Wrapping” coordinates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displacement-vectors-through-periodic-boundaries">
+   Displacement vectors through periodic boundaries
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 07 Lecture: Molecular Dynamics Concepts 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-molecular-definition-of-temperature">
+   A molecular definition of temperature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temperature-is-a-speedometer">
+   Temperature is a speedometer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maxwell-boltzmann-distribution">
+   Maxwell-Boltzmann distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initializing-particle-velocities">
+   Initializing particle velocities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thermostats">
+   Thermostats
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#force-fields">
+   Force fields
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#periodic-boundaries">
+   Periodic boundaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-coordinates">
+   “Wrapping” coordinates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displacement-vectors-through-periodic-boundaries">
+   Displacement vectors through periodic boundaries
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-07-lecture-molecular-dynamics-concepts-2">
+<h1>Week 07 Lecture: Molecular Dynamics Concepts 2<a class="headerlink" href="#week-07-lecture-molecular-dynamics-concepts-2" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>temperature</p></li>
+<li><p>forcefields</p></li>
+<li><p>non-bonded interactions</p></li>
+<li><p>periodic boundaries</p></li>
+</ul>
+<p>Links:</p>
+<p><a class="reference external" href="https://www.khanacademy.org/science/physics/thermodynamics/temp-kinetic-theory-ideal-gas-law/a/what-is-the-maxwell-boltzmann-distribution">Kahn-Academy Maxwell-Boltzmann</a><br />
+<a class="reference external" href="https://education.molssi.org/mm-tools/">MolSSI MMTools</a></p>
+<div class="section" id="a-molecular-definition-of-temperature">
+<h2>A molecular definition of temperature<a class="headerlink" href="#a-molecular-definition-of-temperature" title="Permalink to this headline">¶</a></h2>
+<p><strong>What is temperature?</strong> What really makes a cup of cold water different from a cup of hot water?</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Water_and_ice.jpg" width="200"></img><img src="https://cdn.pixabay.com/photo/2021/02/04/20/04/tea-5982485_1280.jpg" width="200"></img></p>
+</div>
+<div class="section" id="temperature-is-a-speedometer">
+<h2>Temperature is a speedometer<a class="headerlink" href="#temperature-is-a-speedometer" title="Permalink to this headline">¶</a></h2>
+<p><strong>The hotter water molecules are moving faster.</strong>  The relationship between the temperature and the mean squared velocity of the particles (<span class="math notranslate nohighlight">\(\langle{v^2}\rangle\)</span>) is:</p>
+<div class="math notranslate nohighlight">
+\[T = \frac{m \langle{v^2}\rangle}{n k_B}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of spatial dimensions, <span class="math notranslate nohighlight">\(m\)</span> is the particle mass, and <span class="math notranslate nohighlight">\(k_B\)</span> is Boltzmann’s constant.</p>
+<p><span class="math notranslate nohighlight">\(T\)</span> here is in Kelvin, showing that at absolute zero (-273.15 C), the average squared velocity is zero and all particles are perfectly stationary.</p>
+</div>
+<div class="section" id="maxwell-boltzmann-distribution">
+<h2>Maxwell-Boltzmann distribution<a class="headerlink" href="#maxwell-boltzmann-distribution" title="Permalink to this headline">¶</a></h2>
+<p>The distribution of molecular speeds is given by:</p>
+<div class="math notranslate nohighlight">
+\[P(|v|) = \left(\frac{m}{2\pi k_B T}\right)^{3/2} v^2 e^{-\frac{m v^2}{2k_b T}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(P(|v|)\)</span> is the probability of a particular speed (or velocity magnitude, <span class="math notranslate nohighlight">\(|v|\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mb_prob</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">))</span> 
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">kt_over_m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">mb_prob</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;kT/m = </span><span class="si">{</span><span class="n">kt_over_m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe09d01bd60&gt;
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_6_1.png" src="../_images/W7_Lecture_MD-Concepts2_6_1.png" />
+</div>
+</div>
+<p>A particular component of the velocity (say, <span class="math notranslate nohighlight">\(v_x\)</span>) is distributed according to:</p>
+<div class="math notranslate nohighlight">
+\[P(v_x) = \left(\frac{m}{2\pi k_B T}\right)^{1/2} e^{-\frac{m v_x^2}{2k_b T}}\]</div>
+<p>Notice the difference in the exponent (1/2 vs 3/2) and that the <span class="math notranslate nohighlight">\(v^2\)</span> term is missing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mb_prob_x</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">))</span> 
+
+<span class="n">vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">kt_over_m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">mb_prob_x</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;kT/m = </span><span class="si">{</span><span class="n">kt_over_m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;v_x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe09d23d670&gt;
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_8_1.png" src="../_images/W7_Lecture_MD-Concepts2_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="initializing-particle-velocities">
+<h2>Initializing particle velocities<a class="headerlink" href="#initializing-particle-velocities" title="Permalink to this headline">¶</a></h2>
+<p>How do we initialize particle velocities in a way that is random, but still consistent with the MB distribution?</p>
+<p><strong>Use the cumulative distribution function for <span class="math notranslate nohighlight">\(P(v_x)\)</span>:</strong></p>
+<div class="math notranslate nohighlight">
+\[CDF(V_x) = \frac{\int_{-\infty}^{V_x} P(v_x) dv_x}{\int_{-\infty}^{\infty} P(v_x) dv_x}\]</div>
+<p>This is equal to:</p>
+<div class="math notranslate nohighlight">
+\[CDF(V_x) = \frac{1}{2} \left(\text{erf}\left(\sqrt{\frac{m}{2k_b T}}V_x\right) + 1 \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{erf}\)</span> is the “error function”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erf</span>
+
+<span class="k">def</span> <span class="nf">cdf</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">erf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">))</span><span class="o">*</span><span class="n">vx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">kt_over_m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">cdf</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span><span class="n">kt_over_m</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;kT/m = </span><span class="si">{</span><span class="n">kt_over_m</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Prob (vx &lt; V)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe09d103a90&gt;
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_11_1.png" src="../_images/W7_Lecture_MD-Concepts2_11_1.png" />
+</div>
+</div>
+<p><strong>How does this help us initialize our velocities?</strong></p>
+<p>If we generate a series of random numbers in the range <span class="math notranslate nohighlight">\([0,1]\)</span>, we can map these to a series of velocity values using the CDF!</p>
+<div class="math notranslate nohighlight">
+\[R = \frac{1}{2} \left(\text{erf}\left(\sqrt{\frac{m}{2k_b T}}V_{gen}\right) + 1 \right)\]</div>
+<p>but first we need to solve this equation for <span class="math notranslate nohighlight">\(V_{gen}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[V_{gen} = \sqrt{\frac{2k_b T}{m}}\text{erfinv}\left(2R - 1\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{erfinv}\)</span> is – you guessed it – the “inverse error function”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfinv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">init_vel</span><span class="p">(</span><span class="n">kt_over_m</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>   <span class="c1"># generates a set of numbers uniformly in [0,1]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kt_over_m</span><span class="p">)</span><span class="o">*</span><span class="n">erfinv</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">R</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Let’s check a distribution of <span class="math notranslate nohighlight">\(v_x\)</span> values:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">init_vel</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">10000</span><span class="p">)),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">cbins</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># get bin midpoints</span>
+<span class="n">probs</span> <span class="o">=</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>       <span class="c1"># normalize counts -&gt; probabilities</span>
+
+<span class="n">mb_probs</span> <span class="o">=</span> <span class="n">mb_prob_x</span><span class="p">(</span><span class="n">cbins</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mb_probs</span> <span class="o">/=</span> <span class="n">mb_probs</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>          <span class="c1"># normalize by sum for proper comparison</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cbins</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Generated vx values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cbins</span><span class="p">,</span> <span class="n">mb_probs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Maxwell-Boltzmann probs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;vx&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe09d627310&gt;
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_15_1.png" src="../_images/W7_Lecture_MD-Concepts2_15_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="thermostats">
+<h2>Thermostats<a class="headerlink" href="#thermostats" title="Permalink to this headline">¶</a></h2>
+<p>In this course we will only be using <strong>Langevin dynamics</strong> which acts as its own thermostat.  But here are some others:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Algorithm</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><strong>Nosé-Hoover</strong></p></td>
+<td class="text-align:left"><p>adds extra degree of freedom (<span class="math notranslate nohighlight">\(s\)</span>) that scales all velocities; <span class="math notranslate nohighlight">\(s\)</span> has a mass and moves to keep simulation at desired <span class="math notranslate nohighlight">\(T\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><strong>Andersen</strong></p></td>
+<td class="text-align:left"><p>simulates “collisions” of randomly chosen particles and resamples their velocity according to Maxwell-Boltzmann</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><strong>Berendsen</strong></p></td>
+<td class="text-align:left"><p>rescales all velocities at each step towards the target temperature; can result in the <a class="reference external" href="https://en.wikipedia.org/wiki/Flying_ice_cube">Flying Ice Cube Effect</a></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>“Friends don’t let friends use Berendsen.”</strong> - &#64;jchodera <a class="reference external" href="https://twitter.com/jchodera/status/1182035924957515777">tweet</a></p>
+</div>
+<div class="section" id="force-fields">
+<h2>Force fields<a class="headerlink" href="#force-fields" title="Permalink to this headline">¶</a></h2>
+<p>Last week we used a simple <strong>potential energy function</strong> for our one-particle simulations.  For biomolecular systems these need to contain all of the information about each atom (its charge, radius, etc) and how it interacts with other atoms in the system.</p>
+<p>The interactions can be neatly separated into <strong>bonded</strong> and <strong>non-bonded</strong> interactions:</p>
+<div class="math notranslate nohighlight">
+\[U({\bf x}) = U_{\text{bonded}}({\bf x}) + U_{\text{non-bonded}}({\bf x})\]</div>
+<p><strong>Reminder:</strong> the variable <span class="math notranslate nohighlight">\({\bf x}\)</span> holds all of the positions of all the atoms in the system.  Today let’s consider <span class="math notranslate nohighlight">\({\bf x}\)</span> to be a 2D tensor (or, a 2D array) of size <span class="math notranslate nohighlight">\((N,3)\)</span>.</p>
+<p>The <strong>bonded</strong> energy function describes interactions that are due to covalent bonds:</p>
+<div class="math notranslate nohighlight">
+\[U_{\text{bonded}}({\bf x}) = U_{\text{bond}} + U_{\text{angle}} + U_{\text{torsion}} + U_{\text{improper}}\]</div>
+<p><img src="https://www.researchgate.net/profile/Emal-Alekozai/publication/280664616/figure/fig16/AS:648243079831554@1531564602615/Schematic-illustration-of-the-bonded-terms-in-the-CHARMM-force-field-adapted-from.png" height="200"></img></p>
+<p>The <strong>non-bonded</strong> energy function is composed of <strong>electrostatic</strong> and <strong>Lennard-Jones</strong> interactions:</p>
+<div class="math notranslate nohighlight">
+\[U_{\text{non-bonded}}({\bf x}) = U_{\text{elec}} + U_{\text{LJ}}\]</div>
+<p><span class="math notranslate nohighlight">\(U_{\text{elec}}\)</span> is the interaction between charged groups from <a class="reference external" href="https://en.wikipedia.org/wiki/Coulomb%27s_law">Coulomb’s Law</a>:</p>
+<div class="math notranslate nohighlight">
+\[U_{\text{elec}} = k_e \sum_{i \ne j} \frac{q_i q_j}{r_{ij}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_e\)</span> is Coulomb’s constant, <span class="math notranslate nohighlight">\(q_a\)</span> is the “partial charge” on atom <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(r_{ij}\)</span> is the distance between atoms <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(U_{\text{LJ}}\)</span> is the interaction between particles that doesn’t account for their net charge.  It does a couple of things:</p>
+<ul class="simple">
+<li><p><strong>prevents atomic electron clouds from overlapping in space</strong> (which is not allowed by the <a class="reference external" href="https://en.wikipedia.org/wiki/Pauli_exclusion_principle">Pauli Exclusion principle</a>)</p></li>
+<li><p><strong>allows for favorable “induced dipole” interactions</strong> (also referred to as “van der Waals” interactions, “London” forces, or “dispersion” forces)</p></li>
+</ul>
+<p><img src="https://o.quizlet.com/Wpeenr2psYttiQfEqyP3Iw_b.png" height="200"></img></p>
+<p>The commonly used equation to describe these forces is the <a class="reference external" href="https://en.wikipedia.org/wiki/Lennard-Jones_potential">“Lennard-Jones” potential</a>:</p>
+<div class="math notranslate nohighlight">
+\[U_{\text{LJ}} = \sum_{i \ne j} 4\epsilon_{ij} \left[ \left( \frac{\sigma_{ij}}{r_{ij}}\right)^{12} - \left( \frac{\sigma_{ij}}{r_{ij}} \right)^6\right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_{ij} = \sqrt{\epsilon_i \epsilon_j}\)</span>, and <span class="math notranslate nohighlight">\(\sigma_{ij} = \frac{1}{2}(\sigma_i + \sigma_j)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\sigma_a\)</span> is the van der Waals radius of atom <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the depth of its van der Waals energy well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ULJ</span><span class="p">(</span><span class="n">r_over_sigma</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    
+    <span class="n">sigma_over_r</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">r_over_sigma</span>
+    <span class="n">sor6</span> <span class="o">=</span> <span class="n">sigma_over_r</span><span class="o">**</span><span class="mi">6</span>
+    <span class="n">sor12</span> <span class="o">=</span> <span class="n">sor6</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="p">(</span><span class="n">sor12</span><span class="o">-</span><span class="n">sor6</span><span class="p">)</span>
+
+<span class="n">r_o_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="n">ULJ</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;epsilon = 0.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="n">ULJ</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;epsilon = 0.8&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="n">ULJ</span><span class="p">(</span><span class="n">r_o_s</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;epsilon = 1.0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r/sigma&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;ULJ(r)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe09d57ae50&gt;
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_23_1.png" src="../_images/W7_Lecture_MD-Concepts2_23_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="periodic-boundaries">
+<h2>Periodic boundaries<a class="headerlink" href="#periodic-boundaries" title="Permalink to this headline">¶</a></h2>
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Periodic_Boundary_Conditions_in_2D.png" width="500"/><p>When conducting molecular simulations we can only afford to include so many particles.  A common way to minimize the effects of a finite system size is to include <strong>periodic boundaries</strong>.</p>
+<p>This essentially assumes that the simulation cell is surrounded in all directions by other identical simulation cells.</p>
+<p>The implementation of periodic boundaries seems simple enough:</p>
+<ul class="simple">
+<li><p>if you exit through the left side, you enter through the right</p></li>
+<li><p>if you exit through the top, you enter through the bottom</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p><strong>But periodic boundaries can be tricky and are probably the cause of most errors and bugs in molecular dynamics simulations.</strong></p>
+</div>
+<div class="section" id="wrapping-coordinates">
+<h2>“Wrapping” coordinates<a class="headerlink" href="#wrapping-coordinates" title="Permalink to this headline">¶</a></h2>
+<p>To apply those rules above and make sure particles do not leave the simulation box, you need to periodically “wrap” the coordinates back into the box.</p>
+<p>Below is trajectory that leaves a simulation box, defined in two dimensions as <span class="math notranslate nohighlight">\(x \in [-0.5,0.5]\)</span>, <span class="math notranslate nohighlight">\(y \in [-0.5,0.5]\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># an imaginary trajectory</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">traj</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">traj</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">traj</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># used for visualizing the box</span>
+<span class="n">box_x</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="n">box_y</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">traj</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">traj</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">box_x</span><span class="p">,</span><span class="n">box_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, 1.0)
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_27_1.png" src="../_images/W7_Lecture_MD-Concepts2_27_1.png" />
+</div>
+</div>
+<p>Here is a function that applies boundary conditions to a given trajectory frame and returns the “wrapped” positions back inside the box:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_pbc</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">box_size</span><span class="p">):</span>
+    <span class="c1"># positions and box size are both arrays with</span>
+    <span class="c1"># a dimensionality equal to the number of spatial dimensions</span>
+    <span class="c1"># i.e. if we are in 2D space, each array has two elements</span>
+    
+    <span class="n">half_box_size</span> <span class="o">=</span> <span class="n">box_size</span> <span class="o">*</span> <span class="mf">0.5</span>
+    <span class="n">pbc_wrap_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+
+    <span class="n">old_positions</span> <span class="o">=</span> <span class="n">positions</span>
+
+    <span class="c1"># this while loop allows adjustments to be made until </span>
+    <span class="c1"># the positions of the particles stops changing</span>
+    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">pbc_wrap_positions</span> <span class="o">!=</span> <span class="n">old_positions</span><span class="p">):</span>
+        <span class="c1">#</span>
+        <span class="c1"># Note on np.where syntax:</span>
+        <span class="c1"># np.where(CONDITION, value_if_true, value_if_false)</span>
+        <span class="c1">#</span>
+        <span class="n">pbc_wrap_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">positions</span> <span class="o">&gt;</span> <span class="n">half_box_size</span><span class="p">,</span>
+                                      <span class="n">positions</span> <span class="o">-</span> <span class="n">box_size</span><span class="p">,</span>
+                                      <span class="n">positions</span><span class="p">)</span>
+
+        <span class="n">pbc_wrap_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">positions</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">half_box_size</span><span class="p">,</span>
+                                      <span class="n">positions</span> <span class="o">+</span> <span class="n">box_size</span><span class="p">,</span>
+                                      <span class="n">pbc_wrap_positions</span><span class="p">)</span>
+        <span class="n">old_positions</span> <span class="o">=</span> <span class="n">pbc_wrap_positions</span>
+    <span class="k">return</span> <span class="n">pbc_wrap_positions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try this out by applying it to all of the frames in our trajectory:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_frames</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">box_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">traj</span><span class="p">:</span>
+    <span class="n">new_frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">apply_pbc</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="n">box_size</span><span class="p">))</span>
+
+<span class="n">new_traj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_frames</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_traj</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">new_traj</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">box_x</span><span class="p">,</span><span class="n">box_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, 1.0)
+</pre></div>
+</div>
+<img alt="../_images/W7_Lecture_MD-Concepts2_31_1.png" src="../_images/W7_Lecture_MD-Concepts2_31_1.png" />
+</div>
+</div>
+<p><strong>Note that we can use the same function with 3D data as well:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unwrapped_trajectory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">*</span><span class="mi">10</span>  <span class="c1"># nframes, nparticles, ndim</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max x coordinate:&quot;</span><span class="p">,</span><span class="n">unwrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max y coordinate:&quot;</span><span class="p">,</span><span class="n">unwrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max z coordinate:&quot;</span><span class="p">,</span><span class="n">unwrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max x coordinate: 9.997272451544207
+Max y coordinate: 9.995211595558018
+Max z coordinate: 9.997304830041116
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">wrapped_trajectory</span> <span class="o">=</span> <span class="n">apply_pbc</span><span class="p">(</span><span class="n">unwrapped_trajectory</span><span class="p">,</span><span class="n">box_size</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max x coordinate (after wrapping):&quot;</span><span class="p">,</span><span class="n">wrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max y coordinate (after wrapping):&quot;</span><span class="p">,</span><span class="n">wrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max z coordinate (after wrapping):&quot;</span><span class="p">,</span><span class="n">wrapped_trajectory</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max x coordinate (after wrapping): 4.997272451544207
+Max y coordinate (after wrapping): 4.995211595558018
+Max z coordinate (after wrapping): 4.9973048300411165
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="displacement-vectors-through-periodic-boundaries">
+<h2>Displacement vectors through periodic boundaries<a class="headerlink" href="#displacement-vectors-through-periodic-boundaries" title="Permalink to this headline">¶</a></h2>
+<p>Wrapping is important, but it is also important that inter-particle forces are computed properly through periodic boundaries.  In other words, <strong>even though the positions of two particles are far apart, their “images” in adjacent cells could be close together.</strong>  If these interactions aren’t taken into account, particles could experience discontinuities in their forces as they are wrapped through the periodic boundary.  <strong>For instance, a particle would know that it is sitting almost on top of another particle until it crosses the boundary, at which point it suddenly experiences an ultra-high repulsive force, and then your system explodes!</strong></p>
+<p>To avoid this catastrophic scenario, we will make sure to compute forces using the closest possible displacement vector.</p>
+<p>Consider two particles <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>:</p>
+<p><img alt="periodicity schematic" src="https://github.com/ADicksonLab/ml4md-jb/blob/main/figures/periodic-01.png?raw=true" /></p>
+<p>The difference in their <span class="math notranslate nohighlight">\(x\)</span> coordinates can be calculated three ways:</p>
+<ul class="simple">
+<li><p>directly (<span class="math notranslate nohighlight">\(x_j - x_i\)</span>)</p></li>
+<li><p>using the “right hand image” (<span class="math notranslate nohighlight">\(x_j - (x_i + L_x)\)</span>)</p></li>
+<li><p>using the “left hand image” (<span class="math notranslate nohighlight">\(x_j - (x_i - L_x)\)</span>)</p></li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\(L_x\)</span> is the length of the box in the <span class="math notranslate nohighlight">\(x\)</span> direction.</p>
+<p><strong>Clearly if we want <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> to “feel” each other across the periodic boundary, we need to use the difference with the smallest magnitude when we are calculating the forces.</strong></p>
+<p>The following function determines the shortest displacement vector between two atoms, <strong>even considering images that differ by more than one box length</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">shortest_disp_vector</span><span class="p">(</span><span class="n">posA</span><span class="p">,</span> <span class="n">posB</span><span class="p">,</span> <span class="n">box_size</span><span class="p">):</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">posA</span> <span class="o">-</span> <span class="n">posB</span>   <span class="c1"># has one element for each spatial dimension</span>
+
+    <span class="c1"># loop over spatial dimensions</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">posA</span><span class="p">)):</span>
+        
+        <span class="c1"># if difference is greater than half the box length, adjust</span>
+        <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            
+            <span class="c1"># determine number of adjustments needed</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>  
+
+            <span class="c1"># make them</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">n</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="c1"># same thing in the negative direction</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">n</span><span class="o">*</span><span class="n">box_size</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now let’s test this out:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.55</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.90</span><span class="p">,</span><span class="mf">0.51</span><span class="p">,</span><span class="mf">0.2</span><span class="p">]])</span>  <span class="c1"># two particles in 3D space</span>
+<span class="n">box_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># compute direct displacement vector</span>
+<span class="n">direct_disp_vec</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Direct displacement vector:&quot;</span><span class="p">,</span><span class="n">direct_disp_vec</span><span class="p">,</span><span class="s2">&quot;has magnitude:&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">direct_disp_vec</span><span class="p">))))</span>
+
+<span class="c1"># compute displacement vector through the boundaries</span>
+<span class="n">closest_disp_vec</span> <span class="o">=</span> <span class="n">shortest_disp_vector</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">box_size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shortest displacement vector:&quot;</span><span class="p">,</span><span class="n">closest_disp_vec</span><span class="p">,</span><span class="s2">&quot;has magnitude:&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">closest_disp_vec</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Direct displacement vector: [-0.89  0.01  0.35] has magnitude: 0.9563994981178107
+Shortest displacement vector: [0.11 0.01 0.35] has magnitude: 0.3670149860700514
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>In this week’s lab</strong> we will be using a periodic box to simulate a set of Liquid Argon atoms.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-07"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 06 Lab: Single Particle Langevin Dynamics</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
