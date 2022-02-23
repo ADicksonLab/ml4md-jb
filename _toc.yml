@@ -79,5 +79,5 @@ parts:
   - caption: Week 07
     numbered: False
     chapters:
-    file: Week-07/W7_Lecture_MD-Concepts2.ipynb
+    - file: Week-07/W7_Lecture_MD-Concepts2.ipynb
     
