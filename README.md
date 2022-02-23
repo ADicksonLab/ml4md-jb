@@ -48,3 +48,6 @@ To add a lesson, do the following on your terminal:
    `ghp-import -n -p -f _build/html`\
    or alternatively:\
    `./build_and_deploy.sh`
+
+## Making lecture slides from a Jupyter notebook
+jupyter nbconvert Week-06/W6_Lecture_MD-Concepts1.ipynb --to slides --post serve
