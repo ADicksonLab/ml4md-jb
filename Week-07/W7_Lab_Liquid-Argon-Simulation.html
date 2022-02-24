@@ -750,17 +750,15 @@
 </div>
 </div>
 <p>Now it’s time to compute our derivatives for the force function.  The derivative of <span class="math notranslate nohighlight">\(U\)</span> function with respect to a particular <span class="math notranslate nohighlight">\(r\)</span> is:</p>
-<p>\begin{equation}
-\frac{dU}{dr} = 4\epsilon \left[(-12)\frac{\sigma^{12}}{r^{13}} + 6\frac{\sigma^6}{r^7}\right]
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[\frac{dU}{dr} = 4\epsilon \left[(-12)\frac{\sigma^{12}}{r^{13}} + 6\frac{\sigma^6}{r^7}\right]\]</div>
 <p>But to get the force, we must find the derivative of this function with respect to a given particle’s <strong>position</strong>, <span class="math notranslate nohighlight">\(x_i\)</span>.  As an intermediate step, let’s determine <span class="math notranslate nohighlight">\(dr_{ij}/dx_{i}\)</span>:</p>
-<p>\begin{align}
-\frac{dr_{ij}}{dx_i} &amp;= \frac{d}{dx_i} \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2 + (z_i - z_j)^2} \
-&amp;= \frac{(x_i - x_j)}{r_{ij}}
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[\frac{dr_{ij}}{dx_i} = \frac{d}{dx_i} \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2 + (z_i - z_j)^2} = \frac{(x_i - x_j)}{r_{ij}} \]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\frac{dr_{ij}}{dx_i} = -\frac{dr_{ij}}{dx_j}\)</span>.</p>
 <p>Now let’s use this to determine <span class="math notranslate nohighlight">\(dU/dx_i\)</span>:</p>
-<p>\begin{equation} \frac{dU({\bf x})}{dx_i} = 4\epsilon \sum_{j \ne i} \frac{dU}{dr_{ij}}\frac{r_{ij}}{dx_{i}} = 4\epsilon \sum_{j \ne i} \left[(-12)\frac{\sigma^{12}}{r_{ij}^{14}} + 6\frac{\sigma^6}{r_{ij}^8}\right] (x_i-x_j) \end{equation}</p>
+<div class="math notranslate nohighlight">
+\[ \frac{dU({\bf x})}{dx_i} = 4\epsilon \sum_{j \ne i} \frac{dU}{dr_{ij}}\frac{r_{ij}}{dx_{i}} = 4\epsilon \sum_{j \ne i} \left[(-12)\frac{\sigma^{12}}{r_{ij}^{14}} + 6\frac{\sigma^6}{r_{ij}^8}\right] (x_i-x_j) \]</div>
 <p><strong>Fill in the missing lines below:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,16 +864,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pint
-  Using cached Pint-0.18-py2.py3-none-any.whl (209 kB)
-Requirement already satisfied: packaging in /Users/alexrd/anaconda3/envs/ml4md/lib/python3.8/site-packages (from pint) (21.3)
-Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /Users/alexrd/anaconda3/envs/ml4md/lib/python3.8/site-packages (from packaging-&gt;pint) (3.0.6)
-Installing collected packages: pint
-Successfully installed pint-0.18
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -887,8 +875,6 @@ Successfully installed pint-0.18
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">0.010364269652680507 electron_volt</div></div>
 </div>
 <p>As we can see, a “dalnap” is equal to 0.010364 eV.</p>
 <p>Let’s define some conversion factors we can use in our program:</p>
@@ -941,11 +927,6 @@ Successfully installed pint-0.18
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traj_pos</span><span class="p">,</span> <span class="n">traj_vel</span> <span class="o">=</span> <span class="n">sim_manager</span><span class="p">(</span><span class="n">init_x</span><span class="p">,</span><span class="n">init_v</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">LJForces</span><span class="p">,</span><span class="n">VVLangevin</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress: [####################] 100.0%
 </pre></div>
 </div>
 </div>
@@ -1004,19 +985,14 @@ Successfully installed pint-0.18
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9cb89f0d7dd64e90a1c579a5a3ac298b", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 <div class="section" id="analyze-the-radial-distribution-function">
 <h2>Analyze the radial distribution function<a class="headerlink" href="#analyze-the-radial-distribution-function" title="Permalink to this headline">¶</a></h2>
 <p>A common way to analyze particle interactions is the <a class="reference external" href="https://en.wikipedia.org/wiki/Radial_distribution_function">“radial distribution function”</a>.  The radial distribution function is determined by calculating the distance between all particle pairs and binning them into a probability distribution <span class="math notranslate nohighlight">\(P(r)\)</span>.</p>
 <p>The radial distribution function (or RDF) is then normalized by the density of the system times the volume of the spherical shell with radius <span class="math notranslate nohighlight">\(r\)</span> and thickness <span class="math notranslate nohighlight">\(dr\)</span>:</p>
-<p>\begin{equation}
-g(r) = \frac{P(r)}{\rho 4 \pi r^2 dr}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[ g(r) = \frac{P(r)}{\rho 4 \pi r^2 dr} \]</div>
 <p>This normalization is important to interpret the <span class="math notranslate nohighlight">\(g(r)\)</span> curve.  Now a value of <span class="math notranslate nohighlight">\(g(r) = 1\)</span> would indicate a normal atomic density that one would find in a bulk solution.</p>
 <p><strong>Write a function that calculates takes in a trajectory and computes <span class="math notranslate nohighlight">\(g(r)\)</span>:</strong></p>
 <div class="cell docutils container">
@@ -1090,12 +1066,6 @@ g(r) = \frac{P(r)}{\rho 4 \pi r^2 dr}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8559550f70&gt;
-</pre></div>
-</div>
-<img alt="../_images/W7_Lab_Liquid-Argon-Simulation_36_1.png" src="../_images/W7_Lab_Liquid-Argon-Simulation_36_1.png" />
-</div>
 </div>
 <p><strong>Does this curve make sense given the visualization above?  Why or why not?</strong></p>
 <p>/your answer here/</p>
@@ -1107,22 +1077,6 @@ g(r) = \frac{P(r)}{\rho 4 \pi r^2 dr}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_trajs</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">all_trajs</span><span class="p">[</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="n">traj_pos</span>
-<span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">200</span><span class="p">]:</span>
-    <span class="n">params</span><span class="p">[</span><span class="s1">&#39;kT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kB</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">eV_to_dalnap</span>
-    <span class="n">all_trajs</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sim_manager</span><span class="p">(</span><span class="n">init_x</span><span class="p">,</span><span class="n">init_v</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">LJForces</span><span class="p">,</span><span class="n">VVLangevin</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress: [####################] 100.0%
 </pre></div>
 </div>
 </div>
