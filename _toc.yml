@@ -80,4 +80,15 @@ parts:
     numbered: False
     chapters:
     - file: Week-07/W7_Lecture_MD-Concepts2.ipynb
-    
+    - file: Week-07/W7_Lab_Liquid-Argon-Simulation.ipynb
+    - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true
+      title: traj_pos_T50.npy
+    - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true
+      title: traj_vel_T50.npy
+    - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true
+      title: traj_pos_T80.npy
+    - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true
+      title: traj_pos_T120.npy
+    - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true
+      title: traj_pos_T200.npy
+      
