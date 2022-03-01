@@ -1,0 +1,1381 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 8 Lecture: Biomolecular Simulation (Part I) &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 07 Lab: Liquid Argon Simulation" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 07 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-08/W8_Lecture-Biomolecular-Simulation-1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-08/W8_Lecture-Biomolecular-Simulation-1.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-08/W8_Lecture-Biomolecular-Simulation-1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-08/W8_Lecture-Biomolecular-Simulation-1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#samik-bose-postdoctoral-research-associate-dicksonlab">
+     Samik Bose, Postdoctoral Research Associate, DicksonLab
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-it-started">
+   How it started?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-first-known-md-simulation-is-performed-in-a-computer-by-a-rahman">
+     1964  : The first known MD simulation is performed in a
+     <strong>
+      computer
+     </strong>
+     by A. Rahman.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulation-of-216-water-molecules-in-a-periodic-box">
+     1972 : Simulation of 216 water molecules in a periodic box.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#s-concept-of-force-fields-and-its-systematic-development">
+     1970-90s : Concept of force fields and its systematic development.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-is-it-going">
+   How is it going?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#since-2000-a-steady-growth-and-expanding-the-horizon-each-day">
+     Since 2000: A steady growth and expanding the horizon each day!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prof-feig-and-co-workers-developed-a-model-for-bacterial-cytoplasm-1-million-atoms-and-ran-20-ns-of-simulations-to-understabd-the-structure-and-interactions-cool-figures-and-videos-can-be-found-here">
+       Prof. Feig and co-workers developed a model for bacterial cytoplasm ( &gt;1 million atoms) and ran ~20 ns of simulations to understabd the structure and interactions. Cool figures and videos can be found here.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#biomolecular-simulations-leading-the-way-for-drug-discovery-and-medical-science">
+     Biomolecular Simulations leading the way for drug discovery and medical science
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#md-simulation-of-sars-cov2-viral-envelope-with-305-million-atoms">
+       MD simulation of SARS-COV2 Viral envelope with 305 million atoms.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-growth-in-technology">
+   Exponential growth in technology!
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#humanity-landed-on-moon-with-4-kb-ram-and-2-mhz-cpu">
+     Humanity landed on moon with 4 KB RAM and 2 MHz CPU.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supercomputers-of-today">
+     Supercomputers of today:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-in-softwares-algorithms-as-well">
+   Development in softwares/algorithms as well
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-an-md-simulation">
+   Running an MD simulation:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-starting-structures-of-biomolecules">
+     Initial starting structures of biomolecules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#md-engines-to-solve-the-equation-of-motion">
+     MD engines to solve the equation of motion:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#force-fields-to-define-the-interaction-potentials-between-atoms">
+     Force fields to define the interaction potentials between atoms:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#we-will-use-openmm-md-engine-for-the-next-two-weeks">
+       We will use OpenMM MD engine for the next two weeks.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#installing-softwares">
+       Installing Softwares:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topology-and-force-field">
+     Topology and Force field
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#to-run-a-simulation-in-openmm-you-would-require-a-topology-file-contains-the-connectivity-information-and-a-force-field-file-contains-the-parameters-of-the-force-field">
+       To run a simulation in OpenMM, you would require a topology file (contains the connectivity information) and a force field file (contains the parameters of the force field).
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ipython-utility-to-learn-more-about-each-openmm-object-and-its-functions-attributes">
+     IPython utility to learn more about each OpenMM object and its functions/attributes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#please-check-if-any-of-these-import-commands-produce-error-in-your-machines">
+       Please check if any of these import commands produce error in your machines
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concept-of-units-and-constants-in-openmm">
+     Concept of Units and constants in OpenMM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lets-define-a-topology-of-a-water-molecule">
+   Lets define a topology of a water molecule:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#printing-the-details-of-topology">
+     Printing the details of topology:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-the-simulation">
+   Set up the simulation:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-part-consists-of-a-few-steps">
+     This part consists of a few steps:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lets-take-a-look-at-the-forces-from-the-system">
+     Lets take a look at the forces from the system:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimize-the-energy">
+     Minimize the energy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-access-the-final-geometry">
+     How to access the final geometry?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-the-minimized-structure-to-a-pdb-for-visualization">
+     Write the minimized structure to a PDB for visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-a-test-simulation-of-a-small-protein">
+   Running a test simulation of a ‘small’ protein
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-8-lecture-biomolecular-simulation-part-i">
+<h1>Week 8 Lecture: Biomolecular Simulation (Part I)<a class="headerlink" href="#week-8-lecture-biomolecular-simulation-part-i" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="samik-bose-postdoctoral-research-associate-dicksonlab">
+<h2>Samik Bose, Postdoctoral Research Associate, DicksonLab<a class="headerlink" href="#samik-bose-postdoctoral-research-associate-dicksonlab" title="Permalink to this headline">¶</a></h2>
+<p><img alt="BM" src="https://wires.onlinelibrary.wiley.com/cms/asset/7f03c765-f4c2-435f-b478-7db6d2ce87ad/wcms1393-toc-0001-m.jpg" /></p>
+<ul class="simple">
+<li><p><strong>Advancement and current status of molecular simulation.</strong></p></li>
+<li><p><strong>Topology and Force Fields.</strong></p></li>
+<li><p><strong>Idea and introduction to OpenMM.</strong></p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="how-it-started">
+<h1>How it started?<a class="headerlink" href="#how-it-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-first-known-md-simulation-is-performed-in-a-computer-by-a-rahman">
+<h2>1964  : The first known MD simulation is performed in a <strong>computer</strong> by A. Rahman.<a class="headerlink" href="#the-first-known-md-simulation-is-performed-in-a-computer-by-a-rahman" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><em>864 Argon atoms interacting via LJ potential.</em></p></li>
+<li><p><em>‘Computer’: 48-bit system with a RAM: ~1.5 MB and 10 KiloFLOPS.</em></p></li>
+</ul>
+</div>
+<div class="section" id="simulation-of-216-water-molecules-in-a-periodic-box">
+<h2>1972 : Simulation of 216 water molecules in a periodic box.<a class="headerlink" href="#simulation-of-216-water-molecules-in-a-periodic-box" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><em>All the bonded and non-bonded potentials and their parameters were derived mathematically.</em></p></li>
+<li><p><em>A few picoseconds of simulation can only be carried away.</em></p></li>
+</ul>
+</div>
+<div class="section" id="s-concept-of-force-fields-and-its-systematic-development">
+<h2>1970-90s : Concept of force fields and its systematic development.<a class="headerlink" href="#s-concept-of-force-fields-and-its-systematic-development" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><em>An equation for the potential energy and a set of <strong>transferable</strong> parameters for each molecule.</em></p></li>
+<li><p><em>Force fields such as OPLS, AMBER, CHARMM, GROMOS etc are developed.</em></p></li>
+<li><p><strong>Opens the door for a theoretical, physics-based understanding of complex bio-systems.</strong></p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="how-is-it-going">
+<h1>How is it going?<a class="headerlink" href="#how-is-it-going" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="since-2000-a-steady-growth-and-expanding-the-horizon-each-day">
+<h2>Since 2000: A steady growth and expanding the horizon each day!<a class="headerlink" href="#since-2000-a-steady-growth-and-expanding-the-horizon-each-day" title="Permalink to this headline">¶</a></h2>
+<p><strong>2013: Nobel prize in chemistry in for <a class="reference external" href="https://www.nobelprize.org/prizes/chemistry/2013/summary/">‘the development of multiscale models for complex chemical systems”</a>, which is a closely allied field of molecular simulation. [Biomolecular simulation is a subset of multiscale modeling]</strong></p>
+<p><strong>2014: All atom simulation of solvated HIV-1 capsid structure (~ 64 million atoms, ~ 1 <span class="math notranslate nohighlight">\(\mu\)</span>s)</strong></p>
+<p><img alt="BM" src="https://static-content.springer.com/esm/art%3A10.1038%2Fnature12162/MediaObjects/41586_2013_BFnature12162_MOESM63_ESM.mov" /></p>
+<div class="section" id="prof-feig-and-co-workers-developed-a-model-for-bacterial-cytoplasm-1-million-atoms-and-ran-20-ns-of-simulations-to-understabd-the-structure-and-interactions-cool-figures-and-videos-can-be-found-here">
+<h3>Prof. Feig and co-workers developed a model for bacterial cytoplasm ( &gt;1 million atoms) and ran ~20 ns of simulations to understabd the structure and interactions. Cool figures and videos can be found <a class="reference external" href="https://elifesciences.org/articles/19274/figures#content">here</a>.<a class="headerlink" href="#prof-feig-and-co-workers-developed-a-model-for-bacterial-cytoplasm-1-million-atoms-and-ran-20-ns-of-simulations-to-understabd-the-structure-and-interactions-cool-figures-and-videos-can-be-found-here" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="biomolecular-simulations-leading-the-way-for-drug-discovery-and-medical-science">
+<h2>Biomolecular Simulations leading the way for drug discovery and medical science<a class="headerlink" href="#biomolecular-simulations-leading-the-way-for-drug-discovery-and-medical-science" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>2020: Durrant and coworkers performed an influenza virus simulation and proposed possible mechanism of drugs. (~164 million atom system)</strong></p></li>
+</ul>
+<p><img alt="bm" src="../_images/Amaro_influenza.png" /></p>
+<div class="section" id="md-simulation-of-sars-cov2-viral-envelope-with-305-million-atoms">
+<h3>MD simulation of SARS-COV2 Viral envelope with 305 million atoms.<a class="headerlink" href="#md-simulation-of-sars-cov2-viral-envelope-with-305-million-atoms" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>A. The all atom model of SARS-COV2 (from simulation).</strong></p></li>
+<li><p><strong>B &amp; C. The glycan shield of the spike protein and its role in modulating the infectivity of the virus.</strong></p></li>
+<li><p><strong>D. The characterization of the flexible interactions between the spike and the human ACE2 receptor.</strong></p></li>
+</ul>
+<p><img alt="bm" src="../_images/sars-cov2_model.png" /></p>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="exponential-growth-in-technology">
+<h1>Exponential growth in technology!<a class="headerlink" href="#exponential-growth-in-technology" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="humanity-landed-on-moon-with-4-kb-ram-and-2-mhz-cpu">
+<h2>Humanity landed on moon with 4 KB RAM and 2 MHz CPU.<a class="headerlink" href="#humanity-landed-on-moon-with-4-kb-ram-and-2-mhz-cpu" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="supercomputers-of-today">
+<h2>Supercomputers of today:<a class="headerlink" href="#supercomputers-of-today" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- TBs of RAM, 
+- PBs of diskspace, 
+- $&gt;$ 1000s of processors and GPUs,  
+- $&gt;$ TeraFlops to PetaFlops of speed.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Anton_(computer)">Anton</a> is a massively parallel and specially built to run long time and length scale MD simulations.</p></li>
+<li><p><a class="reference external" href="https://ieeexplore.ieee.org/document/7012191">Anton2</a> can run 85 <span class="math notranslate nohighlight">\(\mu\)</span>s/day for ~24000 benchmark system which is claimed to be 180 times faster than any other academic supercomputer.</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="development-in-softwares-algorithms-as-well">
+<h1>Development in softwares/algorithms as well<a class="headerlink" href="#development-in-softwares-algorithms-as-well" title="Permalink to this headline">¶</a></h1>
+<p><strong>Converting to GPU-based code architecture</strong></p>
+<ul class="simple">
+<li><p>In 2007, NVIDIA introduced GPU cards to develop parallel programs in high-level API named CUDA.</p></li>
+<li><p>The scientific community converted the existing simulation packages in CUDA enabled versions which increased the computational efficiency.</p></li>
+</ul>
+<p><strong>Incorporating Ewald summation in calculation of long-range electrostatics.</strong></p>
+<ul class="simple">
+<li><p>Instead of calculating all possibile long-range one-to-one electrostatics interaction, a particle mesh ewald type approach calculates the interaction energies in Fourier space with much less computation and faster convergence.</p></li>
+</ul>
+<p><strong>Enhanced sampling methods</strong></p>
+<ul class="simple">
+<li><p>One of the most discussed drawback of MD simulation is the sampling problem. This is due to rough energy landscapes, with many local minima separated by high-energy barriers, which govern the biomolecular motion.</p></li>
+<li><p>Enhanced sampling algorithms such as replica exchange molecular dynamics, metadynamics, simulated annealing, weighted ensemble have accelarated the conformtional search, both at equlibria and at non-equlibrium states.</p></li>
+</ul>
+<p>[Our group has been designing weighted ensemble based methods and softwares to study protein-ligand interactions.]</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="running-an-md-simulation">
+<h1>Running an MD simulation:<a class="headerlink" href="#running-an-md-simulation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="initial-starting-structures-of-biomolecules">
+<h2>Initial starting structures of biomolecules<a class="headerlink" href="#initial-starting-structures-of-biomolecules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>X-ray crsytal srtuctures from Protein data bank (<a class="reference external" href="https://www.rcsb.org">https://www.rcsb.org</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="md-engines-to-solve-the-equation-of-motion">
+<h2>MD engines to solve the equation of motion:<a class="headerlink" href="#md-engines-to-solve-the-equation-of-motion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GROMACS</p></li>
+<li><p>NAMD</p></li>
+<li><p>AMBER</p></li>
+<li><p>OpenMM</p></li>
+<li><p>Tinker</p></li>
+<li><p>LAMMPS</p></li>
+<li><p>…</p></li>
+</ul>
+</div>
+<div class="section" id="force-fields-to-define-the-interaction-potentials-between-atoms">
+<h2>Force fields to define the interaction potentials between atoms:<a class="headerlink" href="#force-fields-to-define-the-interaction-potentials-between-atoms" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.charmm.org">CHARMM36</a> [Chemistry at HARvard Macromolecular Mechanics]</p></li>
+<li><p><a class="reference external" href="https://ambermd.org">AMBER20</a> [Assisted Model Building with Energy Refinement]</p></li>
+<li><p><a class="reference external" href="http://zarbi.chem.yale.edu/oplsaam.html">OPLS-AA/M</a>  [Optimized Potentials for Liquid Simulations]</p></li>
+<li><p><a class="reference external" href="http://www.gromos.net">GROMOS</a> [GROningen MOlecular Simulation]</p></li>
+<li><p>…</p></li>
+</ul>
+<div class="section" id="we-will-use-openmm-md-engine-for-the-next-two-weeks">
+<h3>We will use OpenMM MD engine for the next two weeks.<a class="headerlink" href="#we-will-use-openmm-md-engine-for-the-next-two-weeks" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="installing-softwares">
+<h3>Installing Softwares:<a class="headerlink" href="#installing-softwares" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"> <span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">openmm</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">mdtraj</span> </code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">nglview</span></code></p>
+</div>
+</div>
+<div class="section" id="topology-and-force-field">
+<h2>Topology and Force field<a class="headerlink" href="#topology-and-force-field" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Topology in biomolecular simulations consists of a group of chains, where a chain consists of multiple residues and every residue contains a set of atoms.</p></li>
+<li><p>These atoms interacts with each other by various bonded and non-bonded poetntials. The potential and its parameter set is known as force field.</p></li>
+</ul>
+<div class="section" id="to-run-a-simulation-in-openmm-you-would-require-a-topology-file-contains-the-connectivity-information-and-a-force-field-file-contains-the-parameters-of-the-force-field">
+<h3>To run a simulation in OpenMM, you would require a topology file (contains the connectivity information) and a force field file (contains the parameters of the force field).<a class="headerlink" href="#to-run-a-simulation-in-openmm-you-would-require-a-topology-file-contains-the-connectivity-information-and-a-force-field-file-contains-the-parameters-of-the-force-field" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Example of force field equation (CHARMM):</p></li>
+</ul>
+<p><img alt="ab" src="../_images/CHARMM_eqn.PNG" /></p>
+</div>
+</div>
+<div class="section" id="ipython-utility-to-learn-more-about-each-openmm-object-and-its-functions-attributes">
+<h2>IPython utility to learn more about each OpenMM object and its functions/attributes<a class="headerlink" href="#ipython-utility-to-learn-more-about-each-openmm-object-and-its-functions-attributes" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="please-check-if-any-of-these-import-commands-produce-error-in-your-machines">
+<h3>Please check if any of these import commands produce error in your machines<a class="headerlink" href="#please-check-if-any-of-these-import-commands-produce-error-in-your-machines" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span>
+<span class="kn">import</span> <span class="nn">nglview</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm.unit</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2c333916842e4591badfbf22a67a3a41", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+</div>
+<div class="section" id="concept-of-units-and-constants-in-openmm">
+<h2>Concept of Units and constants in OpenMM<a class="headerlink" href="#concept-of-units-and-constants-in-openmm" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">picosecond</span>  <span class="c1"># 10 * picoseconds will also work.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unit of variable time:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time [s]:&quot;</span><span class="p">,</span> <span class="n">time</span> <span class="o">/</span> <span class="n">second</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time [s]:&quot;</span><span class="p">,</span> <span class="n">time</span> <span class="o">/</span> <span class="n">seconds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time [fs]:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">femtosecond</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">femtosecond</span><span class="p">))</span>
+<span class="c1"># OpenMM also knows a few important constants.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boltzmann&#39;s constant:&quot;</span><span class="p">,</span> <span class="n">BOLTZMANN_CONSTANT_kB</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avogadro&#39;s constant:&quot;</span><span class="p">,</span> <span class="n">AVOGADRO_CONSTANT_NA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit of variable time: picosecond
+time: 10 ps
+time [s]: 1e-11
+time [s]: 1e-11
+time [fs]: 10000.0
+time: 10000.0 fs
+Boltzmann&#39;s constant: 1.380649e-23 J/K
+Avogadro&#39;s constant: 6.02214076e+23 /mol
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lets-define-a-topology-of-a-water-molecule">
+<h1>Lets define a topology of a water molecule:<a class="headerlink" href="#lets-define-a-topology-of-a-water-molecule" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topology</span> <span class="o">=</span> <span class="n">Topology</span><span class="p">()</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">addChain</span><span class="p">()</span>
+<span class="n">residue</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">addResidue</span><span class="p">(</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">chain</span><span class="p">)</span>
+<span class="n">element_O</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">getByAtomicNumber</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">element_H</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">getByAtomicNumber</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">atom0</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">addAtom</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="n">element_O</span><span class="p">,</span> <span class="n">residue</span><span class="p">)</span>
+<span class="n">atom1</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">addAtom</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">element_H</span><span class="p">,</span> <span class="n">residue</span><span class="p">)</span>
+<span class="n">atom2</span> <span class="o">=</span> <span class="n">topology</span><span class="o">.</span><span class="n">addAtom</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="n">element_H</span><span class="p">,</span> <span class="n">residue</span><span class="p">)</span>
+<span class="n">topology</span><span class="o">.</span><span class="n">addBond</span><span class="p">(</span><span class="n">atom0</span><span class="p">,</span> <span class="n">atom1</span><span class="p">)</span>
+<span class="n">topology</span><span class="o">.</span><span class="n">addBond</span><span class="p">(</span><span class="n">atom0</span><span class="p">,</span> <span class="n">atom2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>chain<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>topology<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>In [7]: topology?
+Type:           Topology
+String form:    &lt;Topology; 1 chains, 1 residues, 3 atoms, 2 bonds&gt;
+File:           ~/opt/anaconda3/envs/ml4md/lib/python3.8/site-packages/openmm/app/topology.py
+Docstring:     
+Topology stores the topological information about a system.
+
+The structure of a Topology object is similar to that of a PDB file.  It consists of a set of Chains
+(often but not always corresponding to polymer chains).  Each Chain contains a set of Residues,
+and each Residue contains a set of Atoms.  In addition, the Topology stores a list of which atom
+pairs are bonded to each other, and the dimensions of the crystallographic unit cell.
+
+Atom and residue names should follow the PDB 3.0 nomenclature for all molecules for which one exists.
+
+</pre></div>
+</div>
+<p><img alt="Screen%20Shot%202022-03-01%20at%208.35.35%20AM.png" src="Week-08/attachment:Screen%20Shot%202022-03-01%20at%208.35.35%20AM.png" /></p>
+<div class="section" id="printing-the-details-of-topology">
+<h2>Printing the details of topology:<a class="headerlink" href="#printing-the-details-of-topology" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The topology documentation of OpenMM is <a class="reference external" href="http://docs.openmm.org/latest/api-python/generated/openmm.app.topology.Topology.html#openmm.app.topology.Topology">here</a>.</p></li>
+<li><p>Detailed OpenMM Python API can be found <a class="reference external" href="http://docs.openmm.org/latest/api-python/index.html">here</a>. <strong>[Important for the labs!!]</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">topology</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of atoms:&quot;</span><span class="p">,</span> <span class="n">topology</span><span class="o">.</span><span class="n">getNumAtoms</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Periodic boundaries:&quot;</span><span class="p">,</span> <span class="n">topology</span><span class="o">.</span><span class="n">getUnitCellDimensions</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">iatom</span><span class="p">,</span> <span class="n">atom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">topology</span><span class="o">.</span><span class="n">atoms</span><span class="p">()):</span>
+     <span class="c1"># The following-line would just print a dictionary</span>
+     <span class="c1"># with all attributes, useful to explore undocumented</span>
+     <span class="c1"># attributes.</span>
+     <span class="c1"># print(vars(atom))</span>
+     <span class="nb">print</span><span class="p">(</span>
+         <span class="s2">&quot;Name and mass of atom </span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">iatom</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">mass</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Topology; 1 chains, 1 residues, 3 atoms, 2 bonds&gt;
+Number of atoms: 3
+Periodic boundaries: None
+Name and mass of atom 0: O, 15.99943 Da
+Name and mass of atom 1: H, 1.007947 Da
+Name and mass of atom 2: H, 1.007947 Da
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="set-up-the-simulation">
+<h1>Set up the simulation:<a class="headerlink" href="#set-up-the-simulation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="this-part-consists-of-a-few-steps">
+<h2>This part consists of a few steps:<a class="headerlink" href="#this-part-consists-of-a-few-steps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Select the TIP3P-FB force field for water. The file tip3pfb.xml is there in the <code class="docutils literal notranslate"><span class="pre">app/data/amber14/</span></code> sub-directory. It’s contents can also be viewed in this <a class="reference external" href="https://github.com/openmm/openmm/blob/master/wrappers/python/openmm/app/data/amber14/tip3pfb.xml">link online</a>.</p></li>
+<li><p>Define a system, which is essentially an object implementing the selected force field for our topology. This object can compute energies and forces.</p></li>
+<li><p>Define an integrator, which implements a molecular dynamics algorithm, in this case the Verlet algorithm sampling the NVE ensemble.</p></li>
+<li><p>Define a simulation, which has the following responsibilities:</p>
+<ul>
+<li><p>keep track of the current state (atomic positions etc.),</p></li>
+<li><p>decide which implementation to use (CPU versus GPU)</p></li>
+<li><p>drive the integrator and</p></li>
+<li><p>write output files (reporters).</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Note: This simple example does not write any output yet. The initial positions are provided as a NumPy array, multiplied by a unit. Each row in the array contains the X, Y and Z coordinates of one atomic nucleus, in the same order as the atoms in the topology. Normally, these initial positions are loaded from a PDB file.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a. Select the TIP3P-FB force field.</span>
+<span class="n">forcefield</span> <span class="o">=</span> <span class="n">ForceField</span><span class="p">(</span><span class="s2">&quot;amber14/tip3pfb.xml&quot;</span><span class="p">)</span>
+ 
+ <span class="c1"># b. Create an object to compute energies and forces for our topology.</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">forcefield</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">nonbondedCutoff</span><span class="o">=</span><span class="mi">1</span> <span class="o">*</span> <span class="n">nanometer</span><span class="p">)</span>
+ 
+ <span class="c1"># c. Definition an integrator, mandatory.</span>
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">VerletIntegrator</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">femtoseconds</span><span class="p">)</span>
+
+ <span class="c1"># d. A simulation object in OpenMM combines topology, system and integrator.</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">integrator</span><span class="p">)</span>
+
+<span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],])</span><span class="o">*</span><span class="n">angstroms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="Screen%20Shot%202022-03-01%20at%209.25.05%20AM.png" src="Week-08/attachment:Screen%20Shot%202022-03-01%20at%209.25.05%20AM.png" /></p>
+<p><img alt="Screen%20Shot%202022-03-01%20at%209.25.53%20AM.png" src="Week-08/attachment:Screen%20Shot%202022-03-01%20at%209.25.53%20AM.png" /></p>
+</div>
+<div class="section" id="lets-take-a-look-at-the-forces-from-the-system">
+<h2>Lets take a look at the forces from the system:<a class="headerlink" href="#lets-take-a-look-at-the-forces-from-the-system" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loop over all contributions to the force evaluation.</span>
+<span class="c1"># Note that not all terms are real force-field contributions.</span>
+<span class="c1"># The last one zeros to center-of-mass momentum at every step.</span>
+<span class="k">for</span> <span class="n">force</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">getForces</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">force</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1"># The force field contains two harmonic bond terms,</span>
+<span class="c1"># with the same parameters.</span>
+<span class="n">force_bond</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">getForce</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ibond</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">force_bond</span><span class="o">.</span><span class="n">getNumBonds</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">force_bond</span><span class="o">.</span><span class="n">getBondParameters</span><span class="p">(</span><span class="n">ibond</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;openmm.openmm.HarmonicBondForce; proxy of &lt;Swig Object of type &#39;OpenMM::HarmonicBondForce *&#39; at 0x7ffdf1a1cde0&gt; &gt;
+&lt;openmm.openmm.HarmonicAngleForce; proxy of &lt;Swig Object of type &#39;OpenMM::HarmonicAngleForce *&#39; at 0x7ffdf1a1c840&gt; &gt;
+&lt;openmm.openmm.NonbondedForce; proxy of &lt;Swig Object of type &#39;OpenMM::NonbondedForce *&#39; at 0x7ffdf1a1c150&gt; &gt;
+&lt;openmm.openmm.CMMotionRemover; proxy of &lt;Swig Object of type &#39;OpenMM::CMMotionRemover *&#39; at 0x7ffdf1a1c570&gt; &gt;
+
+[0, 1, Quantity(value=0.101181082494, unit=nanometer), Quantity(value=462750.4, unit=kilojoule/(nanometer**2*mole))]
+
+[0, 2, Quantity(value=0.101181082494, unit=nanometer), Quantity(value=462750.4, unit=kilojoule/(nanometer**2*mole))]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="minimize-the-energy">
+<h2>Minimize the energy<a class="headerlink" href="#minimize-the-energy" title="Permalink to this headline">¶</a></h2>
+<p>This part is split up in a few steps:</p>
+<ul class="simple">
+<li><p>Before minimizing, compute and print the energy of the initial state.</p></li>
+<li><p>Minimize the energy. This is a black-box procedure, using the L-BFGS algorithm.</p></li>
+<li><p>Compute and print the energy of the final state.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a. Print the energy before minimizing.</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state0</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+
+<span class="c1"># b. Minimize the energy.</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">minimizeEnergy</span><span class="p">()</span>
+
+<span class="c1"># c. Print the energy afterwards.</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state1</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.62383270263672 kJ/mol
+1.2486177183745895e-05 kJ/mol
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-access-the-final-geometry">
+<h2>How to access the final geometry?<a class="headerlink" href="#how-to-access-the-final-geometry" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A Simulation object has a context attribute. Context has the information of the current simulation state of the system. The Context class is documented <a class="reference external" href="http://docs.openmm.org/latest/api-python/generated/openmm.openmm.Context.html#openmm.openmm.Context">here</a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">simulation.context.getState</span></code> method retrieves a State object with results for the final geometry of the water molecule. The State class is documented <a class="reference external" href="http://docs.openmm.org/latest/api-python/generated/openmm.openmm.State.html#openmm.openmm.State">here</a>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getPositions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">getForces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Potential energy: &quot;</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic positions&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">getPositions</span><span class="p">(</span><span class="n">asNumpy</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forces&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">getForces</span><span class="p">(</span><span class="n">asNumpy</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Potential energy:  1.2486177183745895e-05 kJ/mol
+
+Atomic positions
+[[ 0.          0.00534427  0.00534427]
+ [ 0.         -0.01060476  0.1052605 ]
+ [ 0.          0.1052605  -0.01060476]] nm
+
+Forces
+[[ 0.          1.66109741  1.66504562]
+ [ 0.         -1.40527272 -0.25922933]
+ [ 0.         -0.25582469 -1.40581632]] kJ/(nm mol)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="write-the-minimized-structure-to-a-pdb-for-visualization">
+<h2>Write the minimized structure to a PDB for visualization<a class="headerlink" href="#write-the-minimized-structure-to-a-pdb-for-visualization" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Store the positions in a numpy array.</p></li>
+<li><p>Use the OpenMM function <code class="docutils literal notranslate"><span class="pre">PDBFile.writefile</span></code> to write to a PDB.</p></li>
+<li><p>Visualize.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">getPositions</span><span class="p">(</span><span class="n">asNumpy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;water.pdb&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">PDBFile</span><span class="o">.</span><span class="n">writeFile</span><span class="p">(</span><span class="n">topology</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
+<span class="c1"># Visualize</span>
+<span class="n">view_minim</span> <span class="o">=</span> <span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;water.pdb&quot;</span><span class="p">))</span>
+<span class="n">view_minim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "796c37b1b2cc45468e8c9d7cbb833aaf", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="running-a-test-simulation-of-a-small-protein">
+<h1>Running a test simulation of a ‘small’ protein<a class="headerlink" href="#running-a-test-simulation-of-a-small-protein" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">input.pdb</span></code> file from the examples folder of your openmm installation. If you installed openmm via conda then the path should look like <code class="docutils literal notranslate"><span class="pre">[anaconda_folder_path]/pkgs/openmm-7.7.0-[your_version]/share/openmm/examples</span></code>. This contains Villin N68H protein in water.</p></li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">amber14-all.xml</span></code> file exists in you openmm data folder. If you installed openmm via conda then the path should look like <code class="docutils literal notranslate"><span class="pre">[anaconda_folder_path]/pkgs/openmm-7.7.0-[your_version]/lib/python3.8/site-packages/openmm/app/data/</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm.unit</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdout</span>
+
+<span class="c1"># loading the input pdb.</span>
+<span class="n">pdb</span> <span class="o">=</span> <span class="n">PDBFile</span><span class="p">(</span><span class="s1">&#39;input.pdb&#39;</span><span class="p">)</span>
+
+<span class="c1"># defining the forcefield </span>
+<span class="n">forcefield</span> <span class="o">=</span> <span class="n">ForceField</span><span class="p">(</span><span class="s1">&#39;amber14-all.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;amber14/tip3pfb.xml&#39;</span><span class="p">)</span>
+
+<span class="c1"># creating the system using the forcefield and pdb topology</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">forcefield</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">nonbondedMethod</span><span class="o">=</span><span class="n">PME</span><span class="p">,</span>
+        <span class="n">nonbondedCutoff</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">nanometer</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">HBonds</span><span class="p">)</span>
+
+<span class="c1"># defining the integrator</span>
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">LangevinMiddleIntegrator</span><span class="p">(</span><span class="mi">300</span><span class="o">*</span><span class="n">kelvin</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">picosecond</span><span class="p">,</span> <span class="mf">0.002</span><span class="o">*</span><span class="n">picoseconds</span><span class="p">)</span>
+
+<span class="c1"># creating the simulation object</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">integrator</span><span class="p">)</span>
+
+<span class="c1"># setting the initial positions to pdb positions</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+
+<span class="c1"># energy before minimization</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state0</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+
+<span class="c1"># b. Minimize the energy.</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">minimizeEnergy</span><span class="p">()</span>
+
+<span class="c1"># c. Print the energy afterwards.</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state1</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+
+<span class="c1"># defining a PDB reporter which will have the trajectory</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PDBReporter</span><span class="p">(</span><span class="s1">&#39;output.pdb&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># printing the PE and Temp to screen</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># write to a file for plotting</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="s2">&quot;scalars.csv&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                              <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">totalEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="c1"># Lets go!!!</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-114904.49843246874 kJ/mol
+-166742.68593246874 kJ/mol
+#&quot;Step&quot;,&quot;Potential Energy (kJ/mole)&quot;,&quot;Temperature (K)&quot;
+100,-162773.56093246874,54.78739518866022
+200,-159591.18593246874,99.58547372125051
+300,-156610.62343246874,136.08054854029612
+400,-154472.87343246874,167.6564799298149
+500,-152723.52968246874,192.7584070693534
+600,-150952.62343246874,207.2573479524575
+700,-149776.62343246874,227.93586275999138
+800,-148677.68593246874,240.6587540719194
+900,-147584.56093246874,248.25857178586935
+1000,-146541.49843246874,251.64869784525408
+1100,-146217.99843246874,261.9102864192445
+1200,-145405.87343246874,265.68705042205954
+1300,-145086.18593246874,272.2767041056566
+1400,-144674.06093246874,280.0013143955792
+1500,-143459.12343246874,275.8539763589534
+1600,-143344.49843246874,285.3183916273659
+1700,-142934.31093246874,288.77443220330275
+1800,-142564.37343246874,286.1498077661399
+1900,-142207.34218246874,289.338936965431
+2000,-142047.21718246874,293.5557469957846
+2100,-142087.56093246874,295.2256921368552
+2200,-141808.74843246874,293.335572116647
+2300,-142000.62343246874,294.3888158536476
+2400,-141960.24843246874,295.5545036244513
+2500,-141838.43593246874,300.9160922296539
+2600,-141579.49843246874,300.94780909490856
+2700,-141279.02968246874,295.06410454480624
+2800,-141771.24843246874,298.9087717608832
+2900,-141295.62343246874,296.85782866058395
+3000,-140893.18593246874,296.6175520874442
+3100,-140964.31093246874,299.0325940527445
+3200,-141088.68593246874,298.2331455913265
+3300,-141115.24843246874,299.0464026150429
+3400,-140965.74843246874,297.4374617590306
+3500,-140963.31093246874,296.23982113798814
+3600,-140633.31093246874,291.16719260282144
+3700,-141213.74843246874,300.2386258537054
+3800,-140851.56093246874,300.7087946884438
+3900,-140581.81093246874,302.3045845994102
+4000,-141090.84218246874,304.5881031676508
+4100,-141095.43593246874,300.13934748755673
+4200,-141353.43593246874,301.3424295537782
+4300,-141164.02968246874,295.9509562430243
+4400,-141625.56093246874,299.9047340371656
+4500,-141566.37343246874,296.9445395726237
+4600,-141350.84218246874,298.42059858160417
+4700,-140698.49843246874,293.021693088025
+4800,-141230.74843246874,299.85991248217533
+4900,-141267.31093246874,297.9977328520622
+5000,-141116.27968246874,299.2395796357145
+5100,-140736.62343246874,295.75016322040733
+5200,-140533.31093246874,298.0632549260026
+5300,-140517.74843246874,297.3726709259163
+5400,-140714.18593246874,298.3881179559705
+5500,-140535.99843246874,297.43368782362177
+5600,-140819.74843246874,297.8714227024565
+5700,-140788.99843246874,297.744203795693
+5800,-140865.15468246874,299.0277076949802
+5900,-140866.06093246874,297.6971540708558
+6000,-140896.49843246874,299.10874630185475
+6100,-140773.93593246874,299.8645550408969
+6200,-140628.31093246874,297.58900550933924
+6300,-140776.09218246874,304.20135879993046
+6400,-140589.81093246874,299.39323557219956
+6500,-140629.34218246874,304.5307724977501
+6600,-141016.12343246874,303.7574147879385
+6700,-140773.93593246874,301.72650779097603
+6800,-140732.31093246874,300.6910649379228
+6900,-140828.09218246874,305.3243696276182
+7000,-140384.71718246874,302.25452843658513
+7100,-140336.34218246874,304.29539802145206
+7200,-140221.02968246874,302.9762120015697
+7300,-140333.99843246874,302.2582705290609
+7400,-140691.49843246874,305.14738990835525
+7500,-140583.74843246874,302.6674376624315
+7600,-140592.49843246874,301.8462401521472
+7700,-140529.09218246874,304.1965158763962
+7800,-140418.71718246874,299.03685442449734
+7900,-140609.43593246874,302.19031390455797
+8000,-140455.96718246874,299.0712496116435
+8100,-140777.46718246874,305.33113446049805
+8200,-140406.15468246874,303.54315798190544
+8300,-140257.09218246874,297.6239331814101
+8400,-140559.15468246874,301.87355075096957
+8500,-140998.21718246874,303.26328744610896
+8600,-140957.12343246874,300.7348576956603
+8700,-140609.37343246874,300.81442897577335
+8800,-140949.93593246874,305.1398152338087
+8900,-140605.65468246874,297.7512947669922
+9000,-140749.87343246874,298.82470486703113
+9100,-140196.06093246874,298.74809862271127
+9200,-140363.24843246874,301.12302659521805
+9300,-140509.56093246874,301.4879665673558
+9400,-140782.21718246874,304.606845590826
+9500,-140641.74843246874,303.7521230705103
+9600,-140382.24843246874,299.4407020451814
+9700,-140854.34218246874,305.84495417916344
+9800,-140861.06093246874,303.6168166124218
+9900,-140850.81093246874,303.9846558916182
+10000,-140718.09218246874,301.6138196260275
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;output.pdb&quot;</span><span class="p">))</span>
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "20de3124e6ee49a3b7e8e91a19a0a74f", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 07 Lab: Liquid Argon Simulation</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
