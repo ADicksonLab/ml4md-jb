@@ -91,4 +91,13 @@ parts:
       title: traj_pos_T120.npy
     - url: https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true
       title: traj_pos_T200.npy
+
+  - caption: Week 08
+    numbered: False
+    chapters:
+    - file: Week-08/W8_Lecture-Biomolecular-Simulation-1.ipynb
+    - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb
+      title: input.pdb
+    - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb
+      title: water.pdb
       
