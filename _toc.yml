@@ -100,4 +100,8 @@ parts:
       title: input.pdb
     - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb
       title: water.pdb
-      
+    - file: Week-08/W8_Lab-Angiotensin-Simulation.ipynb
+    - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb
+      title: angiotensin.pdb
+    - file: Week-08/software.md
+    
