@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biomolecular Simulation (Lab 1) &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Commands to install openmm in Colab" href="software.html" />
+    <link rel="prev" title="Week 8 Lecture: Biomolecular Simulation (Part I)" href="W8_Lecture-Biomolecular-Simulation-1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 07 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="W8_Lecture-Biomolecular-Simulation-1.html">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Biomolecular Simulation (Lab 1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb">
+   angiotensin.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="software.html">
+   Commands to install openmm in Colab
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-08/W8_Lab-Angiotensin-Simulation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-08/W8_Lab-Angiotensin-Simulation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-08/W8_Lab-Angiotensin-Simulation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-08/W8_Lab-Angiotensin-Simulation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Biomolecular Simulation (Lab 1)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     Name:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#department">
+       Department:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#michigan-state-university">
+       Michigan State University
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outline-of-the-class">
+     Outline of the class:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mdtraj-is-nice-tool-that-can-do-various-analysis-for-us">
+   MDTRAJ is nice tool that can do various analysis for us.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#we-can-have-a-better-way-to-grab-the-indices-for-forces-in-the-previous-code">
+     We can have a better way to grab the indices for forces in the previous code.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="biomolecular-simulation-lab-1">
+<h1>Biomolecular Simulation (Lab 1)<a class="headerlink" href="#biomolecular-simulation-lab-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="name">
+<h2>Name:<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="department">
+<h3>Department:<a class="headerlink" href="#department" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="michigan-state-university">
+<h3>Michigan State University<a class="headerlink" href="#michigan-state-university" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="outline-of-the-class">
+<h2>Outline of the class:<a class="headerlink" href="#outline-of-the-class" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Run a simulation (name: sim1) with a small polypeptide angiotensin (1N9U PDB). It is a 10 amino acid long polypeptide. The provided input pdb has water and 0.15 mM of KCL.</p>
+<ul class="simple">
+<li><p>You will add the necessary reporters for storing (i) temperature, (ii) Potential energy and (iii) Total energy in a file.</p>
+<ul>
+<li><p>Hint: You can check the code block from Tuesday’s lecture.</p></li>
+</ul>
+</li>
+<li><p>Visualize.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<ol class="simple">
+<li><p>A new simulation (name: pullforce) with the same polypeptide.</p>
+<ul class="simple">
+<li><p>Here we will add a ‘pulling force’ to the sytem. The first residue will be pulled to positive x,y,z axes. The last residue will be pulled to the negative x,y,z axes. The pulling force will be a equal contribution of both the forces. And hence we would expect with time, the protein to strech an uncoil. The code block is provided.</p></li>
+<li><p>Visualize and see the difference.</p></li>
+<li><p>You can play with the parameters of the pulling force and see how they are impacting the ‘pulling’. {Do this after you are done with the next part}</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<ol class="simple">
+<li><p>Using mdtraj as a tool for analysis:</p>
+<ul class="simple">
+<li><p>Loading MD simulation data by mdtraj, PBC removal and recenter.</p></li>
+<li><p>How we can make atom selection with mdtraj.</p></li>
+<li><p>Plot radius of gyration for both sim1 and pullforce and compare.</p></li>
+<li><p>Plot RMSD for both sim1 and pullforce and compare.</p></li>
+<li><p>Plot atom-atom distance and compare.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Softwares needed: OpenMM and MDTRAJ</strong></p>
+<p><strong>Keep track of the filenames that you are generating</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the required python modules</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">mdtraj</span>
+<span class="kn">import</span> <span class="nn">nglview</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">openmm.unit</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdout</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total steps of the simulations</span>
+<span class="n">N_STEPS_SIM</span><span class="o">=</span><span class="mi">20000</span>
+
+<span class="c1"># reporting interval</span>
+<span class="n">N_STEPS_REPORT</span><span class="o">=</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### SIM_1</span>
+
+<span class="c1"># loading the input pdb.</span>
+<span class="n">pdb</span> <span class="o">=</span> <span class="n">PDBFile</span><span class="p">(</span><span class="s1">&#39;angiotensin.pdb&#39;</span><span class="p">)</span>
+
+<span class="c1"># defining the forcefield </span>
+<span class="n">forcefield</span> <span class="o">=</span> <span class="n">ForceField</span><span class="p">(</span><span class="s1">&#39;amber14-all.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;amber14/tip3pfb.xml&#39;</span><span class="p">)</span>
+
+<span class="c1"># building the system using the forcefield and pdb topology</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">forcefield</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">nonbondedMethod</span><span class="o">=</span><span class="n">PME</span><span class="p">,</span>
+        <span class="n">nonbondedCutoff</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">nanometer</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">HBonds</span><span class="p">)</span>
+
+<span class="c1"># defining the integrator</span>
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">LangevinMiddleIntegrator</span><span class="p">(</span><span class="mi">300</span><span class="o">*</span><span class="n">kelvin</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">picosecond</span><span class="p">,</span> <span class="mf">0.002</span><span class="o">*</span><span class="n">picoseconds</span><span class="p">)</span>
+
+<span class="c1"># defining the platform</span>
+<span class="n">platform</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+
+<span class="c1"># creating the simulation object</span>
+<span class="n">simulation</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">integrator</span><span class="p">,</span><span class="n">platform</span><span class="p">)</span>
+
+<span class="c1"># setting the initial positions to pdb positions</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+
+<span class="c1"># energy before minimization</span>
+<span class="n">state0</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state0</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+
+<span class="c1"># minimize the energy</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">minimizeEnergy</span><span class="p">(</span><span class="n">tolerance</span><span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">kilojoule</span><span class="o">/</span><span class="n">mole</span><span class="p">,</span> <span class="n">maxIterations</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># print the energy afterwards</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">getState</span><span class="p">(</span><span class="n">getEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state1</span><span class="o">.</span><span class="n">getPotentialEnergy</span><span class="p">())</span>
+
+<span class="c1"># defining a DCD reporter which will save the trajectory</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DCDReporter</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;angio_</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">N_STEPS_SIM</span><span class="o">/</span><span class="n">N_STEPS_REPORT</span><span class="p">)</span><span class="si">}</span><span class="s1">frames.dcd&#39;</span><span class="p">,</span> <span class="n">N_STEPS_REPORT</span><span class="p">))</span>
+
+<span class="c1"># printing the PE and Temp to screen</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">totalEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="c1">################</span>
+<span class="c1"># Here you will add the necessary reporters for storing</span>
+<span class="c1"># (i) temperature, (ii) Potential energy and (iii) Total energy in a file.</span>
+
+
+<span class="c1">################</span>
+
+
+<span class="c1"># Lets go!!!</span>
+<span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">simulation</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">N_STEPS_SIM</span><span class="p">)</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;time taken in seconds&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t_end</span> <span class="o">-</span> <span class="n">t_start</span><span class="p">)</span>
+
+<span class="c1"># Dont forget to run after adding the lines!! :)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the filename  </span>
+<span class="n">view</span> <span class="o">=</span> <span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="s2">&quot;angiotensin.pdb&quot;</span><span class="p">))</span>
+
+<span class="c1">#Comment the next line out to see only the angiotensin molecule and ions (no water).</span>
+<span class="n">view</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="s2">&quot;water&quot;</span><span class="p">)</span>
+
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note: You can build the system with AMBER, CHARMM or GROMACS generated input files as well, instead of starting with a PDB.</strong></p>
+<p><strong>The example codes and instructions are provided in the following links:</strong></p>
+<ul class="simple">
+<li><p><em><a class="reference external" href="http://docs.openmm.org/7.0.0/userguide/application.html#using-amber-files">http://docs.openmm.org/7.0.0/userguide/application.html#using-amber-files</a></em></p></li>
+<li><p><em><a class="reference external" href="http://docs.openmm.org/7.0.0/userguide/application.html#using-gromacs-files">http://docs.openmm.org/7.0.0/userguide/application.html#using-gromacs-files</a></em></p></li>
+<li><p><em><a class="reference external" href="http://docs.openmm.org/7.0.0/userguide/application.html#using-charmm-files">http://docs.openmm.org/7.0.0/userguide/application.html#using-charmm-files</a></em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PULLFORCE simulation: </span>
+<span class="c1">#All important objects are named by &#39;_1&#39;. </span>
+<span class="c1"># Don&#39;t overwrite the objects of the previous simulation.</span>
+
+<span class="n">N_STEPS_SIM</span><span class="o">=</span><span class="mi">20000</span>
+
+<span class="n">N_STEPS_REPORT</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="n">pdb_1</span> <span class="o">=</span> <span class="n">PDBFile</span><span class="p">(</span><span class="s1">&#39;angiotensin.pdb&#39;</span><span class="p">)</span>
+
+<span class="c1"># defining the forcefield </span>
+<span class="n">forcefield_1</span> <span class="o">=</span> <span class="n">ForceField</span><span class="p">(</span><span class="s1">&#39;amber14-all.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;amber14/tip3pfb.xml&#39;</span><span class="p">)</span>
+
+<span class="c1"># building the system using the forcefield and pdb topology</span>
+<span class="n">system_1</span> <span class="o">=</span> <span class="n">forcefield_1</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">pdb_1</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">nonbondedMethod</span><span class="o">=</span><span class="n">PME</span><span class="p">,</span>
+        <span class="n">nonbondedCutoff</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">nanometer</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">HBonds</span><span class="p">)</span>
+
+<span class="c1">########### Lets mess up with the system ###################################</span>
+<span class="c1">## Add a pulling force that will pull the two end of the protein in two different directions:</span>
+<span class="c1"># Force constant of the force (# You can play with this parameter)</span>
+
+<span class="n">pull_force_constant</span> <span class="o">=</span> <span class="mf">1000.0</span> <span class="o">*</span> <span class="n">kilojoules_per_mole</span> <span class="o">/</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">nanometers</span> 
+
+<span class="c1">#This is a list of the indices of first residue of the protein</span>
+<span class="c1"># not an efficient way, right?</span>
+<span class="c1"># We will learn a more efficient way later</span>
+
+<span class="n">group1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span> 
+
+<span class="c1"># This is a list of the indices of the last residue of the protein</span>
+
+<span class="n">group2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">162</span><span class="p">,</span><span class="mi">163</span><span class="p">,</span><span class="mi">164</span><span class="p">,</span><span class="mi">165</span><span class="p">,</span><span class="mi">166</span><span class="p">,</span><span class="mi">167</span><span class="p">,</span><span class="mi">168</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">170</span><span class="p">,</span><span class="mi">171</span><span class="p">,</span><span class="mi">172</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">174</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span><span class="mi">176</span><span class="p">,</span><span class="mi">177</span><span class="p">,</span><span class="mi">178</span><span class="p">,</span><span class="mi">179</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">181</span><span class="p">]</span>
+
+<span class="c1"># Pulling in negative x direction not in y or z</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>               <span class="c1"># pull in x</span>
+<span class="n">fy</span> <span class="o">=</span> <span class="n">fz</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>          <span class="c1"># pull in y and z, you can switch this on/off later simulations</span>
+
+<span class="c1"># defining a custom centroid bond force from openmm (we have to provide the energy function)</span>
+<span class="c1"># x1,y1,z1 is for group1</span>
+<span class="c1"># x2,y2,z2 is for group2 (openmm can figure out these notations)</span>
+<span class="c1"># Note that we are adding fx to one group and (-fx) to another</span>
+
+<span class="n">pullforce</span> <span class="o">=</span> <span class="n">CustomCentroidBondForce</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;pull_force_constant * (x1*fx + y1*fy + z1*fz) + pull_force_constant * (x2*(-fx) + y1*(-fy) + z1*(-fz))&quot;</span> <span class="p">)</span>
+
+<span class="c1"># global parameters for calculation of the energy, openmm needs these few lines </span>
+
+<span class="n">pullforce</span><span class="o">.</span><span class="n">addGlobalParameter</span><span class="p">(</span><span class="s1">&#39;pull_force_constant&#39;</span><span class="p">,</span> <span class="n">pull_force_constant</span><span class="p">)</span>
+<span class="n">pullforce</span><span class="o">.</span><span class="n">addGlobalParameter</span><span class="p">(</span><span class="s1">&#39;fx&#39;</span><span class="p">,</span> <span class="n">fx</span><span class="p">)</span>
+<span class="n">pullforce</span><span class="o">.</span><span class="n">addGlobalParameter</span><span class="p">(</span><span class="s1">&#39;fy&#39;</span><span class="p">,</span> <span class="n">fy</span><span class="p">)</span>
+<span class="n">pullforce</span><span class="o">.</span><span class="n">addGlobalParameter</span><span class="p">(</span><span class="s1">&#39;fz&#39;</span><span class="p">,</span> <span class="n">fz</span><span class="p">)</span>
+
+<span class="c1"># defining the group indices and adding them to the pullforce</span>
+
+<span class="n">group1_idx</span> <span class="o">=</span> <span class="n">pullforce</span><span class="o">.</span><span class="n">addGroup</span><span class="p">(</span><span class="n">group1</span><span class="p">)</span>
+<span class="n">group2_idx</span> <span class="o">=</span> <span class="n">pullforce</span><span class="o">.</span><span class="n">addGroup</span><span class="p">(</span><span class="n">group2</span><span class="p">)</span>
+                                     
+<span class="c1"># defining the hypothetical bond that will pull the groups</span>
+
+<span class="n">pullforce</span><span class="o">.</span><span class="n">addBond</span><span class="p">([</span><span class="n">group1_idx</span><span class="p">,</span> <span class="n">group2_idx</span><span class="p">])</span>
+
+<span class="c1"># finally adding them to the system</span>
+
+<span class="n">system_1</span><span class="o">.</span><span class="n">addForce</span><span class="p">(</span><span class="n">pullforce</span><span class="p">)</span>
+<span class="c1">######################################## pullforce adding section ends here ###################</span>
+
+<span class="c1"># defining the integrator</span>
+<span class="n">integrator_1</span> <span class="o">=</span> <span class="n">LangevinMiddleIntegrator</span><span class="p">(</span><span class="mi">300</span><span class="o">*</span><span class="n">kelvin</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">picosecond</span><span class="p">,</span> <span class="mf">0.002</span><span class="o">*</span><span class="n">picoseconds</span><span class="p">)</span>
+
+<span class="c1"># defining the platform</span>
+<span class="n">platform_1</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+
+<span class="c1"># creating the simulation object</span>
+<span class="n">simulation_1</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="n">pdb_1</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">system_1</span><span class="p">,</span> <span class="n">integrator_1</span><span class="p">,</span><span class="n">platform_1</span><span class="p">)</span>
+
+<span class="c1"># setting the initial positions to pdb positions</span>
+<span class="n">simulation_1</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="n">pdb_1</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+
+<span class="n">simulation_1</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DCDReporter</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;angio_</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">N_STEPS_SIM</span><span class="o">/</span><span class="n">N_STEPS_REPORT</span><span class="p">)</span><span class="si">}</span><span class="s1">frames_pullforce.dcd&#39;</span><span class="p">,</span> <span class="n">N_STEPS_REPORT</span><span class="p">))</span>
+
+<span class="c1"># printing the PE and Temp to screen</span>
+<span class="n">simulation_1</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">totalEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">simulation_1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">N_STEPS_SIM</span><span class="p">)</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;time taken in seconds&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t_end</span> <span class="o">-</span> <span class="n">t_start</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the filenames here</span>
+<span class="c1"># you can play with nglview with a bit of guidance from this webpage:</span>
+<span class="c1"># https://projects.volkamerlab.org/teachopencadd/talktorials/T017_advanced_nglview_usage.html#Basic-API-usage</span>
+<span class="n">view</span> <span class="o">=</span> <span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="s2">&quot;pdb filename&quot;</span><span class="p">))</span>
+<span class="c1">#view.add_ball_and_stick()</span>
+<span class="c1">#view.add_line(&quot;water&quot;)</span>
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="mdtraj-is-nice-tool-that-can-do-various-analysis-for-us">
+<h1>MDTRAJ is nice tool that can do various analysis for us.<a class="headerlink" href="#mdtraj-is-nice-tool-that-can-do-various-analysis-for-us" title="Permalink to this headline">¶</a></h1>
+<p><strong>The API and the utility is here: <a class="reference external" href="https://mdtraj.org/1.9.4/index.html">https://mdtraj.org/1.9.4/index.html</a></strong></p>
+<div class="section" id="we-can-have-a-better-way-to-grab-the-indices-for-forces-in-the-previous-code">
+<h2>We can have a better way to grab the indices for forces in the previous code.<a class="headerlink" href="#we-can-have-a-better-way-to-grab-the-indices-for-forces-in-the-previous-code" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loading a trajectory (change the filenmaes if you need to):</span>
+<span class="n">trj_sim1</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;angio_200frames.dcd&quot;</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="s2">&quot;angiotensin.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span>
+<span class="n">trj_pullforce</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;angio_200frames_pullforce.dcd&quot;</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="s2">&quot;angiotensin.pdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">remove_solvent</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#viewing in nglview</span>
+<span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">trj_sim1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#viewing the pullforce simulation</span>
+<span class="n">nglview</span><span class="o">.</span><span class="n">show_mdtraj</span><span class="p">(</span><span class="n">trj_pullforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Recenter and apply periodic boundary conditions to the molecules in each frame of the trajectory.</span>
+<span class="n">trj_sim1</span> <span class="o">=</span> <span class="n">trj_sim1</span><span class="o">.</span><span class="n">image_molecules</span><span class="p">(</span><span class="n">anchor_molecules</span><span class="o">=</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="p">)])</span>
+<span class="n">trj_pullforce</span> <span class="o">=</span> <span class="n">trj_pullforce</span><span class="o">.</span><span class="n">image_molecules</span><span class="p">(</span><span class="n">anchor_molecules</span><span class="o">=</span><span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># what does printing trj give us?</span>
+<span class="n">trj_sim1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How does the topology look like</span>
+<span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#list of residues</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### Check youself the list of residues in pullforce simulation.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of atoms in the first residue</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find out the list of atoms in the last residue of pullforce simulation here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Index of any atom in the topology can be found out like this</span>
+<span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Now lets see a better way to print group1 in the pullforce example</span>
+
+<span class="c1"># creating an empty list</span>
+<span class="n">group1_list</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1"># loop over all the atoms of the residue0 </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="p">))):</span>
+    
+    <span class="c1">#put the indices in a list</span>
+    <span class="n">group1_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">group1_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">######### Write the similar code block for group2 in the pullforce example here ############</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### There are other ways to select atoms/groups/residues as well</span>
+
+<span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;resname HIS&#39;</span><span class="p">)</span>
+
+<span class="c1"># See this directly gives the indices as array as well</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can add or/and etc in the select arg string</span>
+<span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;resname HIS or resname ASP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print all the backbone atom indices</span>
+<span class="n">trj</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;name N or name H or name C or name O&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">####### Write a similar code block to print all the atom indices for group1 and group2 using this tool ########</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##### Computing some properties ####</span>
+
+<span class="c1">#Compute the radius of gyration for every frame.</span>
+<span class="n">rg_sim1</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">compute_rg</span><span class="p">(</span><span class="n">trj_sim1</span><span class="p">)</span>
+<span class="n">rg_pull</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">compute_rg</span><span class="p">(</span><span class="n">trj_pullforce</span><span class="p">)</span>
+
+<span class="c1">#print(rg_pull)</span>
+<span class="c1">#print(rg_sim1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rg_sim1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal simulation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rg_pull</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pullforce simulation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of snapshots&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;R_g in nanometer&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Next we will calculate the RMSD of the polypeptide</span>
+
+<span class="c1">## The reference struture will be first frame of the trajectory.</span>
+
+<span class="c1"># Hence, slice a trajectory to extract the first frame.</span>
+<span class="n">trj_sim1_frame1</span> <span class="o">=</span>  <span class="n">trj_sim1</span><span class="o">.</span><span class="n">slice</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trj_sim1_frame1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do the same for pullforce: Store the first frame of trj_pullforce in trj_pullforce_frame1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calculating RMSD:</span>
+<span class="n">sim1_rmsd</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">rmsd</span><span class="p">(</span><span class="n">trj_sim1</span><span class="p">,</span> <span class="n">trj_sim1_frame1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">####### calculate the rmsd of trj_pullforce ############</span>
+
+<span class="c1">####### plot the two rmsd in a single matplotlib plot ############</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the distances between pairs of atoms in each frame through the trajectory</span>
+<span class="c1"># This should give us an idea how far the amino acids are stretched by the pull force. </span>
+
+<span class="n">sim1_dist</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">compute_distances</span><span class="p">(</span><span class="n">trj_sim1</span><span class="p">,</span> <span class="p">[(</span><span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                                             <span class="n">trj_sim1</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)],</span><span class="n">periodic</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
+
+<span class="n">pullforce_dist</span> <span class="o">=</span> <span class="n">mdtraj</span><span class="o">.</span><span class="n">compute_distances</span><span class="p">(</span><span class="n">trj_pullforce</span><span class="p">,</span> <span class="p">[(</span><span class="n">trj_pullforce</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                                             <span class="n">trj_pullforce</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)],</span><span class="n">periodic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim1_dist</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal simulation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pullforce_dist</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pullforce simulation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of snapshots&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Distance in nanometer&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#pullforce_dist</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-08"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="W8_Lecture-Biomolecular-Simulation-1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 8 Lecture: Biomolecular Simulation (Part I)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="software.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Commands to install openmm in Colab</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
