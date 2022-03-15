@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 09: Biomolecular Simulation (Part II) &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Commands to install openmm in Colab" href="../Week-08/software.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 06 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lab-Angiotensin-Simulation.html">
+   Biomolecular Simulation (Lab 1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb">
+   angiotensin.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/software.html">
+   Commands to install openmm in Colab
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 09
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 09: Biomolecular Simulation (Part II)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-09/W9_Lecture-MarkovStateModels.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-09/W9_Lecture-MarkovStateModels.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-09/W9_Lecture-MarkovStateModels.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-09/W9_Lecture-MarkovStateModels.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 09: Biomolecular Simulation (Part II)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data">
+     An introduction to Markov State Modeling for knowledge-driven analysis of MD data.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-of-md-simulation">
+     Motivation of MD simulation:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-examples-of-what-can-we-do-with-md">
+     Some examples of what can we do with MD:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drawbacks-of-standard-md-simulation">
+     Drawbacks of standard MD simulation:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-state-models-msm-a-method-to-explore-the-unexplorables">
+   Markov State Models (MSM) : A method to explore the unexplorables!
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-msm">
+     What is MSM?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#some-properties-of-msms">
+       Some properties of MSMs:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Some properties of MSMs:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pictorial-illustration-of-msm">
+     Pictorial illustration of MSM:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#features">
+     Features
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 09: Biomolecular Simulation (Part II)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 09: Biomolecular Simulation (Part II)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data">
+     An introduction to Markov State Modeling for knowledge-driven analysis of MD data.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation-of-md-simulation">
+     Motivation of MD simulation:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-examples-of-what-can-we-do-with-md">
+     Some examples of what can we do with MD:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drawbacks-of-standard-md-simulation">
+     Drawbacks of standard MD simulation:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-state-models-msm-a-method-to-explore-the-unexplorables">
+   Markov State Models (MSM) : A method to explore the unexplorables!
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-msm">
+     What is MSM?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#some-properties-of-msms">
+       Some properties of MSMs:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Some properties of MSMs:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pictorial-illustration-of-msm">
+     Pictorial illustration of MSM:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#features">
+     Features
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-09-biomolecular-simulation-part-ii">
+<h1>Week 09: Biomolecular Simulation (Part II)<a class="headerlink" href="#week-09-biomolecular-simulation-part-ii" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data">
+<h2>An introduction to Markov State Modeling for knowledge-driven analysis of MD data.<a class="headerlink" href="#an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data" title="Permalink to this headline">¶</a></h2>
+<br>
+<p><strong>Things we have learnt so far:</strong></p>
+<ul class="simple">
+<li><p><strong>What is MD simulation?</strong></p></li>
+<li><p><strong>How to run an MD simulation?</strong></p></li>
+<li><p><strong>How to analyze the MD simulation trajectories?</strong></p></li>
+</ul>
+</div>
+<div class="section" id="motivation-of-md-simulation">
+<h2>Motivation of MD simulation:<a class="headerlink" href="#motivation-of-md-simulation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Provides us with both macroscopic and microscopic view of systems of our interest.</strong></p></li>
+<li><p><strong>Propagation of a large biomolecular system with time in the conformational space. This helps us to interpret the dynamical changes in the system over time.</strong></p></li>
+<li><p><strong>Comibining of MD trajectories with physics/chemistry based knowledge (thermodynamics and kinetics) can lead to understanding mechanisms (<em>e.g.</em> conformational changes such as folded or unfolded protein, possibility ligand bound or unbound states) which are at times difficult to interpret by laboratory experiments solely.</strong></p></li>
+</ul>
+</div>
+<div class="section" id="some-examples-of-what-can-we-do-with-md">
+<h2>Some examples of what can we do with MD:<a class="headerlink" href="#some-examples-of-what-can-we-do-with-md" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Removal of a bound ligand from a protein structure, followed by MD simulation to study the effect of presence/absence of the ligand in protein functionality (Dror et al., 2013; Wacker et al., 2017).</p></li>
+<li><p>Replace a ligand by a different one, or adding a ligand in an experimentally obtained crystal structure to study the stability and conformation (McCorvy et al., 2018; Provasi et al., 2011).</p></li>
+<li><p>Mutate one or more amino acids in a protein to explain the stability vs functionality of a mutation (Cordero-Morales et al., 2007).</p></li>
+<li><p>Change the protonation state of an acidic or basic amino acid (Liu et al., 2015) to enhance the ligand binding.</p></li>
+<li><p>Apply external forces to simulated atoms to capture the effect of transmembrane voltage or of mechanical strain (Delemotte et al., 2011).</p></li>
+</ul>
+</div>
+<div class="section" id="drawbacks-of-standard-md-simulation">
+<h2>Drawbacks of standard MD simulation:<a class="headerlink" href="#drawbacks-of-standard-md-simulation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Timescale problem:</strong></p>
+<ul>
+<li><p>Bio-chemical processes that have timescales in the order of milisecond or more.</p></li>
+<li><p>To sample such events with statistical relevance, we need to run simulations that would require massive (at times prohivitive) computational time.</p></li>
+<li><p>With 2 fs timestep, we would need 500000000000 MD steps to run a milisecond long simulation. This will take days, if not weeks even in a MSU HPC facility for a standard solvated protein system.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="fig1" src="../_images/Timescale.png" /></p>
+<p><img alt="fig2" src="../_images/free_energy.png" /></p>
+<p><em>Figure taken from: <a class="reference external" href="https://doi.org/10.1016/j.xpro.2021.100919">https://doi.org/10.1016/j.xpro.2021.100919</a> and doi:10.3390/e14030581</em></p>
+<p><strong>Dimensionality problem:</strong></p>
+<ul class="simple">
+<li><p>The dimensionaility of the phase space of a biomolecular is excessively high even if we remove the solvent degrees of freedom.</p>
+<ul>
+<li><p>For example, for a 25000 atom protein, we have 150,000 degrees of freedom in phase space. 75000 each for cartesian coordinates and velocities.</p></li>
+</ul>
+</li>
+<li><p>Hence, extracting/identifying relevent degrees of freedom or important <strong>features</strong> from MD trajectory become cumbersome most of the time.</p></li>
+</ul>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="markov-state-models-msm-a-method-to-explore-the-unexplorables">
+<h1>Markov State Models (MSM) : A method to explore the unexplorables!<a class="headerlink" href="#markov-state-models-msm-a-method-to-explore-the-unexplorables" title="Permalink to this headline">¶</a></h1>
+<p><strong>Protein (un)folding?</strong></p>
+<p><strong>Ligand (un)binding?</strong></p>
+<div class="section" id="what-is-msm">
+<h2>What is MSM?<a class="headerlink" href="#what-is-msm" title="Permalink to this headline">¶</a></h2>
+<p><strong>A method to extract stochastic kinetic information from multiple simulations that are shorter than the timescales of interest, to build a discrete state based stochastic model capable of describing long-time statistical dynamics of the system.</strong></p>
+<p>– “Markov state models of biomolecular conformational dynamics” by John D Chodera and Frank Noe ́.</p>
+<p><strong>Does that mean we can study protein folding or ligand binding with 1000 simulations of 1000 ns in length?</strong></p>
+<p>YES but under some <em>certain conditions!</em></p>
+<p>Voelz and co-workers built a 2000-macrostate MSM to describe the folding of ACB protein from its unfolded state (takes around 30 miliseconds) with smaller prallel simulations. The 15 highest flux folding pathways are shown and experimentally reported native folded and near folded structures are circled.</p>
+<p><img alt="fig3" src="../_images/Example_MSM.png" /></p>
+<p>MSMs describe the stochastic dynamics of a biomolecular system using a two-step workflow:</p>
+<ol class="simple">
+<li><p>Discretization of the high-dimensional molecular state space, usually into n <strong>disjoint</strong> conformational sets S1,S2 …, Sn.</p>
+<ul class="simple">
+<li><p>In simple words <strong>clustering</strong> all the MD configurations based on some intuitive knowledge!</p></li>
+<li><p>Clustering is a unsupervised learning method that labels each datapoint of the dataset.</p></li>
+<li><p>This labeling is completely dependent upon the representation of the data <em>i.e.</em> the features that are being provided to the algorithm.</p></li>
+</ul>
+</li>
+</ol>
+<p><em>We will discuss about features and the importance of selecting relevant features in details later.</em></p>
+<ol class="simple">
+<li><p>Model the stochastic transitions between these discrete and disjoint states, usually described by a matrix of conditional transition probabilities estimated from the simulation trajectories x<span class="math notranslate nohighlight">\(_t\)</span>, and termed as the transition probability matrix <strong>T</strong>(<span class="math notranslate nohighlight">\(\tau\)</span>) <span class="math notranslate nohighlight">\(\equiv\)</span> (p<span class="math notranslate nohighlight">\(_{ij}\)</span>):(p<span class="math notranslate nohighlight">\(_{ij}(\tau\)</span>)) = <strong>Prob</strong>(x<span class="math notranslate nohighlight">\(_{t+\tau}\)</span> <span class="math notranslate nohighlight">\(\in\)</span> <em>S</em><span class="math notranslate nohighlight">\(_j\)</span> | x<span class="math notranslate nohighlight">\(_{t}\)</span> <span class="math notranslate nohighlight">\(\in\)</span> <em>S</em><span class="math notranslate nohighlight">\(_i\)</span>).</p>
+<ul class="simple">
+<li><p><strong>T</strong> is an n <span class="math notranslate nohighlight">\(\times\)</span> n square matrix, where n=number of disjoint states.</p></li>
+<li><p>Here, <span class="math notranslate nohighlight">\(\tau\)</span> is the lag time or observation interval for which the <strong>T</strong> is constructed, <em>i</em> and <em>j</em> are the indices of two disjoint states. The lag-time is an important parameter in determining the approximation quality and utility of the MSM. Larger lag-times will lead to better accuracy (markovian character increases) but coarser temporal resolution (less sampling accross total time).</p></li>
+<li><p>Theoretically for an exact Markov state model, the lag-time should be such that the memory of the previous state will have no effect in the transition from current state to next state. <strong>This is the reason why we can stitch multiple small simulations together to study a large time-scale property.</strong></p></li>
+</ul>
+</li>
+</ol>
+<p>Suppose we have 10 separate small simulation trajectories and have stored 100 snapshots from each one at identical lag-times. Now, consider the following set of relations between the trajectories, snapshots and the cluster labels after discretization:</p>
+<p>i. Trajectory 1, Snapshot 1: Cluster 1</p>
+<p>ii. Trajectory 1, Snapshot 2: Cluster 2</p>
+<p>iii. Trajectory 10, Snapshot 70: Cluster 2</p>
+<p>iv. Trajectory 10, Snapshot 71: Cluster 1</p>
+<ul class="simple">
+<li><p>Now, the L.H.S has no consequence in the building of MSM. The only identity of the system is inherited into its states. Since all snapshots in all the trajectories are memoryless (markovian), it does not matter which snapshot or which trajectory gives us a transition.</p></li>
+<li><p>What matters is the states that are involved into the transition.</p></li>
+<li><p>So, instead of running a single stochastic trajectory of 500000000 steps to capture a long timescale phenomena, we can easily build an MSM with 5000 stochastic simulations with 100000 steps.</p></li>
+</ul>
+<p>MSM practical workflow is simple:</p>
+<ul class="simple">
+<li><p>Define states from MD simulation trajectories (configuration space) by clustering using ‘relevent’ features.</p></li>
+<li><p>Compute the rate of transitions between those states.</p></li>
+</ul>
+<p><img alt="fig4" src="../_images/MSM_scheme.jpeg" /></p>
+<div class="section" id="some-properties-of-msms">
+<h3>Some properties of MSMs:<a class="headerlink" href="#some-properties-of-msms" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Suppose that p(t) <span class="math notranslate nohighlight">\(\in\)</span> <strong>R<span class="math notranslate nohighlight">\(^n\)</span></strong> is a column vector whose elements denote the probability, or population, at time t. After a lag-time <span class="math notranslate nohighlight">\(\tau\)</span>,the probabilities will have changed according to the equation:</p>
+<p><strong>p</strong><span class="math notranslate nohighlight">\(^T\)</span>(t+<span class="math notranslate nohighlight">\(\tau\)</span>) = <strong>p</strong>(t)<span class="math notranslate nohighlight">\(^{T}\)</span><strong>T</strong>(<span class="math notranslate nohighlight">\(\tau\)</span>)</p>
+<p>where, <strong>T</strong>(<span class="math notranslate nohighlight">\(\tau\)</span>) is the transition probability matrix.</p>
+</li>
+<li><p>Suppose, <span class="math notranslate nohighlight">\(\Pi\)</span> defines the population of a stationary state: hence, <span class="math notranslate nohighlight">\(\Pi\)</span>(t+<span class="math notranslate nohighlight">\(\tau\)</span>) = <span class="math notranslate nohighlight">\(\Pi(t)\)</span> = <span class="math notranslate nohighlight">\(\Pi\)</span>.</p>
+<p><strong><span class="math notranslate nohighlight">\(\Pi\)</span></strong><span class="math notranslate nohighlight">\(^T\)</span>(t+<span class="math notranslate nohighlight">\(\tau\)</span>) = <strong><span class="math notranslate nohighlight">\(\Pi\)</span></strong><span class="math notranslate nohighlight">\(^{T}\)</span>(t)<strong>T</strong>(<span class="math notranslate nohighlight">\(\tau\)</span>)</p>
+<p><strong><span class="math notranslate nohighlight">\(\Pi\)</span></strong> = <strong><span class="math notranslate nohighlight">\(\Pi\)</span>T</strong>(<span class="math notranslate nohighlight">\(\tau\)</span>)</p>
+<p>So, the stationary state will always have eigenvalue equals to one with respect to transtion matrix.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Some properties of MSMs:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Suppose the following matrix is a 3 state transition probability matrix:</p>
+<p><img alt="fig6" src="../_images/MSM_1.pdf" /></p>
+<ul class="simple">
+<li><p>Each row of this matrix is a distribution that represents the probability of transitioning from the row-indexed state to the column-indexed state, where the diagonal entry represents the probability of staying in the same state.</p></li>
+<li><p>State populations and consequently probabilities can be obtained from counting the number of entries in each state from the MSM.</p></li>
+</ul>
+<ul class="simple">
+<li><p>The state populations can be converted to free energies using the equation: <span class="math notranslate nohighlight">\(\Delta\)</span>G = -RTln(<span class="math notranslate nohighlight">\(p_i/p_j\)</span>) where <span class="math notranslate nohighlight">\(\Delta\)</span>G is the difference between free energy if i<span class="math notranslate nohighlight">\(^{th}\)</span> state and j<span class="math notranslate nohighlight">\(^{th}\)</span> state.</p></li>
+<li><p>The transition matrix can provide valuable thermodynamic and kinetic information about the system through its eigen-value decomposition.</p></li>
+<li><p>The eigenvectors corresponding to each eigenvalue have n elements corresponding to each of the n states. The magnitudes and signs of these elements explain which states are contributing to the process identified by the eigenvalue.</p></li>
+<li><p>The highest eigenvalue is 1, and its corresponding eigenfunction represents the equilibrium stationary distribution.</p></li>
+<li><p>The higher the eigenvalue is, slower the process involving the corresponding eigen vector is. The eigenvectors corresponding to each eigenvalue have n elements corresponding to each of the n states. The magnitudes and signs of these elements explain which states are contributing to the process identified by the eigenvalue.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pictorial-illustration-of-msm">
+<h2>Pictorial illustration of MSM:<a class="headerlink" href="#pictorial-illustration-of-msm" title="Permalink to this headline">¶</a></h2>
+<p>Prinz et al. (J. Chem. Phys. 134, 174105, 2011) defined a potential energy function with four metastable basins. The PE and corresponding stationary state density:</p>
+<p><img alt="fig8" src="../_images/model_energy.png" /></p>
+<p>The following plot shows transition density between the states. Note that, transition density is large within blocks allowing rapid transitions within metastable basins, and small or nearly zero for jumps between different metastable basins.</p>
+<p><img alt="fig9" src="../_images/model_density.png" /></p>
+<p>The four dominant eigenfunctions of the transition matrix operator, which indicate the associated dynamical processes in the system.</p>
+<ul class="simple">
+<li><p>The first eigenfunction is associated with the stationary process.</p></li>
+<li><p>The second to a transition between (A + B) -<span class="math notranslate nohighlight">\(&gt;\)</span> (C + D).</p></li>
+<li><p>The third and fourth eigenfunction to transitions between A -<span class="math notranslate nohighlight">\(&gt;\)</span> B and C -<span class="math notranslate nohighlight">\(&gt;\)</span> D, respectively.</p></li>
+</ul>
+<p><img alt="fig10" src="../_images/model_eigenvec.png" /></p>
+<p>Eigenvalues of the transition matrix, the gap between the four metastable processes and the fast processes is clearly visible.
+<img alt="fig9" src="../_images/model_eigenvalues.png" /></p>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<p>Features are a set descriptors which represents the system and the properties under investigation.</p>
+<p>Lets consider a single water molecule. The features to describe this molecule can be:</p>
+<ul class="simple">
+<li><p>The atom-types and cartesian coordinates.</p></li>
+<li><p>Charge, sigma, epsilon and internal coordinates (r and <span class="math notranslate nohighlight">\(\theta\)</span>).</p></li>
+</ul>
+<p>Now consider we have 1000 separate water dimers (from a large set of water molecules in a simulation trajectory. We want to classify them according to the strength of the non-bonded interactions (electrostatics and LJ term from FF) without calculating the interaction energies.</p>
+<p>How can we represent the dimers to achieve the goal?</p>
+<p><img alt="fig5" src="../_images/water_cluster.gif" /></p>
+<p><strong>Is it possible to approximately describe a biomolecular system with more than 10000s of degrees of freedom by a few features?</strong></p>
+<p><em>YES, it is.</em></p>
+<p>Let us revisit vector space, linear algebra and think about an example where we have a point in 3-D space.</p>
+<p><img alt="fig6" src="../_images/3D_vectors.png" /></p>
+<ul class="simple">
+<li><p>The position of any point around us can be found out by a linear combination of 3 linearly independent axes (X,Y and Z in this case).</p></li>
+<li><p>This is because we live in a 3 dimensional space and hence the number of basis functions (orthogonal and linearly independent) to describe the complete set is 3.</p></li>
+<li><p>So ideally we can built a dataset of millions and milllions of points in 3-D and all of them can be exactly expressed by a linear combination of these basis functions.</p></li>
+</ul>
+<p>Lets move to biological systems:</p>
+<ul class="simple">
+<li><p>Dimensions of biological systems: thousands to billions.</p></li>
+<li><p>But these dimensions are not <strong>linearly independent</strong>, when it comes to dynamical motions!</p></li>
+<li><p>Rather dynamic movements in such large systems are known to be <strong>massively correlated</strong>.</p></li>
+<li><p>Hence, number of basis fiunction needed exactly describe the dynamics of the system is <strong>significantly less</strong>.</p></li>
+<li><p><em>So if we can select our features in such a way that they are linearly independent and construct the basis functions of the space, then we can exactly describe the dynamics of the ultra-high dimensional system with less number of features. The number of features depends upon the system.</em></p></li>
+<li><p>This is theoretically probable and practically impossible!</p></li>
+</ul>
+<p>Various ways to extract features out of a dataset:</p>
+<ul class="simple">
+<li><p>Machine learning based automated feature extraction.</p></li>
+<li><p>Intuition/knoweldge based definition of features.</p>
+<ul>
+<li><p>Has been the a popular appoach in MSM of biological systems as we already have a lot of information about such systems.</p></li>
+<li><p>Ligand (un)binding: The distance between binding site residues (COM) and the ligand COM is a single feature that can qualititively describe the dynamics.</p></li>
+<li><p>Protein (un)folding: The coordinates of C<span class="math notranslate nohighlight">\(\alpha\)</span> atoms and their distance distribution in configuration space can be a good indicator if the protein is unfolded or in folded state.</p></li>
+</ul>
+</li>
+<li><p>Variational approach to extract features.</p>
+<ul>
+<li><p>Last few years variational approach for Markov processes (VAMP) has gained a significant attraction.</p></li>
+</ul>
+</li>
+</ul>
+<p>In some later class, we will learn about VAMPnets which combine the variational approach to automated feature extraction (via neural network).</p>
+<p>The following figure is taken from the article <em>‘Markov State Models: From an Art to a Science’ by Husic and Pande (J. Am. Chem. Soc. 2018, 140, 2386−2396)</em>.</p>
+<p><img alt="fig7" src="../_images/features.jpeg" /></p>
+<ul class="simple">
+<li><p>In the lab class, we will build MSM and analyze MD simulations.</p></li>
+<li><p>References:</p>
+<ol class="simple">
+<li><p>J. Am. Chem. Soc. 2018, 140, 7, 2386–2396. (Nice story-telling)</p></li>
+<li><p>J. Chem. Phys. 2011, 134, 174105. (Mathematically detailed explanation)</p></li>
+<li><p>Cur. Op. in Struc. Bio. 2014, 25, 135–144. (Good review for bio/chem background)</p></li>
+<li><p>J. Chem. Theory Comput. 2014, 10, 1739– 1752. (Variational approach)</p></li>
+<li><p>J. Chem. Phys. 2009, 131, 124101. (MSMBuilder software)</p></li>
+<li><p>J. Chem. Theory Comput. 2015, 11, 11, 5525–5542. (PyEMMA software: we will be using this)</p></li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-09"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-08/software.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Commands to install openmm in Colab</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
