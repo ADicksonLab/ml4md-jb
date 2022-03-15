@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 09: Biomolecular Simulation (Part II) &#8212; Machine Learning for Molecular Dynamics</title>
+    <title>Week 09 Lecture: Biomolecular Simulation (Part II) &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -37,13 +37,16 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -374,7 +377,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Week 09: Biomolecular Simulation (Part II)
+   Week 09 Lecture: Biomolecular Simulation (Part II)
   </a>
  </li>
 </ul>
@@ -488,7 +491,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 09: Biomolecular Simulation (Part II)
+   Week 09 Lecture: Biomolecular Simulation (Part II)
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -557,7 +560,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 09: Biomolecular Simulation (Part II)</h1>
+                <h1>Week 09 Lecture: Biomolecular Simulation (Part II)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -569,7 +572,7 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Week 09: Biomolecular Simulation (Part II)
+   Week 09 Lecture: Biomolecular Simulation (Part II)
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -637,8 +640,8 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="week-09-biomolecular-simulation-part-ii">
-<h1>Week 09: Biomolecular Simulation (Part II)<a class="headerlink" href="#week-09-biomolecular-simulation-part-ii" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-09-lecture-biomolecular-simulation-part-ii">
+<h1>Week 09 Lecture: Biomolecular Simulation (Part II)<a class="headerlink" href="#week-09-lecture-biomolecular-simulation-part-ii" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data">
 <h2>An introduction to Markov State Modeling for knowledge-driven analysis of MD data.<a class="headerlink" href="#an-introduction-to-markov-state-modeling-for-knowledge-driven-analysis-of-md-data" title="Permalink to this headline">¶</a></h2>
 <br>
@@ -757,7 +760,7 @@
 <div class="section" id="id1">
 <h3>Some properties of MSMs:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Suppose the following matrix is a 3 state transition probability matrix:</p>
-<p><img alt="fig6" src="../_images/MSM_1.pdf" /></p>
+<p><img alt="fig6" src="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-09/MSM_1.jpg" /></p>
 <ul class="simple">
 <li><p>Each row of this matrix is a distribution that represents the probability of transitioning from the row-indexed state to the column-indexed state, where the diagonal entry represents the probability of staying in the same state.</p></li>
 <li><p>State populations and consequently probabilities can be obtained from counting the number of entries in each state from the MSM.</p></li>
