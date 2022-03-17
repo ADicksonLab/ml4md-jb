@@ -104,4 +104,10 @@ parts:
     - url: https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb
       title: angiotensin.pdb
     - file: Week-08/software.md
+
+  - caption: Week 09
+    numbered: False
+    chapters:
+    - file: Week-09/W9_Lecture-MarkovStateModels.ipynb
+    - file: Week-09/W9_Lab-SimulationAnalysis.ipynb
     
