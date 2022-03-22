@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -116,6 +116,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
    Software Setup Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf">
+   https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf
   </a>
  </li>
 </ul>
@@ -299,7 +304,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
-   Week 06 Lab: Liquid Argon Simulation
+   Week 07 Lab: Liquid Argon Simulation
   </a>
  </li>
  <li class="toctree-l1">
@@ -427,7 +432,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -483,7 +488,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -574,101 +579,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 05 Lab: Structure Prediction</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#student-name-your-name-here">
-   Student Name: YOUR NAME HERE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#predicting-protein-structures">
-   Predicting protein structures
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-a-working-directory">
-     Setting up a working directory
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-files-from-the-pdb">
-     Getting files from the PDB
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#secondary-structure-prediction">
-   Secondary structure prediction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tertiary-structure-prediction">
-   Tertiary structure prediction
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#alphafold2-predictions">
-     AlphaFold2 predictions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#install-alphafold2-on-your-own-computer">
-       Install AlphaFold2 on your own computer
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#run-alphafold2-via-the-deepmind-colab-notebook">
-       Run AlphaFold2 via the DeepMind Colab notebook:
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#run-alphafold2-via-an-alternative-colab-notebook">
-       Run AlphaFold2 via an alternative Colab notebook:
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rosettafold-predictions">
-     RoseTTAFold predictions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#raptorx-predictions">
-     RaptorX predictions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#i-tasser-predictions">
-     I-Tasser predictions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#swiss-model-predictions">
-     SWISS-MODEL predictions
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="week-05-lab-structure-prediction">
@@ -687,13 +598,6 @@
 <a class="reference external" href="https://www.rcsb.org/structure/7E90">7E90</a></p>
 <p>In the following the notebook contains the results for the first (7EFY).</p>
 <p>Your task will be to study this esample and then rerun as much as you can for one of the other targets. The third target (7E90) can probably be done faster and is recommended.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdbid</span><span class="o">=</span><span class="s1">&#39;7TRV&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdbid</span><span class="o">=</span><span class="s1">&#39;7EFY&#39;</span>
@@ -773,22 +677,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Crystal structure of retroviral protease-like domain of Ddi1 from Cryptosporidium hominis
-PDB ID: 7EFY
-Uniprot ID: A0A0S4TE75
-
-&gt;tr|A0A0S4TE75|A0A0S4TE75_CRYHO UBA domain-containing protein OS=Cryptosporidium hominis OX=237895 GN=CHUDEA3_2190 PE=3 SV=1
-MKVNILYSVTGELISVEIHEETTVEVLKSLIEIELNLDSFKNYELSIEGKILQNDGFVLS
-DIVNEGSIFVLSEKTNKNTFENSNFSLNDQENLIQLLSKELFTKIKEDQSLKSVYYSKSS
-KYRDSIDKDDIKSFTELIKNDYFSGNLNSIPSSSNSSSNLYNLDPLSPEYQRLIEEQVRK
-QNVEENLILAQDHLPESFTQVHMLYINAEVNGISIKAFVDSGAQTTIMSKKCAEKCNLVR
-LIDYRFSGIAQGVGTSKIVGKIHVAQMKIGNSFFPFSITVLEESHVDFLFGLDLLKRYQC
-CIDLHQNALIIGDEKVQFLSESEINSEISRIDPNNEYDQCFEQGKKLQLLSLGFSESQVI
-NALRATNGNTELAASLLFSNETFE
-</pre></div>
-</div>
-</div>
 </div>
 <p>Once loaded we can look at the PDB structure</p>
 <div class="cell docutils container">
@@ -805,10 +693,6 @@ NALRATNGNTELAASLLFSNETFE
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3d24b0dcf3bc43d69155487ec22a3fde", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>Let’s do a bit more analysis of what we have here:</p>
 <div class="cell docutils container">
@@ -834,13 +718,6 @@ NALRATNGNTELAASLLFSNETFE
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;mdtraj.Topology with 2 chains, 118 residues, 857 atoms, 865 bonds&gt;
-chain 0 has residues [[201, 247], [257, 322]], first residue: VAL201
-chain 1 has residues [[401, 405]], first residue: HOH401
-</pre></div>
-</div>
-</div>
 </div>
 <p>So in this case, there is only one protein chain. The second ‘chain’ contains water molecules.</p>
 <p>The protein chain covers residues 201-322, with a break between 248-256. So the PDB structure does not cover the entire sequence!</p>
@@ -853,7 +730,6 @@ chain 1 has residues [[401, 405]], first residue: HOH401
 <span class="n">firstres</span><span class="o">=</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">resSeq</span>
 <span class="n">lastres</span><span class="o">=</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">residue</span><span class="p">(</span><span class="n">pdbref</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">n_residues</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">resSeq</span>
 
-<span class="c1">#refresidues=&quot;residue -2 to 86&quot;</span>
 <span class="n">refresidues</span><span class="o">=</span><span class="s2">&quot;residue 201 to 247 or residue 257 to 322&quot;</span>
 </pre></div>
 </div>
@@ -981,10 +857,6 @@ chain 1 has residues [[401, 405]], first residue: HOH401
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "43182b6fef174a9bbce79a0325108885", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>The topology is similar, but there is quite a bit of diversity, especially in the C-terminal domain.</p>
 <p>We only have the experimental structure for the N-terminal domain, but let’s compare:</p>
@@ -999,16 +871,6 @@ chain 1 has residues [[401, 405]], first residue: HOH401
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">af</span><span class="p">)):</span>
     <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">af</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 0.7707220315933228 Å
-model 2: 0.6745235621929169 Å
-model 3: 0.6987325847148895 Å
-model 4: 0.7197705656290054 Å
-model 5: 0.6506382673978806 Å
 </pre></div>
 </div>
 </div>
@@ -1040,10 +902,6 @@ model 5: 0.6506382673978806 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "30966574bfd74bb78dc49d49f879c0eb", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 </div>
@@ -1075,10 +933,6 @@ model 5: 0.6506382673978806 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "d7a7c3986bac4a6bbf649d3270f416a9", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>As you can see, there is again quite a bit of diversity, especially in the C-terminal domain.</p>
 <p>Let’s compare again with the N-terminal experimental structure:</p>
@@ -1091,16 +945,6 @@ model 5: 0.6506382673978806 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 1.010279357433319 Å
-model 2: 1.1361155658960342 Å
-model 3: 1.0284408926963806 Å
-model 4: 1.0651279985904694 Å
-model 5: 1.0534000396728516 Å
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1110,10 +954,6 @@ model 5: 1.0534000396728516 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ee515e6867174c428e8c29a2834f35c2", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 <div class="section" id="raptorx-predictions">
@@ -1143,10 +983,6 @@ model 5: 1.0534000396728516 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f3634a5afdee476f939f94bfe6d0fc94", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>Let’s compare with the experimental structure:</p>
 <div class="cell docutils container">
@@ -1155,16 +991,6 @@ model 5: 1.0534000396728516 Å
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rx</span><span class="p">)):</span>
     <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">rx</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 1.6687951982021332 Å
-model 2: 1.705666333436966 Å
-model 3: 1.6815796494483948 Å
-model 4: 1.7492686212062836 Å
-model 5: 1.8515191972255707 Å
 </pre></div>
 </div>
 </div>
@@ -1177,10 +1003,6 @@ model 5: 1.8515191972255707 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9029b1de3c5c433391cc30e06e8a1e93", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 <div class="section" id="i-tasser-predictions">
@@ -1211,10 +1033,6 @@ model 5: 1.8515191972255707 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "dcc57dc8c76647e7aaf09f595fe83de0", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>The topology is similar, but there is quite a bit of diversity, especially in the C-terminal domain.</p>
 <p>We only have the experimental structure for the N-terminal domain, but let’s compare:</p>
@@ -1227,16 +1045,6 @@ model 5: 1.8515191972255707 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 23.021240234375 Å
-model 2: 23.025593757629395 Å
-model 3: 20.844626426696777 Å
-model 4: 1.095193549990654 Å
-model 5: 1.092638298869133 Å
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1246,10 +1054,6 @@ model 5: 1.092638298869133 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "78d7870f6f894935a123b6f3abdeef83", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>That is not so great but there is another model …</p>
 <div class="cell docutils container">
@@ -1260,10 +1064,6 @@ model 5: 1.092638298869133 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "52b0b26459c947109951cf6842435ab4", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 </div>
 <div class="section" id="swiss-model-predictions">
@@ -1297,22 +1097,12 @@ With the large number of AlphaFold2 models, it is an interesting option to use o
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "2424efdcf34345f4a38d84b1dfc63cd5", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>The homology model was built as a dimer because the template is a dimer. Let’s continue with just the first chain.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chaininfo</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">atom_slice</span><span class="p">(</span><span class="n">smhm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;chainid 0&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chain 0 has residues [[189, 325]], first residue: LEU189
-chain 1 has residues [[188, 326]], first residue: ILE188
 </pre></div>
 </div>
 </div>
@@ -1327,12 +1117,6 @@ chain 1 has residues [[188, 326]], first residue: ILE188
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 1.5669961273670197 Å
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1344,10 +1128,6 @@ model 1: 1.5669961273670197 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5793846d467945899360ac40b942c361", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>Finally let’s look at the homology model based on the closest AF2 template (AF_Q8IM03):</p>
 <div class="cell docutils container">
@@ -1358,10 +1138,6 @@ model 1: 1.5669961273670197 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3a4b9f39d8fb468b9a477babfbe53917", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1370,12 +1146,6 @@ model 1: 1.5669961273670197 Å
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">smaf</span><span class="p">)):</span>
     <span class="n">rmsd</span><span class="o">=</span><span class="n">get_rmsd</span><span class="p">(</span><span class="n">smaf</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">pdbref</span><span class="p">,</span><span class="n">refresidues</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model </span><span class="si">{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rmsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="si">}</span><span class="s1"> Å&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-model 1: 0.9636662155389786 Å
 </pre></div>
 </div>
 </div>
@@ -1390,10 +1160,6 @@ model 1: 0.9636662155389786 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "a3d892109c7e4b2f81b9d2a0e6785f99", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>Here is the analysis for all of the models together:</p>
 <div class="cell docutils container">
@@ -1426,33 +1192,6 @@ model 1: 0.9636662155389786 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>residue 201 to 247 or residue 257 to 322
-AlphaFold2        model 1: 0.7707220315933228 Å
-AlphaFold2        model 2: 0.6745235621929169 Å
-AlphaFold2        model 3: 0.6987325847148895 Å
-AlphaFold2        model 4: 0.7197705656290054 Å
-AlphaFold2        model 5: 0.6506382673978806 Å
-RoseTTAFold       model 1: 1.010279357433319 Å
-RoseTTAFold       model 2: 1.1361155658960342 Å
-RoseTTAFold       model 3: 1.0284408926963806 Å
-RoseTTAFold       model 4: 1.0651279985904694 Å
-RoseTTAFold       model 5: 1.0534000396728516 Å
-Raptor X          model 1: 1.6687951982021332 Å
-Raptor X          model 2: 1.705666333436966 Å
-Raptor X          model 3: 1.6815796494483948 Å
-Raptor X          model 4: 1.7492686212062836 Å
-Raptor X          model 5: 1.8515191972255707 Å
-I-Tasser          model 1: 23.021240234375 Å
-I-Tasser          model 2: 23.025593757629395 Å
-I-Tasser          model 3: 20.844626426696777 Å
-I-Tasser          model 4: 1.095193549990654 Å
-I-Tasser          model 5: 1.092638298869133 Å
-SWISS-MODEL (PDB) model 1: 1.5669961273670197 Å
-SWISS-MODEL (AF)  model 1: 0.9636662155389786 Å
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1481,10 +1220,6 @@ SWISS-MODEL (AF)  model 1: 0.9636662155389786 Å
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c5e6372ec68f4f8a872d1b932678e41c", "version_major": 2, "version_minor": 0}
-</script></div>
 </div>
 <p>How do your predictions look like?</p>
 <p>Can you think of more ways in which the models can be analyzed/compared?</p>
@@ -1515,8 +1250,8 @@ SWISS-MODEL (AF)  model 1: 0.9636662155389786 Å
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+        
+            <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="W5_Lecture-ProteinStructurePrediction.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1533,17 +1268,19 @@ SWISS-MODEL (AF)  model 1: 0.9636662155389786 Å
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Alex Dickson and Michael Feig<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
