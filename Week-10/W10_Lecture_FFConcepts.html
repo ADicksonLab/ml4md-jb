@@ -1,0 +1,863 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 10: Machine Learning Force Fields &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 09 Lab: Analysis of MD trajectories with Markov State Models" href="../Week-09/W9_Lab-SimulationAnalysis.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf">
+   Final Project Description
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 07 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lab-Angiotensin-Simulation.html">
+   Biomolecular Simulation (Lab 1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb">
+   angiotensin.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/software.html">
+   Commands to install openmm in Colab
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lecture-MarkovStateModels.html">
+   Week 09 Lecture: Biomolecular Simulation (Part II)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lab-SimulationAnalysis.html">
+   Week 09 Lab: Analysis of MD trajectories with Markov State Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 10
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 10: Machine Learning Force Fields
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-10/W10_Lecture_FFConcepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-10/W10_Lecture_FFConcepts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-10/W10_Lecture_FFConcepts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-10/W10_Lecture_FFConcepts.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 10: Machine Learning Force Fields
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-on-classical-force-fields">
+     Review on Classical Force Fields
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-dimensional-neural-network-potentials-nnps">
+   High-dimensional neural-network potentials (NNPs)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transforming-geometries-into-nn-inputs">
+     Transforming geometries into NN inputs
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#behler-parrinello-symmetry-functions">
+     Behler-Parrinello symmetry functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#behler-parrinello-radial-symmetry-functions">
+       Behler-Parrinello radial symmetry functions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#behler-parrinello-angular-symmetry-functions">
+       Behler-Parrinello angular symmetry functions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-anakin-me-ani-family-of-nnps">
+   The ANAKIN-ME (ANI) family of NNPs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-ani-symmetry-functions">
+     The ANI symmetry functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-ensemble-of-symmetry-functions-atomic-environment-vector">
+     The ensemble of symmetry functions: Atomic Environment Vector
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-overview-of-the-coordinates-aev-energy-process-a-c-s-formaldehyde-molecule">
+   An overview of the coordinates-AEV-energy process: a
+   <span class="math notranslate nohighlight">
+    \(C_s\)
+   </span>
+   formaldehyde molecule
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-10-machine-learning-force-fields">
+<h1>Week 10: Machine Learning Force Fields<a class="headerlink" href="#week-10-machine-learning-force-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="review-on-classical-force-fields">
+<h2>Review on Classical Force Fields<a class="headerlink" href="#review-on-classical-force-fields" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+<p><img alt="image.png" src="Week-10/attachment:image.png" /></p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="high-dimensional-neural-network-potentials-nnps">
+<h1>High-dimensional neural-network potentials (NNPs)<a class="headerlink" href="#high-dimensional-neural-network-potentials-nnps" title="Permalink to this headline">¶</a></h1>
+<p>Alternatively, we may prefer to delegate the construction of the potential to a neural network. In this way, we don’t have to do a search for the potential’s terms and its parameters. We’ll have to train a neural network instead.</p>
+<p>This training requires a wealth of molecular geometries and their respective energies. Our hope is that by providing ample high-quality chemical data, the NNP will be able to make energy predictions on par with the level of theory of the original data. Furthermore, predicting the properties of a sample using a neural network is fundamentally a linear algebra computation: this is a much simpler and faster procedure than calculating the molecule’s energy with a quantum chemistry package.</p>
+<p>While performing the training is necessary before any predictions can be made, this slow and expensive process only needs to be performed <em>once</em>.</p>
+<div class="section" id="transforming-geometries-into-nn-inputs">
+<h2>Transforming geometries into NN inputs<a class="headerlink" href="#transforming-geometries-into-nn-inputs" title="Permalink to this headline">¶</a></h2>
+<p>Once we have selected an NN with a given architecture and trained it, the NN will be ready to perform any amount of predictions, so long as the new samples remain compatible with it. In particular, the amount of input properties must be the same for all the new samples.</p>
+<p>This suggests the xyz-coordinates of the molecule are ill-suited to be the neural network’s inputs: molecules with more or less atoms than those molecules that the neural network was trained with, would have poorer predictions or be outright incompatible with the NNP.</p>
+<p>Furthermore, reordering the atoms in the input would effectively change the NN inputs, and thus the output would too change. The molecular energy would remain invariant to this permutation, though. Further problems arise if the molecule were to be rotated or translated.</p>
+<p>In short, we need to encode the molecular structure in such a way that the inputs remain invariant to the operations that leave the energy unchanged. Behler explains (see section <em>IV. SYMMETRY FUNCTIONS</em> of  <a class="reference external" href="https://doi.org/10.1063/1.3553717">https://doi.org/10.1063/1.3553717</a>) that a suitable molecular descriptor meets these criteria:</p>
+<ul class="simple">
+<li><p><em>Is continuous</em>,</p></li>
+<li><p><em>Is differentiable</em>: if we seek a model capable of calculating the atomic forces, the molecular descriptors must be differentiable.</p></li>
+<li><p>Remains the same size irrespectively of:</p>
+<ul>
+<li><p>the amount of atoms in the sample: this ensures the NNP will be compatible with molecules of different sizes.</p></li>
+<li><p>the amount of bonds for each atom: if we wish to perform a MD experiment with the NNP, we can expect some bonds to break and some other to form as the experiment goes on. It’s preferrable that the NNP is compatible with this phenomenon.</p></li>
+</ul>
+</li>
+<li><p>Is invariant to translations, rotations, and reordering the atoms in the xyz file.
+As explained above, the energy is invariant to these changes. Yet, if the absolute value of the inputs changes, then we can only expect the output (the atomic/molecular energy) to change too.</p></li>
+<li><p>And finally, decays towards 0 for larger interatomic distances,</p></li>
+</ul>
+<p>This is not a crucial criterion to meet, but it makes the training easier: interatomic energies also decay towards <span class="math notranslate nohighlight">\(0\)</span> when the respective atoms are far from each other. If this behavior is intrinsic to the descriptor, then the NN will have an easier training.</p>
+</div>
+<div class="section" id="behler-parrinello-symmetry-functions">
+<h2>Behler-Parrinello symmetry functions<a class="headerlink" href="#behler-parrinello-symmetry-functions" title="Permalink to this headline">¶</a></h2>
+<p>Behler and Parrinello’s NNP formulation meets the descriptor criteria outlined above by transforming the molecular coordinates with a set of <em>symmetry functions</em>. The result of these functions is the input of the NNP.</p>
+<p>For a discussion in greater detail on the BP functions, see section <em>IV. B.</em> of <a class="reference external" href="https://doi.org/10.1063/1.3553717">https://doi.org/10.1063/1.3553717</a> or eqs. 3-5 of <a class="reference external" href="https://doi.org/10.1103/PhysRevLett.98.146401">https://doi.org/10.1103/PhysRevLett.98.146401</a>. The function plots in this section were all adapted or modified from <a class="reference external" href="https://doi.org/10.1063/1.3553717">https://doi.org/10.1063/1.3553717</a>.</p>
+<p>There are radial and angular symmetry functions. The first kind recollects the pair-wise interactions of the atoms in a molecule; the second kind is analogous to the three-body terms in the classical potentials.</p>
+<p>There is a core function common to all the BP symmetry functions: The cutoff function <span class="math notranslate nohighlight">\(f_{\mathrm{c}}\)</span>. For a given cutoff radius <span class="math notranslate nohighlight">\(R_{\mathrm{c}}\)</span>, this function dampens the interaction between the atoms <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> according to their distance:
+$$
+f_{\mathrm{c}} = \left{
+\begin{array}{lc}
+0.5\left[ \cos\left( \frac{\pi R_{ij}}{R_{\mathrm{c}}} \right) +1 \right] &amp; \text{ if } R_{ij} \leq R_{\mathrm{c}} \
+0 &amp; \text{ otherwise}
+\end{array}</p>
+<p>\right.
+$$</p>
+<p>It looks like this:</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2019.50.05.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2019.50.05.png" /></p>
+<div class="section" id="behler-parrinello-radial-symmetry-functions">
+<h3>Behler-Parrinello radial symmetry functions<a class="headerlink" href="#behler-parrinello-radial-symmetry-functions" title="Permalink to this headline">¶</a></h3>
+<p>These functions are evaluated separately for each atom. For the atom <span class="math notranslate nohighlight">\(i\)</span>, the selected functions are evaluated for all the possible pairs <span class="math notranslate nohighlight">\((i,j)\)</span>.</p>
+<p>The <strong>first function</strong> is simply the sum of the <span class="math notranslate nohighlight">\(f_{\text{c}}\)</span> for all the possible atom pairs involving the atom <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^1 = \sum_{\substack{j = 1 \\ j \neq i}}^{n_{\text{a}}} f_{\text{c}}(R_{ij})
+\end{split}\]</div>
+<p>A series of <span class="math notranslate nohighlight">\(G_i^1\)</span> with different <span class="math notranslate nohighlight">\(R_{\text{c}}\)</span> can be used to probe the radial environment around the atom <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>The plot below shows the effect of <span class="math notranslate nohighlight">\(R_{\text{c}}\)</span> in the function’s width. For the rest of the radial function plots, <span class="math notranslate nohighlight">\(R_{\text{c}} = 10\ \text{angstrom}\)</span> was chosen.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2020.26.43.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2020.26.43.png" /></p>
+<p>The <strong>second function</strong> adds a Gaussian function to the mix. The width of the function is given by <span class="math notranslate nohighlight">\(\eta\)</span>, and its maximum is located in <span class="math notranslate nohighlight">\(R_s\)</span>. A series of this function, each with a different <span class="math notranslate nohighlight">\(R_s\)</span>, can too be used to probe the environment around the atom <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^2 = \sum_{\substack{j = 1 \\ j \neq i}}^{n_{\text{a}}} \exp[ -\eta(R_{ij} - R_{\text{s}})^2] \cdot f_{\text{c}}(R_{ij})
+\end{split}\]</div>
+<p>The plot below shows the effect of different values of <span class="math notranslate nohighlight">\(\eta\)</span>; <span class="math notranslate nohighlight">\(R_s\)</span> is set to <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2020.28.00.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2020.28.00.png" /></p>
+<p>The plot below now sets <span class="math notranslate nohighlight">\(\eta = 2\ a_0^{-2}\)</span>; the effect of different <span class="math notranslate nohighlight">\(R_s\)</span> is shown.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2020.28.08.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2020.28.08.png" /></p>
+<p>The <strong>third function</strong> is a dampened cosine function. Their period is modulated by the parameter <span class="math notranslate nohighlight">\(\kappa\)</span>. Unlike the previous two functions, which are <span class="math notranslate nohighlight">\(&gt; 0 \forall i,j\)</span>, the <span class="math notranslate nohighlight">\(G_i^3\)</span> function may have negative values. Therefore, Behler recommends to never use this function <em>in isolation</em>: terms may cancel each other and this could hide information from the NN.</p>
+<p>That said, these functions can be used without issue in conjunction with an ensemble of the <span class="math notranslate nohighlight">\(G_i^1\)</span> and <span class="math notranslate nohighlight">\(G_i^2\)</span> functions.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^3 = \sum_{\substack{j = 1 \\ j \neq i}}^{n_{\text{a}}} \cos(\kappa R_{ij}) \cdot f_{\text{c}}(R_{ij})
+\end{split}\]</div>
+<p>This plot shows the effect of <span class="math notranslate nohighlight">\(\kappa\)</span> in the function’s behavior.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2020.28.17.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2020.28.17.png" /></p>
+</div>
+<div class="section" id="behler-parrinello-angular-symmetry-functions">
+<h3>Behler-Parrinello angular symmetry functions<a class="headerlink" href="#behler-parrinello-angular-symmetry-functions" title="Permalink to this headline">¶</a></h3>
+<p>These functions are evaluated separately for each atom. For the atom <span class="math notranslate nohighlight">\(i\)</span>, the selected functions are evaluated for all the possible triads <span class="math notranslate nohighlight">\((i,j,k)\)</span>.</p>
+<p>The angle of atom <span class="math notranslate nohighlight">\(i\)</span> with its neighbors <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>, denoted <span class="math notranslate nohighlight">\(\theta_{ijk}\)</span>, can be computed by
+$<span class="math notranslate nohighlight">\(
+\theta_{ijk} = \arccos\hspace{0.02 em} \left( \frac{\vec{R_{ij}} \cdot \vec{R_{ik}}}{R_{ij} \cdot R_{ik}} \right)
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\vec{R_{il}}<span class="math notranslate nohighlight">\( is the vector that connects atoms \)</span>i<span class="math notranslate nohighlight">\( and \)</span>l<span class="math notranslate nohighlight">\(; \)</span>R_{il}$ is the distance between these two atoms.</p>
+<p>The <strong>fourth function</strong> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^4 = 2^{1-\zeta} \sum_{\substack{j=1 \\ j \neq i}}^{n_{\text{a}}} \sum_{\begin{subarray}{l}
+k=1 \\ k \neq i \\ k \neq j
+\end{subarray}}^{n_{\text{a}}} (1 + \lambda \cos \theta_{ijk})^\zeta \cdot \exp[-\eta(R_{ij}^2 + R_{ik}^2 + R_{jk}^2)] \cdot f_{\text{c}}(R_{ij}) \cdot f_{\text{c}}(R_{ik}) \cdot f_{\text{c}}(R_{jk})
+\end{split}\]</div>
+<p>The <strong>fifth function</strong> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^5 = 2^{1-\zeta} \sum_{\substack{j=1 \\ j \neq i}}^{n_{\text{a}}} \sum_{\begin{subarray}{l}
+k=1 \\ k \neq i \\ k \neq j
+\end{subarray}}^{n_{\text{a}}} (1 + \lambda \cos \theta_{ijk})^\zeta \cdot \exp[-\eta(R_{ij}^2 + R_{ik}^2)] \cdot f_{\text{c}}(R_{ij}) \cdot f_{\text{c}}(R_{ik})
+\end{split}\]</div>
+<p>Some points on the functions:</p>
+<ul class="simple">
+<li><p>Both functions are still subject to symmetry: the energy of a triad of atoms with an angle of <span class="math notranslate nohighlight">\(181^\circ\)</span> is the same as that of an equal triad with an angle of <span class="math notranslate nohighlight">\(179^\circ\)</span>. Therefore, the descriptors for both of the aforementioned triads must be equal too. This restricts the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> to <span class="math notranslate nohighlight">\(\{-1,1\}\)</span>.</p></li>
+<li><p>On the other hand, the parameter <span class="math notranslate nohighlight">\(\zeta\)</span> controls how diffuse the function is.</p></li>
+<li><p>The angular part of both functions is the same; it’s the radial parts that differ. The presence of <span class="math notranslate nohighlight">\(R_{jk}\)</span> in <span class="math notranslate nohighlight">\(G_i^4\)</span> makes it decay more sharply.</p></li>
+<li><p>An ensemble of functions with different <span class="math notranslate nohighlight">\((\lambda,\zeta, R_{\text{c}})\)</span> can be used to probe the radial-and-angular environment around the atom <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+</ul>
+<p>The plots below show both <span class="math notranslate nohighlight">\(G_i^4\)</span> and <span class="math notranslate nohighlight">\(G_i^5\)</span>. The radial parts of both were set to <span class="math notranslate nohighlight">\(1\)</span>, and thus only the angular term (it’s equal for both!) is shown.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2020.32.27.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2020.32.27.png" /></p>
+<p>Now let’s look at the behavior of these functions according to the distances <span class="math notranslate nohighlight">\(R_{ij}\)</span> and <span class="math notranslate nohighlight">\(R_{jk}\)</span> (they are equal in the plots below).</p>
+<p>For this example let us consider the three kinds of carbon-carbon bonds: they are rather similar in terms of distance. As it turns out, even minute differences are enough for the function to change its behavior rather sharply.</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2022.48.10.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2022.48.10.png" /></p>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="the-anakin-me-ani-family-of-nnps">
+<h1>The ANAKIN-ME (ANI) family of NNPs<a class="headerlink" href="#the-anakin-me-ani-family-of-nnps" title="Permalink to this headline">¶</a></h1>
+<p>The <em>Accurate NeurAl networK engINe for Molecular Energies</em> family is a collection of NNPs that builds upon the original Behler-Parrinello formulation of NNPs.</p>
+<p>Whereas the original NNP formulation is oriented towards MD simulations of single-element systems, the ANI potentials are also capable of predicting the energy of discrete organic molecular systems, and is compatible with systems of diverse atoms: H, C, N, O, and later S, F, and Cl.</p>
+<p>Currently, the ANI family of NNPs is composed of:</p>
+<ul class="simple">
+<li><p>ANI-1, <a class="reference external" href="https://doi.org/10.1039/C6SC05720A">https://doi.org/10.1039/C6SC05720A</a></p></li>
+</ul>
+<p>This is the original ANI formulation. This model makes predictions that are quite faithful to the original training data, calculated with the ωB97X/6-31G* level of theory at a fraction of the computational cost.</p>
+<ul class="simple">
+<li><p>ANI-1x, <a class="reference external" href="https://doi.org/10.1063/1.5023802">https://doi.org/10.1063/1.5023802</a></p></li>
+</ul>
+<p>This model expands upon the normal-mode sampling (NMS) technique that was used to build the original ANI-1 dataset. Seeing as it can leave some parts of the chemical space under-represented, such as the dihedral-torsion space, enhanced chemical sampling techniques are deployed for the creation of a new dataset upon which the ANI-1x model was trained.</p>
+<p>Additionally, the Query-By-Commitee (QBC) method is used to obtain additional structures selectively, whenever there is disagreement in the molecule’s energies between the multiple models that are being trained at once.</p>
+<p>This enhanced sampling makes for a better trained model: ANI-1x vastly outperforms ANI-1 after being trained to only 25% of the original data.</p>
+<ul class="simple">
+<li><p>ANI-1ccx, <a class="reference external" href="https://doi.org/10.1038/s41467-019-10827-4">https://doi.org/10.1038/s41467-019-10827-4</a></p></li>
+</ul>
+<p>This model took ANI-1x as its starting point. The model was retrained, via transfer learning, to a high-quality (CCSD(T)/CBS) dataset.</p>
+<p>The trained model can outperform not only the ANI-1x NNP, but also B3LYP, B3LYP-D3, MP2/6-311+G*, among others.</p>
+<ul class="simple">
+<li><p>ANI-2x, <a class="reference external" href="https://doi.org/10.1021/acs.jctc.0c00121">https://doi.org/10.1021/acs.jctc.0c00121</a></p></li>
+</ul>
+<p>This NNP expands the capabilities of the original ANI potentials. It adds two halogens and sulfur to the training dataset. As such, it is compatible with the atoms H, C, N, O, F, Cl, S.</p>
+<p>Therefore, this NNP is compatible with the vast majority of drug-like molecules.</p>
+<div class="section" id="the-ani-symmetry-functions">
+<h2>The ANI symmetry functions<a class="headerlink" href="#the-ani-symmetry-functions" title="Permalink to this headline">¶</a></h2>
+<p>One of the key differences between the original BP formulation and ANI’s is the way the symm</p>
+<p>The symmetry functions at the heart of the ANI NNPs exhibit a few differences to those in the original NNP formulation.</p>
+<p>The radial function is an unchanged <span class="math notranslate nohighlight">\(G_i^2\)</span>:
+$<span class="math notranslate nohighlight">\(
+G_i^2 = \sum_{\substack{j = 1 \\ j \neq i}}^{n_{\text{a}}} \exp[ -\eta(R_{ij} - R_{\text{s}})^2] \cdot f_{\text{c}}(R_{ij})
+\)</span><span class="math notranslate nohighlight">\(
+on the other hand, its angular function is a modified version of \)</span>G_i^5<span class="math notranslate nohighlight">\(. ANI's angular function is denoted \)</span>G_m^{\text{A}_{\text{mod}}}$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_i^5 = 2^{1-\zeta} \sum_{\substack{j=1 \\ j \neq i}}^{n_{\text{a}}} \sum_{\begin{subarray}{l}
+k=1 \\ k \neq i \\ k \neq j
+\end{subarray}}^{n_{\text{a}}} (1 + \lambda \cos \theta_{ijk})^\zeta \cdot \exp[-\eta(R_{ij}^2 + R_{ik}^2)] \cdot f_{\text{c}}(R_{ij}) \cdot f_{\text{c}}(R_{ik})
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+G_m^{\text{A}_{\text{mod}}} = 2^{1-\zeta} \sum_{\substack{j=1 \\ j \neq i}}^{n_{\text{a}}} \sum_{\begin{subarray}{l}
+k=1 \\ k \neq i \\ k \neq j
+\end{subarray}}
+^{n_{\text{a}}} [1 + \lambda \cos (\theta_{ijk} - \theta_{\text{s}})]^\zeta \cdot \exp\left[-\eta \left(\frac{R_{ij} + R_{ik}}{2} - R_{\text{s}}\right)^{2}\right] \cdot f_{\text{c}}(R_{ij}) \cdot f_{\text{c}}(R_{ik})
+\end{split}\]</div>
+<p>Note that the introduction of <span class="math notranslate nohighlight">\(\theta_{\text{s}}\)</span> and <span class="math notranslate nohighlight">\(R_{\text{s}}\)</span> means that the function can be ‘specialized’ into probing a particular portion of the radial and angular space around the atom <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</div>
+<div class="section" id="the-ensemble-of-symmetry-functions-atomic-environment-vector">
+<h2>The ensemble of symmetry functions: Atomic Environment Vector<a class="headerlink" href="#the-ensemble-of-symmetry-functions-atomic-environment-vector" title="Permalink to this headline">¶</a></h2>
+<p>We’ve mentioned several times that an ensemble of radial and angular symmetry functions with different parameters can be used to obtain a detailed picture of what the environment of each atom looks like.</p>
+<p>In ANI terms, this ensemble is called an <em>Atomic Environment Vector</em>, or AEV. This concept can be best explained with a picture. This is the figure 1 from the ANI paper on its pytorch implementation: <a class="reference external" href="https://doi.org/10.1021/acs.jcim.0c00451">https://doi.org/10.1021/acs.jcim.0c00451</a> .</p>
+<p><img alt="Screen%20Shot%202022-03-24%20at%2022.43.59.png" src="Week-10/attachment:Screen%20Shot%202022-03-24%20at%2022.43.59.png" /></p>
+<p>In brief, the AEV-description of an atom is obtained as follows:</p>
+<ol class="simple">
+<li><p>An atom <span class="math notranslate nohighlight">\(i\)</span> is selected. The rest of atoms are considered to be part of the <em>environment</em> of atom <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p>The radial part of the AEV is constructed:</p>
+<ul class="simple">
+<li><p>This section of the AEV probes the surrounding atoms separately, according to their type.</p></li>
+<li><p>This means there is a block of functions that measure the radial environment between the atom <span class="math notranslate nohighlight">\(i\)</span> and the molecule’s hydrogens, then another that measures the environment between the atom <span class="math notranslate nohighlight">\(i\)</span> and the molecule’s carbons, and so on.</p></li>
+<li><p>Each of these blocks has a series of functions <span class="math notranslate nohighlight">\(G_i^2\)</span> with different values of <span class="math notranslate nohighlight">\(R_{\text{s}}\)</span>.</p></li>
+</ul>
+</li>
+<li><p>The angular part of the AEV is constructed:</p>
+<ul class="simple">
+<li><p>If the atom types compatible with a given ANI model are (H, C, N, O), then there are <span class="math notranslate nohighlight">\(10\)</span> possible triads that involve <span class="math notranslate nohighlight">\(i\)</span> <em>and</em> all the possible pairs of atoms in <span class="math notranslate nohighlight">\(i\)</span>’s environment. The angular portion of this block contains, thus, ten separate partitions, one for each possible triad.</p></li>
+<li><p>In each of these partitions, a series of <span class="math notranslate nohighlight">\(G_i^5\)</span> is calculated, each with a different pair of values for <span class="math notranslate nohighlight">\((R_{\text{s}},\theta_{\text{s}})\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+<p>The entirety of this vector (its radial and angular part together) constitutes the input that a neural network uses to calculate the energy of the atom <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Once this process is repeated for all atoms in the molecule, the molecular energy can be obtained by summing all of the per-atom energies.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="an-overview-of-the-coordinates-aev-energy-process-a-c-s-formaldehyde-molecule">
+<h1>An overview of the coordinates-AEV-energy process: a <span class="math notranslate nohighlight">\(C_s\)</span> formaldehyde molecule<a class="headerlink" href="#an-overview-of-the-coordinates-aev-energy-process-a-c-s-formaldehyde-molecule" title="Permalink to this headline">¶</a></h1>
+<p>Consider the following drawing of a formaldehyde molecule. While the usual geometry of this molecule is <span class="math notranslate nohighlight">\(C_{2\text{v}}\)</span> (the same as the water molecule), where the two C-H bonds are equivalent, in this drawing we displaced one of the hydrogens and painted it blue so that they become distinct.</p>
+<p><img alt="Screen%20Shot%202022-03-24%20at%2019.49.38.png" src="Week-10/attachment:Screen%20Shot%202022-03-24%20at%2019.49.38.png" /></p>
+<p>Following the AEV construction procedure outlined above, we can summarize the molecular-energy calculation process in the following picture:</p>
+<p><img alt="Screen%20Shot%202022-03-22%20at%2019.12.34.png" src="Week-10/attachment:Screen%20Shot%202022-03-22%20at%2019.12.34.png" /></p>
+<p>The process starts in the grey column:</p>
+<ol class="simple">
+<li><p>The vector of <span class="math notranslate nohighlight">\(G\)</span>-functions, the AEV, is denoted by <span class="math notranslate nohighlight">\(\bf G\)</span><span class="math notranslate nohighlight">\(_{\text{Sy}}\)</span>, where <span class="math notranslate nohighlight">\(\text{Sy}\)</span> is the atomic symbol.</p></li>
+<li><p>The first time around, we’ll calculate the AEV of the atom <span class="math notranslate nohighlight">\(\text{C}\)</span>. Therefore, the other three atoms are considered to be the carbon’s environment. This is denoted by the black (main atom) and light brown arrows (environment atom).</p></li>
+<li><p>The AEV is calculated according to the radial and angular ensemble of symmetry functions.</p></li>
+<li><p>The completed AEV acts as the <em>input layer</em> of the respective neural network. The NN that calculates the atomic energies is different for each atom type; this is denoted by the color in the NNP’s outer ring. Note that the NNP is the same for both hydrogens, or for all kinds of hydrogens in a molecule, no matter how different their chemical environments are.</p></li>
+</ol>
+<p>This is one of ANI’s biggest strenghts: some classical force fields (such as UFF) that need to distinguish elements such as carbon, nitrogen, or oxygen, according to the atom’s hybridization or amount of bonds, so that the appropriate parameters can be loaded into a function for calculating the atom’s energy.</p>
+<p>On the other hand, ANI doesn’t need this kind of preprocessing: the AEV of each atom is input directly, and the NN is trusted to be able to distinguish between all the possible atom environments, and calculate the atom’s energy accordingly. This distinguishing capability is ensured through very thorough sampling techniques during training.</p>
+<ol class="simple">
+<li><p>The NNP has a single output node: it contains the atom’s energy.</p></li>
+<li><p>Finally, the sum of the atomic energies results in the molecular energy according to the selected ANI model.</p></li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-09/W9_Lab-SimulationAnalysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 09 Lab: Analysis of MD trajectories with Markov State Models</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
