@@ -112,4 +112,9 @@ parts:
     chapters:
     - file: Week-09/W9_Lecture-MarkovStateModels.ipynb
     - file: Week-09/W9_Lab-SimulationAnalysis.ipynb
+
+  - caption: Week 10
+    numbered: False
+    chapters:
+    - file: Week-10/W10_Lecture_FFConcepts.ipynb
     
