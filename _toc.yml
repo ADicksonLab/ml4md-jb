@@ -13,6 +13,8 @@ parts:
       title: Course Schedule
     - file: Course_Materials/SoftwareSetupGuide
       title: Software Setup Guide
+    - url: https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf
+      title: Final Project Description
  
   - caption: Week 01
     numbered: False
