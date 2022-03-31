@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 11 Lab: Machine Learning Force Fields (ML-FF) &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 10: Machine Learning Force Fields" href="W10_Lecture_FFConcepts.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf">
+   Final Project Description
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 07 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lab-Angiotensin-Simulation.html">
+   Biomolecular Simulation (Lab 1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb">
+   angiotensin.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/software.html">
+   Commands to install openmm in Colab
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lecture-MarkovStateModels.html">
+   Week 09 Lecture: Biomolecular Simulation (Part II)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lab-SimulationAnalysis.html">
+   Week 09 Lab: Analysis of MD trajectories with Markov State Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 10
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="W10_Lecture_FFConcepts.html">
+   Week 10: Machine Learning Force Fields
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 11 Lab: Machine Learning Force Fields (ML-FF)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-10/W10_Lab-MLFF_ANI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-10/W10_Lab-MLFF_ANI.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-10/W10_Lab-MLFF_ANI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-10/W10_Lab-MLFF_ANI.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 11 Lab: Machine Learning Force Fields (ML-FF)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-name-your-name-here">
+     Student Name: YOUR NAME HERE
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preamble">
+     Preamble
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-needed">
+       Dataset needed
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#packages-needed">
+       Packages needed
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-ff-ani-1-exercise">
+   ML-FF: ANI-1 exercise
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-your-own-neural-network-potential">
+     Train Your Own Neural Network Potential
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#now-let-s-setup-constants-and-construct-an-atomic-environment-vector-aev-computer">
+       Now let’s setup constants and construct an Atomic Environment Vector (AEV) computer.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-your-datasets">
+     Setting up your datasets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#warning">
+       WARNING
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-your-architecture">
+     Setting up your Architecture
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-the-weights-and-biases">
+     Initialize the weights and biases.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-the-optimization-functions">
+     Setting up the Optimization Functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-adam-s-algorithm">
+       The Adam(s) algorithm.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-question-1">
+   Lab Question 1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-question-2-bonus">
+   Lab Question 2 (bonus)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-question-3-bonus">
+   Lab Question 3 (bonus)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bibliography">
+     Bibliography:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-11-lab-machine-learning-force-fields-ml-ff">
+<h1>Week 11 Lab: Machine Learning Force Fields (ML-FF)<a class="headerlink" href="#week-11-lab-machine-learning-force-fields-ml-ff" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="student-name-your-name-here">
+<h2>Student Name: YOUR NAME HERE<a class="headerlink" href="#student-name-your-name-here" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="preamble">
+<h2>Preamble<a class="headerlink" href="#preamble" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dataset-needed">
+<h3>Dataset needed<a class="headerlink" href="#dataset-needed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Before we begin, please start the download the dataset needed for training: <a class="reference external" href="https://figshare.com/articles/dataset/ANI-1_data_set_20M_DFT_energies_for_non-equilibrium_small_molecules/5287732">QM dataset needed</a>. This is a 4.48 GB <code class="docutils literal notranslate"><span class="pre">tar</span></code> file.</p></li>
+<li><p>Next, please decompress the <code class="docutils literal notranslate"><span class="pre">tar</span></code> file. This can be done on WinOS with <a class="reference external" href="https://www.7-zip.org">7zip</a>, or Linux/Mac with the command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">tar</span> <span class="pre">-xf</span> <span class="pre">ANI1_release.tar.gz</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="packages-needed">
+<h3>Packages needed<a class="headerlink" href="#packages-needed" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This cell will install any of the missing packages we&#39;ll use in the notebook</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install torch
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install torchani
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install tqdm
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install tensorboard
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install h5py
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="ml-ff-ani-1-exercise">
+<h1>ML-FF: ANI-1 exercise<a class="headerlink" href="#ml-ff-ani-1-exercise" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="train-your-own-neural-network-potential">
+<h2>Train Your Own Neural Network Potential<a class="headerlink" href="#train-your-own-neural-network-potential" title="Permalink to this headline">¶</a></h2>
+<p>This example shows how to use TorchANI to train a neural network potential
+with the setup identical to NeuroChem. We will use the same configuration as
+specified in <a class="reference external" href="https://github.com/aiqm/torchani/blob/master/torchani/resources/ani-1x_8x/inputtrain.ipt"><code class="docutils literal notranslate"><span class="pre">inputtrain.ipt</span></code></a>.</p>
+<div class="alert alert-info"><h4>Note</h4><p>TorchANI provide tools to run NeuroChem training config file `inputtrain.ipt`.
+    See: `neurochem-training`.</p></div>
+<div class="alert alert-danger"><h4>Warning</h4><p>The training setup used in this file is configured to reproduce the original research at "Less is more: Sampling chemical space with active learning" (https://aip.scitation.org/doi/10.1063/1.5023802) as much as possible. 
+    That research was done on a different platform called NeuroChem which has many default options and technical details different from PyTorch. Some decisions made here (such as, using NeuroChem's initialization instead of PyTorch's default initialization) is not because it gives better result, but solely based on reproducing the original research. This file should not be interpreted as a suggestions to the readers on how they should setup their models.</p></div><p>To begin with, let’s first import the modules and setup devices we will use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torchani</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch.utils.tensorboard</span>
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="c1"># helper function to convert energy unit from Hartree to kcal/mol</span>
+<span class="kn">from</span> <span class="nn">torchani.units</span> <span class="kn">import</span> <span class="n">hartree2kcalmol</span>
+
+<span class="c1"># device to run the training</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="now-let-s-setup-constants-and-construct-an-atomic-environment-vector-aev-computer">
+<h3>Now let’s setup constants and construct an Atomic Environment Vector (AEV) computer.<a class="headerlink" href="#now-let-s-setup-constants-and-construct-an-atomic-environment-vector-aev-computer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>These numbers can be found in <a class="reference external" href="https://github.com/aiqm/torchani/blob/master/torchani/resources/ani-1x_8x/rHCNO-5.2R_16-3.5A_a4-8.params"><code class="docutils literal notranslate"><span class="pre">rHCNO-5.2R_16-3.5A_a4-8.params</span></code></a>.</p></li>
+<li><p>The atomic self energies given in <a class="reference external" href="https://github.com/aiqm/torchani/blob/master/torchani/resources/ani-1x_8x/sae_linfit.dat"><code class="docutils literal notranslate"><span class="pre">sae_linfit.dat</span></code></a> are computed from ANI-1x
+dataset. These constants can be calculated for any given dataset if <code class="docutils literal notranslate"><span class="pre">None</span></code>
+is provided as an argument to the object of :class:<code class="docutils literal notranslate"><span class="pre">EnergyShifter</span></code> class.</p></li>
+</ul>
+<div class="alert alert-info"><h4>Note</h4><p>Besides defining these hyperparameters programmatically,
+  :mod:`torchani.neurochem` provide tools to read them from file.</p></div><ul class="simple">
+<li><p>These parameters have suffix <code class="docutils literal notranslate"><span class="pre">r</span></code> for the radial and <code class="docutils literal notranslate"><span class="pre">a</span></code> for angular functions (See equations 3 and 4 of <a class="reference external" href="https://doi.org/10.1039/C6SC05720A"><code class="docutils literal notranslate"><span class="pre">smith2017-1</span></code></a>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rcr</span> <span class="o">=</span> <span class="mf">5.2000e+00</span>
+<span class="n">Rca</span> <span class="o">=</span> <span class="mf">3.5000e+00</span>
+<span class="n">EtaR</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.6000000e+01</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">ShfR</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">9.0000000e-01</span><span class="p">,</span> <span class="mf">1.1687500e+00</span><span class="p">,</span> <span class="mf">1.4375000e+00</span><span class="p">,</span> <span class="mf">1.7062500e+00</span><span class="p">,</span> <span class="mf">1.9750000e+00</span><span class="p">,</span> <span class="mf">2.2437500e+00</span><span class="p">,</span> <span class="mf">2.5125000e+00</span><span class="p">,</span> <span class="mf">2.7812500e+00</span><span class="p">,</span> <span class="mf">3.0500000e+00</span><span class="p">,</span> <span class="mf">3.3187500e+00</span><span class="p">,</span> <span class="mf">3.5875000e+00</span><span class="p">,</span> <span class="mf">3.8562500e+00</span><span class="p">,</span> <span class="mf">4.1250000e+00</span><span class="p">,</span> <span class="mf">4.3937500e+00</span><span class="p">,</span> <span class="mf">4.6625000e+00</span><span class="p">,</span> <span class="mf">4.9312500e+00</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">Zeta</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.2000000e+01</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">ShfZ</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.9634954e-01</span><span class="p">,</span> <span class="mf">5.8904862e-01</span><span class="p">,</span> <span class="mf">9.8174770e-01</span><span class="p">,</span> <span class="mf">1.3744468e+00</span><span class="p">,</span> <span class="mf">1.7671459e+00</span><span class="p">,</span> <span class="mf">2.1598449e+00</span><span class="p">,</span> <span class="mf">2.5525440e+00</span><span class="p">,</span> <span class="mf">2.9452431e+00</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">EtaA</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">8.0000000e+00</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">ShfA</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">9.0000000e-01</span><span class="p">,</span> <span class="mf">1.5500000e+00</span><span class="p">,</span> <span class="mf">2.2000000e+00</span><span class="p">,</span> <span class="mf">2.8500000e+00</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">species_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">]</span>
+<span class="n">num_species</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">species_order</span><span class="p">)</span>
+<span class="n">aev_computer</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">AEVComputer</span><span class="p">(</span><span class="n">Rcr</span><span class="p">,</span> <span class="n">Rca</span><span class="p">,</span> <span class="n">EtaR</span><span class="p">,</span> <span class="n">ShfR</span><span class="p">,</span> <span class="n">EtaA</span><span class="p">,</span> <span class="n">Zeta</span><span class="p">,</span> <span class="n">ShfA</span><span class="p">,</span> <span class="n">ShfZ</span><span class="p">,</span> <span class="n">num_species</span><span class="p">)</span>
+<span class="n">energy_shifter</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">EnergyShifter</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Remember the modified Behler-Parrinello functions from last lecture:</strong></p>
+<p><img alt="ANI G-function figure" src="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-10/ANI.png?raw=true" /></p>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_{\mathrm{c}} = \left\{
+\begin{array}{lc}
+0.5\left[ \cos\left( \frac{\pi R_{ij}}{R_{\mathrm{c}}} \right) +1 \right] &amp; \text{ if } R_{ij} \leq R_{\mathrm{c}} \\
+0 &amp; \text{ otherwise}
+\end{array}
+%
+\right.
+\end{split}\]</div>
+<p>The correspondence is as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Rcr</span></code> : The <span class="math notranslate nohighlight">\(R_C\)</span> value in the <span class="math notranslate nohighlight">\(f_C\)</span> term for the radial functions (Å)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rca</span></code> : The <span class="math notranslate nohighlight">\(R_C\)</span> value in the <span class="math notranslate nohighlight">\(f_C\)</span> term for the angular functions (Å)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EtaR</span></code> : A set of <span class="math notranslate nohighlight">\(\eta\)</span> values to use for the radial functions (Å<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShfR</span></code> : A set of <span class="math notranslate nohighlight">\(R_s^{(k)}\)</span> values (“shifts”) to use for the radial functions (Å)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Zeta</span></code> : A set of <span class="math notranslate nohighlight">\(\zeta\)</span> values to use in the angular functions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShfZ</span></code> : A set of <span class="math notranslate nohighlight">\(\theta_s^{(q)}\)</span> values to use in the angular functions (radians)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EtaA</span></code> : A set of <span class="math notranslate nohighlight">\(\eta\)</span> values to use for the angular functions (Å<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShfA</span></code> : A set of <span class="math notranslate nohighlight">\(R_s^{(p)}\)</span> values (“shifts”) to use for the angular functions (Å)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="setting-up-your-datasets">
+<h2>Setting up your datasets<a class="headerlink" href="#setting-up-your-datasets" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Now let’s setup datasets. These paths assumes the user run this script under the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory of TorchANI’s repository. If you download this script, you should manually set the path of these files in your system before this script can run successfully.</p></li>
+<li><p>Also note that we need to subtracting energies by the self energies of all atoms for each molecule. This makes the range of energies in a reasonable range. The second argument defines how to convert species as a list of string to tensor, that is, for all supported chemical symbols, which is correspond to <code class="docutils literal notranslate"><span class="pre">0</span></code>, which correspond to <code class="docutils literal notranslate"><span class="pre">1</span></code>, etc.</p></li>
+<li><p>See this <a class="reference external" href="https://github.com/isayev/ANI1_dataset#description">Dataset description</a> for a explanation and details of this dataset.</p></li>
+</ul>
+<div class="section" id="warning">
+<h3>WARNING<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Please fix the variable <code class="docutils literal notranslate"><span class="pre">pathprefix</span></code> for your system. It must be the path to the folder containing the ANI <code class="docutils literal notranslate"><span class="pre">h5</span></code> files (the ones from the 4.48 GB <code class="docutils literal notranslate"><span class="pre">tar</span></code> file linked at the beginning).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Additional#</span>
+<span class="n">pathprefix</span> <span class="o">=</span> <span class="s2">&quot;./ANI-1_release/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Additional#</span>
+<span class="c1"># Check if the files are in the folder (only check for the first one)</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pathprefix</span><span class="p">,</span><span class="s2">&quot;ani_gdb_s01.h5&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Can&#39;t find the ANI h5 files in folder &quot;</span><span class="o">+</span><span class="n">pathprefix</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;^&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ANI h5 files located!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="c1">#dspath = os.path.join(path, &#39;../dataset/ani1-up_to_gdb4/ani_gdb_s01.h5&#39;) # &lt;- Original line:</span>
+<span class="n">dspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">pathprefix</span><span class="o">+</span><span class="s1">&#39;/ani_gdb_s01.h5&#39;</span><span class="p">)</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2560</span>
+
+<span class="c1"># Additional#: Here the dataset is split into training and validation set</span>
+<span class="n">training</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dspath</span><span class="p">)</span><span class="o">.</span><span class="n">subtract_self_energies</span><span class="p">(</span><span class="n">energy_shifter</span><span class="p">,</span> <span class="n">species_order</span><span class="p">)</span><span class="o">.</span><span class="n">species_to_indices</span><span class="p">(</span><span class="n">species_order</span><span class="p">)</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">training</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Self atomic energies: &#39;</span><span class="p">,</span> <span class="n">energy_shifter</span><span class="o">.</span><span class="n">self_energies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When iterating the dataset, we will get a dict of name-&gt;property mapping</p>
+<hr class="docutils" />
+<p><strong>Now let’s define atomic neural networks.</strong></p>
+</div>
+</div>
+<div class="section" id="setting-up-your-architecture">
+<h2>Setting up your Architecture<a class="headerlink" href="#setting-up-your-architecture" title="Permalink to this headline">¶</a></h2>
+<p><strong>Additional#</strong> Here the different neural networks (one for each atom) are initialized.</p>
+<ul class="simple">
+<li><p>The even-index elements of the NNs are the hidden layers. For example, <code class="docutils literal notranslate"><span class="pre">torch.nn.Linear(160,</span> <span class="pre">128)</span></code> means that the previous layer has 160 neurons and the current layer has 128 neurons.</p></li>
+<li><p>The odd-index elements are the activation functions. The function used is the ‘Continuously differentiable Exponential Linear Units’ (CELU), see <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.CELU.html#torch.nn.CELU">https://pytorch.org/docs/stable/generated/torch.nn.CELU.html#torch.nn.CELU</a></p>
+<ul>
+<li><p>Its argument is the alpha value of the CELU formulation (not related to the learning rate)</p></li>
+</ul>
+</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">aev_dim</span></code> stores the length (384) of the atomic environment vectors (AEV). See section 2.2 of <code class="docutils literal notranslate"><span class="pre">smith2017-1</span></code>. (Note: Said paper, in page 9, says that the AEVs have length 768. The AEVs were later shortened to 368 without loss of accuracy)</p>
+<p>All 4 neural networks are loaded on <code class="docutils literal notranslate"><span class="pre">nn</span></code> for optimization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aev_dim</span> <span class="o">=</span> <span class="n">aev_computer</span><span class="o">.</span><span class="n">aev_length</span>
+
+<span class="n">H_network</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">aev_dim</span><span class="p">,</span> <span class="mi">160</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">C_network</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">aev_dim</span><span class="p">,</span> <span class="mi">144</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">144</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">N_network</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">aev_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">O_network</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">aev_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">112</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">112</span><span class="p">,</span> <span class="mi">96</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CELU</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">nn</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">ANIModel</span><span class="p">([</span><span class="n">H_network</span><span class="p">,</span> <span class="n">C_network</span><span class="p">,</span> <span class="n">N_network</span><span class="p">,</span> <span class="n">O_network</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="initialize-the-weights-and-biases">
+<h2>Initialize the weights and biases.<a class="headerlink" href="#initialize-the-weights-and-biases" title="Permalink to this headline">¶</a></h2>
+<div class="alert alert-info"><h4>Note</h4><p>Pytorch default initialization for the weights and biases in linear layers
+  is Kaiming uniform. See: `TORCH.NN.MODULES.LINEAR`_
+  We initialize the weights similarly but from the normal distribution.
+  The biases were initialized to zero.</p></div>
+<p><a class="reference external" href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Linear">https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Linear</a></p>
+<p><strong>Additional#</strong> The Kaiming distribution improves the training of a DNN that uses a ReLU-type (unbounded) activation function rather than sigmoid-type (within the interval (-1,1) or (0,1) ). For a complete account on the topic, see <a class="reference external" href="https://towardsdatascience.com/weight-initialization-in-neural-networks-a-journey-from-the-basics-to-kaiming-954fb9b47c79">https://towardsdatascience.com/weight-initialization-in-neural-networks-a-journey-from-the-basics-to-kaiming-954fb9b47c79</a> .</p>
+<p>This other read is not as didactic but derives the Kaiming initialization <a class="reference external" href="https://medium.com/&#64;shoray.goel/kaiming-he-initialization-a8d9ed0b5899">https://medium.com/&#64;shoray.goel/kaiming-he-initialization-a8d9ed0b5899</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init_params</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+
+<span class="n">nn</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Let’s now create a pipeline of AEV Computer –&gt; Neural Networks.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">aev_computer</span><span class="p">,</span> <span class="n">nn</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s setup the optimizers. NeuroChem uses Adam with decoupled weight decay
+to updates the weights and Stochastic Gradient Descent (SGD) to update the biases.
+Moreover, we need to specify different <a class="reference external" href="https://arxiv.org/abs/1711.05101">weight decay rate</a> for different layers.</p>
+<div class="alert alert-info"><h4>Note</h4><p>The weight decay in `inputtrain.ipt`_ is named "l2", but it is actually not
+  L2 regularization. The confusion between L2 and weight decay is a common
+  mistake in deep learning.  See: `Decoupled Weight Decay Regularization`_
+  Also note that the weight decay only applies to weight in the training
+  of ANI models, not bias.</p></div>
+</div>
+<div class="section" id="setting-up-the-optimization-functions">
+<h2>Setting up the Optimization Functions<a class="headerlink" href="#setting-up-the-optimization-functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Here the optimization is set up.</p></li>
+<li><p>Only the even-index elements are selected since the odd elements are the activation functions.</p></li>
+</ul>
+<div class="section" id="the-adam-s-algorithm">
+<h3>The Adam(s) algorithm.<a class="headerlink" href="#the-adam-s-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The weights are optimized by AdamW, a variant of the Adam optimization method.</p>
+<ul class="simple">
+<li><p>A good introduction to the <a class="reference external" href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/">Adam Optimizer</a></p></li>
+<li><p>The original paper <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">Adam paper</a></p></li>
+<li><p>A more general overview of <a class="reference external" href="https://arxiv.org/pdf/1609.04747.pdf">gradient descent methods</a>, which includes SGD and the Adam variants.</p></li>
+</ul>
+<p>A few points about Adam:</p>
+<ul class="simple">
+<li><p>it can be seen as an extension of SGD.</p></li>
+<li><p>the method is called Adam (not A.D.A.M. or such). The name is derived from ADAptive Moment estimation.</p></li>
+<li><p>easy to implement and understand.</p></li>
+<li><p>appropriate for problems with large amounts of data, parameters, and noisy/sparse gradients.</p></li>
+<li><p>SGD uses one learning rate for all parameters; Adam uses one for each parameter.</p></li>
+<li><p>It’s a refinement of the momentum optimization method.</p></li>
+<li><p>The momentum method emulates a ball moving in a ravine: the ball’s future position depends on the ravine’s gradient AND on the ball’s momentum.</p></li>
+<li><p>The momentum method updates its parameters by
+\begin{equation}
+\Delta \theta_i(t) = \alpha \cdot \Delta \theta_i(t-1) - \epsilon \frac{\partial J}{\partial \theta_i}(t)
+\end{equation}</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Delta \theta_i\)</span> is the change in the parameter <span class="math notranslate nohighlight">\(\theta_i\)</span> for the epoch <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the momentum hyperparameter, usually <span class="math notranslate nohighlight">\(\in [0.5,0.9]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta \theta_i(t-1)\)</span> is the previous change on <span class="math notranslate nohighlight">\(\theta_i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the learning rate.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\partial J/\partial \theta_i\)</span> is the derivative of the cost function wrt <span class="math notranslate nohighlight">\(\theta_i\)</span> for the current epoch.</p></li>
+<li><p>It can be seen in the equation above that the Momentum method updates the model’s parameters using the <em>rolling average</em> of the gradient across the previous iterations, instead of relying solely in the current gradient.</p></li>
+</ul>
+</li>
+<li><p>The Adam method takes these refinements one step further, as it not only stores the <em>rolling average of the gradient</em>, denoted above as <span class="math notranslate nohighlight">\(\alpha \cdot \Delta \theta_i(t-1)\)</span>, but also the <em>rolling average of the squared gradient</em>. It uses both to tweak each parameter’s learning rate separately. For a deeper explanation of the method, see section 4.6 of the <a class="reference external" href="https://arxiv.org/pdf/1609.04747.pdf">gradient descent review</a> or alternatively the <a class="reference external" href="https://arxiv.org/pdf/1412.6980.pdf">original Adam paper</a>.</p></li>
+<li><p>Finally, the AdamW method is a variant of Adam that includes a decoupled weight decay. According to the authors,</p></li>
+</ul>
+<blockquote>
+<div><p>we propose a simple modification to recover the original formulation of
+weight decay regularization by decoupling the weight decay from the optimization
+steps taken w.r.t. the loss function.</p>
+</div></blockquote>
+<blockquote>
+<div><p>We provide empirical evidence that our proposed modification…(ii) substantially improves Adam’s generalization performance, allowing it to compete with
+SGD with momentum on image classification datasets (on which it was previously
+typically outperformed by the latter).</p>
+</div></blockquote>
+<p>For a deeper explanation, see the <a class="reference external" href="https://arxiv.org/pdf/1711.05101.pdf">authors’ paper</a>.</p>
+<p>Note that the biases below are optimized by SGD.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AdamW</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">([</span>
+    <span class="c1"># H networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="c1"># C networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="c1"># N networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="c1"># O networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.00001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">],</span> <span class="s1">&#39;weight_decay&#39;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="p">]},</span>
+<span class="p">])</span>
+
+<span class="n">SGD</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span>
+    <span class="c1"># H networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">H_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="c1"># C networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">C_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="c1"># N networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">N_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="c1"># O networks</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">O_network</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="p">]},</span>
+<span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setting up a learning rate scheduler to do learning rate decay</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AdamW_scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">AdamW</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">SGD_scheduler</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">SGD</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Train the model by minimizing the MSE loss, until validation RMSE no longer
+improves during a certain number of steps, decay the learning rate and repeat
+the same process, stop until the learning rate is smaller than a threshold.</p>
+<p>We first read the checkpoint files to restart training. We use <code class="docutils literal notranslate"><span class="pre">latest.pt</span></code>
+to store current training state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">latest_checkpoint</span> <span class="o">=</span> <span class="s1">&#39;latest.pt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Resume training from previously saved checkpoints:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">latest_checkpoint</span><span class="p">):</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">latest_checkpoint</span><span class="p">)</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;nn&#39;</span><span class="p">])</span>
+    <span class="n">AdamW</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW&#39;</span><span class="p">])</span>
+    <span class="n">SGD</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD&#39;</span><span class="p">])</span>
+    <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">])</span>
+    <span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>During training, we need to validate on validation set and if validation error
+is better than the best, then save the new best model to a checkpoint</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">validate</span><span class="p">():</span>
+    <span class="c1"># run validation</span>
+    <span class="n">mse_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+    <span class="n">total_mse</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">properties</span> <span class="ow">in</span> <span class="n">validation</span><span class="p">:</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="n">true_energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">predicted_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
+        <span class="n">total_mse</span> <span class="o">+=</span> <span class="n">mse_sum</span><span class="p">(</span><span class="n">predicted_energies</span><span class="p">,</span> <span class="n">true_energies</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">predicted_energies</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">hartree2kcalmol</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">total_mse</span> <span class="o">/</span> <span class="n">count</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also use TensorBoard to visualize our training process</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensorboard</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">tensorboard</span><span class="o">.</span><span class="n">SummaryWriter</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we come to the training loop.</p>
+<p>In this tutorial, we are setting the maximum epoch to a very small number,
+only to make this demo terminate fast. For serious training, this should be
+set to a much larger value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Additional# Run the code in this cell if you want to restart the training from zero</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;best.pt&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;latest.pt&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;training starting from epoch&quot;</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">max_epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">early_stopping_learning_rate</span> <span class="o">=</span> <span class="mf">1.0E-5</span>
+<span class="n">best_model_checkpoint</span> <span class="o">=</span> <span class="s1">&#39;best.pt&#39;</span>
+
+<span class="c1"># Additional# This is the big loop for optimization</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_epochs</span><span class="p">):</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">validate</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE:&#39;</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="s1">&#39;at epoch&#39;</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">AdamW</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">learning_rate</span> <span class="o">&lt;</span> <span class="n">early_stopping_learning_rate</span><span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="c1"># checkpoint</span>
+    <span class="k">if</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">is_better</span><span class="p">(</span><span class="n">rmse</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">best</span><span class="p">):</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">best_model_checkpoint</span><span class="p">)</span>
+
+    <span class="c1"># Additional# OPTIMIZATION HAPPENS HERE v</span>
+    <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+    <span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+
+    <span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;validation_rmse&#39;</span><span class="p">,</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
+    <span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;best_validation_rmse&#39;</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">best</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
+    <span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">properties</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
+        <span class="nb">enumerate</span><span class="p">(</span><span class="n">training</span><span class="p">),</span>
+        <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="p">),</span>
+        <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;epoch </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="n">true_energies</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;energies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="n">num_atoms</span> <span class="o">=</span> <span class="p">(</span><span class="n">species</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">true_energies</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">predicted_energies</span> <span class="o">=</span> <span class="n">model</span><span class="p">((</span><span class="n">species</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">))</span>
+
+        <span class="c1"># Additional# Compute the loss function</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">predicted_energies</span><span class="p">,</span> <span class="n">true_energies</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_atoms</span><span class="o">.</span><span class="n">sqrt</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="n">AdamW</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">SGD</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">AdamW</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">SGD</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="c1">#print(&quot;nn&quot;, nn.state_dict())</span>
+        <span class="c1">#print(&quot;AdamW&quot;, AdamW.state_dict())</span>
+        
+        <span class="c1"># write current batch loss to TensorBoard</span>
+        <span class="n">tensorboard</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s1">&#39;batch_loss&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">last_epoch</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">training</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+        <span class="c1">#print(&quot;loss&quot;,loss) # custom</span>
+
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
+        <span class="s1">&#39;nn&#39;</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;AdamW&#39;</span><span class="p">:</span> <span class="n">AdamW</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;SGD&#39;</span><span class="p">:</span> <span class="n">SGD</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;AdamW_scheduler&#39;</span><span class="p">:</span> <span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;SGD_scheduler&#39;</span><span class="p">:</span> <span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+    <span class="p">},</span> <span class="n">latest_checkpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lab-question-1">
+<h1>Lab Question 1<a class="headerlink" href="#lab-question-1" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>As reported in the <a class="reference external" href="https://doi.org/10.1039/C6SC05720A"><code class="docutils literal notranslate"><span class="pre">smith2017-1</span></code></a> paper (page 9, just above section 4), the RMSE for the training set is of just 1.2 kcal/mol. How close can you get using this notebook?</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lab-question-2-bonus">
+<h1>Lab Question 2 (bonus)<a class="headerlink" href="#lab-question-2-bonus" title="Permalink to this headline">¶</a></h1>
+<p>The method <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code> can be used to display all the data contained in <code class="docutils literal notranslate"><span class="pre">nn</span></code>, <code class="docutils literal notranslate"><span class="pre">AdamW</span></code>, <code class="docutils literal notranslate"><span class="pre">AdamW_scheduler</span></code>, <code class="docutils literal notranslate"><span class="pre">SGD</span></code>, and <code class="docutils literal notranslate"><span class="pre">SGD_scheduler</span></code>.</p>
+<p>In order to display a particular set of data, see below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AdamW</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AdamW_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A key can be added to <code class="docutils literal notranslate"><span class="pre">state_dict()</span></code>, thus extracting a particular piece of information of the objects. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="s1">&#39;best&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SGD_scheduler</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="s1">&#39;eps&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In particular, the weights of any layer of any element can be obtained by this method.</p>
+<p>These keys have the format <code class="docutils literal notranslate"><span class="pre">atNumber</span></code>.<code class="docutils literal notranslate"><span class="pre">layNumber</span></code>.weight</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">atNumber</span></code> refers to the atom: <code class="docutils literal notranslate"><span class="pre">0</span></code> is H, <code class="docutils literal notranslate"><span class="pre">1</span></code> C, <code class="docutils literal notranslate"><span class="pre">2</span></code> N, <code class="docutils literal notranslate"><span class="pre">3</span></code> O</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layNumber</span></code> refers to the layer: <code class="docutils literal notranslate"><span class="pre">0</span></code> means the first hidden layer, <code class="docutils literal notranslate"><span class="pre">2</span></code> the second, <code class="docutils literal notranslate"><span class="pre">4</span></code> the third, <code class="docutils literal notranslate"><span class="pre">6</span></code> the fourth (since the odd numbers store the activation functions)</p></li>
+</ul>
+<p>The weights can be exported to a file using numpy. Its size can be known by the <code class="docutils literal notranslate"><span class="pre">shape</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="s1">&#39;0.0.weight&#39;</span><span class="p">]</span> <span class="c1"># First hidden layer of H (connects input layer and first hidden layer)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="s1">&#39;0.2.weight&#39;</span><span class="p">]</span> <span class="c1"># Second hidden layer of H (connects first hidden layer and second)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="s1">&#39;0.0.weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The cells below export all weights and biases to text files</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;Weights-ANI&quot;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;Weights-ANI&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">nElements</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">listSymbols</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">]</span>
+<span class="n">listIndicesLayers</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nElements</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nElements</span><span class="p">):</span>
+        <span class="n">weightsSave</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">listIndicesLayers</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;.weight&#39;</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;Weights-ANI/weight-&#39;</span><span class="o">+</span><span class="n">listSymbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-layer&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.dat&#39;</span><span class="p">,</span><span class="n">weightsSave</span><span class="p">)</span>
+        <span class="n">biasSave</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">listIndicesLayers</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;.bias&#39;</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;Weights-ANI/bias-&#39;</span><span class="o">+</span><span class="n">listSymbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-layer&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.dat&#39;</span><span class="p">,</span><span class="n">biasSave</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="lab-question-3-bonus">
+<h1>Lab Question 3 (bonus)<a class="headerlink" href="#lab-question-3-bonus" title="Permalink to this headline">¶</a></h1>
+<p>Make a plot of predicted vs. calculated energies for one of the training sets.</p>
+<p><strong>Hint: look at the code in the training loop, and use <code class="docutils literal notranslate"><span class="pre">training[i]</span></code> instead of <code class="docutils literal notranslate"><span class="pre">properties</span></code>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bibliography">
+<h2>Bibliography:<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This document is based on the notebook found in <a class="reference external" href="https://aiqm.github.io/torchani-test-docs/examples/nnp_training.html">https://aiqm.github.io/torchani-test-docs/examples/nnp_training.html</a>.
+However, in this exercise, we add some additional explanations and exercises about ANI that will help the student understand the topic better and can be linked to the lecture better.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smith2017-1</span></code> refers to the ANI-1 paper, available at <a class="reference external" href="https://doi.org/10.1039/C6SC05720A">https://doi.org/10.1039/C6SC05720A</a>.</p></li>
+<li><p>Other references are included throughout the notebook as direct links</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="W10_Lecture_FFConcepts.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 10: Machine Learning Force Fields</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Alex Dickson and Michael Feig<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
