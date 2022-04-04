@@ -5,54 +5,55 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003 &#8212; Machine Learning for Molecular Dynamics</title>
+    <title>Week 11: Final Project Demo 1 (CHARMM-GUI) &#8212; Machine Learning for Molecular Dynamics</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="shortcut icon" href="_static/ml4md_fav.ico"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="BMB 961 Sec 003: Machine Learning for Molecular Dynamics" href="Course_Materials/BMB961-003_Syllabus.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulating CHARMM-GUI systems in Google Colab" href="CHARMM_GUI_COLAB.html" />
+    <link rel="prev" title="Week 10 Lab: Machine Learning Force Fields (ML-FF)" href="../Week-10/W10_Lab-MLFF_ANI.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -72,26 +73,26 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="_static/logo.png" class="logo" alt="logo">
+      <img src="../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
    Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
   </a>
  </li>
@@ -103,17 +104,17 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Course_Materials/BMB961-003_Syllabus.html">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
    Syllabus
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Course_Materials/BMB961-003_Schedule.html">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
    Course Schedule
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Course_Materials/SoftwareSetupGuide.html">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
    Software Setup Guide
   </a>
  </li>
@@ -130,12 +131,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-01/W1_Lecture_Welcome.html">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
    Week 01 Lecture: Welcome to ML4MD
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-01/W1_Lab_Python_Refresher.html">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
    Week 01 Lab: Python Refresher Course
   </a>
  </li>
@@ -167,12 +168,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-02/W2_Lecture_MLBasics.html">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
    Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-02/W2_Lab_MLBasics.html">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
    Week 02 Lab: Machine Learning Basics
   </a>
  </li>
@@ -199,12 +200,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-03/W3_Lecture_NNArchitectures.html">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
    Week 03 Lecture: Neural Network Architectures
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-03/W3_Lab_ConvNetworks.html">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
    Week 03 Lab: Convolutional Networks
   </a>
  </li>
@@ -241,12 +242,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-04/W4_Lecture_GenerativeModels.html">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
    Week 04 Lecture: Generating things with ML
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-04/W4_Lab_GenerateMolecularConformations.html">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
    Week 04 Lab: Generating Molecular Conformations
   </a>
  </li>
@@ -258,12 +259,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-05/W5_Lecture-ProteinStructurePrediction.html">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
    Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-05/W5_Lab_StructurePrediction.html">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
    Week 05 Lab: Structure Prediction
   </a>
  </li>
@@ -280,12 +281,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-06/W6_Lecture_MD-Concepts1.html">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
    Week 06 Lecture: Molecular Dynamics Concepts 1
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
    Week 06 Lab: Single Particle Langevin Dynamics
   </a>
  </li>
@@ -297,12 +298,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-07/W7_Lecture_MD-Concepts2.html">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
    Week 07 Lecture: Molecular Dynamics Concepts 2
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
    Week 07 Lab: Liquid Argon Simulation
   </a>
  </li>
@@ -339,7 +340,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
+  <a class="reference internal" href="../Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
    Week 8 Lecture: Biomolecular Simulation (Part I)
   </a>
  </li>
@@ -354,7 +355,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-08/W8_Lab-Angiotensin-Simulation.html">
+  <a class="reference internal" href="../Week-08/W8_Lab-Angiotensin-Simulation.html">
    Biomolecular Simulation (Lab 1)
   </a>
  </li>
@@ -364,7 +365,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-08/software.html">
+  <a class="reference internal" href="../Week-08/software.html">
    Commands to install openmm in Colab
   </a>
  </li>
@@ -376,12 +377,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-09/W9_Lecture-MarkovStateModels.html">
+  <a class="reference internal" href="../Week-09/W9_Lecture-MarkovStateModels.html">
    Week 09 Lecture: Biomolecular Simulation (Part II)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-09/W9_Lab-SimulationAnalysis.html">
+  <a class="reference internal" href="../Week-09/W9_Lab-SimulationAnalysis.html">
    Week 09 Lab: Analysis of MD trajectories with Markov State Models
   </a>
  </li>
@@ -393,12 +394,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-10/W10_Lecture_FFConcepts.html">
+  <a class="reference internal" href="../Week-10/W10_Lecture_FFConcepts.html">
    Week 10: Machine Learning Force Fields
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-10/W10_Lab-MLFF_ANI.html">
+  <a class="reference internal" href="../Week-10/W10_Lab-MLFF_ANI.html">
    Week 10 Lab: Machine Learning Force Fields (ML-FF)
   </a>
  </li>
@@ -408,14 +409,14 @@
   Week 11
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 11: Final Project Demo 1 (CHARMM-GUI)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Week-11/CHARMM_GUI_COLAB.html">
+  <a class="reference internal" href="CHARMM_GUI_COLAB.html">
    Simulating CHARMM-GUI systems in Google Colab
   </a>
  </li>
@@ -460,9 +461,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -480,7 +481,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-11/W11_Final-Project-Demo-1-CHARMM-GUI.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -496,6 +497,28 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -507,26 +530,9 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-information">
-   Key Information
+  <a class="reference internal nav-link" href="#overview-of-today-s-demo">
+   Overview of today’s demo
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#instructor-information">
-   Instructor Information
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lead-instructors">
-     Lead instructors
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#affiliate-instructors">
-     Affiliate instructors
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -539,88 +545,28 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-machine-learning-for-molecular-dynamics-bmb-961-sec-003">
-<h1>Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003<a class="headerlink" href="#welcome-to-machine-learning-for-molecular-dynamics-bmb-961-sec-003" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="key-information">
-<h2>Key Information<a class="headerlink" href="#key-information" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Meeting times</p>
-<ul>
-<li><p>Lectures on Tues: 3:00 PM – 3:50 PM (BPS 1420, or <a class="reference external" href="https://msu.zoom.us/j/93404881173">https://msu.zoom.us/j/93404881173</a> ; password: bmb961)</p></li>
-<li><p>Labs on Thursdays: 2:00 PM – 4:00 PM (BMB 202, or <a class="reference external" href="https://msu.zoom.us/j/99870167524">https://msu.zoom.us/j/99870167524</a> ; password: bmb961)</p></li>
-</ul>
-</li>
-<li><p>Office Hours</p>
-<ul>
-<li><p>Office hours are available by appointment with the instructor(s) (contact info below)</p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="Course_Materials/SoftwareSetupGuide.html"><span class="doc std std-doc">Software Setup Guide</span></a>. The key software/communication tools for this course are:</p>
-<ul>
-<li><p>This <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb">JupyterBook</a> - hosts all of the content for the lectures and laboratory periods.</p></li>
-<li><p>Slack</p></li>
-<li><p>Google Colab</p></li>
-<li><p>HPCC</p></li>
-<li><p>Zoom (to join class asynchronously or for office hours)</p></li>
-<li><p>Jupyter Notebook</p></li>
-<li><p><a class="reference external" href="https://d2l.msu.edu/">Desire 2 Learn</a> (Course assignments will be submitted via D2L)</p></li>
-<li><p>Microsoft Forms (for surveys, please use your &#64;msu.edu microsoft account when using Microsoft tools)</p></li>
-<li><p><a class="reference external" href="https://mediaspace.msu.edu/">MediaSpace</a> for sharing recorded lectures</p></li>
-</ul>
-</li>
-</ul>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-11-final-project-demo-1-charmm-gui">
+<h1>Week 11: Final Project Demo 1 (CHARMM-GUI)<a class="headerlink" href="#week-11-final-project-demo-1-charmm-gui" title="Permalink to this headline">¶</a></h1>
+<p><strong>This week we will run through an example of how to build a system with CHARMM-GUI and simulate it on your own machines, Google Colab, or on HPCC.</strong></p>
+<p>If you don’t already have an HPCC account, have your research advisor request one for you at this link:  <a class="reference external" href="https://contact.icer.msu.edu/account">https://contact.icer.msu.edu/account</a></p>
+<p>This lab will use the <a class="reference external" href="https://www.charmm-gui.org/">CHARMM-GUI</a> website.  To follow along you will need to register for a free account.  This can take some time to verify your email address so it is best to do ahead of time.</p>
+<p>There are some <a class="reference external" href="https://www.charmm-gui.org/?doc=demo">great video demos</a> that demonstrate the broad capabilities of CHARMM-GUI.  Today we are only scratching the surface, so feel free to check those out as well!</p>
 <hr class="docutils" />
-<div class="section" id="instructor-information">
-<h2>Instructor Information<a class="headerlink" href="#instructor-information" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="lead-instructors">
-<h3>Lead instructors<a class="headerlink" href="#lead-instructors" title="Permalink to this headline">¶</a></h3>
-<p><strong>Alex Dickson</strong> <br />
-<a class="reference external" href="mailto:alexrd&#37;&#52;&#48;msu&#46;edu">alexrd<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
-Associate Professor, Dept of Biochemistry &amp; Molecular Biology and Dept of Computational Mathematics, Science &amp; Engineering</p>
-<p><strong>Michael Feig</strong> <br />
-<a class="reference external" href="mailto:feig&#37;&#52;&#48;msu&#46;edu">feig<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
-Professor, Dept of Biochemistry &amp; Molecular Biology</p>
-</div>
-<div class="section" id="affiliate-instructors">
-<h3>Affiliate instructors<a class="headerlink" href="#affiliate-instructors" title="Permalink to this headline">¶</a></h3>
-<p><strong>Jose Mendoza</strong><br />
-<a class="reference external" href="mailto:jmendoza&#37;&#52;&#48;msu&#46;edu">jmendoza<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
-Assistant Professor, Dept of Chemical Engineering and Materials Science</p>
-<p><strong>Samik Bose</strong><br />
-<a class="reference external" href="mailto:bosesami&#37;&#52;&#48;msu&#46;edu">bosesami<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
-Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
-<p><strong>Nazanin Donyapour</strong><br />
-<a class="reference external" href="mailto:nazanin&#37;&#52;&#48;msu&#46;edu">nazanin<span>&#64;</span>msu<span>&#46;</span>edu</a><br />
-Ph.D. Candidate, Dept of Computational Mathematics, Science &amp; Engineering</p>
-<p><strong>Giacomo Janson</strong><br />
-<a class="reference external" href="mailto:giacomo&#46;janson&#37;&#52;&#48;gmail&#46;com">giacomo<span>&#46;</span>janson<span>&#64;</span>gmail<span>&#46;</span>com</a><br />
-Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
-</div>
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
+<div class="section" id="overview-of-today-s-demo">
+<h2>Overview of today’s demo<a class="headerlink" href="#overview-of-today-s-demo" title="Permalink to this headline">¶</a></h2>
+<p>Today we will build the simulation inputs for a <strong>ligand binding simulation</strong>.  The system will include a protein, multiple copies of a ligand, and a solvent composed of water molecules and ions.  The ligand molecules will be initialized in the “unbound state”: in random orientations that are freely floating in solution.</p>
+<p><strong>The steps to produce these inputs are as follows:</strong></p>
+<ol class="simple">
+<li><p>Locate a structure that contains the protein of interest.  Here we will use the trypsin protein from <a class="reference external" href="https://www.rcsb.org/structure/1A0J">1a0j</a>.</p></li>
+<li><p>Use the <a class="reference external" href="https://www.charmm-gui.org/?doc=input/pdbreader">PDB Reader</a> to generate <code class="docutils literal notranslate"><span class="pre">psf</span></code> and <code class="docutils literal notranslate"><span class="pre">crd</span></code> files for the protein.  This will allow you to model in missing residues, make mutations, and add modifications to your protein.  The output files contain information on the protein structure (<code class="docutils literal notranslate"><span class="pre">psf</span></code>) and the coordinates of each atom in the protein (<code class="docutils literal notranslate"><span class="pre">crd</span></code>).</p></li>
+<li><p>Use the <a class="reference external" href="https://www.charmm-gui.org/?doc=input/ligandrm">Ligand Reader and Modeler</a> to generate files for your ligand.  This can grab ligands from existing pdb files, or upload ligand structures from <code class="docutils literal notranslate"><span class="pre">mol2</span></code>, <code class="docutils literal notranslate"><span class="pre">SMILES</span></code> or <code class="docutils literal notranslate"><span class="pre">sdf</span></code> files.  You can also simply draw the ligand you want!  The outputs will be <code class="docutils literal notranslate"><span class="pre">psf</span></code> files, as well as <code class="docutils literal notranslate"><span class="pre">rtf</span></code> and <code class="docutils literal notranslate"><span class="pre">prm</span></code> files if your ligand is not included in the standard forcefield.</p></li>
+<li><p>Use the <a class="reference external" href="https://www.charmm-gui.org/?doc=input/multicomp">Multicomponent Assembler</a> to put these together, with a single copy of the protein and 10 copies of the ligand.  This will construct and minimize the system, and output a set of files we can use to run simulations in OpenMM.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>After the inputs are constructed we will run the simulations on HPCC and on Google Colab.</strong></p>
+<ul class="simple">
+<li><p>For Colab, we need to upload all of the necessary files, install the pack</p></li>
+</ul>
 </div>
 </div>
 
@@ -637,7 +583,7 @@ Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./."
+            path: "./Week-11"
         },
         predefinedOutput: true
     }
@@ -648,11 +594,18 @@ Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="Course_Materials/BMB961-003_Syllabus.html" title="next page">
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../Week-10/W10_Lab-MLFF_ANI.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 10 Lab: Machine Learning Force Fields (ML-FF)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="CHARMM_GUI_COLAB.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BMB 961 Sec 003: Machine Learning for Molecular Dynamics</p>
+        <p class="prev-next-title">Simulating CHARMM-GUI systems in Google Colab</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -676,7 +629,7 @@ Research Associate, Dept of Biochemistry &amp; Molecular Biology</p>
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
