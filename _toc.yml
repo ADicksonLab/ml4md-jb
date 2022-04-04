@@ -118,4 +118,10 @@ parts:
     chapters:
     - file: Week-10/W10_Lecture_FFConcepts.ipynb
     - file: Week-10/W10_Lab-MLFF_ANI.ipynb
+
+  - caption: Week 11
+    numbered: False
+    chapters:
+    - file: Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.ipynb
+    - file: Week-11/CHARMM_GUI_COLAB.ipynb
     
