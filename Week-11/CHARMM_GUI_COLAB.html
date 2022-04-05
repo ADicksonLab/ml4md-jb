@@ -52,6 +52,7 @@
     <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulating CHARMM-GUI systems on HPCC" href="CHARMM_GUI_HPCC.html" />
     <link rel="prev" title="Week 11: Final Project Demo 1 (CHARMM-GUI)" href="W11_Final-Project-Demo-1-CHARMM-GUI.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -419,6 +420,11 @@
    Simulating CHARMM-GUI systems in Google Colab
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CHARMM_GUI_HPCC.html">
+   Simulating CHARMM-GUI systems on HPCC
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -566,8 +572,10 @@ BMB 961, Machine Learning for Molecular Dynamics</p>
 </div>
 </div>
 </div>
-<p><strong>Upload your charmm-gui tarball and then unpack it.</strong><br />
-To upload, select the Files icon on the left, then click “Upload to Session Storage”, or link to your Google Drive.</p>
+<p><strong>Upload your charmm-gui tarball.</strong><br />
+To upload, select the Files icon on the left, then click “Upload to Session Storage”, or link to your Google Drive.  Select the file <code class="docutils literal notranslate"><span class="pre">charmm-gui.tgz</span></code> that you downloaded at the last step of your CHARMM-GUI setup.</p>
+<p><strong>Unpack the tarball.</strong><br />
+After uploading, run this command to unpack.  You can see the unpacked files by pressing the Refresh button in the Files menu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> tar xzf charmm-gui.tgz
@@ -576,7 +584,7 @@ To upload, select the Files icon on the left, then click “Upload to Session St
 </div>
 </div>
 <p><strong>Change to the openmm directory</strong><br />
-Note: you will need to change the Run ID below from “4908284510” to whatever yours is.  You can see this by pressing the Refresh button in the Files menu.</p>
+Note: you will need to change the Run ID below from “4908284510” to whatever yours is.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> charmm-gui-4908284510/openmm
@@ -584,10 +592,8 @@ Note: you will need to change the Run ID below from “4908284510” to whatever
 </div>
 </div>
 </div>
-<p><strong>Now change <code class="docutils literal notranslate"><span class="pre">README</span></code> into an excutable then run it!</strong><br />
+<p><strong>Now change <code class="docutils literal notranslate"><span class="pre">README</span></code> into an executable</strong><br />
 The <code class="docutils literal notranslate"><span class="pre">README</span></code> file is a <code class="docutils literal notranslate"><span class="pre">csh</span></code> script that contains all of the commands for heating up our system and running some preliminary trajectories.</p>
-<p><strong>This will take a long time.</strong>  Go to <code class="docutils literal notranslate"><span class="pre">step5_equilibration.out</span></code> in the <code class="docutils literal notranslate"><span class="pre">openmm</span></code> directory in the File browser to get updates.</p>
-<p>You can download the <code class="docutils literal notranslate"><span class="pre">.dcd</span></code> and <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files after they are generated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>chmod +x README
@@ -595,6 +601,9 @@ The <code class="docutils literal notranslate"><span class="pre">README</span></
 </div>
 </div>
 </div>
+<p><strong>Run the README!</strong><br />
+Note that <em>this will take a long time.</em>  You can get updates by refreshing your file list.  The first output file is <code class="docutils literal notranslate"><span class="pre">step5_equilibration.out</span></code> in the <code class="docutils literal notranslate"><span class="pre">openmm</span></code> directory.  The last column gives you estimates for how long this will take.</p>
+<p>After the equilibration there will be 10 trajectory segments (<code class="docutils literal notranslate"><span class="pre">step6_*</span></code>). You can download the <code class="docutils literal notranslate"><span class="pre">.dcd</span></code> and <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files after they are generated.  <strong>(Note that the step indices (e.g. 5, 6) might differ depending on which CHARMM-GUI tool you used for setup.)</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>./README
@@ -602,6 +611,7 @@ The <code class="docutils literal notranslate"><span class="pre">README</span></
 </div>
 </div>
 </div>
+<p><strong>To run longer (or shorter) simulations</strong> you could modify the <code class="docutils literal notranslate"><span class="pre">nstep</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">step5_production.inp</span></code> file.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -635,6 +645,13 @@ The <code class="docutils literal notranslate"><span class="pre">README</span></
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Week 11: Final Project Demo 1 (CHARMM-GUI)</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="CHARMM_GUI_HPCC.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simulating CHARMM-GUI systems on HPCC</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
         

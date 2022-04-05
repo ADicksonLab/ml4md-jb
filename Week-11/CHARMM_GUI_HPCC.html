@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 01 Lecture: Welcome to ML4MD &#8212; Machine Learning for Molecular Dynamics</title>
+    <title>Simulating CHARMM-GUI systems on HPCC &#8212; Machine Learning for Molecular Dynamics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -52,8 +52,7 @@
     <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 01 Lab: Python Refresher Course" href="W1_Lab_Python_Refresher.html" />
-    <link rel="prev" title="Machine Learning for Molecular Dynamics Software Setup Guide" href="../Course_Materials/SoftwareSetupGuide.html" />
+    <link rel="prev" title="Simulating CHARMM-GUI systems in Google Colab" href="CHARMM_GUI_COLAB.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -129,14 +128,14 @@
   Week 01
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
    Week 01 Lecture: Welcome to ML4MD
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="W1_Lab_Python_Refresher.html">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
    Week 01 Lab: Python Refresher Course
   </a>
  </li>
@@ -409,19 +408,19 @@
   Week 11
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.html">
+  <a class="reference internal" href="W11_Final-Project-Demo-1-CHARMM-GUI.html">
    Week 11: Final Project Demo 1 (CHARMM-GUI)
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../Week-11/CHARMM_GUI_COLAB.html">
+  <a class="reference internal" href="CHARMM_GUI_COLAB.html">
    Simulating CHARMM-GUI systems in Google Colab
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Week-11/CHARMM_GUI_HPCC.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Simulating CHARMM-GUI systems on HPCC
   </a>
  </li>
@@ -466,7 +465,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Week-01/W1_Lecture_Welcome.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/Week-11/CHARMM_GUI_HPCC.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -486,7 +485,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-01/W1_Lecture_Welcome.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-11/CHARMM_GUI_HPCC.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -507,7 +506,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-01/W1_Lecture_Welcome.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-11/CHARMM_GUI_HPCC.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -515,7 +514,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-01/W1_Lecture_Welcome.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-11/CHARMM_GUI_HPCC.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -535,65 +534,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-details-and-instructors">
-   Course details and instructors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-molecular-dynamics">
-   Why Molecular Dynamics?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-machine-learning-for-molecular-dynamics">
-   Why Machine Learning for Molecular Dynamics?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#recommended-background-for-this-course">
-   Recommended background for this course
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-grade-breakdown">
-   Course grade breakdown
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#course-website">
-   Course website
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyter-notebooks">
-   Jupyter Notebooks
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discussion-on-slack">
-   Discussion on Slack
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bmb-community-standards">
-     BMB Community Standards
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#in-class-activity-1-introductions">
-   In-class Activity 1: Introductions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#in-class-activity-2-visualize-a-protein-with-nglview">
-   In-class Activity 2: Visualize a protein with NGLview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#that-s-all-for-lecture-1">
-   That’s all for Lecture 1.
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions:
   </a>
  </li>
 </ul>
@@ -607,200 +549,65 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="week-01-lecture-welcome-to-ml4md">
-<h1>Week 01 Lecture: Welcome to ML4MD<a class="headerlink" href="#week-01-lecture-welcome-to-ml4md" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to Machine Learning for Molecular Dynamics!</p>
-<div class="section" id="course-details-and-instructors">
-<h2>Course details and instructors<a class="headerlink" href="#course-details-and-instructors" title="Permalink to this headline">¶</a></h2>
-<p>This is a graduate special topics course in the Biochemistry &amp; Molecular Dynamics department at Michigan State University (BMB 961 Sec 003).  This is being offered for the first time in the Spring 2022 semester.</p>
-<p>The main instructors for this course are:</p>
-<ul class="simple">
-<li><p>Alex Dickson (<a class="reference external" href="mailto:alexrd&#37;&#52;&#48;msu&#46;edu">alexrd<span>&#64;</span>msu<span>&#46;</span>edu</a>)</p></li>
-<li><p>Michael Feig (<a class="reference external" href="mailto:feig&#37;&#52;&#48;msu&#46;edu">feig<span>&#64;</span>msu<span>&#46;</span>edu</a>)</p></li>
-</ul>
-<p>This course will also feature lectures by:</p>
-<ul class="simple">
-<li><p>Jose Mendoza (<a class="reference external" href="mailto:jmendoza&#37;&#52;&#48;egr&#46;msu&#46;edu">jmendoza<span>&#64;</span>egr<span>&#46;</span>msu<span>&#46;</span>edu</a>)</p></li>
-<li><p>Samik Bose (<a class="reference external" href="mailto:bosesami&#37;&#52;&#48;msu&#46;edu">bosesami<span>&#64;</span>msu<span>&#46;</span>edu</a>)</p></li>
-<li><p>Giacomo Janson (<a class="reference external" href="mailto:giacomo&#46;janson&#37;&#52;&#48;gmail&#46;com">giacomo<span>&#46;</span>janson<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
-<li><p>and others to be named!</p></li>
-</ul>
-</div>
-<div class="section" id="why-molecular-dynamics">
-<h2>Why Molecular Dynamics?<a class="headerlink" href="#why-molecular-dynamics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><strong>Atomic-scale models of molecular systems are indispensible tools for drug discovery, molecular engineering, catalysis and beyond!</strong></p></li>
-</ul>
-<ul class="simple">
-<li><p>Recent progress both experimentally (Cryo-EM) and computationally (AlphaFold) has dramatically improved our knowledge of biomolecular <strong>structures</strong></p></li>
-</ul>
-<ul class="simple">
-<li><p>But structures are only single snapshots!</p></li>
-</ul>
-<ul class="simple">
-<li><p><em><strong>Molecular dynamics uses physics to bring these structures to life:</strong></em></p>
-<ul>
-<li><p>Mechanisms</p></li>
-<li><p>Rates</p></li>
-<li><p>Free energies</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="why-machine-learning-for-molecular-dynamics">
-<h2>Why Machine Learning for Molecular Dynamics?<a class="headerlink" href="#why-machine-learning-for-molecular-dynamics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Machine learning has revolutionized one area of computation after another (image recognition, language processing)</p></li>
-</ul>
-<ul class="simple">
-<li><p>ML can be used to learn about molecular systems in a number of ways:</p>
-<ul>
-<li><p>Protein structure prediction</p></li>
-<li><p>Chemical property prediction</p></li>
-<li><p>Identification of collective motions in biomolecular systems</p></li>
-<li><p>Predictions of energies and forces</p></li>
-</ul>
-</li>
-</ul>
-<ul class="simple">
-<li><p>Interesting reading material:</p>
-<ul>
-<li><p><a class="reference external" href="https://pubs.acs.org/doi/book/10.1021/acs.infocus.7e4001">ACS In Focus: Machine Learning in Chemistry</a></p></li>
-<li><p><a class="reference external" href="https://www.javiertordable.com/the-golden-age-of-structural-biology">The Golden Age of Structural Biology (Blog Post)</a></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="recommended-background-for-this-course">
-<h2>Recommended background for this course<a class="headerlink" href="#recommended-background-for-this-course" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Math (calculus, differential equations, chain rule differentiation)</p></li>
-</ul>
-<ul class="simple">
-<li><p>Biochemistry (amino acid structure, protein secondary structure)</p></li>
-</ul>
-<ul class="simple">
-<li><p>Chemistry (basic organic chemistry, reaction rates, free energies)</p></li>
-</ul>
-<ul class="simple">
-<li><p>Physics (Newton’s laws, Hamiltonian mechanics)</p></li>
-</ul>
-<ul class="simple">
-<li><p>Computer programming (Python, numpy, matplotlib)</p></li>
-</ul>
-<p>We will do our best to provide relevant background resources over the course of the semester.  <strong>If you have any questions or concerns about any of these points let us know and we will try to help!</strong></p>
-</div>
-<div class="section" id="course-grade-breakdown">
-<h2>Course grade breakdown<a class="headerlink" href="#course-grade-breakdown" title="Permalink to this headline">¶</a></h2>
-<p>The course grade will be calculated based on the following assessments:</p>
-<ul class="simple">
-<li><p>Participation, attendance and in-class activities (50%)</p></li>
-<li><p>Independent study proposal (10%)</p></li>
-<li><p>Independent study project (40%)</p></li>
-</ul>
-<p>Rubric for the independent study project is forthcoming and will be posted to the website.</p>
-</div>
-<div class="section" id="course-website">
-<h2>Course website<a class="headerlink" href="#course-website" title="Permalink to this headline">¶</a></h2>
-<p>If you are looking at this notebook you likely have already found the course website: <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb">https://adicksonlab.github.io/ml4md-jb</a>.  This is a jupyter book, which is a collection of ipython notebooks and markdown files that are rendered into a website.</p>
-<p>If you are interested in the source code, it is hosted in a public Github repository here: <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb">https://github.com/ADicksonLab/ml4md-jb</a>.</p>
-</div>
-<div class="section" id="jupyter-notebooks">
-<h2>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
-<p>Both the lectures and laboratories will be offered via Jupyter notebooks. This allows us to intersperse comments, links and documentation (in Markdown cells) with executable code written in Python. You can interact with these notebooks either:</p>
-<ul class="simple">
-<li><p>by launching on your own machine (<code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>)</p></li>
-<li><p>by launching on Google Colab via the course website</p></li>
-</ul>
-<p>Let’s use the following code cell to demonstrate both of these approaches.</p>
-<p>This is a test of the notebook functionality and working with Google Colab.  If you are viewing this on the course website, hover over the Launch button in the top right (looks like a rocket ship) and click “Colab” to launch the notebook in Google Colab.</p>
-<p>Alternatively, download this notebook as an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file and then open it with Jupyter.  Instructions for installing jupyter are found in the <a class="reference external" href="https://adicksonlab.github.io/ml4md-jb/Course_Materials/SoftwareSetupGuide.html">Software Setup Guide</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+  <div class="tex2jax_ignore mathjax_ignore section" id="simulating-charmm-gui-systems-on-hpcc">
+<h1>Simulating CHARMM-GUI systems on HPCC<a class="headerlink" href="#simulating-charmm-gui-systems-on-hpcc" title="Permalink to this headline">¶</a></h1>
+<p><strong>Alex Dickson, Michigan State University</strong><br />
+BMB 961, Machine Learning for Molecular Dynamics</p>
+<hr class="docutils" />
+<p>This workbook assumes that you have already used CHARMM-GUI to setup your system and that you <strong>have selected <code class="docutils literal notranslate"><span class="pre">openmm</span></code></strong> in the Simulation Script section.</p>
+<p>This notebook contains a set of commands that you should execute in a command shell, such as Terminal for MacOS or <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">WSL</a> for Windows.</p>
+<p><strong>This notebook will use one of the development nodes to run your simulations.</strong>  These are only meant for short-duration jobs (e.g. less than 2 hours).  If your job lasts longer than this it might be killed by a sys admin.</p>
+<p><strong>For longer simulations you will need to write a SLURM script to submit your job to the queue.</strong>  An example of this can be found here: <a class="reference external" href="https://wiki.hpcc.msu.edu/display/ITH/Job+Script+and+Job+Submission">https://wiki.hpcc.msu.edu/display/ITH/Job+Script+and+Job+Submission</a>.</p>
+<hr class="docutils" />
+<div class="section" id="instructions">
+<h2>Instructions:<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p><strong>Navigate to the directory containing your <code class="docutils literal notranslate"><span class="pre">charmm-gui.tgz</span></code> tarball, then upload it to HPCC:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/Downloads</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">charmm-gui.tgz</span> <span class="pre">[USERNAME]&#64;hpcc.msu.edu:~</span></code></p>
+<p><strong>Connect to HPCC and ssh to a development node with GPU support:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">[USERNAME]&#64;hpcc.msu.edu</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">dev-intel16-k80</span></code></p>
+<p><strong>(If you haven’t already) Install Conda if the home directory of your HPCC account</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniconda3-py37_4.10.3-Linux-x86_64.sh</span> <span class="pre">-bfp</span> <span class="pre">~</span></code></p>
+<p><strong>(If you haven’t already) Install <code class="docutils literal notranslate"><span class="pre">openmm</span></code> in your conda distribution.</strong><br />
+You could install this to a specific environment, but here we are installing in the base environment.  Note that the install step could take a while.</p>
+<div class="highlight-conda notranslate"><div class="highlight"><pre><span></span>conda install python=3.7 cudatoolkit=10.0 git jupyterlab numpy pandas scipy matplotlib ipympl rdkit openbabel openmm mdtraj pymbar pdbfixer parmed openff-toolkit openmoltools openmmforcefields```
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;test.pdf&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="discussion-on-slack">
-<h2>Discussion on Slack<a class="headerlink" href="#discussion-on-slack" title="Permalink to this headline">¶</a></h2>
-<p>To allow us to communicate even outside of lectures and labratory periods, we are going to use Slack.  If you haven’t already, join the Slack workspace with your MSU address using <a class="reference external" href="https://join.slack.com/t/ml4mdbmb961/shared_invite/zt-1104s1e4l-DVWxtS7rnUZfXBe74tDO1A">this link</a>.</p>
-<div class="section" id="bmb-community-standards">
-<h3>BMB Community Standards<a class="headerlink" href="#bmb-community-standards" title="Permalink to this headline">¶</a></h3>
-<p>This is also a good time to remind you of the BMB community standards.  In all of our classroom communications it is important to:</p>
-<ul class="simple">
-<li><p>Be fair and respectful to others</p></li>
-<li><p>Be welcoming and inclusive of all people</p></li>
-</ul>
-<p>A copy of these community standards is available in the course website under “Week 01”.</p>
-</div>
-</div>
-<div class="section" id="in-class-activity-1-introductions">
-<h2>In-class Activity 1: Introductions<a class="headerlink" href="#in-class-activity-1-introductions" title="Permalink to this headline">¶</a></h2>
-<p><em><strong>Post a message on the class Slack channel that includes the following:</strong></em></p>
-<ul class="simple">
-<li><p>Your name and preferred pronouns</p></li>
-<li><p>Your home department</p></li>
-<li><p>A one sentence description of your research area</p></li>
-<li><p>One thing you look forward to learning in this course</p></li>
-</ul>
-</div>
-<div class="section" id="in-class-activity-2-visualize-a-protein-with-nglview">
-<h2>In-class Activity 2: Visualize a protein with NGLview<a class="headerlink" href="#in-class-activity-2-visualize-a-protein-with-nglview" title="Permalink to this headline">¶</a></h2>
-<p><em><strong>Open this notebook either on your own machine or in Colab and execute the following cells.</strong></em></p>
-<p>Acknowledgements and props to the following resources:</p>
-<ul class="simple">
-<li><p>mdtraj (<a class="reference external" href="https://www.mdtraj.org/">https://www.mdtraj.org/</a>)</p></li>
-<li><p>NGLview (<a class="reference external" href="http://nglviewer.org/">http://nglviewer.org/</a>)</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment the lines below to install packages to Colab!</span>
-<span class="c1"># You can skip this step if you already installed them locally</span>
-<span class="c1">## install the necessary libraries to this Colab instance</span>
-<span class="c1">#!pip install mdtraj</span>
-<span class="c1">#!pip install nglview</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the packages we&#39;ll need</span>
-<span class="kn">import</span> <span class="nn">mdtraj</span> <span class="k">as</span> <span class="nn">mdj</span>
-<span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
-
-<span class="c1"># Create an mdtraj trajectory object using the files sEH_nowater.pdb and sEH_unbinding.dcd</span>
-<span class="c1"># note that if you are on Colab you need to upload these files to the working directory</span>
-<span class="n">pdb</span> <span class="o">=</span> <span class="n">mdj</span><span class="o">.</span><span class="n">load_pdb</span><span class="p">(</span><span class="s1">&#39;sEH_nowater.pdb&#39;</span><span class="p">)</span>
-<span class="n">traj</span> <span class="o">=</span> <span class="n">mdj</span><span class="o">.</span><span class="n">load_dcd</span><span class="p">(</span><span class="s1">&#39;sEH_unbinding.dcd&#39;</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="n">pdb</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
-
-<span class="c1"># Pass this trajectory to nglview</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">(</span><span class="n">nv</span><span class="o">.</span><span class="n">MDTrajTrajectory</span><span class="p">(</span><span class="n">traj</span><span class="p">))</span>
-<span class="n">w</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="that-s-all-for-lecture-1">
-<h2>That’s all for Lecture 1.<a class="headerlink" href="#that-s-all-for-lecture-1" title="Permalink to this headline">¶</a></h2>
-<p>See you on Thursday for the first Lab!</p>
+<p><strong>Load the CUDA module:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">CUDA/10.0.130</span></code></p>
+<p><strong>Look at the current jobs being run on the GPUs.</strong><br />
+At the bottom this will list the GPUs that are currently occupied.  By default jobs will run on GPU 0.  If this is currently busy you can change which device you will use in the next step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p>
+<p><strong>(Optional) Change the default GPU index.</strong><br />
+Choose <code class="docutils literal notranslate"><span class="pre">X</span></code> to be a GPU index that is unoccupied (e.g. 5)</p>
+<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CUDA_VISIBLE_DEVICES=X</span></code></p>
+<p><strong>Test your <code class="docutils literal notranslate"><span class="pre">openmm</span></code> installation:</strong><br />
+You should see 4 platforms available, including CUDA.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">openmm.testInstallation</span></code></p>
+<p><strong>Make a work directory, then move and unpack the <code class="docutils literal notranslate"><span class="pre">charmm-gui.tgz</span></code> file.</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">bmb961_sims</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">charmm-gui.tgz</span> <span class="pre">bmb961_sims</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">bmb961_sims</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">xzf</span> <span class="pre">charmm-gui.tgz</span></code></p>
+<p><strong>List the files in this directory with the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command.</strong><br />
+You should see a folder named <code class="docutils literal notranslate"><span class="pre">charmm-gui-XXXXXXXXXX</span></code>, where <code class="docutils literal notranslate"><span class="pre">XXXXXXXXXX</span></code> is your job ID.</p>
+<p><strong>Change to the openmm directory</strong><br />
+Note: you will need to change the Run ID below from “4908284510” to whatever yours is.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">charmm-gui-4908284510/openmm</span></code></p>
+<p><strong>Change the <code class="docutils literal notranslate"><span class="pre">README</span></code> file into an executable</strong><br />
+The <code class="docutils literal notranslate"><span class="pre">README</span></code> file is a <code class="docutils literal notranslate"><span class="pre">csh</span></code> script that contains all of the commands for heating up our system and running some preliminary trajectories.</p>
+<p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">README</span></code></p>
+<p><strong>Run the README!</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">./README</span> <span class="pre">&gt;</span> <span class="pre">charmm-gui.out</span> <span class="pre">&amp;</span></code></p>
+<p>Note that <em>this will take a while.</em>  You can get updates by listing the files in your directory with <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-ltr</span></code>.  The first output file is <code class="docutils literal notranslate"><span class="pre">step5_equilibration.out</span></code> in the <code class="docutils literal notranslate"><span class="pre">openmm</span></code> directory.  <strong>(Note that the step indices (e.g. 5, 6) might differ depending on which CHARMM-GUI tool you used for setup.)</strong></p>
+<p>A helpful way to view this file is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">step5_equilibration.out</span></code></p>
+<p>The last column gives you estimates for how long this will take.</p>
+<p>After the equilibration there will be 10 trajectory segments (<code class="docutils literal notranslate"><span class="pre">step6_*</span></code>). The trajectories are stored in <code class="docutils literal notranslate"><span class="pre">.dcd</span></code> files. You can copy these back to your local machine and analyze them after they are generated.</p>
+<p>You can also watch your job run by viewing <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> again, which will confirm that you have targeted the correct GPU.</p>
+<p><strong>To run longer (or shorter) simulations</strong> you could modify the <code class="docutils literal notranslate"><span class="pre">nstep</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">step5_production.inp</span></code> file.  This can be done with a text editor such as Emacs, vim, or Nano.</p>
 </div>
 </div>
 
@@ -817,7 +624,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Week-01"
+            path: "./Week-11"
         },
         predefinedOutput: true
     }
@@ -829,19 +636,12 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../Course_Materials/SoftwareSetupGuide.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="CHARMM_GUI_COLAB.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Machine Learning for Molecular Dynamics <br> Software Setup Guide</p>
+            <p class="prev-next-title">Simulating CHARMM-GUI systems in Google Colab</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="W1_Lab_Python_Refresher.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 01 Lab: Python Refresher Course</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
         
