@@ -562,48 +562,73 @@ BMB 961, Machine Learning for Molecular Dynamics</p>
 <div class="section" id="instructions">
 <h2>Instructions:<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
 <p><strong>Navigate to the directory containing your <code class="docutils literal notranslate"><span class="pre">charmm-gui.tgz</span></code> tarball, then upload it to HPCC:</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/Downloads</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">charmm-gui.tgz</span> <span class="pre">[USERNAME]&#64;hpcc.msu.edu:~</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Downloads
+scp charmm-gui.tgz <span class="o">[</span>USERNAME<span class="o">]</span>@hpcc.msu.edu:~
+</pre></div>
+</div>
 <p><strong>Connect to HPCC and ssh to a development node with GPU support:</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">[USERNAME]&#64;hpcc.msu.edu</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">dev-intel16-k80</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh <span class="o">[</span>USERNAME<span class="o">]</span>@hpcc.msu.edu
+ssh dev-intel16-k80
+</pre></div>
+</div>
 <p><strong>(If you haven’t already) Install Conda if the home directory of your HPCC account</strong>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">Miniconda3-py37_4.10.3-Linux-x86_64.sh</span> <span class="pre">-bfp</span> <span class="pre">~</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh
+bash Miniconda3-py37_4.10.3-Linux-x86_64.sh -bfp ~
+</pre></div>
+</div>
 <p><strong>(If you haven’t already) Install <code class="docutils literal notranslate"><span class="pre">openmm</span></code> in your conda distribution.</strong><br />
 You could install this to a specific environment, but here we are installing in the base environment.  Note that the install step could take a while.</p>
-<div class="highlight-conda notranslate"><div class="highlight"><pre><span></span>conda install python=3.7 cudatoolkit=10.0 git jupyterlab numpy pandas scipy matplotlib ipympl rdkit openbabel openmm mdtraj pymbar pdbfixer parmed openff-toolkit openmoltools openmmforcefields```
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
+conda install <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7 <span class="nv">cudatoolkit</span><span class="o">=</span><span class="m">10</span>.0 git jupyterlab numpy pandas scipy matplotlib ipympl rdkit openbabel openmm mdtraj pymbar pdbfixer parmed openff-toolkit openmoltools openmmforcefields
 </pre></div>
 </div>
 <p><strong>Load the CUDA module:</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">CUDA/10.0.130</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load CUDA/10.0.130
+</pre></div>
+</div>
 <p><strong>Look at the current jobs being run on the GPUs.</strong><br />
 At the bottom this will list the GPUs that are currently occupied.  By default jobs will run on GPU 0.  If this is currently busy you can change which device you will use in the next step.</p>
-<p><code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-smi
+</pre></div>
+</div>
 <p><strong>(Optional) Change the default GPU index.</strong><br />
 Choose <code class="docutils literal notranslate"><span class="pre">X</span></code> to be a GPU index that is unoccupied (e.g. 5)</p>
-<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CUDA_VISIBLE_DEVICES=X</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>X
+</pre></div>
+</div>
 <p><strong>Test your <code class="docutils literal notranslate"><span class="pre">openmm</span></code> installation:</strong><br />
 You should see 4 platforms available, including CUDA.</p>
-<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">openmm.testInstallation</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m openmm.testInstallation
+</pre></div>
+</div>
 <p><strong>Make a work directory, then move and unpack the <code class="docutils literal notranslate"><span class="pre">charmm-gui.tgz</span></code> file.</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">bmb961_sims</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">charmm-gui.tgz</span> <span class="pre">bmb961_sims</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">bmb961_sims</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">xzf</span> <span class="pre">charmm-gui.tgz</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir bmb961_sims
+mv charmm-gui.tgz bmb961_sims
+<span class="nb">cd</span> bmb961_sims
+tar xzf charmm-gui.tgz
+</pre></div>
+</div>
 <p><strong>List the files in this directory with the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command.</strong><br />
 You should see a folder named <code class="docutils literal notranslate"><span class="pre">charmm-gui-XXXXXXXXXX</span></code>, where <code class="docutils literal notranslate"><span class="pre">XXXXXXXXXX</span></code> is your job ID.</p>
 <p><strong>Change to the openmm directory</strong><br />
 Note: you will need to change the Run ID below from “4908284510” to whatever yours is.</p>
-<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">charmm-gui-4908284510/openmm</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> charmm-gui-4908284510/openmm
+</pre></div>
+</div>
 <p><strong>Change the <code class="docutils literal notranslate"><span class="pre">README</span></code> file into an executable</strong><br />
 The <code class="docutils literal notranslate"><span class="pre">README</span></code> file is a <code class="docutils literal notranslate"><span class="pre">csh</span></code> script that contains all of the commands for heating up our system and running some preliminary trajectories.</p>
-<p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">README</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x README
+</pre></div>
+</div>
 <p><strong>Run the README!</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">./README</span> <span class="pre">&gt;</span> <span class="pre">charmm-gui.out</span> <span class="pre">&amp;</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./README &gt; charmm-gui.out <span class="p">&amp;</span>
+</pre></div>
+</div>
 <p>Note that <em>this will take a while.</em>  You can get updates by listing the files in your directory with <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-ltr</span></code>.  The first output file is <code class="docutils literal notranslate"><span class="pre">step5_equilibration.out</span></code> in the <code class="docutils literal notranslate"><span class="pre">openmm</span></code> directory.  <strong>(Note that the step indices (e.g. 5, 6) might differ depending on which CHARMM-GUI tool you used for setup.)</strong></p>
 <p>A helpful way to view this file is:</p>
-<p><code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">step5_equilibration.out</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail -f step5_equilibration.out
+</pre></div>
+</div>
 <p>The last column gives you estimates for how long this will take.</p>
 <p>After the equilibration there will be 10 trajectory segments (<code class="docutils literal notranslate"><span class="pre">step6_*</span></code>). The trajectories are stored in <code class="docutils literal notranslate"><span class="pre">.dcd</span></code> files. You can copy these back to your local machine and analyze them after they are generated.</p>
 <p>You can also watch your job run by viewing <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> again, which will confirm that you have targeted the correct GPU.</p>
