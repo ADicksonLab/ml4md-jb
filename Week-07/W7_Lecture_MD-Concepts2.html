@@ -41,9 +41,9 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -54,7 +54,7 @@
     <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 07 Lab: Liquid Argon Simulation" href="W7_Lab_Liquid-Argon-Simulation.html" />
+    <link rel="next" title="Week 06 Lab: Liquid Argon Simulation" href="W7_Lab_Liquid-Argon-Simulation.html" />
     <link rel="prev" title="Week 06 Lab: Single Particle Langevin Dynamics" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -306,7 +306,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="W7_Lab_Liquid-Argon-Simulation.html">
-   Week 07 Lab: Liquid Argon Simulation
+   Week 06 Lab: Liquid Argon Simulation
   </a>
  </li>
  <li class="toctree-l1">
@@ -427,6 +427,11 @@
    Simulating CHARMM-GUI systems on HPCC
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-11/W11_Final-Project-Demo-2-ANI-ASE.html">
+   Week 11: Final Project Demo 2 (Anakin-ASE)
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -473,7 +478,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -529,7 +534,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -589,7 +594,70 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 07 Lecture: Molecular Dynamics Concepts 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-molecular-definition-of-temperature">
+   A molecular definition of temperature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temperature-is-a-speedometer">
+   Temperature is a speedometer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maxwell-boltzmann-distribution">
+   Maxwell-Boltzmann distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initializing-particle-velocities">
+   Initializing particle velocities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thermostats">
+   Thermostats
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#force-fields">
+   Force fields
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#periodic-boundaries">
+   Periodic boundaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-coordinates">
+   “Wrapping” coordinates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displacement-vectors-through-periodic-boundaries">
+   Displacement vectors through periodic boundaries
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="week-07-lecture-molecular-dynamics-concepts-2">
@@ -1065,8 +1133,8 @@ Shortest displacement vector: [0.11 0.01 0.35] has magnitude: 0.3670149860700514
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -1078,24 +1146,22 @@ Shortest displacement vector: [0.11 0.01 0.35] has magnitude: 0.3670149860700514
     <a class='right-next' id="next-link" href="W7_Lab_Liquid-Argon-Simulation.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 07 Lab: Liquid Argon Simulation</p>
+        <p class="prev-next-title">Week 06 Lab: Liquid Argon Simulation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Alex Dickson and Michael Feig<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 

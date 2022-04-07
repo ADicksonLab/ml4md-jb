@@ -41,9 +41,9 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Biomolecular Simulation (Lab 1)" href="W8_Lab-Angiotensin-Simulation.html" />
-    <link rel="prev" title="Week 07 Lab: Liquid Argon Simulation" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html" />
+    <link rel="prev" title="Week 06 Lab: Liquid Argon Simulation" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -306,7 +306,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
-   Week 07 Lab: Liquid Argon Simulation
+   Week 06 Lab: Liquid Argon Simulation
   </a>
  </li>
  <li class="toctree-l1">
@@ -427,6 +427,11 @@
    Simulating CHARMM-GUI systems on HPCC
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-11/W11_Final-Project-Demo-2-ANI-ASE.html">
+   Week 11: Final Project Demo 2 (Anakin-ASE)
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -473,7 +478,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -529,7 +534,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -747,7 +752,228 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 8 Lecture: Biomolecular Simulation (Part I)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#samik-bose-postdoctoral-research-associate-dicksonlab">
+     Samik Bose, Postdoctoral Research Associate, DicksonLab
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-it-started">
+   How it started?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-first-known-md-simulation-is-performed-in-a-computer-by-a-rahman">
+     1964  : The first known MD simulation is performed in a
+     <strong>
+      computer
+     </strong>
+     by A. Rahman.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulation-of-216-water-molecules-in-a-periodic-box">
+     1972 : Simulation of 216 water molecules in a periodic box.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#s-concept-of-force-fields-and-its-systematic-development">
+     1970-90s : Concept of force fields and its systematic development.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-is-it-going">
+   How is it going?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#since-2000-a-steady-growth-and-expanding-the-horizon-each-day">
+     Since 2000: A steady growth and expanding the horizon each day!
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prof-feig-and-co-workers-developed-a-model-for-bacterial-cytoplasm-1-million-atoms-and-ran-20-ns-of-simulations-to-understabd-the-structure-and-interactions-cool-figures-and-videos-can-be-found-here">
+       Prof. Feig and co-workers developed a model for bacterial cytoplasm ( &gt;1 million atoms) and ran ~20 ns of simulations to understabd the structure and interactions. Cool figures and videos can be found here.
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#biomolecular-simulations-leading-the-way-for-drug-discovery-and-medical-science">
+     Biomolecular Simulations leading the way for drug discovery and medical science
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#md-simulation-of-sars-cov2-viral-envelope-with-305-million-atoms">
+       MD simulation of SARS-COV2 Viral envelope with 305 million atoms.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-growth-in-technology">
+   Exponential growth in technology!
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#humanity-landed-on-moon-with-4-kb-ram-and-2-mhz-cpu">
+     Humanity landed on moon with 4 KB RAM and 2 MHz CPU.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supercomputers-of-today">
+     Supercomputers of today:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-in-softwares-algorithms-as-well">
+   Development in softwares/algorithms as well
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-an-md-simulation">
+   Running an MD simulation:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initial-starting-structures-of-biomolecules">
+     Initial starting structures of biomolecules
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#md-engines-to-solve-the-equation-of-motion">
+     MD engines to solve the equation of motion:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#force-fields-to-define-the-interaction-potentials-between-atoms">
+     Force fields to define the interaction potentials between atoms:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#we-will-use-openmm-md-engine-for-the-next-two-weeks">
+       We will use OpenMM MD engine for the next two weeks.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#installing-softwares">
+       Installing Softwares:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topology-and-force-field">
+     Topology and Force field
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#to-run-a-simulation-in-openmm-you-would-require-a-topology-file-contains-the-connectivity-information-and-a-force-field-file-contains-the-parameters-of-the-force-field">
+       To run a simulation in OpenMM, you would require a topology file (contains the connectivity information) and a force field file (contains the parameters of the force field).
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ipython-utility-to-learn-more-about-each-openmm-object-and-its-functions-attributes">
+     IPython utility to learn more about each OpenMM object and its functions/attributes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#please-check-if-any-of-these-import-commands-produce-error-in-your-machines">
+       Please check if any of these import commands produce error in your machines
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concept-of-units-and-constants-in-openmm">
+     Concept of Units and constants in OpenMM
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lets-define-a-topology-of-a-water-molecule">
+   Lets define a topology of a water molecule:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#printing-the-details-of-topology">
+     Printing the details of topology:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-the-simulation">
+   Set up the simulation:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-part-consists-of-a-few-steps">
+     This part consists of a few steps:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lets-take-a-look-at-the-forces-from-the-system">
+     Lets take a look at the forces from the system:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimize-the-energy">
+     Minimize the energy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-access-the-final-geometry">
+     How to access the final geometry?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#write-the-minimized-structure-to-a-pdb-for-visualization">
+     Write the minimized structure to a PDB for visualization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-a-test-simulation-of-a-small-protein">
+   Running a test simulation of a ‘small’ protein
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="week-8-lecture-biomolecular-simulation-part-i">
@@ -1421,14 +1647,14 @@ Forces
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 07 Lab: Liquid Argon Simulation</p>
+            <p class="prev-next-title">Week 06 Lab: Liquid Argon Simulation</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="W8_Lab-Angiotensin-Simulation.html" title="next page">
@@ -1439,19 +1665,17 @@ Forces
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Alex Dickson and Michael Feig<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 

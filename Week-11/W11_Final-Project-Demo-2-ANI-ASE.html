@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 11: Final Project Demo 2 (Anakin-ASE) &#8212; Machine Learning for Molecular Dynamics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ml4md_fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Simulating CHARMM-GUI systems on HPCC" href="CHARMM_GUI_HPCC.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Molecular Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to Machine Learning for Molecular Dynamics - BMB 961 Sec 003
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Course Materials
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Syllabus.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/BMB961-003_Schedule.html">
+   Course Schedule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Course_Materials/SoftwareSetupGuide.html">
+   Software Setup Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/Final_project_description.pdf">
+   Final Project Description
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 01
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lecture_Welcome.html">
+   Week 01 Lecture: Welcome to ML4MD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-01/W1_Lab_Python_Refresher.html">
+   Week 01 Lab: Python Refresher Course
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Course_Materials/learn_python.zip">
+   LearnPython.zip
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/8bc6b5d18b4f72c40ad50704cb6507c58f7f595c/Course_Materials/BMB_Community_Standards.pdf">
+   BMB_Community_Standards.pdf
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-01/sEH_nowater.pdb">
+   sEH_nowater.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-01/sEH_unbinding.dcd">
+   sEH_unbinding.dcd
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 02
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lecture_MLBasics.html">
+   Week 02 Lecture: Machine Learning at the Intersection with Molecular Simulations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-02/W2_Lab_MLBasics.html">
+   Week 02 Lab: Machine Learning Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.dat">
+   apple.vacuum.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.vacuum.highres.dat">
+   apple.vacuum.highres.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-02/apple.leaf.air.highres.dat">
+   apple.leaf.air.highres.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 03
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lecture_NNArchitectures.html">
+   Week 03 Lecture: Neural Network Architectures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-03/W3_Lab_ConvNetworks.html">
+   Week 03 Lab: Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15_pdbs.tgz">
+   aq15_pdbs.tgz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.rgyr.dat">
+   aq15.rgyr.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.pb.dat">
+   aq15.pb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.gb.dat">
+   aq15.gb.dat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-03/aq15.sasa.dat">
+   aq15.sasa.dat
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 04
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lecture_GenerativeModels.html">
+   Week 04 Lecture: Generating things with ML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-04/W4_Lab_GenerateMolecularConformations.html">
+   Week 04 Lab: Generating Molecular Conformations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 05
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lecture-ProteinStructurePrediction.html">
+   Week 05 Lecture: Protein Structure Prediction in the Age of Artificial Intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-05/W5_Lab_StructurePrediction.html">
+   Week 05 Lab: Structure Prediction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/raw/main/Week-05/work7efy.zip">
+   work7efy.zip
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 06
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lecture_MD-Concepts1.html">
+   Week 06 Lecture: Molecular Dynamics Concepts 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-06/W6_Lab_Single-Particle-Langevin-Dynamics.html">
+   Week 06 Lab: Single Particle Langevin Dynamics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 07
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lecture_MD-Concepts2.html">
+   Week 07 Lecture: Molecular Dynamics Concepts 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-07/W7_Lab_Liquid-Argon-Simulation.html">
+   Week 06 Lab: Liquid Argon Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T50.npy?raw=true">
+   traj_pos_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_vel_T50.npy?raw=true">
+   traj_vel_T50.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T80.npy?raw=true">
+   traj_pos_T80.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T120.npy?raw=true">
+   traj_pos_T120.npy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/ADicksonLab/ml4md-jb/blob/main/Week-07/traj_pos_T200.npy?raw=true">
+   traj_pos_T200.npy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 08
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lecture-Biomolecular-Simulation-1.html">
+   Week 8 Lecture: Biomolecular Simulation (Part I)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/input.pdb">
+   input.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/water.pdb">
+   water.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/W8_Lab-Angiotensin-Simulation.html">
+   Biomolecular Simulation (Lab 1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://raw.githubusercontent.com/ADicksonLab/ml4md-jb/main/Week-08/angiotensin.pdb">
+   angiotensin.pdb
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-08/software.html">
+   Commands to install openmm in Colab
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 09
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lecture-MarkovStateModels.html">
+   Week 09 Lecture: Biomolecular Simulation (Part II)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-09/W9_Lab-SimulationAnalysis.html">
+   Week 09 Lab: Analysis of MD trajectories with Markov State Models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 10
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-10/W10_Lecture_FFConcepts.html">
+   Week 10: Machine Learning Force Fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Week-10/W10_Lab-MLFF_ANI.html">
+   Week 10 Lab: Machine Learning Force Fields (ML-FF)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Week 11
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="W11_Final-Project-Demo-1-CHARMM-GUI.html">
+   Week 11: Final Project Demo 1 (CHARMM-GUI)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CHARMM_GUI_COLAB.html">
+   Simulating CHARMM-GUI systems in Google Colab
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CHARMM_GUI_HPCC.html">
+   Simulating CHARMM-GUI systems on HPCC
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 11: Final Project Demo 2 (Anakin-ASE)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Week-11/W11_Final-Project-Demo-2-ANI-ASE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ADicksonLab/ml4md-jb"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/ADicksonLab/ml4md-jb/issues/new?title=Issue%20on%20page%20%2FWeek-11/W11_Final-Project-Demo-2-ANI-ASE.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ADicksonLab/ml4md-jb/main?urlpath=tree/Week-11/W11_Final-Project-Demo-2-ANI-ASE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ADicksonLab/ml4md-jb/blob/main/Week-11/W11_Final-Project-Demo-2-ANI-ASE.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-of-today-s-demo">
+   Overview of today’s demo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes-of-caution">
+   Notes of caution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages">
+   Installing packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-xyz-file">
+   Building the xyz file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-ase-atoms-object-and-prepare-it-for-simulation">
+   Create ASE atoms object and prepare it for simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   Analysis
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Week 11: Final Project Demo 2 (Anakin-ASE)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-of-today-s-demo">
+   Overview of today’s demo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes-of-caution">
+   Notes of caution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages">
+   Installing packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-xyz-file">
+   Building the xyz file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-ase-atoms-object-and-prepare-it-for-simulation">
+   Create ASE atoms object and prepare it for simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis">
+   Analysis
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-11-final-project-demo-2-anakin-ase">
+<h1>Week 11: Final Project Demo 2 (Anakin-ASE)<a class="headerlink" href="#week-11-final-project-demo-2-anakin-ase" title="Permalink to this headline">¶</a></h1>
+<p><strong>This week we will run through an example of how to run a simulation using the ANI-1ccx forcefield using “Atomic Simulation Environment” (ASE).</strong></p>
+<p>This lab takes advantage of the <a class="reference external" href="https://github.com/aiqm/torchani">TorchANI</a> package and largely follows their example found <a class="reference external" href="https://github.com/aiqm/torchani/blob/master/examples/ase_interface.py">here</a>.</p>
+<p>Check out the repository (linked above) and the <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jcim.0c00451">TorchANI paper</a> for more information.</p>
+<hr class="docutils" />
+<div class="section" id="overview-of-today-s-demo">
+<h2>Overview of today’s demo<a class="headerlink" href="#overview-of-today-s-demo" title="Permalink to this headline">¶</a></h2>
+<p>As we learned last week, the ANI-1ccx forcefield is trained using high-level coupled-cluster quantum mechanical energies.  The ANI-1x dataset was trained on 5 million DFT calculations <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7195467/">dataset paper</a>.  The ANI-1ccx dataset augmented these with 500,000 QM calculations using CCSD(T)/CBS, which has higher accuracy than DFT but also higher computational cost.  The resulting forcefield can accurately predict QM energies for systems including C, H, N and O elements.</p>
+<p><strong>Today we will give an example of how to run a system using the ANI-1ccx forcefield.</strong> We do not have to train this ourselves (thankfully!) and we use a pre-trained PyTorch model from the <code class="docutils literal notranslate"><span class="pre">TorchANI</span></code> toolkit.</p>
+<p><strong>We will use <code class="docutils literal notranslate"><span class="pre">ASE</span></code> instead of <code class="docutils literal notranslate"><span class="pre">OpenMM</span></code> to run the simulations.</strong> There are a lot of differences between the ANI simulations and the classical simulations that we are used to.  The “Atomic Simulation Environment” package is better suited to run these kinds of simulations.</p>
+<p><strong>The steps to run these simulations are as follows:</strong></p>
+<ol class="simple">
+<li><p><strong>Build an <code class="docutils literal notranslate"><span class="pre">xyz</span></code> file that describes your system.</strong>  This is a remarkably simple text file that only contains the element name and the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> coordinates of each atom.  There are many possible ways to build this.  Here we will use <code class="docutils literal notranslate"><span class="pre">rdkit</span></code> to generate some molecular conformers and some bash scripts to merge our <code class="docutils literal notranslate"><span class="pre">xyz</span></code> files together.</p></li>
+<li><p><strong>Read this into an ASE <code class="docutils literal notranslate"><span class="pre">atoms</span></code> object and prepare it for simulation.</strong>. In this example we will modify the velocities to simulate a molecular collision.  There are many other possible numerical “experiments” that you can do!</p></li>
+<li><p><strong>Run the simulation.</strong> The data is saved in a <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file.</p></li>
+<li><p><strong>Visualize it!</strong> We can visualize our trajectories directly in the notebook using <code class="docutils literal notranslate"><span class="pre">NGLViewer</span></code>.</p></li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="notes-of-caution">
+<h2>Notes of caution<a class="headerlink" href="#notes-of-caution" title="Permalink to this headline">¶</a></h2>
+<p><strong>Reactive transition states were not included in the training data!</strong> If you, like in this notebook, are designing a simulation that is “reactive”, i.e. if you want to observe a chemical reaction taking place, then keep in mind that the training data mostly focused on structures in and around the ground state.  Reactive energy barriers are not likely to be very accurate.  However, a study like this could be an important first step in examining the baseline predictions of ANI-1ccx.  If you want to continue work in this direction after the class project you should further augment the ANI-1ccx dataset with energy calculations <strong>along the reactive pathways</strong>.</p>
+<p><strong>System size should be limited!</strong>  While we can handle hundreds of thousands of atoms (or even millions!) in a classical MD simulation, you should be much more conservative here.  The current <code class="docutils literal notranslate"><span class="pre">TorchANI</span></code> implementation (that is available to the public) does not handle large systems well, particularly in terms of memory usage.  If you get a memory error then your system is likely too big.  <strong>We have found in some tests that the limit is between 1000 and 2000 atoms on our hardware.</strong>  That said, smaller systems can be more fun since it is easier to generate large data sets.  In the example below we use an 8-atom system.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="installing-packages">
+<h2>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Uncomment and run the lines below if you are on Colab</span>
+<span class="c1">#import sys</span>
+<span class="c1">#print(sys.version)</span>
+<span class="c1">#!wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh</span>
+<span class="c1">#!bash Miniconda3-py*.sh -bfp /usr/local</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda config --set always_yes yes
+<span class="o">!</span>conda install -c conda-forge ase rdkit nglview torchani
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="building-the-xyz-file">
+<h2>Building the xyz file<a class="headerlink" href="#building-the-xyz-file" title="Permalink to this headline">¶</a></h2>
+<p>Here we are going to make a simple system that has two hydrogen peroxide molecules that we will bash together at high speeds!  It is possible that we can see some water molecules form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rdkit</span> <span class="kn">import</span> <span class="n">Chem</span>
+<span class="kn">from</span> <span class="nn">rdkit.Chem</span> <span class="kn">import</span> <span class="n">AllChem</span>
+<span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>First we make a hydrogen peroxide molecule using <code class="docutils literal notranslate"><span class="pre">rdkit</span></code>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perox</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">AddHs</span><span class="p">(</span><span class="n">Chem</span><span class="o">.</span><span class="n">MolFromSmiles</span><span class="p">(</span><span class="s1">&#39;OO&#39;</span><span class="p">))</span>
+<span class="n">perox</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Then we generate some “conformers” that contain 3D positions of each atom:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">AllChem</span><span class="o">.</span><span class="n">EmbedMultipleConfs</span><span class="p">(</span><span class="n">perox</span><span class="p">,</span> <span class="n">useExpTorsionAnglePrefs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">useBasicKnowledge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">show_rdkit</span><span class="p">(</span><span class="n">perox</span><span class="p">,</span><span class="n">conf_id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">view</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf0</span> <span class="o">=</span> <span class="n">perox</span><span class="o">.</span><span class="n">GetConformer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">conf1</span> <span class="o">=</span> <span class="n">perox</span><span class="o">.</span><span class="n">GetConformer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">conf0</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">conf0</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">conf0</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">z</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<span class="n">xyz1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">z</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conf0: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xyz0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conf1: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xyz1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now let’s move all of the atoms in <code class="docutils literal notranslate"><span class="pre">conf1</span></code> to center them at <code class="docutils literal notranslate"><span class="pre">(10,0,0)</span></code>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span>
+    <span class="n">conf1</span><span class="o">.</span><span class="n">SetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_xyz1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">conf1</span><span class="o">.</span><span class="n">GetAtomPosition</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">z</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<span class="n">new_xyz1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Write both conformers to <code class="docutils literal notranslate"><span class="pre">xyz</span></code> files.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Chem</span><span class="o">.</span><span class="n">rdmolfiles</span><span class="o">.</span><span class="n">MolToXYZFile</span><span class="p">(</span><span class="n">perox</span><span class="p">,</span><span class="s1">&#39;perox0.xyz&#39;</span><span class="p">,</span><span class="n">confId</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Chem</span><span class="o">.</span><span class="n">rdmolfiles</span><span class="o">.</span><span class="n">MolToXYZFile</span><span class="p">(</span><span class="n">perox</span><span class="p">,</span><span class="s1">&#39;perox1.xyz&#39;</span><span class="p">,</span><span class="n">confId</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Combine both into one merged <code class="docutils literal notranslate"><span class="pre">xyz</span></code> file:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> <span class="nb">echo</span> <span class="s2">&quot;8&quot;</span> &gt; perox_2mol.xyz
+<span class="o">!</span> <span class="nb">echo</span> <span class="s2">&quot;&quot;</span> &gt;&gt; perox_2mol.xyz
+<span class="o">!</span> tail -n <span class="m">4</span> perox0.xyz &gt;&gt; perox_2mol.xyz
+<span class="o">!</span> tail -n <span class="m">4</span> perox1.xyz &gt;&gt; perox_2mol.xyz
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Our combined xyz file looks like this:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> cat perox_2mol.xyz
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-ase-atoms-object-and-prepare-it-for-simulation">
+<h2>Create ASE atoms object and prepare it for simulation<a class="headerlink" href="#create-ase-atoms-object-and-prepare-it-for-simulation" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torchani</span>
+
+<span class="kn">from</span> <span class="nn">ase.md.langevin</span> <span class="kn">import</span> <span class="n">Langevin</span>
+<span class="kn">from</span> <span class="nn">ase.md.verlet</span> <span class="kn">import</span> <span class="n">VelocityVerlet</span>
+<span class="kn">from</span> <span class="nn">ase.md.velocitydistribution</span> <span class="kn">import</span> <span class="n">MaxwellBoltzmannDistribution</span>
+<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">BFGS</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">units</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">io</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.io.trajectory</span> <span class="kn">import</span> <span class="n">Trajectory</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Read in the xyz file into an <code class="docutils literal notranslate"><span class="pre">atoms</span></code> object:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_atoms</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;perox_2mol.xyz&quot;</span><span class="p">)</span>
+<span class="n">my_atoms</span><span class="o">.</span><span class="n">set_pbc</span><span class="p">((</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+<span class="n">my_atoms</span><span class="o">.</span><span class="n">set_cell</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">),</span> <span class="s2">&quot;atoms in the system&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Set the calculator to be <code class="docutils literal notranslate"><span class="pre">ANI1ccx</span></code> from the <code class="docutils literal notranslate"><span class="pre">torchani</span></code> package:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculator</span> <span class="o">=</span> <span class="n">torchani</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ANI1ccx</span><span class="p">()</span><span class="o">.</span><span class="n">ase</span><span class="p">()</span>
+<span class="n">my_atoms</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calculator</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Minimize the energy:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Using BFGS method for minimizing                                                                                                                                </span>
+<span class="n">optimum</span><span class="o">=</span><span class="n">BFGS</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">)</span>
+<span class="n">optimum</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Define a function to print the energy and temperature during the simulation:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_energy</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">my_atoms</span><span class="p">):</span>
+    <span class="n">Potential_Energy</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">Kinetic_energy</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">get_kinetic_energy</span><span class="p">()</span><span class="o">/</span><span class="n">n</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy per atom: Epot=</span><span class="si">%4f</span><span class="s1">eV Ekin=</span><span class="si">%4f</span><span class="s1">eV (T=</span><span class="si">%4.0f</span><span class="s1"> K&quot;)  &#39;</span>
+            <span class="s1">&#39;Etot = </span><span class="si">%.3f</span><span class="s1">eV&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Potential_Energy</span><span class="p">,</span>
+            <span class="n">Kinetic_energy</span><span class="p">,</span> <span class="n">Kinetic_energy</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">units</span><span class="o">.</span><span class="n">kB</span><span class="p">),</span> <span class="n">Potential_Energy</span> <span class="o">+</span> <span class="n">Kinetic_energy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Initialize the velocities via the Maxwell-Boltzmann distribution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MaxwellBoltzmannDistribution</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">,</span><span class="n">temperature_K</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">my_atoms</span><span class="o">.</span><span class="n">get_velocities</span><span class="p">()</span>
+<span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Add a positive <code class="docutils literal notranslate"><span class="pre">x</span></code> velocity to molecule 0 and a negative <code class="docutils literal notranslate"><span class="pre">x</span></code> velocity to molecule 1:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">impact_vel</span> <span class="o">=</span> <span class="mf">0.3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">impact_vel</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">impact_vel</span>
+
+<span class="n">my_atoms</span><span class="o">.</span><span class="n">set_velocities</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Run an MD simulation with constant temperature using the Langevin algorithm:</strong><br />
+Time step of 1 fs, temperature = 300K and the friction coefficient to 0.02 / ps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dyn</span> <span class="o">=</span> <span class="n">VelocityVerlet</span><span class="p">(</span><span class="n">my_atoms</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">units</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="s1">&#39;collision.traj&#39;</span><span class="p">,</span> <span class="n">loginterval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">dyn</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">print_energy</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Visualize the trajectory with NGLView:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traj</span><span class="o">=</span><span class="n">Trajectory</span><span class="p">(</span><span class="s1">&#39;collision.traj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">ASETrajectory</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s2">&quot;ngl&quot;</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">add_spacefill</span><span class="p">()</span>
+<span class="n">w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>What do you see?</strong>  If you run it again with the same starting positions, but different random velocities, would you see the same thing?</p>
+<p><strong>What if you change the impact velocity?</strong></p>
+</div>
+<div class="section" id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<p>Analysis of these trajectories can be a little more complicated than Classical trajectories.  This is because we can’t take advantage of a constant molecular topology.  Bonds that are present at the beginning of a simulation are not necessarily present at the end!</p>
+<p>That said, the <code class="docutils literal notranslate"><span class="pre">traj</span></code> variable that was read from our <code class="docutils literal notranslate"><span class="pre">collision.traj</span></code> file is essentially a list of <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> objects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We can get distances between atoms as follows:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">traj</span><span class="p">)</span>
+<span class="n">d02</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># distance between H-O in conf 0</span>
+<span class="n">d06</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># distance between O in conf 0 and H in conf 1</span>
+<span class="n">d07</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># distance between O in conf 0 and other H in conf 1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">d02</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">traj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">d06</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">traj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">d07</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">traj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_distance</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d02</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;original O-H&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d06</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;swapped O-H1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d07</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;swapped O-H2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Week-11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="CHARMM_GUI_HPCC.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Simulating CHARMM-GUI systems on HPCC</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Alex Dickson and Michael Feig<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
