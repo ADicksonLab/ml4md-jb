@@ -125,4 +125,5 @@ parts:
     - file: Week-11/W11_Final-Project-Demo-1-CHARMM-GUI.ipynb
     - file: Week-11/CHARMM_GUI_COLAB.ipynb
     - file: Week-11/CHARMM_GUI_HPCC.ipynb
+    - file: Week-11/W11_Final-Project-Demo-2-ANI-ASE.ipynb
     
