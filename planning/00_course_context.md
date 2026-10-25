@@ -92,6 +92,13 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
 
 ## Course-wide infrastructure (owned outside the weekly threads)
 
+0. **Communication: a new Slack workspace for Spring 2027** (decided; not yet created).
+   - Create it once enrollment is mostly known, close to the start of the semester.
+   - Send the invite in the pre-semester email together with the ICER login instructions (see Week 1).
+   - The new invite link replaces the 2022 link everywhere it appears: `SoftwareSetupGuide.md`, the Week 1 lecture notebook and the syllabus. Keep the link out of the repository until the workspace exists.
+   - Suggested channels: `#general`, `#help-icer`, `#campaign-status` (segment failures, queue issues), one channel per lab week, and private team channels.
+   - Students who enroll late are added as they appear.
+
 1. **ICER is the computing platform for everything.**
    - Labs and in-lecture activities run in ICER OnDemand Jupyter sessions, opened from BMB 202 machines or laptops in a browser.
    - The campaign and all GPU-heavy work run as Slurm batch jobs.
@@ -117,7 +124,7 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
 3. **ICER:** class accounts, course research space for shared data and fallback trajectories, template Slurm scripts.
 4. **Syllabus / `intro.md`:**
    - instructors, rooms and dates;
-   - remove the Zoom/hybrid format and COVID text; replace the expired Slack invite;
+   - remove the Zoom/hybrid format and COVID text; replace the expired 2022 Slack invite (`ml4mdbmb961`) with the new one;
    - AI policy;
    - grading rebalanced toward verification, interpretation and oral check-offs. The 2022 weights were participation 50 / proposal 10 / project 40.
 5. **Jupyter Book:** stay on 1.x or migrate to 2.x; `_toc.yml` `raw/main/...` URLs must point to the right branch; update the README.

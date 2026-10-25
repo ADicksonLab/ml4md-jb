@@ -58,7 +58,8 @@
 - [ ] Write the ICER onboarding page and test job; test on a class account before Jan 19.
 - [ ] Rewrite `SoftwareSetupGuide.md` around ICER: OnDemand Jupyter, the course environment, Slurm basics. BMB 202 machines and laptops serve only as browser clients.
 - [ ] Draft the AI policy text for the syllabus.
+- [ ] Leave a placeholder for the new Slack invite in the lecture notebook and `SoftwareSetupGuide.md`; fill it in once the workspace exists.
 
 ## Open decisions
-- Slack vs. another channel (the 2022 invite has expired).
+- *(Decided: a new Slack workspace, created close to the semester once enrollment is mostly known.)* Remaining: confirm that the invite goes out with the pre-semester ICER email, and that the Week 1 lecture's Slack slide uses the new link.
 - ICER class accounts **must** be active before Jan 19; there is no fallback platform. Confirm the account-creation timeline with ICER in November/December, and plan a short pre-semester email with login instructions.
