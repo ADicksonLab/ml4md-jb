@@ -58,6 +58,7 @@
 - [ ] Write the ICER onboarding page and test job; test on a class account before Jan 19.
 - [ ] Rewrite `SoftwareSetupGuide.md` around ICER: OnDemand Jupyter, the course environment, Slurm basics. BMB 202 machines and laptops serve only as browser clients.
 - [ ] Draft the AI policy text for the syllabus.
+- [ ] Write the math primer page and the course notation table (see 'Audience and mathematical level' in `00_course_context.md`); add a math-background question to the survey.
 - [ ] Leave a placeholder for the new Slack invite in the lecture notebook and `SoftwareSetupGuide.md`; fill it in once the workspace exists.
 
 ## Open decisions

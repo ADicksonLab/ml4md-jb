@@ -26,6 +26,12 @@
 - `unsorted/PeriodicBoundaries.ipynb`, `unsorted/units.ipynb`: fold in or link.
 - **New material needed:** cutoff shifting, cell lists, a conceptual Ewald/PME slide, ensembles/barostats, MSD/diffusion, block averaging, autocorrelation.
 
+## Math support (see audience conventions in `00_course_context.md`)
+- **Minimum image:** a 1-D picture with a box of length L, worked with numbers (x = 0.9L and x = 0.1L), then the formula.
+- **Ewald/PME:** conceptual only, no equations required. Explain why 1/r sums converge slowly, using a plot of a running sum.
+- **Statistics:** the standard error first as σ/√N with numbers, then the effective N, with N_eff ≈ N/(2τ_corr) (τ_corr measured in units of the sampling interval) motivated by a picture of a correlated time series. Show block averaging as a procedure ("split into blocks, average each, take the spread"), with the formula afterwards.
+- **MSD and diffusion:** "mean squared distance grows linearly in time; the slope is 6D in 3-D". Show where the 6 comes from (2 per dimension).
+
 ## Lecture ideas (50 min)
 - Start with the failure: naïve O(N²) LJ timings for N = 100 → 10,000, extrapolated to a 100k-atom protein system. Ask how anyone can simulate a ribosome.
 - Show visually why electrostatics cannot simply be cut off (1/r decays too slowly; artifacts in ion pairs).

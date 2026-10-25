@@ -33,6 +33,13 @@
 - MACE training on a small dataset within a 2 h lab on available GPUs, vs. a TorchANI training exercise.
 - Licensing of pretrained models used in class.
 
+## Math support (see audience conventions in `00_course_context.md`)
+- **Atomic decomposition:** "total energy = sum of one number per atom", shown first for a 3-atom molecule with numbers.
+- **Behler–Parrinello radial symmetry function:** one Gaussian of distance, computed by hand for one atom with two neighbors, then the sum. The angular function: give the formula and plot it rather than deriving it.
+- **Cutoff function:** a plot first, then the formula.
+- **Equivariant features:** only intuitively, as "features that carry direction (arrows) as well as magnitude"; no tensor algebra.
+- **Error metrics:** MAE vs. RMSE with a 4-point example; per-atom vs. per-molecule normalization with numbers.
+
 ## Lecture ideas (50 min)
 - Arc: Week-2 force field → "what if each atom's energy were a learned function of its neighborhood?" → BP/ANI (keep the 2022 material) → equivariance (Week-5 callback) → foundation models → what they still miss (long-range electrostatics, charge states, reactivity outside training data, cost vs. classical FFs).
 - Error metrics: why force MAE, energy MAE and MD stability are different questions.

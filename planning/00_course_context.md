@@ -30,6 +30,32 @@ Read this first. Each `weekNN_*.md` file is written to be handed to a separate p
 | 10 | Mar 30 / Apr 1 | Generative models for ensembles | `week10_generative_ensembles.md` |
 | 11–14 | Apr 6 – Apr 29 | Independent projects; four Tuesday topic lectures; presentations | `weeks11-14_projects.md` |
 
+## Audience and mathematical level
+
+The students are mainly **biochemistry graduate students**, and some have limited mathematical background (calculus possibly years ago; little linear algebra, vector calculus or probability). Every equation in lectures and labs should be written for that reader. Conventions for all weekly threads:
+
+1. **Define every symbol where it first appears,** with its units, for example: "$k_b$ is the bond force constant, in kcal mol⁻¹ Å⁻²". No symbol should be left for the reader to infer.
+2. **Say each equation in words** immediately after it, in one sentence: "the bond energy grows with the square of how far the bond is stretched from its preferred length".
+3. **Show the intermediate steps** that a mathematically trained reader would skip, especially chain-rule steps, sums over indices, and vector components written out as x, y, z.
+4. **Pair each equation with code.** The next notebook cell implements the equation line for line, using the same variable names. For many students the code is the more readable version.
+5. **Give a worked numerical example** for every key formula (one bond, one timestep, a 3×3 transition matrix), small enough to check by hand or with a calculator.
+6. **Check units.** Show that both sides of key equations have the same units; this is also a habit that catches bugs.
+7. **Give the result, not the derivation, when the derivation is not the point.** Example: the analytic force for a dihedral. State that the derivation exists, show the result, and verify it numerically (finite differences).
+8. **Picture before formula:** an energy curve, a vector diagram or a histogram first, then the equation.
+9. **Use one notation table for the whole course** (positions $\mathbf{r}_i$, forces $\mathbf{F}_i$, potential $U$, $k_\mathrm{B}T$, lag time $\tau$, …). It goes in an appendix page of the Jupyter Book and every notebook uses it.
+10. **Assessment:** labs grade interpretation, verification and judgment, not the ability to derive equations. Derivations appear as optional "for the curious" boxes.
+
+**Course-wide supporting material** (owned with the Week 1 thread):
+- **A short math primer page** in the book, each topic tied to where it is used:
+  - derivatives and the chain rule → forces (Wk 2);
+  - partial derivatives and the gradient ∇ → forces in 3-D, gradient descent (Wk 2, 4);
+  - vectors, dot products, distances, rotations → PBC, invariance (Wk 3, 5);
+  - sums and index notation (Σ over atoms or pairs) → force fields, symmetry functions (Wk 2, 7);
+  - exponentials and logarithms, the Boltzmann factor → thermostats, free energies, MSM timescales (Wk 2, 8);
+  - probability distributions, mean/variance, histograms → ensembles, error bars, generative models (Wk 3, 10);
+  - matrices, matrix multiplication, eigenvalues and eigenvectors → neural-network layers, TICA, MSMs (Wk 4, 8).
+- A math-background question in the Week 1 survey, so that teams mix backgrounds and instructors know where to slow down.
+
 ## Cross-cutting design principle: grade what AI tools cannot supply
 
 Students may use AI coding assistants, must disclose that use, and are responsible for every line. Because code is now cheap to produce, each lab should be built from some combination of the mechanisms below. Each weekly doc proposes specific instances.

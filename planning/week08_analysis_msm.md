@@ -23,6 +23,17 @@
 - The VAMPnets topic was scheduled for 2022 Week 12, which was never delivered; it is folded in here.
 - Week-1 sEH unbinding trajectory: an optional rare-event example.
 
+## Math support (see audience conventions in `00_course_context.md`)
+This is the main linear-algebra week; budget lecture time for it.
+- **Transition matrix:** a 3-state example with numbers:
+  - each row sums to 1;
+  - propagate a population vector by hand for two steps;
+  - show the stationary distribution as "the populations that stop changing".
+- **Eigenvalues and eigenvectors:** introduce them through that same 3×3 example ("special population patterns that only shrink, without changing shape, each step"), computed with `numpy.linalg.eig` beside the hand reasoning.
+- **Implied timescales:** t_i = −τ / ln λ_i with numbers (λ = 0.99, τ = 1 ns → t ≈ 99.5 ns). Explain why eigenvalues near 1 mean slow processes.
+- **TICA:** "find the combinations of features that change most slowly". Show it as a picture (a 2-D feature scatter with the slow direction drawn), with the generalized eigenvalue problem in an optional box.
+- **VAMP-2:** treat it as "a score for how well the model captures slow processes; higher is better", with the formula optional.
+
 ## Lecture ideas (50 min)
 - Open with two teams' replicas of the same system disagreeing. Ask which is right; the answer is that neither is converged yet, and the lecture shows how to quantify that.
 - MSM from intuition (coarse-grained kinetics) to validation tests; lag-time trade-offs.

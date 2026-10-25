@@ -23,6 +23,14 @@
   - Replace the CNN models with a GNN.
 - Confirm what `aq15` is (a 15-residue peptide?) and how the conformations were generated; record that in the notebook.
 
+## Math support (see audience conventions in `00_course_context.md`)
+- **Rotations:** show a 2-D rotation matrix with a numerical example (rotate (1, 0) by 90°) before 3-D. Then:
+  - invariance means "the output number does not change when the molecule is rotated";
+  - equivariance means "an output arrow rotates along with the molecule".
+  Demonstrate both with energy (invariant) and force (equivariant).
+- **Message passing:** a sum over neighbors written out for a 4-atom example, with the neighbor list given explicitly.
+- **Attention:** softmax and scaled dot-product attention with a 3-token numerical example computed in a notebook cell. Explain the weights as "how much each token looks at each other token".
+
 ## Lecture ideas (50 min)
 - Live demo: rotate a molecule by 30° and feed it to the 2022 xyz-input model; the prediction changes. Then explain symmetry.
 - Message passing in pictures, then the same idea for equivariant vectors (preview of MACE).

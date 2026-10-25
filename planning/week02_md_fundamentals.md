@@ -31,6 +31,21 @@
 - `unsorted/HamiltonianMechanics-STUDENT.ipynb`: timestep-error exercise with Euler and velocity Verlet. Reuse in the integrator section.
 - **New material needed:** leapfrog, RK45 via `scipy.integrate.solve_ivp`, code for each bonded term and Coulomb with analytic forces, additional thermostats (velocity rescaling, Berendsen, Andersen, Bussi/CSVR, optionally Nosé–Hoover; BAOAB Langevin).
 
+## Math support (see audience conventions in `00_course_context.md`)
+This week has the densest calculus in the course.
+- **Bonds:** write F = −dU/dx for a 1-D spring first, then the 3-D bond force using the chain rule in explicit steps:
+  1. U(r);
+  2. r = |**r**_i − **r**_j|;
+  3. dU/dr;
+  4. ∂r/∂x_i = (x_i − x_j)/r.
+  Write the x, y, z components separately.
+- **Angles:** give the force result and verify it numerically.
+- **Dihedrals and CMAP:** give the force result only, and verify it numerically. The Match-OpenMM lab already enforces this verification.
+- **Integrators:** introduce them as "position after a small time step ≈ position now + velocity × Δt + …". Show the Taylor expansion term by term, with one worked numerical step of Euler and one of velocity Verlet on a harmonic oscillator, by hand.
+- **Thermostats:**
+  - Maxwell–Boltzmann: plot the distribution before writing it, then name every factor.
+  - Langevin: explain the random force as "random kicks whose size is set by temperature and friction", before the fluctuation–dissipation formula.
+
 ## Lecture ideas (50 min)
 - Build U for a small molecule one term at a time on screen. Butane, or the alanine dipeptide used later, works well. Show the energy landscape that each term adds.
 - Introduce force-field parameterization in one slide (QM targets, condensed-phase properties). This sets up Week 7.

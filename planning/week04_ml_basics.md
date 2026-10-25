@@ -21,6 +21,13 @@
 - `Week-02/W2_Lab_MLBasics.ipynb`: falling-object regression (`apple.vacuum.dat`, `apple.vacuum.highres.dat`, `apple.leaf.air.highres.dat`) in PyTorch. A good 30-minute warm-up; an assistant can finish it alone, so shorten it.
 - Syllabus mentions `skorch` hyperparameter optimization; no 2022 notebook uses it. Drop it, or replace with a small manual or Optuna sweep.
 
+## Math support (see audience conventions in `00_course_context.md`)
+- **Neurons and layers:** a single neuron written out with numbers (2 inputs, 2 weights, 1 bias) before matrix notation; then one layer as a 3×2 matrix multiplication written element by element.
+- **Training:**
+  - Loss as "average squared error", with a 3-point numerical example.
+  - Gradient descent as "step downhill on the loss surface", using the same picture as the energy landscape in Week 2. The analogy between U and the loss is deliberate.
+- **Autograd:** describe it as "the computer applies the chain rule for you". Connect it explicitly to the Week 2 bond-force chain-rule steps, and show that autograd reproduces those hand-derived numbers.
+
 ## Lecture ideas (50 min)
 - Show the link explicitly: last week's LJ energy written in PyTorch, `U.backward()` producing the same forces as the hand-derived expression. Autograd is the same operation as F = −∇U.
 - Then: what if U is not known and must be learned from samples? This is the motivation for Weeks 4–7.

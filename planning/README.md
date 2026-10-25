@@ -5,6 +5,7 @@ Handoff documents for updating BMB 961 (ML4MD). Each weekly file is written for 
 **Start here:** [`00_course_context.md`](00_course_context.md) covers:
 - rooms, dates and instructors;
 - the semester sequence;
+- the audience (biochemistry graduate students) and conventions for writing equations explicitly;
 - the cross-cutting rule of grading what AI tools cannot supply;
 - ICER as the only computing platform, and the simulation campaign (≤4 h segments);
 - comparisons of generated ensembles (aSAM/aSAMt, BioEmu2) with MD;
@@ -30,7 +31,7 @@ Each weekly doc has the same sections:
 2. Learning objectives
 3. 2022 source material (files, what to reuse, what is stale)
 4. Lecture ideas
-5. Lab ideas
+5. Lab ideas (weeks with heavy math also have a "Math support" section before the lecture ideas)
 6. AI-audit seeded bugs
 7. Prediction prompts
 8. Deliverables

@@ -38,6 +38,16 @@
   - API stability before January. Pin a version.
 - Precompute ensembles for all menu systems so lab time is spent on analysis.
 
+## Math support (see audience conventions in `00_course_context.md`)
+- **Probability distributions:** histograms first; then KL and JS divergence computed for two 3-bin histograms by hand before the general formula.
+- **The score, as the bridge between this week and Week 2:**
+  - the score is ∇ log p(x);
+  - for a Boltzmann distribution p ∝ exp(−U/k_BT), the score equals −∇U/k_BT, which is the force divided by k_BT;
+  - so "learning a score" is learning a force field, and diffusion sampling is Langevin dynamics with learned forces.
+  Spell out each step (log of an exponential, then the gradient). It makes diffusion models concrete for this audience.
+- **Noise schedules:** a sequence of pictures (a structure blurred step by step) before any equation.
+- **VAE/flow likelihoods:** keep the maximum-likelihood and KL material from the 2022 lecture in optional boxes; the main path is intuition plus pictures.
+
 ## Lecture ideas (50 min)
 - 15 min of background on VAEs and flows from the 2022 lecture; GANs reduced to one slide of history.
 - Diffusion and flow matching from first principles. The link to Langevin dynamics from Week 2 is direct: score-based sampling is closely related to Langevin dynamics on a learned score (annealed Langevin sampling is exactly that).
