@@ -122,7 +122,7 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
    - Create it once enrollment is mostly known, close to the start of the semester.
    - Send the invite in the pre-semester email together with the ICER login instructions (see Week 1).
    - The new invite link replaces the 2022 link everywhere it appears: `SoftwareSetupGuide.md`, the Week 1 lecture notebook and the syllabus. Keep the link out of the repository until the workspace exists.
-   - Suggested channels: `#general`, `#help-icer`, `#campaign-status` (segment failures, queue issues), one channel per lab week, and private team channels.
+   - Suggested channels: `#general`, `#help-icer`, `#campaign-status` (segment failures, queue issues), and private team channels. Lab questions go in `#general` (or a single `#labs`), using threads.
    - Students who enroll late are added as they appear.
 
 1. **ICER is the computing platform for everything.**
