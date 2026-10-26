@@ -155,10 +155,29 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
    - grading rebalanced toward verification, interpretation and oral check-offs. The 2022 weights were participation 50 / proposal 10 / project 40.
 5. **Jupyter Book:** stay on 1.x or migrate to 2.x; `_toc.yml` `raw/main/...` URLs must point to the right branch; update the README.
 
+## Lecture slides: RISE from the lecture notebooks
+
+- **The lecture notebook *is* the slide deck.** It is presented live with RISE (reveal.js inside Jupyter), so code cells can run during class and animations, plots and widgets play in the slides. The same notebook renders as the lecture page in the Jupyter Book.
+- **Tooling:**
+  - The original RISE supports only the classic notebook and is deprecated.
+  - Use the JupyterLab extension **`jupyterlab_rise`**, which requires JupyterLab ≥ 4.1.2 (pip or conda-forge).
+  - Like NGLView, it must be installed in the *Jupyter server* environment. Test it in the ICER OnDemand JupyterLab and in whatever environment instructors present from in MPS 1030.
+- **Presenting:**
+  - Decide whether instructors present from ICER OnDemand (same environment as the students, but dependent on the network and the queue) or from a laptop running the pinned course environment locally (more reliable in the lecture room).
+  - Keep a static reveal.js export (`jupyter nbconvert --to slides`) as a backup and as a handout. Animations embedded as HTML/JS survive the export; anything that needs a live kernel does not.
+- **Authoring conventions for every lecture notebook:**
+  - Set each cell's `slideshow.slide_type` metadata explicitly (`slide`, `subslide`, `fragment`, `skip`, `notes`). In JupyterLab 4 this is set from the Property Inspector cell toolbar; notebook-level RISE options must be edited in the file's JSON metadata.
+  - **Animations:** prefer matplotlib `FuncAnimation` rendered with `to_jshtml()`, or pre-rendered MP4/GIF files. These work live, in the static export and in the book. Use ipywidgets sliders and molecular viewers only where live interaction adds something, and accept that they need a kernel.
+  - Molecular views on slides follow the visualization plan (NGLView, Mol*, or a short movie rendered from VMD2). Large trajectories are shown as pre-rendered movies, not loaded live.
+  - **Equation → code pairs** (audience conventions): the equation and its one-sentence explanation go on the slide; long implementation cells are `skip` or a `fragment` revealed after the equation. The full code stays in the book page.
+  - **Fit to the room:** check font size and figure size at the projector resolution of MPS 1030, and keep the MathJax rendering legible.
+  - Speaker notes go in `notes` cells, so the book page and the slide deck stay a single source.
+- **Execution:** lecture notebooks are committed with outputs, because the book does not execute notebooks (`execute_notebooks: 'off'`). Re-run them in the pinned course environment before committing, so the saved animations match the code.
+
 ## Conventions for the weekly threads
 
 - Each thread delivers, for its week:
-  - lecture notebook (slides via `jupyter nbconvert --to slides`);
+  - lecture notebook, which is also the slide deck (RISE; see "Lecture slides" below);
   - student lab notebook and a separate solutions notebook (the 2022 `-SOLUTIONS.ipynb` pattern);
   - seeded-bug "AI-audit" notebook, where applicable;
   - data files or fetch scripts;

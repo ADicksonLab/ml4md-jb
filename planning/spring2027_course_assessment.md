@@ -229,6 +229,7 @@ Design notes:
 - Week 5 links to the DeepMind AF2 Colab and to RaptorX / I-TASSER / SWISS-MODEL outputs from 2022.
 - Syllabus/intro: instructor list (add Josh Vermaas; affiliate instructors from 2022), dates, lecture room (BPS 1420 → MPS 1030), Zoom/hybrid, COVID policy, expired Slack invite (new Spring 2027 workspace to be created once enrollment is known), grading weights for a 4-week project (proposal 10 / project 40 / participation 50 may need rebalancing).
 - `_config.yml` author line; `README.md` says "Spring 2022" and refers to `Day-02` folders. Jupyter Book has since released a 2.x line with a different configuration format — decide whether to pin 1.x for this term or migrate.
+- Slides: the README describes `jupyter nbconvert --to slides`. Lectures will be presented live with RISE (`jupyterlab_rise`, JupyterLab ≥ 4.1.2), with the nbconvert export kept as a static backup; update the README. See `00_course_context.md`.
 - Hard-coded `raw/main/...` URLs in `_toc.yml` will point to `main`, not `spring2027`, until the branch is merged.
 
 ## 7. Open questions for the instructors
