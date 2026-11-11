@@ -1,25 +1,34 @@
 #!/bin/bash
-# Install the course environment once into the course research space (run by an instructor, on a dev node).
-# UNTESTED ON ICER: written from the ICER docs and the local build. Read before running.
+# Install the course environment once into the course research space (instructor, on ICER).
+# Run it inside a Slurm job (see install_job.sbatch) under the course group:
+#   sbatch install_job.sbatch        # which runs:  sg BMB_961_SS27_001 -c "bash install_on_icer.sh"
 set -euo pipefail
+# ICER login shells load a cURL module whose libs clash with system curl on some node types: start clean.
+command -v module >/dev/null 2>&1 && module purge >/dev/null 2>&1 || true
+unset LD_LIBRARY_PATH LIBRARY_PATH CPATH
+export PATH=/usr/local/bin:/usr/bin:/bin
 SPACE=/mnt/research/BMB_961_SS27_001
-newgrp_note="Run 'newgrp BMB_961_SS27_001' first so new files are group-owned."
-[ "$(id -gn)" = "BMB_961_SS27_001" ] || { echo "$newgrp_note"; exit 1; }
-umask 002
-mkdir -p "$SPACE/env" "$SPACE/tools" && chmod g+rws "$SPACE/env" "$SPACE/tools"
-export PIXI_HOME="$SPACE/tools/pixi"; export PATH="$PIXI_HOME/bin:$PATH"
+HERE=$(cd "$(dirname "$0")" && pwd)
+[ "$(id -gn)" = "BMB_961_SS27_001" ] || { echo "Run under the course group: sg BMB_961_SS27_001 -c 'bash $0'"; exit 1; }
+umask 002                                         # group-writable, setgid dirs keep the group
+mkdir -p "$SPACE/env" "$SPACE/tools"
+export PIXI_HOME="$SPACE/tools/pixi"              # pixi binary lives in the space
+export PATH="$PIXI_HOME/bin:$PATH"
+# Caches go to scratch, NOT home (home is near its file-count quota) and not the research space.
+CACHE=${SCRATCH_CACHE:-/mnt/gs21/scratch/$USER/ml4md_cache}
+mkdir -p "$CACHE"; export RATTLER_CACHE_DIR="$CACHE/rattler" UV_CACHE_DIR="$CACHE/uv" PIP_CACHE_DIR="$CACHE/pip"
+export CONDA_OVERRIDE_CUDA=12                     # CPU-only build node: satisfy the __cuda virtual package
+export PIXI_NO_PATH_UPDATE=1                      # do not edit ~/.bashrc
 if ! command -v pixi >/dev/null; then
-  curl -fsSL https://pixi.sh/install.sh | PIXI_VERSION=v0.84.1 PIXI_HOME="$PIXI_HOME" bash   # lock was made with pixi 0.84.1
+  mkdir -p "$PIXI_HOME/bin"
+  /usr/bin/curl -fsSL https://github.com/prefix-dev/pixi/releases/download/v0.84.1/pixi-x86_64-unknown-linux-musl.tar.gz \
+    | tar -xz -C "$PIXI_HOME/bin"                   # lock was made with pixi 0.84.1
 fi
-cp pixi.toml pixi.lock check_environment.py "$SPACE/env/"
+pixi --version
+cp "$HERE/pixi.toml" "$HERE/pixi.lock" "$HERE/check_environment.py" "$SPACE/env/"
 cd "$SPACE/env"
-pixi install --frozen                      # exact versions from pixi.lock; ~13 GB
-# Pre-fetch model weights into a shared cache so compute nodes (possibly offline) need no download.
-export TORCH_HOME="$SPACE/cache/torch" XDG_DATA_HOME="$SPACE/cache/xdg" HF_HOME="$SPACE/cache/hf"
-mkdir -p "$TORCH_HOME" "$XDG_DATA_HOME" "$HF_HOME"
-# TODO (instructors): run the week-7 openmm-ml examples (ani2x, mace-off23-small) once with these variables set
-# so the weights land in the shared cache; ANI2x and MACE-OFF download from GitHub on first use.
-chmod -R g+rX "$SPACE/env" "$SPACE/cache" "$SPACE/tools"
-echo "TORCH_HOME/XDG_DATA_HOME/HF_HOME must be exported in job scripts and OnDemand sessions too."
+pixi install --frozen                              # exact versions from pixi.lock; ~13 GB
+PY="$SPACE/env/.pixi/envs/default/bin/python"
+KMP_AFFINITY=disabled "$PY" check_environment.py   # CPU checks; GPU checks run later on a GPU node (--gpu)
+du -sh "$SPACE/env/.pixi" || true
 echo "Environment prefix for OnDemand: $SPACE/env/.pixi/envs/default"
-pixi run --frozen python check_environment.py --gpu || echo "(--gpu check expected to fail on a node without GPU)"

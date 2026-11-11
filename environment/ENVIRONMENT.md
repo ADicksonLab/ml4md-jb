@@ -2,7 +2,7 @@
 
 Replaces the 2022 pins (Python 3.7/3.8, `cudatoolkit=10.0`, `openmm=7.6`, `condacolab`, `module load CUDA/10.0.130`).
 Files: `pixi.toml` (manifest), `pixi.lock` (exact versions, linux-64), `check_environment.py` (student/instructor check),
-`install_on_icer.sh` (research-space install, untested on ICER), `boltz/` (separate environment).
+`install_on_icer.sh` + `install_job.sbatch` (research-space install, run on ICER 2026-11-11), `icer_tests/` (GPU and BioEmu2 test jobs), `boltz/` (separate environment).
 
 ## What was solved and tested (local workstation, RTX 3080 Ti, CUDA driver 580, Nov 11 2026)
 
@@ -45,7 +45,20 @@ Tests that passed (`check_environment.py --gpu`, 32/32; plus ad-hoc runs):
 5. **deeptime replaces PyEMMA** (as the Week 8 handoff says).
 6. numpy is **2.x**; any 2022 notebook assuming numpy 1.x APIs needs a check.
 
-## Not tested — needs action before the semester
+
+## ICER results (2026-11-11, run as the instructor account)
+
+- **Installed** at `/mnt/research/BMB_961_SS27_001/env/.pixi/envs/default` (pixi binary in `tools/pixi`, shared BioEmu2 weights in `cache/hf`; set `HF_HOME=/mnt/research/BMB_961_SS27_001/cache/hf`). Install job: 9.5 min on a compute node, ~16 GB and ~107k files on GPFS. All files group-owned (`BMB_961_SS27_001`), group read/write.
+- `check_environment.py` passes on a CPU node; with `--gpu` on a V100S (driver 580.178.04, sm_70) and an A100 (driver 610.57.04, sm_80).
+- V100S: OpenMM CUDA 1275 ns/day on a 6,282-atom water box (4 fs, HMR, mixed); checkpoint save/load OK; openmm-ml ANI2x and MACE-OFF23-small evaluate on GPU. (The ~140 ns/day local figure above came from a contended sandbox GPU; ignore it.)
+- **BioEmu2 end-to-end on V100S:** `bioemu2 sample-equilibrium --pdb-id 1AKE` produced 8 conformations in 85 s; 8/8 passed its physicality checks.
+- **cuEquivariance's own tensor-product kernel fails on V100** (compute capability 7.0; `cudaFuncSetAttribute` error) but passes on A100. BioEmu2 still runs on V100 and only logs missing tuning-cache warnings. `check_environment.py --gpu` will therefore report one FAIL on V100 nodes; this is expected.
+- **Bug found and fixed:** conda-forge's Triton does not ship `cuda.h`, so BioEmu2 failed on any GPU at Triton's JIT step. Fixed by adding `cuda-cudart-dev` (lock changes only by 5 CUDA header packages). Commit 37f8e08 predates the fix.
+- OnDemand launch was simulated on a dev node (`module purge; module load Miniforge3; conda activate <prefix>`): JupyterLab 4.6.6 started from the prefix, HTTP 200, kernel `python3`, NGLView and RISE extensions enabled. Not yet tried through the OnDemand web form. In an interactive dev-node shell a loaded `Python` module blocks `module load Miniforge3`; OnDemand should start clean.
+- Gotchas: the default ICER login shell loads a cURL module whose libraries break `curl` on some node types (installer purges modules); `sbatch` is shadowed on the gateway (submit via a dev node).
+- Still open: A100 BioEmu2 run (queued at time of writing), browser check of NGLView and MathJax, the Boltz environment, and the aSAM weights test.
+
+## Remaining risks (partly superseded by the ICER results above)
 
 - **ICER itself.** No ICER access from here. Not verified: GPU driver version on class-eligible nodes (CUDA 12.9 builds need a recent driver, or CUDA minor-version compatibility), that `pixi` can be installed on the dev nodes, and that OnDemand accepts a pixi prefix. The ICER docs describe OnDemand Jupyter with "Conda Environment using Miniforge3 module" and a path such as `$RESEARCH_SPACE/envs/<name>`; the prefix here would be `/mnt/research/BMB_961_SS27_001/env/.pixi/envs/default`. If OnDemand rejects it, fallbacks: `conda create -p` from an exported spec, or a kernelspec with the "Default" location (then NGLView/RISE extensions would NOT load, because they must live in the Jupyter server environment).
 - **Browser rendering.** NGLView 4.0.1 has a known frontend-version bug and `jupyterlab-mathjax3` is flagged "X" (version-range warning) by `jupyter labextension list`. Open a notebook with NGLView, an equation cell, and RISE in a real browser session; equations matter for this course.

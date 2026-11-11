@@ -30,6 +30,7 @@ openmm-torch = "*"                # lets openmm-ml run ANI/MACE/AIMNet2 inside O
 nnpops = "*"                      # fast ANI neighbor/AEV ops
 openmmforcefields = "*"
 pdbfixer = "*"
+cuda-cudart-dev = "12.9.*"        # CUDA headers (cuda.h) that Triton JIT-compiles against (BioEmu2)
 
 # Trajectory analysis and viewing (weeks 1, 8, 9, 10)
 mdtraj = "*"
