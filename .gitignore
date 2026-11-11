@@ -133,3 +133,6 @@ _build/
 
 # other things
 *~
+
+# pixi environments (built from environment/pixi.lock)
+.pixi/

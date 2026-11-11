@@ -1,0 +1,18 @@
+[workspace]
+name = "ml4md-boltz"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[system-requirements]
+cuda = "12"
+
+[dependencies]
+python = "3.12.*"
+numpy = ">=1.26,<2"
+scipy = "1.13.1"
+biopython = "1.84"
+numba = "0.61.0"
+pytorch = { version = ">=2.5,<2.14", build = "cuda*" }
+
+[pypi-dependencies]
+boltz = "==2.2.1"

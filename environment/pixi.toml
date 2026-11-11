@@ -1,0 +1,60 @@
+# BMB 961 (ML4MD) Spring 2027 — course environment (core).
+# Solved and smoke-tested Nov 2026. Re-solve and re-test in December; see ENVIRONMENT.md.
+[workspace]
+name = "ml4md"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+# Lowest CUDA driver level the packages may assume. All GPU builds below are CUDA 12.x,
+# which still supports Volta (V100, compute capability 7.0); CUDA 13 builds do not.
+[system-requirements]
+cuda = "12"
+
+[dependencies]
+python = "3.12.*"                 # BioEmu2 supports 3.12-3.14 and was validated on 3.12
+numpy = ">=2.0,<2.5"              # BioEmu2: numpy<2.5
+scipy = "*"
+pandas = "*"
+matplotlib = "*"
+pint = "*"                        # units in the argon lab
+
+# Jupyter (server and labextensions live in THIS env: OnDemand launches Jupyter from it)
+jupyterlab = ">=4.1.2"            # jupyterlab_rise needs >=4.1.2
+jupyterlab_rise = "*"             # lecture slides
+ipywidgets = "*"
+
+# Simulation (weeks 2, 3, 6, 7)
+openmm = "8.*"
+openmm-ml = "*"
+openmm-torch = "*"                # lets openmm-ml run ANI/MACE/AIMNet2 inside OpenMM
+nnpops = "*"                      # fast ANI neighbor/AEV ops
+openmmforcefields = "*"
+pdbfixer = "*"
+
+# Trajectory analysis and viewing (weeks 1, 8, 9, 10)
+mdtraj = "*"
+mdanalysis = "*"
+nglview = "*"
+py3dmol = "*"
+deeptime = "*"                    # replaces PyEMMA (unmaintained); includes VAMPnets
+
+# ML (weeks 4, 5, 7)
+pytorch = { version = ">=2.11,<2.14", build = "cuda*" }   # BioEmu2: torch>=2.11,<2.14
+torchani = "*"
+pytorch_geometric = "*"
+ase = "*"
+biopython = "*"
+rdkit = "*"
+
+[pypi-dependencies]
+# e3nn is deliberately NOT a conda dependency: mace-torch pins e3nn==0.4.4.
+mace-torch = "*"
+ipymolstar = "*"
+# Generative ensembles (weeks 9, 10, projects). Pin by tag/commit; BioEmu2 is a preview release.
+bioemu2 = { git = "https://github.com/microsoft/bioemu2", tag = "v0.1.0rc0" }
+sam2 = { git = "https://github.com/giacomo-janson/sam2" }
+# Optional BioEmu2 acceleration; CUDA 12 build so V100 nodes work.
+cuequivariance = "==0.11.1"
+cuequivariance-torch = "==0.11.1"
+cuequivariance-ops-torch-cu12 = "==0.11.1"
+cuequivariance-ops-cu12 = "==0.11.1"
