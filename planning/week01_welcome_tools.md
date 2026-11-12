@@ -38,7 +38,7 @@
 
   Every answer must include a check (e.g. compute a distance two ways: mdtraj and raw numpy). This exercises numpy, plotting and documentation lookup on real MD data.
 - **Small "AI-audit" warm-up:** a provided assistant-generated snippet contains plausible but wrong code (e.g. a nonexistent mdtraj function name or argument, or nm/Å confusion). Students find the errors by reading the documentation.
-- **ICER onboarding (first 45 min):** OnDemand login, open the course environment, `sbatch` a provided job (no `--account` line; it runs under the student's default account) that runs a small numpy benchmark, check it with `squeue`/`sacct`, retrieve the output. Use `SLURMUsage` to show each student's own CPU/GPU-hour usage. Confirm that each student can read the research space, i.e. is in the `BMB_961_SS27_001` group.
+- **ICER onboarding (first 45 min):** OnDemand login, open the course environment, `sbatch` a provided job (no `--account` line; it runs under the student's default account) that runs a small numpy benchmark, check it with `squeue`/`sacct`, retrieve the output. Confirm that each student can read the research space, i.e. is in the `BMB_961_SS27_001` group.
 - **VMD2 first look (15 min):** open the same sEH trajectory in the VMD2 container (ICER OnDemand or locally in BMB 202), make one representation and one measurement, and compare with the notebook view. VMD2 becomes the tool for full campaign trajectories from Week 6 onward.
 - Keep the object-oriented material only as optional self-study (`learn_python.zip`). Week 2 needs functions and arrays more than classes.
 

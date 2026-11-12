@@ -25,7 +25,7 @@
 6. **Research-connected projects** drawn from the students' own labs, subject to instructor approval of scope and compute.
 
 ## Requirements that make projects robust to AI-generated work
-- **Pre-registered proposal:** question, hypothesis, prediction, planned verification checks, compute budget (GPU-hours, ≤4 h segment plan), fallback plan.
+- **Pre-registered proposal:** question, hypothesis, prediction, planned verification checks, compute plan (≤4 h segment chains, expected queue throughput, storage), fallback plan.
 - **Verification section:** the checks used to show that methods and code are correct (as practiced in every lab).
 - **Convergence and error bars** on every quantitative claim, or an explicit statement that the claim is qualitative.
 - **Reproducibility:** repository with environment lock, scripts and README. Another team must be able to rerun one figure.
@@ -60,5 +60,5 @@
 - [ ] Peer-review form for convergence analyses.
 - [ ] Final rubric (report, repository, presentation, Q&A).
 - [ ] Assign the four Tuesday topics and owners.
-- [ ] ICER compute budget per team for weeks 11–14, plus a monitoring script (reuse from Week 6).
+- [ ] ICER compute plan for weeks 11–14 (queue throughput, storage in the research space), plus a monitoring script (reuse from Week 6).
 - [ ] Decide whether presentations are on Apr 29 or in finals week.

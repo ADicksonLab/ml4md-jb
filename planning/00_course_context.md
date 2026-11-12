@@ -88,10 +88,9 @@ Students may use AI coding assistants, must disclose that use, and are responsib
   - Students use their **own ICER user accounts** and submit with their **default Slurm account**. Course scripts and templates must **not** contain an `--account`/`-A` line.
   - This applies to instructor scripts too (install job, ICER test jobs in `environment/`): nothing in the repository sets `--account`.
   - The course resource is the **research space** `/mnt/research/BMB_961_SS27_001` (Unix group `BMB_961_SS27_001`). It holds the shared environment, model weights, fallback trajectories and shared data. Every enrolled student must be added to that group; the shared environment is group-readable, not world-readable. This is the only per-student request to ICER, and late enrollees need it too.
-  - Compute is charged to each student's own usage. General (non-buy-in) users have a 10,000 GPU-hour/year cap (from ICER documentation), which one GPU for four weeks (~670 h) does not approach.
+  - Jobs charge to the default account, and **there is no finite allocation of GPU-hours to manage**. The practical limits are queue wait and walltime (≤4 h segments), not a budget.
   - Consequences:
-    - Per-student limits and fair-share priority apply individually. Spread a team's replicas across team members' submissions, so no one student carries the whole campaign and the team's work does not depend on one person's queue priority.
-    - Students who are also members of a buy-in lab may have that lab as their default account. Their course jobs would then run under it, so they should check `sacctmgr`/`SLURMUsage`. Telling them to submit without `--account` keeps this consistent; confirm with ICER whether there is a preferred practice.
+    - Students in buy-in labs may default to their lab's account; that is fine.
     - Monitoring (Week 6–7 health checks) cannot query a class account. The monitoring script reads segment logs and trajectory files in the research space (or a list of team usernames), not Slurm accounting by account.
 - **The ≤4 h segment rule** comes from the instructors. Shorter jobs are generally easier to schedule on ICER; keep the segment length a single variable in the runner template.
 - **Fallback:** instructor-generated trajectories of every menu system, so no team is blocked by a failed campaign.

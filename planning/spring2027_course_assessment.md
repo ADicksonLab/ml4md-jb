@@ -183,13 +183,13 @@ Effect on the syllabus: an explicit AI policy (allowed with disclosure; the stud
 
 All students have ICER access, so the course can include simulations long enough to be worth analyzing: hundreds of nanoseconds to microseconds per team, rather than the few-nanosecond runs that fit in a lab period. Relevant ICER facts:
 - 7-day maximum walltime per job.
-- 10,000 GPU-hours per calendar year on general accounts.
+- No finite GPU-hour allocation to manage; jobs charge to each user's default account.
 - **There is no class Slurm account.** Students submit under their own default accounts; the course has a research space (`/mnt/research/BMB_961_SS27_001`) and a Unix group for shared files.
 
-One GPU running continuously for four weeks is about 670 GPU-hours, so the yearly cap is not binding. **Instructor constraint: GPU jobs for this course must run in ≤4 h segments.** Production therefore uses checkpointed, chained segments, each writing its own trajectory file; see `planning/00_course_context.md` and `planning/week06_biomolecular_md.md`. Queue wait and each student's individual fair-share priority will be the practical constraint (spread a team's replicas across members' submissions) and should be tested in December.
+**Instructor constraint: GPU jobs for this course must run in ≤4 h segments.** Production therefore uses checkpointed, chained segments, each writing its own trajectory file; see `planning/00_course_context.md` and `planning/week06_biomolecular_md.md`. Queue wait will be the practical constraint and should be tested in December.
 
 **Design: one campaign, analyzed by every later unit.**
-- **Week 3 — first contact with Slurm.** The argon temperature sweep is submitted as a job array. Students learn submission, monitoring, output handling and `SLURMUsage` on a cheap, low-risk job.
+- **Week 3 — first contact with Slurm.** The argon temperature sweep is submitted as a job array. Students learn submission, monitoring, and output handling on a cheap, low-risk job.
 - **Week 6 — launch.**
   - Each team builds a system with CHARMM-GUI from a menu chosen to have known behavior on accessible timescales (suggested below).
   - Teams validate it with a short equilibration in lab, then launch production as chained, checkpointed jobs: several independent replicas, 4 fs timestep with hydrogen mass repartitioning (HMR), restart via Slurm job dependencies.
