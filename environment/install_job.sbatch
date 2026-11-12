@@ -1,5 +1,4 @@
 #!/bin/bash
-#SBATCH --account=vermaaslab
 #SBATCH --partition=general-short
 #SBATCH --time=3:30:00
 #SBATCH --cpus-per-task=8

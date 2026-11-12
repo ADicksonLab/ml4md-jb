@@ -86,7 +86,7 @@ Students may use AI coding assistants, must disclose that use, and are responsib
 - **Teaching opportunity:** the short-segment constraint suits the many-short-trajectories regime in which MSMs work well. Several replicas per team give real error bars.
 - **ICER accounts — there is no class Slurm account.**
   - Students use their **own ICER user accounts** and submit with their **default Slurm account**. Course scripts and templates must **not** contain an `--account`/`-A` line.
-  - The instructors' test scripts in `environment/` use `--account=vermaaslab`. They are instructor-only and must not be copied into student materials.
+  - This applies to instructor scripts too (install job, ICER test jobs in `environment/`): nothing in the repository sets `--account`.
   - The course resource is the **research space** `/mnt/research/BMB_961_SS27_001` (Unix group `BMB_961_SS27_001`). It holds the shared environment, model weights, fallback trajectories and shared data. Every enrolled student must be added to that group; the shared environment is group-readable, not world-readable. This is the only per-student request to ICER, and late enrollees need it too.
   - Compute is charged to each student's own usage. General (non-buy-in) users have a 10,000 GPU-hour/year cap (from ICER documentation), which one GPU for four weeks (~670 h) does not approach.
   - Consequences:
