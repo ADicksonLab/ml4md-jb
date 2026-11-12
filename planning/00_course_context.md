@@ -84,7 +84,16 @@ Students may use AI coding assistants, must disclose that use, and are responsib
   OpenMM's `Simulation.runForClockTime(...)`, with checkpoint and state files, appears suited to this; confirm its behavior in the Week 6 thread. A minimal runner is ~50 lines and should be a provided template, with students responsible for understanding and testing it.
 - **Throughput:** queue wait between segments reduces the duty cycle below 100%. Benchmark real ns/day *and* real segments/day in December.
 - **Teaching opportunity:** the short-segment constraint suits the many-short-trajectories regime in which MSMs work well. Several replicas per team give real error bars.
-- **ICER policy facts (from ICER documentation):** 7-day maximum walltime; general accounts capped at 10,000 GPU-hours/year; instructors can create temporary class accounts. The 4-hour constraint comes from the instructors and applies to the GPU resources available to the class.
+- **ICER accounts — there is no class Slurm account.**
+  - Students use their **own ICER user accounts** and submit with their **default Slurm account**. Course scripts and templates must **not** contain an `--account`/`-A` line.
+  - The instructors' test scripts in `environment/` use `--account=vermaaslab`. They are instructor-only and must not be copied into student materials.
+  - The course resource is the **research space** `/mnt/research/BMB_961_SS27_001` (Unix group `BMB_961_SS27_001`). It holds the shared environment, model weights, fallback trajectories and shared data. Every enrolled student must be added to that group; the shared environment is group-readable, not world-readable. This is the only per-student request to ICER, and late enrollees need it too.
+  - Compute is charged to each student's own usage. General (non-buy-in) users have a 10,000 GPU-hour/year cap (from ICER documentation), which one GPU for four weeks (~670 h) does not approach.
+  - Consequences:
+    - Per-student limits and fair-share priority apply individually. Spread a team's replicas across team members' submissions, so no one student carries the whole campaign and the team's work does not depend on one person's queue priority.
+    - Students who are also members of a buy-in lab may have that lab as their default account. Their course jobs would then run under it, so they should check `sacctmgr`/`SLURMUsage`. Telling them to submit without `--account` keeps this consistent; confirm with ICER whether there is a preferred practice.
+    - Monitoring (Week 6–7 health checks) cannot query a class account. The monitoring script reads segment logs and trajectory files in the research space (or a list of team usernames), not Slurm accounting by account.
+- **The ≤4 h segment rule** comes from the instructors. Shorter jobs are generally easier to schedule on ICER; keep the segment length a single variable in the runner template.
 - **Fallback:** instructor-generated trajectories of every menu system, so no team is blocked by a failed campaign.
 
 ## Cross-cutting thread: generated structural ensembles vs. MD
@@ -129,8 +138,8 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
    - Labs and in-lecture activities run in ICER OnDemand Jupyter sessions, opened from BMB 202 machines or laptops in a browser.
    - The campaign and all GPU-heavy work run as Slurm batch jobs.
    - Colab is not used; at most it is an emergency fallback if ICER is down.
-   - One pinned course environment (conda/pixi lock file) lives on ICER: a shared install in the course research space, or one built per student from the lock file in Week 1.
-   - **Lab-time capacity:** ~20 students requesting OnDemand sessions at 2:00 PM on Thursday may wait in the queue. Ask ICER about a recurring Slurm reservation for Thursday 2–4 PM (and short Tuesday activities). Design labs so that CPU sessions suffice for the interactive work, with GPU-heavy steps (MLIP training, AF3/Boltz, BioEmu2, aSAM) either submitted as batch jobs or supplied as precomputed outputs in the course space.
+   - One pinned course environment (pixi lock file in `environment/`) is installed once in the research space at `/mnt/research/BMB_961_SS27_001/env/.pixi/envs/default` (see `environment/ENVIRONMENT.md`). Students use it through group membership; they do not build their own (~13 GB).
+   - **Lab-time capacity:** ~20 students requesting OnDemand sessions at 2:00 PM on Thursday may wait in the queue. Ask ICER whether a recurring reservation for Thursday 2–4 PM (and short Tuesday activities) can be set up for a list of users or for the `BMB_961_SS27_001` group. It cannot be tied to a class Slurm account, because there is none; students would add `--reservation=...` (not `--account`). Design labs so that CPU sessions suffice for the interactive work, with GPU-heavy steps (MLIP training, AF3/Boltz, BioEmu2, aSAM) either submitted as batch jobs or supplied as precomputed outputs in the course space.
    - Sessions longer than 4 h are not needed in lab; the 4 h limit matters only for the campaign.
 
    The environment replaces the 2022 pins (Python 3.7/3.8, `cudatoolkit=10.0`, `openmm=7.6`, `condacolab`, `module load CUDA/10.0.130`). Weekly threads should list the packages they need rather than install ad hoc.
@@ -147,7 +156,7 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
      - Notebook widgets are for quick in-notebook views only. Always stride or subsample before viewing in a notebook.
      - Point the course at the existing container rather than building a new install. Check that it reads the campaign output formats (DCD/XTC + PSF/PDB from CHARMM-GUI) and the course research-space paths.
    - Wrap the chosen backend in one course helper (e.g. `view(traj, stride=...)`), so a broken widget can be swapped without editing every notebook.
-3. **ICER:** class accounts, course research space for shared data and fallback trajectories, template Slurm scripts.
+3. **ICER:** add enrolled students to the `BMB_961_SS27_001` research-space group (no class Slurm account); research space for the environment, weights, shared data and fallback trajectories; template Slurm scripts **without** `--account`; optional lab reservation.
 4. **Syllabus / `intro.md`:**
    - instructors, rooms and dates;
    - remove the Zoom/hybrid format and COVID text; replace the expired 2022 Slack invite (`ml4mdbmb961`) with the new one;

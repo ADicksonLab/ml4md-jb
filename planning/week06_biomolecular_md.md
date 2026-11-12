@@ -87,6 +87,6 @@
 - [ ] Rubric.
 
 ## Open decisions
-- Replicas per team, and GPU-hours per team, given queue throughput.
+- Replicas per team, and how they are split across team members' own submissions (usage and fair-share are per student; no class account).
 - Shared course research space vs. team directories for trajectory storage.
 - Default force field and water model (e.g. CHARMM36m/TIP3P vs. AMBER ff19SB/OPC) and whether teams may choose.

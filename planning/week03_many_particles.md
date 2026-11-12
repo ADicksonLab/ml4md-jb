@@ -70,7 +70,7 @@
 - [ ] Design the (T, ρ) grid and the shared results sheet.
 - [ ] AI-audit notebook.
 - [ ] Lecture notebook: PBC (reuse), cutoffs, PME concept, ensembles, statistics.
-- [ ] Test the job array on a class account.
+- [ ] Test the job array from a plain student-type ICER account (no `--account`; default account).
 
 ## Open decisions
 - Thermostat for the phase map: Langevin from Week 2, or the students' own choice? The latter adds variability but also a teaching point.

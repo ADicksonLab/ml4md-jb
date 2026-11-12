@@ -74,3 +74,5 @@ Tests that passed (`check_environment.py --gpu`, 32/32; plus ad-hoc runs):
 2. Launch OnDemand with the prefix above and run `check_environment.py --gpu` on a V100 and on another GPU type.
 3. Browser test (NGLView, MathJax, RISE).
 4. December: re-solve (`pixi update`), re-run the check, tag a release of the lock.
+
+**Student-facing Slurm scripts:** there is no class Slurm account. The `--account=vermaaslab` lines in `install_job.sbatch` and `icer_tests/` are for instructor testing only; templates given to students must omit `--account` (students submit under their default account) and rely on membership in the `BMB_961_SS27_001` group to read the research space.

@@ -181,12 +181,12 @@ Effect on the syllabus: an explicit AI policy (allowed with disclosure; the stud
 
 ### 5c. A semester-long simulation campaign on ICER
 
-All students have ICER access, so the course can include simulations long enough to be worth analyzing: hundreds of nanoseconds to microseconds per team, rather than the few-nanosecond runs that fit in a lab period. The relevant ICER limits (to confirm for class accounts):
-- 7-day maximum walltime per job
-- 10,000 GPU-hours per calendar year on general accounts
-- temporary student accounts that instructors can create for a class
+All students have ICER access, so the course can include simulations long enough to be worth analyzing: hundreds of nanoseconds to microseconds per team, rather than the few-nanosecond runs that fit in a lab period. Relevant ICER facts:
+- 7-day maximum walltime per job.
+- 10,000 GPU-hours per calendar year on general accounts.
+- **There is no class Slurm account.** Students submit under their own default accounts; the course has a research space (`/mnt/research/BMB_961_SS27_001`) and a Unix group for shared files.
 
-One GPU running continuously for four weeks is about 670 GPU-hours, so the yearly cap is not binding. **Instructor constraint: GPU jobs for this course must run in ≤4 h segments.** Production therefore uses checkpointed, chained segments, each writing its own trajectory file; see `planning/00_course_context.md` and `planning/week06_biomolecular_md.md`. Queue wait and fair-share priority across ~15–20 students will be the practical constraint and should be tested in December.
+One GPU running continuously for four weeks is about 670 GPU-hours, so the yearly cap is not binding. **Instructor constraint: GPU jobs for this course must run in ≤4 h segments.** Production therefore uses checkpointed, chained segments, each writing its own trajectory file; see `planning/00_course_context.md` and `planning/week06_biomolecular_md.md`. Queue wait and each student's individual fair-share priority will be the practical constraint (spread a team's replicas across members' submissions) and should be tested in December.
 
 **Design: one campaign, analyzed by every later unit.**
 - **Week 3 — first contact with Slurm.** The argon temperature sweep is submitted as a job array. Students learn submission, monitoring, output handling and `SLURMUsage` on a cheap, low-risk job.
@@ -209,7 +209,7 @@ One GPU running continuously for four weeks is about 670 GPU-hours, so the yearl
 - Instructor-research systems: a protein–ligand unbinding case (Dickson lab), or a small solute/gas permeating a lipid bilayer (Vermaas lab; CHARMM-GUI Membrane Builder). These are harder, more open-ended options for strong teams.
 
 **Instructor-side requirements:**
-- Request class accounts and a course research space for shared data.
+- Add enrolled students to the `BMB_961_SS27_001` research-space group (research space already exists; no class Slurm account).
 - Provide a pinned course environment on ICER (the only computing platform).
 - Prepare template Slurm scripts with checkpoint/restart.
 - Do a pre-semester benchmark (ns/day per system on the available GPU types).
@@ -240,5 +240,5 @@ Design notes:
 4. Is the ~10-content-week budget acceptable, or should the project shrink to 3 weeks to recover one content week?
 5. AI coding assistant policy for labs and the final project.
 6. Adopt the AI-era grading mechanisms (Sec. 5b)? In particular, are oral check-offs feasible for the expected enrollment, and should participation (currently 50%) be split into lab verification and interpretation, oral check-offs, and attendance?
-7. ICER: who requests class accounts and course research space, and can the campaign systems be benchmarked on the available GPU types in December?
+7. ICER: who adds students to the research-space group (and when), and can the campaign systems be benchmarked on the available GPU types in December?
 8. Campaign system menu: miniproteins with published reference data only, or also instructor-research systems (unbinding, membrane permeation)?
