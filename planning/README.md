@@ -6,6 +6,7 @@ Handoff documents for updating BMB 961 (ML4MD). Each weekly file is written for 
 - rooms, dates and instructors;
 - the semester sequence;
 - the audience (biochemistry graduate students) and conventions for writing equations explicitly;
+- figure conventions (no plot titles; sentence-case axis labels with units);
 - the cross-cutting rule of grading what AI tools cannot supply;
 - ICER as the only computing platform, and the simulation campaign (≤4 h segments);
 - comparisons of generated ensembles (aSAM/aSAMt, BioEmu2) with MD;

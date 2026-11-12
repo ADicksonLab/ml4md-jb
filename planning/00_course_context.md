@@ -182,6 +182,31 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
   - Speaker notes go in `notes` cells, so the book page and the slide deck stay a single source.
 - **Execution:** lecture notebooks are committed with outputs, because the book does not execute notebooks (`execute_notebooks: 'off'`). Re-run them in the pinned course environment before committing, so the saved animations match the code.
 
+## Figure conventions (all notebooks, slides and solutions)
+
+Matplotlib's defaults, the 2022 notebooks, and AI-generated plotting code usually put a title on every plot and use lower-case axis labels. The course style is different:
+
+1. **No plot titles.** Do not call `ax.set_title()`, `plt.title()` or `fig.suptitle()`. What the figure shows goes in the surrounding text instead: the markdown cell before or after it in the book, or the slide heading in RISE. Panel letters (a, b, …) are allowed in multi-panel figures.
+2. **Sentence-case axis labels with units in parentheses:** capitalize only the first word, plus proper nouns, acronyms and symbols that are capitalized anyway. Examples:
+   - `Time (ns)`, not `time (ns)` or `Time (Ns)`;
+   - `Potential energy (kcal/mol)`;
+   - `Distance from center (Å)`;
+   - `RMSD (Å)`;
+   - `Radial distribution function, g(r)`;
+   - `Implied timescale (ns)`;
+   - `Temperature (K)`.
+
+   Dimensionless quantities get no unit, or `(reduced units)` in the LJ argon lab.
+3. **Legends, colorbar labels and annotations** follow the same sentence case (`Velocity Verlet`, `Explicit Euler`, `Langevin thermostat`; method names keep their capitals).
+4. **Units always appear** and match the units stated in the notebook text (see audience conventions). A label without units counts as an error in solutions.
+5. **The same rules apply to animations** (`FuncAnimation` frames), VMD2-rendered movies with overlaid text, and generated figures in slides.
+
+Implementation:
+- Ship one course style helper with the course environment, e.g. `course_style.py` with `apply_course_style()` and/or a `ml4md.mplstyle`. It sets font sizes legible on the MPS 1030 projector and the other defaults. Matplotlib styles cannot remove titles or fix label case, so rules 1–2 are enforced by review, not by the style file.
+- Add a short check to each thread's review step: no `set_title`/`suptitle` calls, and every `set_xlabel`/`set_ylabel` string is in sentence case with units.
+- Give students the same rules in the lab instructions. Plot quality counts in grading, and fixing AI-generated titles and labels is a small but real part of reviewing generated code.
+- When reusing 2022 notebooks, strip existing titles and recase existing labels while porting.
+
 ## Conventions for the weekly threads
 
 - Each thread delivers, for its week:
@@ -193,5 +218,6 @@ Instructors should precompute aSAM and BioEmu2 ensembles for every menu system o
   - `_toc.yml` entries;
   - list of required packages.
 - Put new material in `Week-NN/` folders numbered by the **2027** week. 2022 folder numbers differ; each weekly doc lists its source folders.
+- Follow the figure conventions above (no titles; sentence-case axis labels with units).
 - Use the units already set up in the 2022 labs (reduced LJ units with `pint` in the argon lab; OpenMM units in biomolecular labs) and state them in every notebook.
 - Solutions must not be published to the student-facing book.
